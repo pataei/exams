@@ -1,0 +1,45 @@
+\begin{figure}
+%\textbf{Configuration selection semantics of \vqsTxt:}
+\begin{alignat*}{1}
+\qGroup . &: \qSet \to \ddot \pQSet\\
+%
+\qGroup \vRel &= \annot [\t] \pRel\\
+\qGroup {\vSel \vQ}  &=  
+\setDef {\annot [\dimMeta \wedge \dimMeta_\vCond] {\left(\sigma_{\pCond} \pQ\right)} \myOR
+\annot \pQ \in \qGroup \vQ, \annot [\dimMeta_\vCond] \pCond \in \cGroup}
+\\
+%
+\qGroup {\vPrj [\vAttList] \vQ} &= 
+\setDef {\annot [\dimMeta \wedge \dimMeta_\vAttList] {\left(\pi_{\pAttList} \pQ \right)} \myOR
+\annot \pQ \in \qGroup \vQ, \annot [\dimMeta_\vAttList] \pAttList \in \aGroup}
+\\
+%
+\qGroup {{\vQ_1} \times {\vQ_2}} &= 
+\setDef {\annot [\dimMeta_1 \wedge \dimMeta_2] {\left(\pQ_1 \times \pQ_2\right)} \myOR
+\annot [\dimMeta_1] \pQ_1 \in \qGroup {\vQ_1}, \annot [\dimMeta_2] \pQ_2 \in \qGroup {\vQ_2} }
+\\
+%
+\qGroup {{\vQ_1} \Join_\vCond {\vQ_2}} &= 
+\setDef {\annot [\dimMeta_1 \wedge \dimMeta_2 \wedge \dimMeta_\vCond] {\left(\pQ_1 \Join_{\pCond} \pQ_2 \right)} \myOR 
+\annot [\dimMeta_1] \pQ_1 \in \qGroup {\vQ_1}, \annot [\dimMeta_2] \pQ_2 \in \qGroup {\vQ_2}\\
+& \hspace{104pt}
+,\annot [\dimMeta_\vCond] \pCond \in \cGroup  }
+\\
+%
+\qGroup {\chc {\vQ_1, \vQ_2}} &= 
+\setDef {\annot [\dimMeta \wedge \dimMeta_1] \pQ_1 \myOR  \annot [\dimMeta_1] \pQ_1 \in \qGroup {\vQ_1} }
+\cup 
+\setDef {\annot [\neg \dimMeta \wedge \dimMeta_2] \pQ_2 \myOR  \annot [\dimMeta_2] \pQ_2 \in \qGroup {\vQ_2}}  \\
+%
+\qGroup {{\vQ_1} \circ {\vQ_2}} &= 
+\setDef {\annot [\dimMeta_1 \wedge \dimMeta_2] {\left(\pQ_1 \circ \pQ_2\right)} \myOR
+\annot [\dimMeta_1] \pQ_1 \in \qGroup {\vQ_1}, \annot [\dimMeta_2] \pQ_2 \in \qGroup {\vQ_2} }\\
+%
+\qGroup {\empRel} &= \annot [\t] {\underline \empRel}
+\end{alignat*}
+\caption{Grouping of v-queries. \cGroup\ and \aGroup\ indicate the grouping of v-conditions and
+variational attribute lists, respectively. They both follow the definition provided in 
+\secref{impl}.
+}
+\label{fig:vq-group}
+\end{figure}

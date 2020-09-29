@@ -1,0 +1,208 @@
+\documentclass[11pt]{article}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+
+\usepackage{mathptmx,amssymb,amsmath}
+\usepackage{fullpage}
+\usepackage{enumerate}
+\usepackage{fancyvrb}
+\usepackage{comment}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[usenames, dvipsnames]{color}
+\usepackage{amsthm}
+\usepackage{graphicx}
+\usepackage{stmaryrd}
+\usepackage{mathtools}
+\usepackage{float}
+
+\usepackage{ebproof} %for derivation trees
+\usepackage{lscape} %to force a page to be in landscape mode
+\usepackage{graphicx}
+\usepackage{balance}  % for  \balance command ON LAST PAGE  (only there!)
+\usepackage{comment}
+\usepackage{accents}
+\usepackage{lambda,cc}
+\usepackage{mathtools} 
+\usepackage{array,multirow}
+%\usepackage{hhline}
+\usepackage{arydshln}
+%\usepackage{color}
+%\usepackage[usenames, dvipsnames]{xcolor}
+\usepackage{xcolor}
+%\usepackage{colortbl}
+%\usepackage{booktabs}
+\usepackage{mathpartir}
+\usepackage{hyperref}
+\usepackage[normalem]{ulem}
+% commuting diagram packages
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{wrapfig}
+%\usepackage{blindtext}% for example text here only
+\usepackage{enumitem,kantlipsum} %remove enumerate indent
+\usepackage{amssymb}%for arrow labels
+
+\usepackage{listings} % for v-sql example code
+
+% references
+\newcommand{\tabref}[1]{\hyperref[tab:#1]{Table~\ref*{tab:#1}}}
+\newcommand{\figref}[1]{\hyperref[fig:#1]{Figure~\ref*{fig:#1}}}
+\newcommand{\secref}[1]{\hyperref[sec:#1]{Section~\ref*{sec:#1}}}
+\newcommand{\defref}[1]{\hyperref[def:#1]{Definition~\ref*{def:#1}}}
+\newcommand{\appref}[1]{\hyperref[app:#1]{Appendix~\ref*{app:#1}}}
+\newcommand{\chref}[1]{\hyperref[ch:#1]{Chapter~\ref*{ch:#1}}}
+\newcommand{\thmref}[1]{\hyperref[thm:#1]{Theorem~\ref*{thm:#1}}}
+\newcommand{\lemref}[1]{\hyperref[lem:#1]{Lemma~\ref*{lem:#1}}}
+\newcommand{\exref}[1]{\hyperref[ex:#1]{Example~\ref*{eg:#1}}}
+
+%colors
+%\definecolor{deepcarminepink}{rgb}{0.94, 0.19, 0.22}%all shared
+%\definecolor{mediumelectricblue}{rgb}{0.01, 0.31, 0.59}%middlename
+%\definecolor{frenchblue}{rgb}{0.0, 0.45, 0.73}%lastname
+%\definecolor{green(munsell)}{rgb}{0.0, 0.66, 0.47}%iceland
+%\definecolor{violet(ryb)}{rgb}{0.53, 0.0, 0.69}%us,invest
+%\definecolor{navyblue}{rgb}{0.0, 0.0, 0.5}%v-table
+%\definecolor{persimmon}{rgb}{0.93, 0.35, 0.0}%iran
+%\definecolor{Plum}{rgb}{0.78, 0.08, 0.52}%us,bank
+%\definecolor{ruby}{rgb}{0.88, 0.07, 0.37}%us,bank
+%
+%\definecolor{light-gray}{gray}{0.95}
+%\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+
+%names
+\input{names}
+
+%ops
+\input{vdbOps}
+
+
+%%%
+%%% Formatting details
+%%%
+\sloppy
+\sloppypar
+\widowpenalty=0
+\clubpenalty=0
+\displaywidowpenalty=0
+\raggedbottom
+\pagestyle{plain}
+
+
+% \topskip0pt
+% \parskip0pt
+% \partopsep0pt
+
+
+\def\denseitems{
+    \itemsep1pt plus1pt minus1pt
+    \parsep0pt plus0pt
+    \parskip0pt\topsep0pt}
+
+
+
+\begin{document}
+
+\title{Variational Database Management System: Theory and Application}
+
+\author{Parisa S. Ataei\\
+Thesis Proposal \\
+Submitted November 3rd, 2020
+}
+\date{}
+
+\maketitle
+
+\section*{Abstract}
+
+\section{Introduction}
+\label{sec:intro}
+
+
+With this initial ..., we propose the following research:
+
+\begin{itemize}
+\item Objective 1: Identify the kinds of variation existing in relational databases in 
+different application domains.
+\item Objective 2: Design a query language and implement a database management 
+system that accommodate at least a subset of types of variations identified in objective 1.
+\item Objective 3: Mechanize proofs of properties of the language and the system.
+\item Objective 4: Demonstrate how the proposed system can be used to manage
+variation in databases in different application domains.
+\item Objective 5: Generalize the encoding of variation and the design of the query 
+language to cover more kinds of variation.
+\end{itemize}
+
+\section{Statement of Thesis}
+\label{sec:stmt}
+The goal of this research is to provide a query language(s) and a database management 
+system that explicitly account for different kinds of variation in relational databases to relieve 
+some of programmer/DBA's labor by providing some guarantees within the query 
+language that accounts explicitly for variation.
+
+
+\section{Background and Related Work}
+\label{sec:rw}
+
+\subsection{Variational Research}
+\label{sec:var-res}
+
+\subsection{Forms of Variation in Relational Databases}
+\label{sec:var-in-db}
+
+\textbf{Database Evolution:}
+
+\textbf{Data Integration:}
+
+\textbf{Versioning a Database:}
+
+
+\section{Research Goals and Methods}
+\label{sec:goals}
+
+\subsection{Identify the kinds of variation existing in relational databases in 
+different application domains}
+\label{sec:ro1}
+
+\subsection{Design a query language and implement a database management 
+system that accommodate at least a subset of identified types of variations}
+\label{sec:ro2}
+
+\subsection{Mechanize proofs of properties of the language and the system}
+\label{sec:ro3}
+
+\subsection{Demonstrate how the proposed system can be used to manage
+variation in databases in different application domains}
+\label{sec:ro4}
+
+\subsection{Generalize the encoding of variation and the design of the query 
+language to cover more kinds of variation}
+\label{sec:ro5}
+
+\subsection{Summary}
+\label{sec:sum}
+
+\figref{conn} summarizes the connections between the research questions and activities.
+\tabref{timeline} provides the timeline for this proposal.
+
+\section{Conclusion}
+\label{sec:con}
+
+
+
+
+\newpage
+\bibliographystyle{abbrv}
+\bibliography{vdbms}
+
+% \newpage
+\appendix
+
+\end{document}

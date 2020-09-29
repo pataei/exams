@@ -1,0 +1,69 @@
+\begin{figure}
+%\textbf{V-conditions static semantics: (b: boolean tag, A: plain attribute, k: constant value)}
+  \begin{mathpar}
+  \small    
+
+  \inferrule[\conjC]
+  	{\envCond \vCond_1\\
+    	\envCond \vCond_2}
+    {\envCond{\vCond_1 \wedge \vCond_2}}
+    
+  \inferrule[\disjC]
+  	{\envCond \vCond_1\\
+    	\envCond \vCond_2}
+    {\envCond{\vCond_1 \vee \vCond_2}}
+    
+
+
+  \inferrule[\choiceC]
+%  	{\defType{\relInContext{\vContext''}}\in \vSch \\
+    	{\envCond[\vctx \wedge \dimMeta, \vType]{\vCond_1} \\
+        \envCond[\vctx \wedge \neg \dimMeta, \vType]{\vCond_2}}
+    {\envCond{\chc[\dimMeta]{\vCond_1, \vCond_2}}}
+    
+
+  \inferrule[\notC]
+  	{\envCond \vCond}
+    {\envCond \neg \vCond}
+        
+%  \inferrule[]
+%  	{\envCond[\vContext \wedge \dimMeta]{\vCond_1} \\
+%    	\envCond[\vContext \wedge \neg\dimMeta]{\vCond_2}}
+%    {\envCond{\chc{\vCond_1, \vCond_2}}}
+    
+
+    
+  \inferrule[\attValC]
+  	{
+	%\defType{\relInContext{\vContext'}}\in \vSch \\
+    	\optAtt [ \dimMeta] \in \vType \\
+	\taut{\vctx \imply { \dimMeta}} \\
+        \cte \in \dom \vAtt}
+    {\envCond{\op \pAtt \cte}}
+    
+  \inferrule[\boolC]
+  	{}
+    {\envCond \bTag}
+    
+
+    
+  \inferrule[\attAttC]
+  	{
+	%\defType{\relInContext{\vContext'}}\in \vSch \\
+    	\optAtt [\dimMeta_1] [\vAtt_1]\in \vType \\
+         {\optAtt [\dimMeta_2] [\vAtt_2]} \in \vType \\
+         \taut{\vctx \imply \dimMeta_1} \\
+         \taut{\vctx \imply \dimMeta_2} \\
+        \type[\vAtt_1] = \type[ \vAtt_2]}
+    {\envCond{\op{\pAtt_1}{\pAtt_2}}}
+    
+  \end{mathpar}
+
+\caption{V-condition typing relation. A v-condition \vCond\ is well-typed if 
+it is valid in the variational context \vctx\ and type environment \vType, i.e., 
+\envCond \vCond. Note that the type rules for v-conditions return a boolean, if
+the v-condition is type-correct the rules return \t, otherwise they return \f.}
+\label{fig:v-cond-rules}
+\end{figure}
+%
+%\rewrite{reorder this if space allowed!!}

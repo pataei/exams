@@ -1,0 +1,40 @@
+\begin{figure}
+%\textbf{Configuration selection semantics of variational conditions:}
+\begin{alignat*}{1}
+\ecSem [] . &: \vCondSet \to \confSet \to \pCondSet\\
+%
+\ecSem \bTag &= \bTag \\
+%
+\ecSem \vAttOpCte &= 
+    \vAttOpCte\\
+%	\begin{cases}
+%		\vAttOpCte, &\text{ if } \pAtt \in \attr [\eeSem \vRel]\\
+%		\f, &\text{ otherwise}
+%	\end{cases}\\
+%
+\ecSem \vAttOpAtt &= 
+       \vAttOpAtt\\
+%	\begin{cases}
+%		\pAttOpAtt, &\text{ if } \pAtt_1 \in \attr [\eeSem \vRel] \&\ 
+%		                                   \pAtt_2 \in \attr [\eeSem \vRel] \\
+%		\f,  &\text{ otherwise}
+%	\end{cases}\\
+%
+\ecSem {\neg \vCond} &= \neg \ecSem \vCond\\
+%
+\ecSem {\orr \vCond} &= \ecSem {\vCond_1} \vee \ecSem {\vCond_2}\\
+%
+\ecSem {\annd \vCond} &= \ecSem {\vCond_1} \wedge \ecSem {\vCond_2}\\
+%
+\ecSem {\chc {\vCond_1, \vCond_2}} &=
+	\begin{cases}
+		\ecSem {\vCond_1}, &\text{ if } \fSem \dimMeta = \t \\
+		\ecSem {\vCond_2}, &\text{ otherwise}
+	\end{cases}
+\end{alignat*}
+\caption{V-condition configuration.
+%which assumes v-conditions
+%are well-typed.
+}
+\label{fig:vcond-conf-sem}
+\end{figure}

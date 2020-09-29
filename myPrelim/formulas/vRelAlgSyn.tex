@@ -1,0 +1,34 @@
+\begin{figure}
+\textbf{Variational conditions:}
+\begin{syntax}
+\synDef \vCond \vCondSet &\eqq& \bTag \myOR \pAtt \bullet \cte \myOR \pAtt \bullet \pAtt \myOR 
+						\neg \vCond \myOR \vCond \vee \vCond \\
+                        &\myOR& \vCond \wedge \vCond
+                         \myOR \chc { \vCond, \vCond}
+\end{syntax}
+
+\medskip
+\textbf{Variational relational algebra syntax:}
+\begin{syntax}
+\synDef \vQ \qSet &\eqq& \vRel &\textit{Variational Relation}\\
+								&\myOR& \vSel \vQ &\textit{Variational Selection}\\
+                                &\myOR& \vPrj [\vAttList] \vQ &\textit{Variational Projection}\\
+                                &\myOR&  \chc {\vQ,\vQ} &\textit{Choice of Queries}\\
+%                                Variational Expression Choices}\\
+%			      &\myOR& \vQ \Join_\vCond \vQ &\textit{Variational Join}\\
+			      &\myOR& \vQ \times \vQ &\textit{Variational Cartesian Product}\\
+                                &\myOR& \vQ \circ \vQ &\textit{Variational Set Operation}\\
+%                                &\myOR& \vQ \backslash \vQ &\textit{Variational Set Difference}\\
+                                &\myOR& \empRel &\textit{Empty Relation}
+\end{syntax}
+
+\caption{Variational relational algebra definitions. 
+$\bullet$ and $\circ$ denote comparison ($<, \leq, =, \neq, >, \geq$) 
+and v-set operations ($\cap, \cup$), respectively. \TODO{remember that
+you removed join (also removed it from query config def and constrain query 
+by schema). if you want use it just say it's a syntactic sugar.}
+}
+%$<, \leq, =, \neq, >, \geq$.
+%$\circ$ denotes set operators: union and difference.}
+\label{fig:v-alg-def}
+\end{figure}

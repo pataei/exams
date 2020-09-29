@@ -1,0 +1,33 @@
+\begin{figure}
+%\textbf{Configuration selection semantics of \vqsTxt:}
+\begin{alignat*}{1}
+\eeSem [] . &: \qSet \to \confSet \to \pQSet\\
+%
+\eeSem \vRel &= \orSem \vRel = \pRel\\
+\eeSem {\vSel \vQ}  &= \vSel [\ecSem \vCond] {\eeSem \vQ}\\
+%
+\eeSem {\vPrj [\vAttList] \vQ} &= \vPrj [\olSem \vAttList] {\eeSem \vQ}\\
+%
+\eeSem {{\vQ_1} \times {\vQ_2}} &= \eeSem {\vQ_1} \times \eeSem {\vQ_2}\\
+%
+%\eeSem {{\vQ_1} \Join_\vCond {\vQ_2}} &= \eeSem {\vQ_1} \Join_{\ecSem \vCond} \eeSem {\vQ_2}\\
+%
+\eeSem {\chc {\vQ_1, \vQ_2}} &= 
+	\begin{cases}
+		\eeSem {\vQ_1}, \text{ if } \fSem \dimMeta = \t\\
+		\eeSem {\vQ_2}, \text{ otherwise}
+	\end{cases}\\
+%
+\eeSem {{\vQ_1} \circ {\vQ_2}} &= \eeSem {\vQ_1} \circ \eeSem {\vQ_2}\\
+%
+\eeSem {\empRel} &= \underline {\empRel}
+\end{alignat*}
+\caption{Configuration of VRA which assumes that the given v-query
+is well-typed. 
+%\orSem ., \ecSem ., and \olSem . are
+%configuration of v-relation, v-condition, and variational attribute
+%set, respectively, defined in \figref{vdb-conf}, 
+%\figref{vcond-conf-sem}, \figref{vdb-conf}.
+Note that we have extended RA with an empty relation $\underline {\empRel}$.}
+\label{fig:v-alg-conf-sem}
+\end{figure}

@@ -1,0 +1,58 @@
+\section{Properties to Prove}
+\label{sec:props}
+
+This is just a draft. May not be included in the final submission.
+
+\begin{figure}
+\textbf{If an explicitly annotated query has a type then it has the same explicitly type:}
+\begin{flalign}%\raggedleft
+\envWithoutVctx {\constrain \vQ} {\vType} \Rightarrow \explEnv {\constrain \vQ} {\VVal \vType} \textit{ and } \vType \equiv {\VVal \vType}
+\end{flalign}
+%
+\medskip
+\textbf{If a query has a type then its explicitly annotated counterpart has the same type (this shows that the implicit type system applies the schema to the type env although it doesn't apply it to the query):}
+\begin{flalign}%\raggedleft
+\envWithoutVctx {\vQ} {\vType} \Rightarrow \envWithoutVctx {\constrain \vQ} {\VVal \vType} \textit{ and } \vType \equiv {\VVal \vType}
+\end{flalign}
+%
+\medskip
+\textbf{The relationship between the two type systems (if a query has a type then its explicitly annotated counterpart has the same explicitly annotated type :}
+%
+\begin{flalign}%\raggedleft
+\envWithoutVctx {\vQ} {\vType} \Rightarrow \explEnv {\constrain \vQ} {\VVal \vType} \textit{ and } \vType \equiv {\VVal \vType}
+\end{flalign}
+%
+\medskip 
+\textbf{variation preserving property for explicit type system (note that the second type system is plain relational type system. Note that the query passed to the explicit type system is explicitly annotated so it doesn't have to be constrained by the schema):}
+\begin{flalign}
+\forall \config \in \confSet. \explEnv { \vQ} {\vType} \Rightarrow 
+\pEnv [\osSem {\vSch}] {\eeSem { \vQ}} {\olSem {\vType}}
+\end{flalign}
+%
+\medskip 
+\textbf{variation preserving property for implicit type system (corollary of 3 and 4):}
+\begin{flalign}
+\forall \config \in \confSet. \envWithoutVctx { \vQ} {\vType} \Rightarrow 
+\pEnv [\osSem {\vSch}] {\eeSem {\constrain \vQ}} {\olSem {\vType}}
+\end{flalign}
+%
+\medskip 
+\textbf{variation preserving property for v-set operations (this ensures the definition of these operations are sensible, note that $\bullet$ denotes v-set operations and $\underline \bullet$ denotes its plain counterpart):}
+\begin{flalign}
+\forall \config \in \confSet. \olSem {\vset_1 \bullet \vset_2} \equiv \olSem {\vset_1} \underline \bullet \olSem {\vset_2}
+\end{flalign}
+%
+\medskip 
+\textbf{equivalent queries must be equivalent when they are configured for a given configuration (this checks correctness of equivalence rules):}
+\begin{flalign}
+\vQ_1 \equiv \vQ_2 \Rightarrow \forall \config \in \confSet. \eeSem {\vQ_1} \equiv \eeSem {\vQ_2}
+\end{flalign}
+%
+\medskip 
+\textbf{equivalent queries must have the same type:}
+\begin{flalign}
+\vQ_1 \equiv \vQ_2, \envWithoutVctx {\vQ_1} {\vType_1} \Rightarrow \envWithoutVctx {\vQ_2} {\vType_2} \textit{ and } \vType_1 \equiv \vType_2
+\end{flalign}
+%
+\label{fig:props}
+\end{figure} 

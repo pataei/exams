@@ -1,0 +1,103 @@
+\begin{figure}
+
+\begin{comment}
+\textbf{Relational model generic objects:}
+\begin{syntax}
+%OLD
+D\in \mathbf{Dom} &&& \textit{Domain}\\
+A\in \mathbf{Att} &&& \textit{Attribute Name}\\
+R\in \mathbf{R} &&& \textit{Relation Name}\\
+t \in \mathbf{T} &&& \textit{Tuple}
+\end{syntax}
+
+\medskip
+\textbf{Relational model definition:}
+\begin{syntax}
+l\in \mathbf{L} &=& \vn{A} &\textit{Attribute set}\\
+s \in \mathbb{S} &=& R(A_1, \ldots , A_n ) & \textit{Relation specification}\\
+S \in \mathcal{\mathbf{S}} &\Coloneqq& {\vn{s}} & \textit{Schema}\\
+T \in \mathbf{T} &\Coloneqq& \{\llangle t(1), \ldots, t(k)\rrangle \myOR \\
+&&t(i) \in D_i,
+1 \leq i \leq k ,\\
+&&k = \mathit{arity}(R) \} 
+%v_1^1\in D_1, \ldots, v_n^1\in D_n\rrangle, \ldots, \llangle v_1^m\in D_1, \ldots, v_n^m\in D_n\rrangle|\\
+%&& \hspace{0.5cm} m = \textit{number of } R_I\textit{'s tuples}\} 
+&\textit{Relation Instance (Table)}\\
+%I \in \mathbf{Inst} &\Coloneqq& R_{1_I}, \cdots, R_{n_I} & \textit{Database Instance}
+\end{syntax}
+
+
+\medskip
+\textbf{Variational relational algebra objects:}
+\begin{syntax}
+\synDef \dimMeta \ffSet &&&\textit{Presence condition}\\
+\synDef \vAtt \vAttSet &&&\textit{Variational attribute}\\
+\synDef \vAttList \vAttSet &\eqq& \vAtt, \vAttList \myOR \empAtt &\textit{Variational attribute list}\\
+\synDef \vRelSch \vRelSet &\eqq& \vRelDef &\textit{Variational relation schema}\\
+ \vRel &&&\textit{Variational relation}\\
+\synDef \vSch \vSchSet &\eqq& \vSchDef &\textit{Variational schema}\\
+ &&&\textit{Variational database instance}
+\end{syntax}
+\end{comment}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\medskip
+\textbf{Variational Attribute Set Configuration:}
+\begin{flalign*}
+& \olSem [] . : \vAttSet \to \confSet \to \pAttSet&
+\end{flalign*}
+%
+\begin{flalign*}
+& \olSem {\optAtt} &\spcEq&
+    \begin{cases}
+        \pAtt, \If \fSem {\dimMeta \wedge \getPC{\getRel \vAtt}} = \t\\
+        \empAtt, \Otherwise
+     \end{cases}\\
+& \olSem {\optAtt, \vAttList} &\spcEq& \olSem {\optAtt}, \olSem \vAttList&\\
+& \olSem \empAtt &\spcEq& \empAtt &
+\end{flalign*}
+
+%
+\medskip
+\textbf{V-Relation Configuration:}
+\begin{flalign*}%\raggedleft
+&\orSem [] . : \vRelSchSet \to \confSet \to \pRelSchSet&
+\end{flalign*}
+%
+\begin{flalign*}
+&\orSem \vRelDef = 
+	\begin{cases}
+		\pRel \paran {\olSem {\vAttList}}, \If \fSem \dimMeta = \t\\
+		\empRel, \Otherwise
+	\end{cases}&
+\end{flalign*}
+
+%
+\medskip
+\textbf{V-Schema Configuration:}
+\begin{flalign*}%\raggedleft
+&\osSem [] . : \vSchSet \to \confSet \to \pSchSet&
+\end{flalign*}
+%
+\begin{flalign*}
+&\osSem {\annot [\fModel] {\setDef {\vRelDefNum 1, \ldots, \vRelDefNum n}}}\\
+&\hspace{0.3cm}= \begin{cases}
+%		\setDef {\orSem {\vRelDefNumF 1}, \ldots, \orSem {\vRelDefNumF n}},
+                 \setDef {\orSem {\vRel_1\left( \vAttList_1 \right)^{\dimMeta_1 \wedge \fModel} }, \ldots, 
+                 \orSem {\vRel_n\left( \vAttList_n \right)^{\dimMeta_n \wedge \fModel} }},		
+        \text{ if } \fSem \fModel = \t\\
+        \setDef \ ,\qquad\qquad\qquad\qquad\qquad\quad \text{ otherwise}
+	\end{cases}&\\
+\end{flalign*}
+
+\caption{
+Configuration of variational set of attributes, v-relations, and v-schema.
+\empAtt\ denotes both an empty variational set of attributes and a non-existence 
+relation.
+%\getRel \vAtt\ returns the relation that attribute \vAtt\ belongs to and \getPC \elem\ 
+%returns the presence condition of element \elem. 
+Note that the feature model and 
+relation presence condition are passed all the way to attributes due to the 
+hierarchal structure of presence conditions within a v-schema.}
+\label{fig:vsch-conf-sem}
+\end{figure} 

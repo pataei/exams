@@ -1,0 +1,73 @@
+\begin{figure}
+\textbf{Choice Distributive Rules:}
+\begin{alignat*}{1}
+\small
+%-- f<? l? q?, ? l? q?> ? ? (f<l?, l?>) f<q?, q?>
+%\inferrule
+%{}
+%\chc {\pi_{\vAttList_1} \vQ_1, \pi_{\vAttList_2} \vQ_2 } 
+%&\equiv
+%\pi_{\chc {\vAttList_1, \vAttList_2}} \chc {\vQ_1, \vQ_2}\\
+%-- f<? l? q?, ? l? q?> ? ? ((l??), (l? \^¬f )) f<q?, q?>
+%\inferrule
+%{}
+\chc {\pi_{\vAttList_1} \vQ_1, \pi_{\vAttList_2} \vQ_2}
+&\equiv
+\pi_{\annot \vAttList_1, \annot [\neg \dimMeta] \vAttList_2} \chc {\vQ_1, \vQ_2}\\
+%-- f<? c? q?, ? c? q?> ? ? f<c?, c?> f<q?, q?>
+%\inferrule
+%{}
+\chc {\sigma_{\vCond_1} \vQ_1, \sigma_{\vCond_2} \vQ_2} 
+&\equiv
+\sigma_{\chc {\vCond_1, \vCond_2}} \chc {\vQ_1, \vQ_2}\\
+%-- f<q? × q?, q? × q?> ? f<q?, q?> × f<q?, q?>
+%\inferrule
+%{}
+\chc {\vQ_1 \times \vQ_2, \vQ_3 \times \vQ_4}
+&\equiv
+\chc {\vQ_1, \vQ_3} \times \chc {\vQ_2, \vQ_4}\\
+%-- f<q? ?\_c? q?, q? ?\_c? q?> ? f<q?, q?> ?\_(f<c?, c?>) f<q?, q?>
+%\inferrule
+%{}
+\chc {\vQ_1 \Join_{\vCond_1} \vQ_2, \vQ_3 \Join_{\vCond_2} \vQ_4}
+&\equiv
+\chc {\vQ_1, \vQ_3} \Join_{\chc {\vCond_1, \vCond_2}} \chc {\vQ_2, \vQ_4}\\
+%-- f<q? ? q?, q? ? q?> ? f<q?, q?> ? f<q?, q?>
+%\inferrule
+%{}
+\chc {\vQ_1 \circ \vQ_2, \vQ_3 \circ \vQ_4}
+&\equiv
+\chc {\vQ_1, \vQ_3} \circ \chc {\vQ_2, \vQ_4}
+%-- f<q? ? q?, q? ? q?> ? f<q?, q?> ? f<q?, q?>
+%\inferrule
+%{}
+%{-}
+\end{alignat*}
+
+\medskip
+\textbf{CC and RA Optimization Rules Combined:}
+\begin{alignat*}{1}
+\small
+%-- f<? (c? ? c?) q?, ? (c? ? c?) q?> ? ? (c? ? f<c?, c?>) f<q?, q?>
+%\inferrule
+%{}
+\chc {\sigma_{\vCond_1 \wedge \vCond_2} \vQ_1, \sigma_{\vCond_1 \wedge \vCond_3} \vQ_2}
+&\equiv
+\sigma_{\vCond_1 \wedge \chc {\vCond_2, \vCond_3}} \chc {\vQ_1, \vQ_2}\\
+%-- ? c? (f<? c? q?, ? c? q?>) ? ? (c? ? f<c?, c?>) f<q?, q?>
+%\inferrule
+%{}
+\sigma_{\vCond_1} \chc {\sigma_{\vCond_2} \vQ_1, \sigma_{\vCond_3} \vQ_2}
+&\equiv
+\sigma_{\vCond_1 \wedge \chc {\vCond_2, \vCond_3}} \chc {\vQ_1, \vQ_2}\\
+%-- f<q? ?\_(c? ? c?) q?, q? ?\_(c? ? c?) q?> ? ? (f<c?, c?>) (f<q?, q?> ?\_c? f<q?, q?>)
+%\inferrule
+%{}
+\chc {\vQ_1 \Join_{\vCond_1 \wedge \vCond_2} \vQ_2, \vQ_3 \Join_{\vCond_1 \wedge \vCond_3} \vQ_4}
+&\equiv
+\sigma_{\chc {\vCond_2, \vCond_3}} \left( \chc {\vQ_1, \vQ_3} \Join_{\vCond_1} \chc {\vQ_2, \vQ_4} \right)
+\end{alignat*}
+
+\caption{Some of variation minimization rules.}
+\label{fig:var-min}
+\end{figure}

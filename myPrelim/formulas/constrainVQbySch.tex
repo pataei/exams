@@ -1,0 +1,44 @@
+\begin{figure}
+\begin{alignat*}{1}
+\constrain . &: \qSet \to \vSchSet \to \qSet\\
+%
+\constrain \vRel &= 
+\chc [\getPC {\vRel}] {\vPrj \vRel, \empRel}
+\hspace{5pt} \textit{ where } \hspace{5pt}
+\envWithoutVctx   {\vRel} {\vAttList}
+%\env [\getPC {\vSch}]  {\vRel} {\vAttList}
+%\chc [\getPC {\vRel}] {\vRel, \empRel}  
+\\
+\constrain {\vSel \vQ}  &=  \vSel {\constrain \vQ}
+\\
+%
+\constrain {\vPrj [\vAttList] \vQ} &= 
+\vPrj [\vAttList \cap \VVal \vAttList] {\constrain \vQ}
+\hspace{5pt} \textit{ where } \hspace{5pt}
+\envWithoutVctx {\vPrj [\vAttList] {\constrain \vQ}} {\VVal \vAttList}
+%\env [\getPC {\vSch}]  {\vPrj [\vAttList] {\constrain \vQ}} {\VVal \vAttList}
+\\
+%
+\constrain {{\vQ_1} \times {\vQ_2}} &= 
+\constrain {\vQ_1} \times \constrain {\vQ_2}
+\\
+%
+%\constrain {{\vQ_1} \Join_\vCond {\vQ_2}} &= 
+%\constrain {\vQ_1} \Join_\vCond \constrain {\vQ_2}
+%\\
+%
+\constrain {\chc {\vQ_1, \vQ_2}} &= 
+\chc {\constrain [\pushIn {\annot [\dimMeta] \vSch}] {\vQ_1}, \constrain [\pushIn {\annot [\neg \dimMeta] \vSch}] {\vQ_2}}
+\\
+%
+\constrain {{\vQ_1} \circ {\vQ_2}} &= 
+\constrain {\vQ_1} \circ \constrain {\vQ_2}\\
+%
+\constrain {\empRel} &= \empRel
+\end{alignat*}
+\caption{
+Constraining queries by the underlying v-schema. Queries passed to this 
+function are well-typed.
+}
+\label{fig:constrain}
+\end{figure}

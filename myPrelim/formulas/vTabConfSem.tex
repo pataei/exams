@@ -1,0 +1,44 @@
+\begin{figure}
+\textbf{V-Tuple Configuration:}
+%
+\begin{flalign*}%\raggedleft
+&\ouSem [] . : \vRelCont \to \confSet \to \pRelCont&
+\end{flalign*}
+%
+\begin{flalign*}%\raggedleft
+&\ouSem {\left( {\vi v k, \dimMeta_\tuple}\right)} = \left( \ovSem {v_1}, \hdots, \ovSem {v_k} \right) &\\
+& \textit{ where } \forall 1 \leq i \leq k: \ovSem {v_i} = 
+\begin{cases}
+v_i, \If \fSem {\getPC {\getAtt {v_i}} \wedge \dimMeta_\tuple} = \t\\
+\varepsilon, \Otherwise
+\end{cases}
+\end{flalign*}
+
+\medskip
+\textbf{V-Table Configuration:}
+%
+\begin{flalign*}%\raggedleft
+&\otSem [] . : \vRelContSet \to \confSet \to \pRelContSet&
+\end{flalign*}
+%
+\begin{flalign*}%\raggedleft
+&\otSem {\setDef {\vi \tuple n}} = \setDef {\ouSem {\tuple_1}, \hdots, \ouSem {\tuple_n}}&
+\end{flalign*}
+
+\medskip
+\textbf{VDB Instance Configuration:}
+%
+\begin{flalign*}%\raggedleft
+&\odbSem [] . : \vInstSet \to \confSet \to \pInstSet&
+\end{flalign*}
+%
+\begin{flalign*}%\raggedleft
+&\odbSem {\annot [\fModel] {\setDef {\vi \vRelCont l}}} = \setDef {\otSem {\vRelCont_1}, \hdots, \otSem {\vRelCont_l} }&
+\end{flalign*}
+
+
+\caption{V-tuple, v-table, and VDB instance configuration.
+%$\getAtt v$ returns the attribute of a value. 
+$\varepsilon$ denotes a non-existence value. }
+\label{fig:vtab-conf-sem}
+\end{figure} 
