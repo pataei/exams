@@ -121,6 +121,53 @@ Submitted November 3rd, 2020
 \maketitle
 
 \section*{Abstract}
+Many problems require working with data that varies in its structure and content. Likewise, many tools and techniques have been developed for dealing with variation in databases with respect to time (e.g., work on database evolution) or space (e.g., work on data integration).
+%various instances of this problem, for example, work on database evolution addresses the need to deal with variation in data over time, and work on data integration addresses the need to work with variation in data from different sources. 
+%Many problems require working with data that varies in its structure and content. Likewise, many tools and techniques have been developed for dealing with various instances of this problem, for example, work on database evolution addresses the need to deal with variation in data over time, and work on data integration addresses the need to work with variation in data from different sources. 
+However, these specialized approaches neither cover all data variation needs nor provide a solution to deal with database variation both in time and space simultaneously.
+%[, such as the need to work with different variants of a database corresponding to different configurations of a software system, or data that varies both over time and by source]. 
+%In this paper, we define a generic framework that considers variation orthogonal to database. It captures variation in the structure and content of a database and allows queries to express variation in information need.
+%In this paper, we introduce an extension of relational database theory that incorporates variation as an orthogonal concern that allows expressing variation in information need.
+%We define variational schemas for describing variation in the structure of a database
+%variational queries for expressing variation in information needs, 
+%and variational databases for capturing variation in content. 
+%We define a type system relating variational queries with variational schemas, and 
+%
+%Variation occurs in databases in many different forms and contexts. For
+%example, a single database schema evolves over time, data from different
+%sources may be combined, and the various configurations of a software product
+%line (SPL) may have different data needs.
+%
+%This variability exists in two dimensions: ``time'' (for example, a database
+%evolves over time and consequently its schema changes) and ``space'' (for
+%example, clients of a Software Product Line (SPL) require different variants
+%of the database used by the software).
+%
+%While approaches have been developed to deal with many such scenarios,
+%particularly in the fields of database evolution and data integration, there is
+%no general solution that treats variation as a general and orthogonal concern
+%in databases. This is a problem when various kinds of variation intersect,
+%such as during the evolution of a SPL.
+%
+In this research, we propose a generic framework that considers
+\emph{variation} orthogonal to relational databases. 
+We extend the relational database theory to incorporate variation
+explicitly in databases and the query language:
+we define \emph{variational schemas} for describing variation in the structure of a database
+\emph{variational queries} for expressing variation in information needs, 
+and \emph{variational databases} for capturing variation in content. 
+%We define a type system relating variational queries with variational schemas
+%
+Although the model underlying variational database is simple, encoding variation
+explicitly in databases introduces complexity akin to using preprocessing
+directives in software. The question then arises: is this a good idea?
+We address this question by systematically developing two case studies
+that illustrate how different kinds of variation needs can be encoded and
+integrated in a variational database and how the
+corresponding information needs can be expressed as variational queries.
+%
+We also design and implement a variational database management system as an abstraction layer over a traditional relational database. We demonstrate the applicability and feasibility of our approach on our two case-studies.
+
 
 \section{Introduction}
 \label{sec:intro}
