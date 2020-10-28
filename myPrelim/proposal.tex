@@ -1,6 +1,6 @@
 \documentclass[11pt]{article}
 
-
+\usepackage[square,numbers]{natbib}%for citet
 
 \usepackage{mathptmx,amssymb,amsmath}
 \usepackage{fullpage}
@@ -46,7 +46,6 @@
 
 \usepackage{listings} % for v-sql example code
 
-%\usepackage{natbib}%for citet
 
 %\newcounter{Definition}
 %\newcounter{theorem}
@@ -190,7 +189,7 @@ We also design and implement a variational database management system as an abst
 
 
 \newpage
-\bibliographystyle{acm}
+\bibliographystyle{plainnat}
 %\bibliographystyle{ACM-Reference-Format}
 \bibliography{bib/eric,bib/martin,bib/vdbms,bib/change,bib/vds,bib/fp,bib/error-reporting,bib/misc,bib/dblp2_short,bib/variational,bib/db}
 
