@@ -110,7 +110,9 @@
 
 \begin{document}
 
-\title{Variational Database Management System: Theory and Application}
+%\title{Variational Database Management System: Theory and Application}
+%\title{Variational Database: Theory, Tool, and Application}
+\title{Theory and Implementation of a Variational Database Management System}
 
 \author{Parisa S. Ataei\\
 Thesis Proposal \\
@@ -160,8 +162,9 @@ and \emph{variational databases} for capturing variation in content.
 %
 Although the model underlying variational database is simple, encoding variation
 explicitly in databases introduces complexity akin to using preprocessing
-directives in software. The question then arises: is this a good idea?
-We address this question by systematically developing two case studies
+directives in software. 
+%The question then arises: is this a good idea?
+We evaluate the feasibility of this approach by systematically developing two case studies
 that illustrate how different kinds of variation needs can be encoded and
 integrated in a variational database and how the
 corresponding information needs can be expressed as variational queries.
@@ -169,79 +172,12 @@ corresponding information needs can be expressed as variational queries.
 We also design and implement a variational database management system as an abstraction layer over a traditional relational database. We demonstrate the applicability and feasibility of our approach on our two case-studies.
 
 
-\section{Introduction}
-\label{sec:intro}
-
-
-With this initial ..., we propose the following research:
-
-\begin{itemize}
-\item Objective 1: Identify the kinds of variation existing in relational databases in 
-different application domains.
-\item Objective 2: Design a query language and implement a database management 
-system that accommodate at least a subset of types of variations identified in objective 1.
-\item Objective 3: Mechanize proofs of properties of the language and the system.
-\item Objective 4: Demonstrate how the proposed system can be used to manage
-variation in databases in different application domains.
-\item Objective 5: Generalize the encoding of variation and the design of the query 
-language to cover more kinds of variation.
-\end{itemize}
-
-\section{Statement of Thesis}
-\label{sec:stmt}
-The goal of this research is to provide a query language(s) and a database management 
-system that explicitly account for different kinds of variation in relational databases to relieve 
-some of programmer/DBA's labor by providing some guarantees within the query 
-language that accounts explicitly for variation.
-
-
-\section{Background and Related Work}
-\label{sec:rw}
-
-\subsection{Variational Research}
-\label{sec:var-res}
-
-\subsection{Forms of Variation in Relational Databases}
-\label{sec:var-in-db}
-
-\textbf{Database Evolution:}
-
-\textbf{Data Integration:}
-
-\textbf{Versioning a Database:}
-
-
-\section{Research Goals and Methods}
-\label{sec:goals}
-
-\subsection{Identify the kinds of variation existing in relational databases in 
-different application domains}
-\label{sec:ro1}
-
-\subsection{Design a query language and implement a database management 
-system that accommodate at least a subset of identified types of variations}
-\label{sec:ro2}
-
-\subsection{Mechanize proofs of properties of the language and the system}
-\label{sec:ro3}
-
-\subsection{Demonstrate how the proposed system can be used to manage
-variation in databases in different application domains}
-\label{sec:ro4}
-
-\subsection{Generalize the encoding of variation and the design of the query 
-language to cover more kinds of variation}
-\label{sec:ro5}
-
-\subsection{Summary}
-\label{sec:sum}
-
-\figref{conn} summarizes the connections between the research questions and activities.
-\tabref{timeline} provides the timeline for this proposal.
-
-\section{Conclusion}
-\label{sec:con}
-
+\input{sections/intro}
+\input{sections/stmt}
+\input{sections/background}
+\input{sections/goals}
+\input{sections/relWork}
+\input{sections/conclusion}
 
 
 
