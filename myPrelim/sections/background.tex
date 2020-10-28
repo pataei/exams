@@ -1,3 +1,55 @@
 \section{Preliminaries}
 \label{sec:prelim}
 
+In this section, we introduce concepts and notations that we use
+throughout the paper. \tabref{notations} 
+provides a short overview 
+and is meant as an aid to find definitions
+faster.
+% (\S\ indicates the section(s) containing the definition).
+Throughout the paper, we discuss relational concepts and their
+variational counterparts. For clarity, when we need to emphasize 
+an entity is not variational we underline it, e.g., \pElem\ is a 
+non-variational entity while \elem\ is its variational counterpart,
+if it exists.
+
+\begin{table}
+\caption{Introduced notations and terminologies with their corresponding section(s).}
+\label{tab:notations}
+\begin{center}
+\small
+\begin{tabular}{ |l c r| } 
+ \hline
+Name & Notation & Section \\
+\hline
+Feature & \fName & \multirow{7}{*} {\secref{encode-var}} \\
+Feature expression & \dimMeta & \\
+Annotated element \elem\ by \dimMeta & \annot \elem & \\
+Configuration & \config & \\
+%True feature set of \config & \fct & \\
+Evaluation of \dimMeta\ under \config & \fSem \dimMeta & \\
+Presence condition of entity \elem & \getPC \elem & \\
+\hline
+Optional attribute & \vAtt & \multirow{4}{*}{\secref{vsch}}\\
+Variational attribute set & \vAttList & \\
+Variational relation schema & \vRelSch & \\
+Variational schema & \vSch & \\
+\hline
+Variational tuple & \tuple & \multirow{3}{*}{\secref{vtab}} \\
+Variational relation content & \vRelCont & \\
+Variational table & \vTab\ = (\vRelSch, \vRelCont) & \\
+\hline
+Choice & $\chc {x, y}$ & \multirow{3}{*}{\secref{vrel-alg}}\\
+Variational condition & \vCond & \\
+Variational query & \vQ & \\
+\hline
+%Configure query \vQ\ with configuration \config & \eeSem \vQ & \multirow{2}{*}{\secref{vra-sem}}\\
+%Group query \vQ & \qGroup \vQ &\\
+%\hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\input{sections/reldb}
+\input{sections/encodeVar}
+\input{sections/vset}

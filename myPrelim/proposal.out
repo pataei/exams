@@ -1,15 +1,14 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Statement of Thesis}{}% 2
-\BOOKMARK [1][-]{section.3}{Statement of Thesis}{}% 3
-\BOOKMARK [1][-]{section.4}{Background and Related Work}{}% 4
-\BOOKMARK [1][-]{section.5}{Research Goals and Methods}{}% 5
-\BOOKMARK [2][-]{subsection.5.1}{Identify the kinds of variation existing in relational databases in different application domains}{section.5}% 6
-\BOOKMARK [2][-]{subsection.5.2}{Design a query language and implement a database management system that accommodate at least a subset of identified types of variations}{section.5}% 7
-\BOOKMARK [2][-]{subsection.5.3}{Mechanize proofs of properties of the language and the system}{section.5}% 8
-\BOOKMARK [2][-]{subsection.5.4}{Demonstrate how the proposed system can be used to manage variation in databases in different application domains}{section.5}% 9
-\BOOKMARK [2][-]{subsection.5.5}{Generalize the encoding of variation and the design of the query language to cover more kinds of variation}{section.5}% 10
-\BOOKMARK [2][-]{subsection.5.6}{Summary}{section.5}% 11
-\BOOKMARK [1][-]{section.6}{Related Work}{}% 12
-\BOOKMARK [2][-]{subsection.6.1}{Variational Research}{section.6}% 13
-\BOOKMARK [2][-]{subsection.6.2}{Forms of Variation in Relational Databases}{section.6}% 14
-\BOOKMARK [1][-]{section.7}{Conclusion}{}% 15
+\BOOKMARK [1][-]{section.3}{Preliminaries}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{Relational Databases}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{Encoding Variability}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Variational Set}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{Research Goals and Methods}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Identify the kinds of variation existing in relational databases in different application domains}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Design a query language and implement a database management system that accommodate identified variations}{section.4}% 9
+\BOOKMARK [2][-]{subsection.4.3}{Demonstrate how the proposed system can be used to manage variation in databases in different application domains}{section.4}% 10
+\BOOKMARK [2][-]{subsection.4.4}{Mechanize proofs of properties of the language and the system}{section.4}% 11
+\BOOKMARK [2][-]{subsection.4.5}{Summary}{section.4}% 12
+\BOOKMARK [1][-]{section.5}{Related Work}{}% 13
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 14

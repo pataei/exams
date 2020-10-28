@@ -1,0 +1,160 @@
+% Journals
+@string{JFP   = {{Journal of Functional Programming (JFP)}}}
+@string{JVLC  = {{Journal of Visual Languages and Computing (JVLC)}}}
+@string{TOPLAS = {{ACM Trans.\ on Programming Languages and Systems (TOPLAS)}}}
+@string{TOSEM = {{ACM Trans.\ on Software Engineering and Methodology (TOSEM)}}}
+
+% Conferences
+@string{DSL   = {{IFIP Working Conf.\ on Domain-Specific Languages (DSL)}}}
+@string{DTM   = {{ASME Int.\ Design Engineering Technical Conf.\ \& Computers and Information in Engineering Conf. (IDETC/CIE)}}}
+@string{ECOOP = {{European Conf.\ on Object-Oriented Programming (ECOOP)}}}
+@string{GPCE  = {{ACM SIGPLAN Int.\ Conf.\ on Generative Programming: Concepts and Experiences (GPCE)}}}
+@string{GTTSE = {{Generative and Transformational Techniques in Software Engineering (GTTSE)}}}
+@string{ICFP  = {{ACM SIGPLAN Int.\ Conf.\ on Functional Programming (ICFP)}}}
+@string{ICSME = {{IEEE Int.\ Conf.\ on Software Maintenance and Evolution (ICSME)}}}
+@string{Onward = {{ACM SIGPLAN Symp.\ on New Ideas in Programming and Reflections on Software (Onward!)}}}
+@string{SLE   = {{Int.\ Conf.\ on Software Language Engineering (SLE)}}}
+@string{VLHCC = {{IEEE Int.\ Symp.\ on Visual Languages and Human-Centric Computing (VL/HCC)}}}
+
+% Workshops
+@string{FOSD  = {{Int.\ Work.\ on Feature-Oriented Software Development (FOSD)}}}
+@string{FoSER = {{ACM SIGSOFT Workshop on the Future of Software Engineering Research}}}
+@string{Mutation = {{Int.\ Work.\ on Mutation Analysis (Mutation)}}}
+@string{VaMoS = {{Int.\ Work.\ on Variability Modelling of Software-Intensive Systems (VaMoS)}}}
+
+% Series
+@string{LNCS  = {{LNCS}}}
+
+
+@inproceedings{skrhas09DBIS,
+author = {Siegmund, Norbert and K\"{a}stner, Christian and Rosenm\"{u}ller, Marko and Heidenreich, Florian and Apel, Sven and Saake, Gunter},
+title = {Bridging the gap between variability in client application and database schema},
+booktitle = {Datenbanksysteme in Business, Technologie und Web (BTW) - 13. Fachtagung des GI-Fachbereichs "Datenbanken und Informationssysteme" (DBIS)},
+year = {2009},
+editor = {Freytag, Johann-Christoph AND Ruf, Thomas AND Lehner, Wolfgang AND Vossen, Gottfried} ,
+pages = { 297-306 },
+publisher = {Gesellschaft f{\''u}r Informatik e.V.},
+address = {Bonn}
+}
+
+@InProceedings{slrs12CAiSE,
+author="Sch{\"a}ler, Martin
+and Leich, Thomas
+and Rosenm{\"u}ller, Marko
+and Saake, Gunter",
+editor="Ralyt{\'e}, Jolita
+and Franch, Xavier
+and Brinkkemper, Sjaak
+and Wrycza, Stanislaw",
+title="Building Information System Variants with Tailored Database Schemas Using Features",
+booktitle="Advanced Information Systems Engineering",
+year="2012",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="597--612",
+abstract="Database schemas are an integral part of many information systems (IS). New software-engineering methods, such as software product lines, allow engineers to create a high number of different programs tailored to the customer needs from a common code base. Unfortunately, these engineering methods usually do not take the database schema into account. Particularly, a tailored client program requires a tailored database schema as well to form a consistent IS. In this paper, we show the challenges of tailoring relational database schemas in software product lines. Furthermore, we present an approach to treat the client and database part of an IS in the same way using a variable database schema. Additionally, we show the benefits and discuss disadvantages of the approach during the evolution of an industrial case study, covering a time span of more than a year.",
+isbn="978-3-642-31095-9"
+}
+
+@InProceedings{ad11varDataModel,
+author="Abo Zaid, Lamia
+and De Troyer, Olga",
+editor="Halpin, Terry
+and Nurcan, Selmin
+and Krogstie, John
+and Soffer, Pnina
+and Proper, Erik
+and Schmidt, Rainer
+and Bider, Ilia",
+title="Towards Modeling Data Variability in Software Product Lines",
+booktitle="Enterprise, Business-Process and Information Systems Modeling",
+year="2011",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="453--467",
+abstract="In this paper, we provide an approach for modeling data variability as part of the overall software product line modeling approach. Modeling data variability in software product lines allows tailoring the data to the variability of a product. For this purpose, we have extended our Feature Assembly Modeling technique with the concept of persistency feature. We explain how these persistency features can be used to express the data variability, how they can be created and how they relate to the other features of the software product line. We also show how to derive a so-called variable data model from these persistency features and how an actual data model for a product of the product line can be derived. Additionally, annotations provide traceability between the variability of the features and the variability in the data model.",
+isbn="978-3-642-21759-3"
+}
+
+@inproceedings{brkts20vamos,
+author = {Bordis, Tabea and Runge, Tobias and Kn\"{u}ppel, Alexander and Th\"{u}m, Thomas and Schaefer, Ina},
+title = {Variational Correctness-by-Construction},
+year = {2020},
+isbn = {9781450375016},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3377024.3377038},
+doi = {10.1145/3377024.3377038},
+abstract = {Nowadays, the requirements for software and therefore also the required complexity is increasing steadily. Consequently, various techniques to handle the growing demand for software variants in one specific domain are used. These techniques often rely on variable code structures to implement a whole product family more efficiently. Variational software is also increasingly used for safety-critical systems, which need to be verified to guarantee their functionality in-field. However, usual verification techniques can not directly be applied to the variable code structures of most techniques. In this paper, we propose variational correctness-by-construction as a methodology to implement variational software extending the correctness-by-construction approach. Correctness-by-construction is an incremental approach to create and verify programs using small tractable refinement steps guided by a specification following the design-by-contract paradigm. Our contribution is threefold. First, we extend the list of refinement rules to enable variability in programs developed with correctness-by-construction. Second, we motivate the need for contract composition of refined method contracts and illustrate how this can be achieved. Third, we implement variational correctness-by-construction in a tool called VarCorC. We successfully conducted two case studies showing the applicability of VarCorC and were able to assess reduced verification costs compared to post-hoc verification as well.},
+booktitle = {Proceedings of the 14th International Working Conference on Variability Modelling of Software-Intensive Systems},
+articleno = {7},
+numpages = {9},
+keywords = {formal methods, deductive verification, correctness-by-construction, variational software, design-by-contract},
+location = {Magdeburg, Germany},
+series = {VAMOS '20}
+}
+
+@InProceedings{bks11fvoos,
+author="Bruns, Daniel
+and Klebanov, Vladimir
+and Schaefer, Ina",
+editor="Beckert, Bernhard
+and March{\'e}, Claude",
+title="Verification of Software Product Lines with Delta-Oriented Slicing",
+booktitle="Formal Verification of Object-Oriented Software",
+year="2011",
+publisher="Springer Berlin Heidelberg",
+address="Berlin, Heidelberg",
+pages="61--75",
+abstract="Software product line (SPL) engineering is a well-known approach to develop industry-size adaptable software systems. SPL are often used in domains where high-quality software is desirable; the overwhelming product diversity, however, remains a challenge for assuring correctness. In this paper, we present delta-oriented slicing, an approach to reduce the deductive verification effort across an SPL where individual products are Java programs and their relations are described by deltas. On the specification side, we extend the delta language to deal with formal specifications. On the verification side, we combine proof slicing and similarity-guided proof reuse to ease the verification process.",
+isbn="978-3-642-18070-5"
+}
+
+@article{ldl07jss,
+author = {Liu, Jing and Dehlinger, Josh and Lutz, Robyn},
+year = {2007},
+month = {11},
+pages = {1879-1892},
+title = {Safety Analysis of Software Product Lines Using State-Based Modeling},
+volume = {80},
+journal = {Journal of Systems and Software},
+doi = {10.1016/j.jss.2007.01.047}
+}
+
+@inproceedings{tmbhvs14,
+author = {Th\"{u}m, Thomas and Meinicke, Jens and Benduhn, Fabian and Hentschel, Martin and von Rhein, Alexander and Saake, Gunter},
+year = {2014},
+month = {09},
+pages = {},
+title = {Potential Synergies of Theorem Proving and Model Checking for Software Product Lines},
+volume = {1},
+journal = {ACM International Conference Proceeding Series},
+doi = {10.1145/2648511.2648530}
+}
+
+@inproceedings{ywt20splc,
+author = {Young, Jeffrey M. and Walkingshaw, Eric and Th\"{u}m, Thomas},
+title = {Variational Satisfiability Solving},
+year = {2020},
+isbn = {9781450375696},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3382025.3414965},
+doi = {10.1145/3382025.3414965},
+abstract = {Incremental satisfiability (SAT) solving is an extension of classic SAT solving that allows users to efficiently solve a set of related SAT problems by identifying and exploiting shared terms. However, using incremental solvers effectively is hard since performance is sensitive to a problem's structure and the order sub-terms are fed to the solver, and the burden to track results is placed on the end user. For analyses that generate sets of related SAT problems, such as those in software product lines, incremental SAT solvers are either not used at all, used but not explicitly stated so in the literature, or used but suffer from the aforementioned usability problems. This paper translates the ordering problem to an encoding problem and automates the use of incremental SAT solving. We introduce variational SAT solving, which differs from incremental SAT solving by accepting all related problems as a single variational input and returning all results as a single variational output. Our central idea is to make explicit the operations of incremental SAT solving, thereby encoding differences between related SAT problems as local points of variation. Our approach automates the interaction with the incremental solver and enables methods to automatically optimize sharing of the input. To evaluate our methods we construct a prototype variational SAT solver and perform an empirical analysis on two real-world datasets that applied incremental solvers to software evolution scenarios. We show, assuming a variational input, that the prototype solver scales better for these problems than naive incremental solving while also removing the need to track individual results.},
+booktitle = {Proceedings of the 24th ACM Conference on Systems and Software Product Line: Volume A - Volume A},
+articleno = {18},
+numpages = {12},
+keywords = {variation, software product lines, satisfiability solving, choice calculus},
+location = {Montreal, Quebec, Canada},
+series = {SPLC '20}
+}
+
+@mastersthesis{alkubaish20,
+  author   = {Alkubaish,Ghadeer},
+  title    = {{Integrating Side Effects in Variational Programs Using Algebraic
+Effects}},
+  school   = {{Oregon State University}},
+  year     = 2020,
+  note     = {\url{https://ir.library.oregonstate.edu/downloads/0k225j37g}}
+}

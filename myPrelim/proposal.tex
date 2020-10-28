@@ -1,12 +1,6 @@
 \documentclass[11pt]{article}
 
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{definition}[theorem]{Definition}
+
 
 \usepackage{mathptmx,amssymb,amsmath}
 \usepackage{fullpage}
@@ -51,6 +45,20 @@
 \usepackage{amssymb}%for arrow labels
 
 \usepackage{listings} % for v-sql example code
+
+%\usepackage{natbib}%for citet
+
+%\newcounter{Definition}
+%\newcounter{theorem}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+
 
 % references
 \newcommand{\tabref}[1]{\hyperref[tab:#1]{Table~\ref*{tab:#1}}}
@@ -182,8 +190,9 @@ We also design and implement a variational database management system as an abst
 
 
 \newpage
-\bibliographystyle{abbrv}
-\bibliography{vdbms}
+\bibliographystyle{acm}
+%\bibliographystyle{ACM-Reference-Format}
+\bibliography{bib/eric,bib/martin,bib/vdbms,bib/change,bib/vds,bib/fp,bib/error-reporting,bib/misc,bib/dblp2_short,bib/variational,bib/db}
 
 % \newpage
 \appendix
