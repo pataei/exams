@@ -5,27 +5,148 @@
 different application domains}
 \label{sec:ro1}
 
+To encode variation explicitly in databases we investigate different kinds of 
+variation that appears in databases in various application domains. 
+Objective 1 aims to represent an encoding for  variation that is 
+generic enough that can encode different kinds of variation and is
+not bind to a specific instance of variation or application domain. 
+%
+\tabref{ro1} presents individual research questions we need to answer for
+this objective. 
+
+\begin{table}
+\caption{Objective 1 research questions.}
+\label{tab:ro1}
+\centering
+\begin{tabularx}{\textwidth}{X}
+\toprule
+ \textbf{Objective 1: Identify the kinds of variation existing in relational databases in 
+different application domains}\tabularnewline
+\midrule
+RQ1.1: What are the application domains that variation appears in a database? 
+What are the dimensions of variation in a database? (\poly)
+\tabularnewline[0.2cm]
+RQ1.2: How can all identified variation instances be represented  in a generic encoding without
+regards for the application domain? (\dbpl)
+\tabularnewline[0.2cm]
+RQ1.3: Can we encode identified instances of variation using our encoding? 
+What are the steps one need to take to encode an instance of variation in our
+encoding? (\vamos)
+\tabularnewline
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+
 \subsection{Design a query language and implement a database management 
 system that accommodate identified variations}
 \label{sec:ro2}
+
+Having an encoding that represent variation we need to incorporate it within the 
+database and the query language to allow explicit storing and manipulation of 
+variation in a database. Objective 2 aims to design a framework for a variational
+database and variational query language and implement them as 
+a variational database management system that allows users to interact with a
+variational database. \tabref{ro2} presents individual research questions we need
+to answer for this objective. 
+
+\begin{table}
+\caption{Objective 2 research questions.}
+\label{tab:ro2}
+\centering
+\begin{tabularx}{\textwidth}{X}
+\toprule
+ \textbf{Objective 2: Design a query language and implement a database management 
+system that accommodate identified variations}
+\tabularnewline
+\midrule
+RQ2.1: 
+\tabularnewline[0.2cm]
+\tabularnewline[0.2cm]
+
+\tabularnewline
+\bottomrule
+\end{tabularx}
+\end{table}
+
 
 \subsection{Demonstrate how the proposed system can be used to manage
 variation in databases in different application domains}
 \label{sec:ro3}
 
+Having a variational database framework, we need to examine how effectively
+it represents instances of variation in databases in different application domains.
+Objective 3 focuses on this goal and \tabref{ro3} represents individual research 
+question we need to answer for this objective.
+
+\begin{table}
+\caption{Objective 3 research questions.}
+\label{tab:ro3}
+\centering
+\begin{tabularx}{\textwidth}{X}
+\toprule
+ \textbf{Objective 3: Demonstrate how the proposed system can be used to manage
+variation in databases in different application domains}
+\tabularnewline
+\midrule
+\tabularnewline[0.2cm]
+\tabularnewline[0.2cm]
+
+\tabularnewline
+\bottomrule
+\end{tabularx}
+\end{table}
 
 \subsection{Mechanize proofs of properties of the language and the system}
 \label{sec:ro4}
 
+Having established that our framework  effectively and explicitly encode variation 
+within the database and its query language, we need to ensure that it satisfies
+the properties we desire. Objective 4 aims to define such properties and
+prove that they hold for our framework. 
+%Additionally, it aims to prove that
+%VDBMS implements the semantics of VRA correctly. 
+\tabref{ro4} presents
+individual research questions we need to answer for this objective. 
 
 
-%\subsection{Generalize the encoding of variation and the design of the query 
-%language to cover more kinds of variation}
-%\label{sec:ro5}
+
+\begin{table}
+\caption{Objective 4 research questions.}
+\label{tab:ro4}
+\centering
+\begin{tabularx}{\textwidth}{X}
+\toprule
+ \textbf{Objective 4: Mechanize proofs of properties of the language and the system}
+\tabularnewline
+\midrule
+\tabularnewline[0.2cm]
+\tabularnewline[0.2cm]
+
+\tabularnewline
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\subsection{Stretch goal: Generalize the encoding of variation and the design of the query 
+language to cover more kinds of variation}
+\label{sec:ro5}
+
+
 
 \subsection{Summary}
 \label{sec:sum}
 
 \figref{conn} summarizes the connections between the research questions and activities.
 \tabref{timeline} provides the timeline for this proposal.
+
+\begin{figure}
+\label{fig:conn}
+\end{figure}
+
+\begin{table}
+\label{tab:timeline}
+\end{table}
 
