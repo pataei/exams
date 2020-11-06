@@ -13,7 +13,7 @@
 \BOOKMARK [3][-]{subsubsection.4.3.2}{Variational Table}{subsection.4.3}% 13
 \BOOKMARK [3][-]{subsubsection.4.3.3}{Variational Relational Algebra}{subsection.4.3}% 14
 \BOOKMARK [3][-]{subsubsection.4.3.4}{VDBMS Implementation}{subsection.4.3}% 15
-\BOOKMARK [2][-]{subsection.4.4}{Demonstrate how the proposed system can be used to manage variation in databases in different application domains}{section.4}% 16
+\BOOKMARK [2][-]{subsection.4.4}{Demonstrate how the proposed system manages variation in databases in different application domains and how effective and efficient it is}{section.4}% 16
 \BOOKMARK [2][-]{subsection.4.5}{Mechanize proofs of properties of the language and the system}{section.4}% 17
 \BOOKMARK [3][-]{subsubsection.4.5.1}{Property Checking over a VDB}{subsection.4.5}% 18
 \BOOKMARK [3][-]{subsubsection.4.5.2}{Well-Typed \(Valid\) Query}{subsection.4.5}% 19

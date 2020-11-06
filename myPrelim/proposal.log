@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  6 NOV 2020 13:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  6 NOV 2020 13:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1383,36 +1383,34 @@ File: figs/arch7.pdf Graphic file (type pdf)
 <use figs/arch7.pdf>
 Package pdftex.def Info: figs/arch7.pdf  used on input line 68.
 (pdftex.def)             Requested size: 469.75502pt x 318.17157pt.
-))) (./sections/obj3.tex
-Excluding 'comment' comment. Excluding 'comment' comment.) (./sections/obj4.tex
-[17] [18pdfTeX warning (ext4): destination with the same identifier (name{figur
-e.6}) has been already used, duplicate ignored
+))) (./sections/obj3.tex [17] [18pdfTeX warning (ext4): destination with the sa
+me identifier (name{figure.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.12 
+l.61 
      pdfTeX warning (ext4): destination with the same identifier (name{table.5}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.12 
+l.61 
       <./figs/arch7.pdf
 
 pdfTeX warning: /usr/local/texlive/2019/bin/x86_64-darwin/pdflatex (file ./figs
 /arch7.pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcS
 ets', type <array>); ignored.
->] Excluding 'comment' comment. Excluding 'comment' comment.
-Excluding 'comment' comment. (./sections/vdbprops.tex [19pdfTeX warning (ext4):
- destination with the same identifier (name{table.6}) has been already used, du
-plicate ignored
+>]) (./sections/obj4.tex [19] Excluding 'comment' comment.
+Excluding 'comment' comment. Excluding 'comment' comment.
+(./sections/vdbprops.tex [20pdfTeX warning (ext4): destination with the same id
+entifier (name{table.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.93 
      ]) (./sections/typeSys.tex
 
-LaTeX Warning: Hyper reference `ex:conf-vq' on page 20 undefined on input line 
+LaTeX Warning: Hyper reference `ex:conf-vq' on page 21 undefined on input line 
 15.
 
 (./formulas/vRelAlgTypingRules.tex
@@ -1424,23 +1422,23 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 92.
 
 )
 
-LaTeX Warning: Hyper reference `ex:type' on page 20 undefined on input line 155
+LaTeX Warning: Hyper reference `ex:type' on page 21 undefined on input line 155
 .
 
-[20] [21pdfTeX warning (ext4): destination with the same identifier (name{figur
+[21] [22pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.159 \label
-            {eg:type}]
+l.156 
+      ]
 
-LaTeX Warning: Hyper reference `ex:vq-specific' on page 22 undefined on input l
+LaTeX Warning: Hyper reference `ex:vq-specific' on page 23 undefined on input l
 ine 164.
 
-) (./sections/constrainVQbySch.tex
+) (./sections/constrainVQbySch.tex [23]
 
-LaTeX Warning: Hyper reference `ex:vq-specific' on page 22 undefined on input l
+LaTeX Warning: Hyper reference `ex:vq-specific' on page 24 undefined on input l
 ine 18.
 
 
@@ -1448,16 +1446,15 @@ Overfull \hbox (2.73749pt too wide) in paragraph at lines 15--28
 []\OT1/ptm/m/n/10.95 . 
  []
 
-[22] (./formulas/constrainVQbySch.tex) [23pdfTeX warning (ext4): destination wi
-th the same identifier (name{figure.8}) has been already used, duplicate ignore
-d
+(./formulas/constrainVQbySch.tex) [24pdfTeX warning (ext4): destination with th
+e same identifier (name{figure.8}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.94 \end{theorem}
                   ]
 
-LaTeX Warning: Hyper reference `ex:type' on page 24 undefined on input line 99.
+LaTeX Warning: Hyper reference `ex:type' on page 25 undefined on input line 99.
 
 
 ) (./sections/varPresProp.tex
@@ -1466,7 +1463,7 @@ Overfull \hbox (40.67133pt too wide) in paragraph at lines 34--35
  []
 
 
-LaTeX Warning: Hyper reference `ex:var-pres' on page 24 undefined on input line
+LaTeX Warning: Hyper reference `ex:var-pres' on page 25 undefined on input line
  72.
 
 
@@ -1475,22 +1472,22 @@ Overfull \hbox (2.73749pt too wide) in paragraph at lines 77--85
  []
 
 
-LaTeX Warning: Hyper reference `ex:conf-vq' on page 24 undefined on input line 
+LaTeX Warning: Hyper reference `ex:conf-vq' on page 25 undefined on input line 
 97.
 
 ) (./sections/varMin.tex
 
-LaTeX Warning: Hyper reference `ex:vq-specific' on page 24 undefined on input l
+LaTeX Warning: Hyper reference `ex:vq-specific' on page 25 undefined on input l
 ine 10.
 
 
-LaTeX Warning: Hyper reference `ex:vq-same-intent-mult-vars' on page 24 undefin
+LaTeX Warning: Hyper reference `ex:vq-same-intent-mult-vars' on page 25 undefin
 ed on input line 10.
 
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 32.
 
-[24] (./formulas/varMinRules.tex
+[25] (./formulas/varMinRules.tex
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 45.
 
@@ -1503,14 +1500,14 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 69.
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 69.
 
-))) [25pdfTeX warning (ext4): destination with the same identifier (name{figure
+))) [26pdfTeX warning (ext4): destination with the same identifier (name{figure
 .9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.26 \subsection
                 {Summary}]) (./sections/relWork.tex
-Excluding 'comment' comment. [26pdfTeX warning (ext4): destination with the sam
+Excluding 'comment' comment. [27pdfTeX warning (ext4): destination with the sam
 e identifier (name{table.7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
@@ -1518,29 +1515,30 @@ e identifier (name{table.7}) has been already used, duplicate ignored
 l.231 
       ]
 
-Package natbib Warning: Citation `vdbSpl18ATW' on page 27 undefined on input li
+Package natbib Warning: Citation `vdbSpl18ATW' on page 28 undefined on input li
 ne 385.
 
-[27]) (./sections/conclusion.tex) [28] (./proposal.bbl [29] [30] [31])
-(./sections/enronvdb.tex [32] (./sections/enronvsch.tex
+[28]) (./sections/conclusion.tex) [29] (./proposal.bbl [30] [31] [32])
+(./sections/enronvdb.tex [33] (./sections/enronvsch.tex
 Overfull \hbox (154.87387pt too wide) in paragraph at lines 64--107
 [][]
  []
 
-[33pdfTeX warning (ext4): destination with the same identifier (name{table.8}) 
+[34pdfTeX warning (ext4): destination with the same identifier (name{table.8}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.142 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.9
-}) has been already used, duplicate ignored
+l.107 \end{table*}
+                  ]) (./sections/enronpopulate.tex [35pdfTeX warning (ext4): de
+stination with the same identifier (name{table.9}) has been already used, dupli
+cate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.142 
-      ]) (./sections/enronpopulate.tex [34] Excluding 'comment' comment.))
-(./sections/empvdb.tex (./figures/table-emp-schemas.tex
+l.43 
+     ] Excluding 'comment' comment.)) (./sections/empvdb.tex
+(./figures/table-emp-schemas.tex
 Overfull \hbox (0.77408pt too wide) in paragraph at lines 16--16
 []|[]|  
  []
@@ -1565,35 +1563,37 @@ Overfull \hbox (0.77408pt too wide) in paragraph at lines 44--44
 []|[]|  
  []
 
-) [35pdfTeX warning (ext4): destination with the same identifier (name{table.10
-}) has been already used, duplicate ignored
+[36]) (./figures/table-emp-vschema.tex) [37pdfTeX warning (ext4): destination w
+ith the same identifier (name{table.10}) has been already used, duplicate ignor
+ed
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.69 
-     ] (./figures/table-emp-vschema.tex) [36pdfTeX warning (ext4): destination 
-with the same identifier (name{table.11}) has been already used, duplicate igno
-red
+l.131 
+      ]) (./sections/qs.tex [38pdfTeX warning (ext4): destination with the same
+ identifier (name{table.11}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.172 
-      ]) (./sections/qs.tex
+l.57 W
+      e distribute the v-queries in two formats: (1) VRA, introduced in \sec...
+]
 
-LaTeX Warning: Hyper reference `sec:background' on page 37 undefined on input l
+LaTeX Warning: Hyper reference `sec:background' on page 39 undefined on input l
 ine 57.
 
 
-LaTeX Warning: Reference `sec:background' on page 37 undefined on input line 57
+LaTeX Warning: Reference `sec:background' on page 39 undefined on input line 57
 .
 
-(./sections/enronqs.tex [37] [38]
+(./sections/enronqs.tex [39]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 249.
 
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 249.
 
+[40]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 273.
 
@@ -1624,18 +1624,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--49
 /ptm/m/n/10.95 '' at a time cor-re-spond-ing to [], which we en-code:
  []
 
-[39]))
+))
 
 Package natbib Warning: There were undefined citations.
 
-[40]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 209.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 209.
+[41]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 210.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 210.
  (./proposal.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 209.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 209.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 210.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 210.
 Package rerunfilecheck Info: File `proposal.out' has not changed.
-(rerunfilecheck)             Checksum: 63D97665B3FA076B9FF90E32941C2FA7;3289.
+(rerunfilecheck)             Checksum: 8AF74CF0FE7350B96B898C348728FA4F;3313.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1646,13 +1646,13 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 209.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 210.
  ) 
 Here is how much of TeX's memory you used:
- 32876 strings out of 492616
- 620450 string characters out of 6129482
+ 32898 strings out of 492616
+ 620802 string characters out of 6129482
  1005671 words of memory out of 5000000
- 35987 multiletter control sequences out of 15000+600000
+ 36003 multiletter control sequences out of 15000+600000
  602529 words of font info for 180 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,25n,84p,5627b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1673,10 +1673,10 @@ dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2019/texmf-dist/fonts/
 type1/urw/symbol/usyr.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/t
 imes/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8
 a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on proposal.pdf (40 pages, 369528 bytes).
+Output written on proposal.pdf (41 pages, 376152 bytes).
 PDF statistics:
- 757 PDF objects out of 1000 (max. 8388607)
- 684 compressed objects within 7 object streams
- 171 named destinations out of 1000 (max. 500000)
+ 786 PDF objects out of 1000 (max. 8388607)
+ 711 compressed objects within 8 object streams
+ 177 named destinations out of 1000 (max. 500000)
  322 words of extra memory for PDF output out of 10000 (max. 10000000)
 
