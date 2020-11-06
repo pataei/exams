@@ -1,0 +1,318 @@
+\subsubsection{Motivating Example}
+\label{sec:mot}
+
+\TODO{adjust to proposal and fix refs}
+
+\begin{table*}[t]
+\caption{Employee schema evolution of a database for a SPL.
+%%(evolution features \vOne -- \vFive\ for employee part of the schema (the left schema column), evolution features \tOne -- \tFive\ for education part
+%%of the schema (the right schema column), and \edu\ feature representing the education feature of SPL). 
+A feature (a boolean variable) represents 
+inclusion/exclusion of tables/attributes.  
+%The dash-underlined attributes in the basic schema 
+%have \emph{variational} present in their relation, i.e.,
+%they only exist in their relation when \edu\ = \t.
+%%in left schema column only exist when the \edu\ feature of SPL is enabled. 
+%%This table represents 1056 possible schema variants:
+%%\ensuremath{2^5} schema variants when \edu\ is disabled 
+%%(by enabling any combination of \vOne--\vFive) 
+%%in addition to \ensuremath{2^5 \times 2^5} when \edu\ is enabled.
+}
+\label{tab:mot}
+\begin{center}
+\small
+%\footnotesize
+%\scriptsize
+\begin{tabular} {| c | l || l | c |}
+\hline
+\textbf{\tiny Temporal} & \multicolumn{2}{ c |}{\textbf{Schemas of Databases for SPL Software Variants}} & \textbf{\tiny Temporal}\\
+\cline{2-3}
+\textbf{\tiny Features} & \multicolumn{1}{ c ||} {\basic} & \multicolumn{1}{ c |} {\educational} & \textbf{\tiny Features}\\
+\hline
+%\cline{2-3}
+%\cline{2-3}
+%\hhline{-==}
+\multirow{3}{*}{\vOne} &  \engemp\ (\empno, \name, \hiredate, \titleatt, \deptname) & 
+\course\ (\cname, \tno) & \multirow{3}{*}{\tOne}\\
+& \othemp\ (\empno, \name, \hiredate, \titleatt, \deptname)  & \student\ (\sno, \cname) &\\
+& \job\ (\titleatt, \salary) &  &\\
+\hline
+\multirow{2}{*}{\vTwo} & \empacct\ (\empno, \name, \hiredate, \titleatt, \deptname) & \course\ (\cno, \cname, \tno) & \multirow{2}{*}{\tTwo}\\
+%\cdashline{2-3}
+& \job\ (\titleatt, \salary) & \student\ (\sno, \cno) & \\
+\hline
+\multirow{4}{*}{\vThree} & \empacct\ (\empno, \name, \hiredate, \titleatt, \deptno) & \course\ (\cno, \cname) & \multirow{4}{*}{\tThree}\\
+& \job\ (\titleatt, \salary) & \teach\ (\tno, \cno) &\\
+& \dept\ (\deptname, \deptno, \managerno) & \student\ (\sno, \cno, \grade) &\\
+& \empbio\ (\empno, \sex, \birthdate) & &\\
+\hline
+\multirow{4}{*}{\vFour} & \empacct\ (\empno, \hiredate, \titleatt, \deptno, \dashuline{\isstudent}, \dashuline{\isteacher}) & \ecourse\ (\cno, \cname) & \multirow{4}{*}{\tFour}\\
+& \job\ (\titleatt, \salary) & \course\ (\cno, \cname, \timeatt, \class) & \\
+& \dept\ (\deptname, \deptno, \managerno) & \teach\ (\tno, \cno) & \\
+& \empbio\ (\empno, \sex, \birthdate, \name) & \student\ (\sno, \cno, \grade) & \\
+\hline
+\multirow{4}{*}{\vFive} & \empacct\ (\empno, \hiredate, \titleatt, \deptno,  \dashuline{\isstudent}, \dashuline{\isteacher}, \salary) & \ecourse\ (\cno, \cname, \deptno) & \multirow{4}{*}{\tFive}\\
+& \dept\ (\deptname, \deptno, \managerno,  \dashuline{\studentnum}, \dashuline{\teachernum}) & \course\ (\cno, \cname, \timeatt, \class, \deptno) & \\
+& \empbio\ (\empno, \sex, \birthdate, \fname, \lname) & \teach\ (\tno, \cno) & \\
+&& \take\ (\sno, \cno, \grade) & \\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+%\arashComment{Section 2 has a useful example but it is unnecessarily too complicated as combines SPL and schema evolution right off the bat.
+%1) If you want to use both, you may start with one and then enrich the example with the other. 2) It may be useful to combine and summarize Sections 1 and 2 and use the example to ground the abstract description in Section 1. 3) You might have to make the example shorter to page limits for conferences.} 
+%\resp{I numbered your concerns and responded to them one by one: 1) I introduced schema evolution first and then its happening in spl. 2) I still prefer separating motivating ex and introduction to avoid complicating the intro. I want the intro to be to the point and brief, explaining that variational databases have multiple application (instances), they have appeared in literature except that researchers have failed to recognize the commonality in all those instance which is the fact that they are all variation appearing in different contexts and applications. The purpose of motivating example is to draw the reader to continue reading the paper that is more structured. It respects the reader time (if they're interested they'll continue reading into motivating example) and is more organized. 3) I'll come back to this in the final version. However, I think it's important to put the time in and use the space to establish the functionality of VDB.}
+%\responded
+
+%\point{Overall scenario.}
+In this section, we motivate the interaction of two kinds of variation in databases:
+database-backed software produced by SPL and schema evolution.
+Consider a SPL that generates management software for companies. 
+The SPL has an optional feature: \edu, 
+indicating whether a company
+provides educational means such as courses for its 
+employees\footnote{In practice, such a SPL would have two features: \base\ and \edu,
+where \base\ is an arbitrary feature, i.e., for all variants it must be enabled, and it 
+indicates software variants that provide just basic functionalities. For simplicity
+and without loss of generality, we drop this feature.}. 
+%NOTE: YOU CAN OMIT THE FOOTNOTE IF YOU'RE RUNNING OUT OF SPACE!!!!!!!
+Software variants that disable \edu\ (\edu\ = \f) only provide basic 
+functionalities while ones that enable \edu\ provide educational functionalities
+as well as basic ones. Thus, this SPL yields two types of products:
+\basic\ and \educational.
+
+%\point{Database of this SPL.}
+Software produced by this SPL needs a database to store information
+about employees, but SPL features impacts the database:
+while \basic\ variants do not need to store any education-related records 
+\educational\ variants do. In practice, SPL developers use 
+only one database for both variant categories~\cite{vdbSpl18ATW}, 
+which can easily be separated
+by using the \edu\ feature.
+We visualize this idea in \tabref{mot} with two
+schema types: \basic\ and \educational.
+Additionally, we introduce \emph{temporal features} to tag schemas when they change.
+A \basic\ schema is associated with a temporal feature of \vOne\ -- \vFive\ while 
+an \educational\ schema is associated with a temporal feature of \tOne\ -- \tFive.
+We have two sets of temporal features because when \edu\ is enabled
+any \educational\ and \basic\ schemas can be grouped to form a complete
+schema.
+For example, a valid software variant 
+can have the \basic\ schema associated with \vThree\ and
+the \educational\ schema associated with \tFour. 
+%%\point{schemas could evolve independent from each other.}
+%The \educational\ schema evolves independently from the 
+%\basic\ schema. For example, due to new requirements SPL DBAs need to 
+%add online courses to the schema. Schema variant associated with
+%\tFour\ demonstrate this change. That is why we need to have
+%two sets of temporal features.
+%For example, a valid software variant 
+%can have the \basic\ schema associated with \vThree\ in addition
+%to the \educational\ schema associated with \tFour. 
+%
+%the \educational\ category 
+%includes tables from the \basic\ schema in addition to ones from the \educational\ schema 
+%while the \basic\
+%category only consists of its own tables). Separating these database
+%variants using SPL features results in much cleaner databases as
+%opposed to databases created for SPL in practice.
+
+%\point{Component evolution.}
+Now, consider the following scenario:
+in the initial design of the \basic\ database, SPL database administrators (DBAs)
+settle on three tables \engemp, \othemp, and \job; shown in \tabref{mot} and associated
+with temporal feature \vOne. 
+After some time, they decide
+to refactor the schema to remove redundant tables,
+thus, they combine the two
+relations \engemp\ and \othemp\ into one, \empacct; associated with temporal feature \vTwo. 
+Since some of clients' 
+software relies on a previous design the two schemas have to coexist in parallel.
+%However, to capture what schema a software variant is using we introduce
+%temporal features, e.g., \vOne\ and \vTwo, and tag corresponding schemas 
+%with these features. 
+Therefore, the existence (presence) of \engemp\ and \othemp\
+relations is \emph{variational}, i.e., they only exist in the \basic\
+schema when \vOne\ = \t.
+This scenario describes \emph{component evolution}:
+database evolution in SPL resulted from developers
+update, refactor, improve, and components~\cite{dbSPLevolve}.
+% is called 
+%\emph{component evolution}~\cite{dbSPLevolve}.
+
+%\point{Product evolution.}
+Now, consider the case where a client that previously requested a \basic\ variant of the
+management software has recently added courses to educate its
+employees in subjects they need. Hence, the SPL needs to enable
+the \edu\ feature for this client, forcing the adjustment of the schema to \educational. 
+This case describes \emph{product evolution}:
+database evolution in SPL resulted
+from clients adding/removing features/components~\cite{dbSPLevolve}. 
+%is called 
+%\emph{product evolution}~\cite{dbSPLevolve}. 
+
+%\point{\edu\ affects basic too.}
+The two \basic\ and \educational\ schemas are not independent of each other:
+%enabling the \edu\ feature not only adds the relations in the \educational\
+%schema but it also affects the \basic\ schema. 
+consider the \basic\ schema 
+variant for temporal feature \vFour. Attributes \isstudent\ and \isteacher\ only exists
+in the \empacct\ relation when \edu\ = \t, represented by \dashuline{dash-underlining} them,
+otherwise the \empacct\
+relation has only four attributes: \empno, \hiredate, \titleatt, and \deptno.
+Hence, the presence of attributes \isstudent\ and \isteacher\ in \empacct\ relation is
+\emph{variational}, i.e., they only exist in \empacct\ relation
+when \edu\ = \t.
+%similar to the presence of \engemp\ which
+%is variational depending on whether \vOne is enabled or not. 
+
+%%\point{schemas could evolve independent from each other.}
+%The \educational\ schema evolves independently from the 
+%\basic\ schema. For example, due to new requirements SPL DBAs need to 
+%add online courses to the schema. Schema variant associated with
+%\tFour\ demonstrate this change. That is why we need to have
+%two sets of temporal features.
+%For example, a valid software variant 
+%can have the \basic\ schema associated with \vThree\ in addition
+%to the \educational\ schema associated with \tFour. 
+
+Our motivating example demonstrates how variation in time and space
+arises and how they interact, an unavoidable consequence of modern software
+development.
+To be concrete throughout the paper we itemize
+the needs of users working with a database with variation
+through the needs of SPL developers and DBAs:
+% for our motivating example.
+%These needs cover all general needs when variation appears in databases
+%because our motivating example considers variation in both possible 
+%dimensions; time and space:
+%
+\begin{enumerate}[wide, labelwidth=!, labelindent=0pt, topsep=1pt]
+%[leftmargin=*]
+\itemsep0em
+\item [\textbf{(\nZero)}]
+SPL developers need to access all database variants while
+writing code to be able to extract information for all software variants
+they are developing. 
+%
+Hence,
+\emph{users need to have access to all database variants at a given time}.
+%
+\secref{vdb} explains how a VDB achieves this.
+%\tabref{mot-vsch} shows how v-schema achieves
+\exref{vsch} shows how v-schema achieves
+this at schema level for a part of our motivating example 
+and \secref{exp-disc} discusses two databases
+that achieve this at both content and schema level.
+%
+\item [\textbf{(\nOne)}]
+Depending on what component they are working on,
+they need to be able to query all or some of the variants.
+%
+Hence, 
+\emph{users need to query multiple database variants simultaneously and selectively}.
+%
+Our query language achieves this by introducing variation into queries, \secref{vq}.
+\exref{vq-specific} and \exref{vq-same-intent-mult-vars} illustrate this 
+for our motivating example.
+%
+\item [\textbf{(\nTwo)}]
+Given that users have access to all database variants and that they
+can query all variants simultaneously, for test purposes, 
+they desire to know which variant a tuple belongs to.
+%
+Hence,
+\emph{the framework needs to 
+keep track of which variants a piece of data belongs to and ensuring that 
+it is maintained throughout a query}.
+%
+Storing variants that a tuple belongs to in a VDB achieves the first part, \secref{vdb}, and
+VRA's type system ensures the second part, \secref{type-sys}.
+\exref{var-pres} illustrates this for a given query.
+%
+\item [\textbf{(\nThree)}]
+SPL developers need to deploy the database and its queries
+to generate a specific software product for a client based on their
+requested features. 
+%
+Hence,
+\emph{users need to deploy one variant of the database and its associated queries}.
+%
+We define \emph{configure} function for a VDB and its elements, \figref{vdb-conf}, 
+in addition to queries, \figref{v-alg-conf-sem}, that achieves this. 
+\exref{conf-vq} illustrate deploying an example query.
+%
+\end{enumerate}
+
+
+%%\point{Why the needs are required and where we address them.}
+%%\wrrite{add needs here!}
+%We describe the needs of users working with a database with variation
+%through the needs of SPL developers and DBAs.
+%%
+%SPL developers need to have access to all database variants while
+%writing code to be able to extract information for all software variants
+%they are developing (\nZero). \tabref{mot-vsch} shows how our framework achieves
+%this for schema level and \secref{gen-vdb} shows two databases
+%that achieve this at both content and schema level.
+%%
+%Additionally, depending on what component they are working on,
+%they need to be able to query all or some of the variants (\nOne).
+%We show how our framework achieves this for our motivating example
+%in \exref{vq-specific} and \exref{vq-same-intent-mult-vars}.
+%%
+%Given that they have access to all database variants and that they
+%can query all variants simultaneously, for test purposes, 
+%they desire to know which variant a tuple belongs to (\nTwo).
+%\exref{var-pres} illustrates this for a given query.
+%%
+%Finally, SPL developers need to deploy the database and its queries
+%to generate a specific software product for a client based on their
+%requested features (\nThree). \exref{conf-vq} illustrate deploying an example query.
+
+%\point{Current solutions shortage.}
+Current solutions to database variation not only cannot adapt to a new
+kind of variation but also cannot satisfy all these needs.
+Current SPLs generate and use messy 
+databases by employing a universal schema.
+However, this burdens DBAs heavily because they need to write specific
+queries for each variant in order to avoid getting messy data, thus,
+current SPLs cannot satisfy \nOne\ and \nTwo.
+%
+As stated in \secref{intro}, schema evolution systems only consider evolution
+in time and do not provide any means for \nOne-\nThree.
+%
+Also, the current solution to the problem of schema evolution within a SPL is addressed by
+designing
+a new domain-specific language so that SPL developers 
+can write scripts of the schema changes~\cite{dbSPLevolve},
+which still requires a great effort by DBAs and SPL developers
+and it does not address \nZero-\nTwo\ sufficiently.
+%This amount of work grows exponentially 
+%as the number of potential variants grow, which in our example depends on the temporal
+%changes and SPL features. As a reminder, a SPL usually has hundreds of 
+%features~\cite{cppSpl}. As the SPL and its database evolve,
+%manually managing the variants becomes impossible. 
+
+
+%We categorize these needs and explain them throughout the paper:
+%\begin{enumerate}[leftmargin=*]
+%\item [\textbf{N0}]Have access to all database variants at a given time
+%\item [\textbf{N1}]Query multiple database variants simultaneously and selectively
+%\item [\textbf{N2}]Keep track of which variants a piece of data belongs to and ensuring that 
+%         it is maintained throughout a query
+%\item [\textbf{N3}]Deploy one variant of the database and its associated queries.
+%\end{enumerate}
+
+
+\begin{comment}
+writing workshop Oct. 7:
+motivating example
+-early in the paper
+-somehow convincing
+-realistic
+-small
+-show off solution. show how you solve it later.
+
+\end{comment}

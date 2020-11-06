@@ -5,13 +5,14 @@
 \BOOKMARK [2][-]{subsection.3.2}{Formula Choice Calculus and Annotation}{section.3}% 5
 \BOOKMARK [1][-]{section.4}{Research Goals and Methods}{}% 6
 \BOOKMARK [2][-]{subsection.4.1}{Identify the kinds of variation existing in relational databases in different application domains}{section.4}% 7
-\BOOKMARK [3][-]{subsubsection.4.1.1}{Encoding Variability}{subsection.4.1}% 8
-\BOOKMARK [2][-]{subsection.4.2}{Design and implement a database framework that accommodate identified variations}{section.4}% 9
-\BOOKMARK [3][-]{subsubsection.4.2.1}{Variational Schema}{subsection.4.2}% 10
-\BOOKMARK [3][-]{subsubsection.4.2.2}{Variational Table}{subsection.4.2}% 11
-\BOOKMARK [2][-]{subsection.4.3}{Demonstrate how the proposed system can be used to manage variation in databases in different application domains}{section.4}% 12
-\BOOKMARK [2][-]{subsection.4.4}{Mechanize proofs of properties of the language and the system}{section.4}% 13
-\BOOKMARK [2][-]{subsection.4.5}{Stretch goal: Generalize the encoding of variation to make the framework customizable for different application domains}{section.4}% 14
-\BOOKMARK [2][-]{subsection.4.6}{Summary}{section.4}% 15
-\BOOKMARK [1][-]{section.5}{Related Work}{}% 16
-\BOOKMARK [1][-]{section.6}{Conclusion}{}% 17
+\BOOKMARK [3][-]{subsubsection.4.1.1}{Motivating Example}{subsection.4.1}% 8
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Encoding Variability}{subsection.4.1}% 9
+\BOOKMARK [2][-]{subsection.4.2}{Design and implement a database framework that accommodate identified variations}{section.4}% 10
+\BOOKMARK [3][-]{subsubsection.4.2.1}{Variational Schema}{subsection.4.2}% 11
+\BOOKMARK [3][-]{subsubsection.4.2.2}{Variational Table}{subsection.4.2}% 12
+\BOOKMARK [2][-]{subsection.4.3}{Demonstrate how the proposed system can be used to manage variation in databases in different application domains}{section.4}% 13
+\BOOKMARK [2][-]{subsection.4.4}{Mechanize proofs of properties of the language and the system}{section.4}% 14
+\BOOKMARK [2][-]{subsection.4.5}{Stretch goal: Generalize the encoding of variation to make the framework customizable for different application domains}{section.4}% 15
+\BOOKMARK [2][-]{subsection.4.6}{Summary}{section.4}% 16
+\BOOKMARK [1][-]{section.5}{Related Work}{}% 17
+\BOOKMARK [1][-]{section.6}{Conclusion}{}% 18
