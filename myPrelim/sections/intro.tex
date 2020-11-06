@@ -16,50 +16,33 @@ a general solution that
 
 %\structure{openning}
 %Variation in databases appears abundantly in different forms and contexts.
-Managing variation in databases is a perennial problem in database literature
-and appears in different forms and contexts.
-%The problem
-%of managing variation within a database is not new. 
-Specific cases of this problem has been extensively studied including 
-schema evolution, data integration, and database versioning,
-where each instance has a context-specific solution.
-%Lots of research has
-%been done on some cases of this problem such as schema evolution,
-%data integration, and database versioning; 
-%resulting in well-supported context-specific systems.
-However, there are instances of the general problem that are
-not well-studied, resulting in using manual approaches that burden experts.
-Moreover, different kinds of variation can interact which cannot be addressed
-by current approaches due to lack of a general solution to managing 
-different kinds of variation in databases.
-In this paper, we provide a fundamental solution to managing
-variation in databases by considering variation explicitly as 
-a \emph{first-class citizen}
-in the system, allowing for encoding different kinds of variation.
 
-%\structure{the following paragraphs are funnel}
-%\point{Schematic and content-level variation in DBs that conceptually 
-%represent the same data.}
 Variation in databases arises when multiple database instances 
 conceptually represent the same database, but, differ
 slightly either in their schema and/or content. 
-%These database
-%instances coexist in parallel.
-The variation in schema and/or content occurs in two dimensions:
-time and space. Variation in space refers to different variants of database that
-coexist in parallel while variation in time refers to the evolution of 
-database, similar to variation observed in software~\cite{EricSPLEvolve19}. 
-Note that variation in a database can occur due to both dimensions
-at the same time.
+%
+Managing variation in databases is a perennial problem in database literature
+and appears in different forms and contexts.
+Specific cases of this problem has been extensively studied including 
+schema evolution~\cite{}, 
+data integration~\cite{}, 
+and database versioning~\cite{},
+where each instance has a context-specific solution that is hard-wired
+to the constrained problem definition. 
+%
+While schema
+evolution approaches deal with variation in the schema (i.e., the structure
+of the data) database versioning and data integration systems 
+manage variation in the content of the database. Yet, the database
+community does not consider them as instances of the same problem.
+%For example, 
+%approaches designed to manage schema evolution over time force
+%database administrators to add timestamps to each version of the schema
+%in the format that is used by the approach~\cite{} while systems designed
+%to manage database versioning force database administrators to use 
+%version numbers .
 
-
-%\point{Schema evolution is an instance of variation in databases
-%that is well-supported.}
-%Explains how schema evolution (which is unavoidable) 
-%is an instance of variation in databases.
-%And mentions some of the current solutions, emphasizing that
-%they cannot address other instances of the problem.
-Schema evolution is an instance of schematic variation in databases
+Consider schema evolution which is an instance of schematic variation in databases
 that is well-supported~\cite{SchEvolRA90McKenzie, 
 schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass, 
 prima08Moon}.
@@ -80,12 +63,6 @@ incorporate the time-based changes into
 the database directly, rather they \emph{simulate} the effect of these changes,
 resulting in brittle systems.
 
-
-%\point{Database-backed software produced by SPL is an instance
-%of variation in databases that is poorly managed in practice.}
-%Explains SPL briefly and how variation appears in databases used to
-%store data for software produced by SPL. As well as how poorly it is 
-%managed in practice.
 Database-backed software produced by software product line (SPL) 
 is an example where variation arises in databases and is poorly 
 supported. SPL is an
@@ -135,413 +112,93 @@ in addition to manually generating
 and managing the mappings between views and the universal schema for each product.
 
 
-%\point{Schema evolution meets SPL evolution and results in databases
-%used in SPL that their schemas evolve over time.}EricSPLEvolve19, splEvolveBP14
-%Mentions that SPL evolution is hot topic. Part of this evolution is database
-%evolution. This is where two instances of managing variation in databases
-%interact and even the well-supported systems for schema evolution cannot
-%address it. 
-Software evolution is unavoidable, so is its artifacts evolution, 
-including databases~\cite{dbSPLevolve}.
-%Variation in software development is unavoidable and 
-This is where two instances of managing 
-variation in databases (schema evolution and database-backed software 
-developed by SPL) interact.
-% and variation occurs both in time and space. 
-While there are solutions to schema evolution
-they cannot adapt to a new situation because they only provide a solution to
-variation of databases in time and cannot encode the interaction of database variation in
-time and space.
-%dismiss variation of databases in space, 
-%i.e., they dismiss that database variants that have been created due to variation
-%in time must coexist in parallel (a property of variation in 
-%space~\cite{EricSPLEvolve19}). 
-We motivate this case through an example in \secref{mot}.
-%We use this case as our motivating example in \secref{mot} and explain it 
-%in more details.
-
-%\structure{knowledge gap + challenge}
-%\point{Reiterate the knowledge gap. Introduce the challenge.} 
-%Reiterates the knowledge gap. Explains the challenge:
-%The challenge then becomes encoding variation in databases
-%that can model different instances and satisfy different specialists' needs 
-%at different stages (like development, deployment, information extraction, etc).
-%%Explains the challenge as incorporating variation in databases s.t. all 
-%%database variants are gathered in one place. 
-%Also, itemizes the users' 
-%needs in such an environment: 
-%1) Query some/all variants simultaneously and selectively.
-%2) Track the original variant of a piece of data and the variation applied
-%to it through a query.
-%3) Deploy the database and its queries to a variant of it.
-As we have shown, 
-variation in databases w.r.t. time and space is abundant and inexorable~\cite{dbDecay16Stonebraker};
-impacts DBAs, data scientists, and developers significantly~\cite{dbSPLevolve}; 
-and appears in different contexts. Various research has studied variation of databases
-in time and space, however, they all consider only one of these dimensions and
-are extremely tailored to a specific context. This becomes a problem when 
-the two dimensions and different contexts interact. Hence, the challenge becomes
-%offering a fundamental generic framework that 
-incorporating variation in databases s.t. it can model different instances of variation
-in different contexts and it satisfies different specialists' needs at different stages,
-e.g., development, information extraction, and deployment. 
+Additionally, the software product line (SPL) community has realized that 
+variation in software development travels to its artifact including the database.
 %
-%We categorize these needs and explain them throughout the paper:
-%\begin{enumerate}[leftmargin=*]
-%\item [\textbf{N0}]Have access to all database variants at a given time
-%\item [\textbf{N1}]Query multiple database variants simultaneously and selectively
-%\item [\textbf{N2}]Keep track of which variants a piece of data belongs to and ensuring that 
-%         it is maintained throughout a query
-%\item [\textbf{N3}]Deploy one variant of the database and its associated queries.
-%\end{enumerate}
-%\structure{proposed solution}
-%%\point{challenge: capturing/representing variability in the database + 
-%%(put-all-together origin-tracking framework) + solution (contributions).}
-%%\structure{point-last.}
-%Therefore, 
-%\emph{
-%how can we incorporate variability in databases to allow for
-%expressive queries over multiple
-%database variants selectively and simultaneously while keeping
-%track of the original variation of data and variation applied to it by
-%a query
-%%without violating data provenance
-%%and 
-%s.t. it is applicable in different contexts?}
-Our contributions in this paper address this challenge:
-\begin{itemize}[leftmargin=*]
-\itemsep0em
-%[wide, labelwidth=!, labelindent=0pt, topsep=1pt]
-%[leftmargin=*]
-\item We provide a framework to capture variation within a database using
-propositional formulas over  
-sets of features, called \emph{feature expressions}, following~\cite{vdb17ATW}.
-\item We incorporate feature expressions  into both the structure (schema) and
-content (tuples) of the database, introducing \emph{variational schemas}, \secref{vsch}, 
-and \emph{variational tables}, \secref{vtab}, and together \emph{VDBs},
-\secref{vdb}.
-%, satisfying \textbf{N0} and first part of \textbf{N2}.
-\item To express user information needs we define the 
-\emph{variational relational algebra} query language,
-%which is 
-a combination of relational algebra and 
-choice calculus~\cite{EW11tosem,Walk13thesis}, \secref{vrel-alg}.
-%, 
-%satisfying \textbf{N1}.
-Users query a VDB by a \emph{variational query}, \secref{vq}.
-\item 
-To make variational queries more useable and easier to understand, respectively,
-we define 
-a static type system, \secref{type-sys},
-and \emph{variation-minimiztion} rules, \secref{var-min}.
-%to make it easier to understand and more useable. 
-%rules to minimize 
-%variation in v-query, \secref{var-min}, to provide better
-%efficiency and usability. 
-%This completes satisfiability of \textbf{N2}.
-\item To query a 
-variational database and receive clear results
-we implement \emph{Variational Database Management System (VDBMS)}, \secref{impl}.
-%,
-%satisfying all four needs: \textbf{N0}-\textbf{N3}.
-%\textbf{N1}, \textbf{N2}, and \textbf{N3}.
+SPL is an
+approach to developing and maintaining software-intensive systems 
+in a cost-effective, easy to maintain manner by accommodating variation
+in the software that is being reused. 
+%
+In SPL, a common codebase is shared and used to produce products w.r.t.
+a set of selected (enabled) features~\cite{splBook}. 
+%
+Different client's products of a SPL typically have different
+sets of enabled features or are tailored to run in different environments. These
+differences impose different data requirements which creates variation in space 
+in the shared database used in the common codebase. 
+%
+The SPL community has closed
+the gap of variation appearing in database schema while developing software
+and the database schema used in client's application by
+encoding variation explicitly in data model, called \emph{variable data model}~\cite{}. 
+However, the direct encoding of variation has not been extended to the
+database itself by these approaches. 
+
+To the best of our knowledge, 
+there is no generic solution that manages all possible kinds of
+variation in databases. Thus, we explore the idea of considering
+variation as a \emph{first-class citizen} in databases. Such exploration
+poses questions such as: How can variation be represented in a generic
+expressive manner? How can variation be encoded explicitly in databases?
+What are the benefits and drawbacks of explicitly encoding variation in 
+databases? How applicable and feasible it is to encode variation 
+directly in databases?
+
+To answer these research questions we propose the following research goals:
+
+\begin{itemize}
+\item Objective 1: Identify the kinds of variation existing in relational databases in 
+different application domains.
+\item Objective 2: Design a query language and implement a database management 
+system that accommodate  variations identified in objective 1.
+\item Objective 3: Demonstrate how the proposed system can be used to manage
+variation in databases in different application domains.
+\item Objective 4: Mechanize proofs of properties of the language and the system.
+% maybe as a stretch goal
+%\item Objective 5: Generalize the encoding of variation and the design of the query 
+%language to cover more kinds of variation.
 \end{itemize}
 
-%\point{evaluate VDBMS + its pay off}
-%To evaluate VDBMS, 
-VDBMS provides new functionality to databases by accounting for 
-schematic and content-level variation. We provide two use cases of how VDBMS can
-model the schema evolution and SPL instances of variation in databases
-for two real-world databases,
-%(employee database\footnote{\url{https://github.com/datacharmer/test_db}} 
-%and Enron email data corpus\footnote{\url{http://www.ahschulz.de/enron-email-data/}}),
-\secref{exp-disc}. 
-%We also adopt practical queries from~\cite{prima08Moon} and~\cite{emailSPL},
-%respectively,
-%for our use cases to assess VDBMS, \secref{exp-qs}.
-We hypothesize that it especially pays
-off when there is lots of variation in the database and the user needs to query
-many of the variants simultaneously, \secref{exp-disc}. 
-%To examine our hypothesis,  
-%we adopt two real-world databases 
-%from two different contexts (schema evolution and SPL) and
-%generate their counterpart VDBs (based on the changes applied to them).
-%, assess
-%the performance of VDBMS using a set of queries within each context, and
-%finally analyze and discuss the results, \secref{exp-disc}.
-%Our experiments show ...
-%, elucidated more in \secref{exp-disc}.
 
+%----------------------------------------------------------------------------
 
-
-%%\begin{comment}
-%%vamos intro:
-%\section{Introduction}
-%\label{sec:intro}
-%
-%%\NOTE{High-level comment: avoid abbreviations like ``w.r.t.'' (I usually edit
-%%most of these out when revising your writing), or at least use them very
-%%sparingly. ``i.e.'' and ``e.g.'' are OK in parentheticals (e.g.\ this is fine),
-%%but should be avoided in the flow of text, e.g.\ this is awkward.}
-%
-%%\NOTE{Maybe first paragraph on how variation in software leads to variation in
-%%databases and vice-versa? Then get into how this breaks down into time and
-%%space.}
-%
-%%\TODO{we show feasibility of our approach. feasibility study.}
-%%
-%%\TODO{var in softwar. var in db. var time space. db has looked ...
-%%vdb more general and complicated. feasibility study.}
-%%
-%%\TODO{bulleted contribution list}
-%%
-%%\TODO{less harsh claim instead of miss variablity. say they don't recognize these are instances of the same problem.}
-%%
-%%\TODO{instead of brittle say specific or not general. very specific to a defined problem. cite a ppr that shows schema evolution sol cannot handle all situations.}
-%%
-%%\TODO{remember to go back to unification of time and space.}
-%
-%Variation in software leaks into its development code and data structures~\cite{Walk14onward,MMWWK17vamos,alkubaish20},
-%tools used by the software~\cite{ywt20splc}, and its artifacts. Here we focus on 
-%one kind of external artifact that is ubiquitous in software to store and manipulate
-%data: \emph{relational databases}.
-%%
-%For example, different clients of a SPL require different information need
-%and consequently, different databases~\cite{skrhas09DBIS}.
-%%
-%Furthermore, software evolves over time resulting in requiring 
-%new information needs or revising previous information needs.
-%This makes database evolvement over time unavoidable~\cite{dbDecay16Stonebraker}.
+%are instances of the general problem that are
+%not well-studied, resulting in using manual approaches that burden experts.
+%Moreover, different kinds of variation can interact which cannot be addressed
+%by current approaches due to lack of a general solution to managing 
+%different kinds of variation in databases.
+%%In this paper, 
+%To understand 
+%we provide a fundamental solution to managing
+%variation in databases by considering variation explicitly as 
+%a \emph{first-class citizen}
+%in the system, allowing for encoding different kinds of variation.
 %
 %
-%
-%Software systems can vary in two dimensions: ``space'' and ``time''.
-%Variation over space refers to the simultaneous development and maintenance of
-%related systems with different feature sets, which is the focus of work on
-%SPLs.
-%%
-%Variation over time refers to the incremental evolution of a system as it is
-%developed and maintained, and is the focus of revision control systems and
-%configuration management (CM)~\cite{Dart91}.
-%%
-%Although these two aspects of variation have traditionally been studied and
-%addressed separately, recent work has sought to unify the treatment of them
-%%both
-%%kinds of variation 
-%to support new kinds
-%of analyses that consider both dimensions of variation at once~\cite{Thu19vv}.
-%%in order to ease maintenance, support the reuse of
-%%techniques developed in their respective communities, and to support new kinds
-%%of analyses that consider both dimensions of variation at once~\cite{Thu19vv}.
-%%
-%%The case studies we present illustrate the impact of both dimensions of
-%%variation on relational databases, and demonstrate how our conception of
-%%variational databases is generic with respect to the underlying dimension(s) of
-%%variation.
-%
-%%\NOTE{The phrase ``dismissed the nature of the problem'' is strong and
-%%vague---a bad combination! There are also lots of citations here. Probably need
-%%to make a handful of more specific claims about the problem and provide a small
-%%number of citations for each one. Also not clear what the italicized
-%%\emph{variation} means here.}
+%%\structure{the following paragraphs are funnel}
+%%\point{Schematic and content-level variation in DBs that conceptually 
+%%represent the same data.}
+%Variation in databases arises when multiple database instances 
+%conceptually represent the same database, but, differ
+%slightly either in their schema and/or content. 
+%%These database
+%%instances coexist in parallel.
+%The variation in schema and/or content occurs in two dimensions:
+%time and space. Variation in space refers to different variants of database that
+%coexist in parallel while variation in time refers to the evolution of 
+%database, similar to variation observed in software~\cite{EricSPLEvolve19}. 
+%Note that variation in a database can occur due to both dimensions
+%at the same time.
 %
 %
-%Similarly, variation in databases exists in time and space. 
-%Variation in time  appears when a database evolves 
-%over time while variation in space  appears due
-%to different information requirements by software or different
-%sources of information. 
-%%
-%However, these variation dimensions in databases have not
-%been studied. Instead, instances of them have been studied
-%and addressed separately. 
-%
-%%
-%For example, consider the schema evolution problem:
-%the schema of a database changes over time due to new
-%business requirements~\cite{SchEvolRA90McKenzie}. 
-%This requires applying the changes
-%caused by the evolution to the queries and data. This
-%problem
-%%to the queries written on  (i.e., an instance of database
-%%variation in time) 
-%has been studied
-%thoroughly by the database community~\cite{schVersioning97Castro,SchEvolRA90McKenzie,
-%prima08Moon}.
-%Yet, it is not recognized as variation in the database by the community:
-%%
-%changes applied to the schema over time are \emph{variation} 
-%in the database and every time the database evolves, a new
-%\emph{variant} is generated.
-%%
-%Current solutions addressing schema
-%evolution rely on temporal nature of schema evolution by using
-%timestamps~\cite{SchEvolRA90McKenzie, schVersioning97Castro, 
-%tempSchEvol91Ariav} 
-%or keeping an external file of time-line history of 
-%changes applied to the database~\cite{prima08Moon}. 
-%These approaches only consider variation in time and do not
-%%However, none of them 
-%incorporate the time-based changes into
-%the database directly, rather they \emph{simulate} the effect of these changes,
-%resulting in specialized systems that cannot be extended to other instances
-%of database variation in time.
-%%
-%This observation is not limited to schema evolution;
-%some examples of this include 
-%database versioning~\cite{datasetVersioning,dbVersioning},
-%data integration~\cite{dataIntegBook}, 
-%and data provenance~\cite{bt07sigmod}.
-%%\TODO{food of thought: temporal databases~\cite{tsql95Snodgrass}.}
-%
-%%
-%On the other hand, the SPL community recognizes and addresses the need 
-%for variable data models which models a database schema 
-%(usually as an Entity-Relation model) with
-%annotations of features from SPL to indicate their variable 
-%existence~\cite{skrhas09DBIS, slrs12CAiSE, 
-%ad11varDataModel}, but, it does not expand such need to 
-%the data or the query language. 
-%%
-%%it does not address the variation that appears in queries and data. 
-%These approaches only consider variation in space over a data model
-%and do not address the variation that appears in queries and data. 
-%Thus, developers have to write the required information need as a
-%query encoded as a string per variant. Not only this is labor-some but
-%also due to the nature of queries being encoded as strings there is no
-%static check to ensure that queries are type correct. 
-%This impacts DBAs, data scientists, and developers significantly~\cite{dbSPLevolve}.
-%
-%\begin{comment}
-%Effectively managing variation is a fundamental challenge of software
-%engineering. Research on CM and SPLs
-%have developed numerous representations and strategies for effectively managing
-%different kinds of variation in software. However, these solutions typically do
-%not extend to managing variation in the artifacts and systems that software
-%uses.
-%%An especially tricky aspect is managing corresponding variation in
-%%the external artifacts and services that a software system interacts with.
-%%
-%Here, we focus on \emph{relational databases}.
-%%one kind of external artifact that is ubiquitous in
-%%software but not well-supported by current approaches to managing software
-%%variation: \emph{relational databases}.
-%%
-%Different variants of a software system have different information 
-%needs~\cite{skrhas09DBIS}, which
-%implies a corresponding need for variation in the structure and content of the
-%relational databases that these systems use and rely on. This clearly results in 
-%having variation in the database used to develop a SPL.
-%%
-%%While research on software product lines (SPLs) \cite{fospl} 
-%%has led to a variety of representations and techniques for safely working with
-%%many variants of a software system, these solutions don't extend to relational
-%%databases.
-%
-%In a database-supported SPL, 
-%typically a number of strategies are employed to
-%accommodate the different information needs of different variants.
-%%
-%The first is that a different relational database may be \emph{specified and
-%created per-variant}, according to the information needs of each
-%variant~\cite{marco13featureAdaptSch}. 
-%This approach is labor-intensive and difficult to maintain
-%since changes need to be propagated across variants manually.
-%%
-%The second strategy is to define a single \emph{global schema that applies
-%to all variants}~\cite{batini86dbSchIntegAnalysis}. 
-%This strategy is more efficient to maintain compared to the previous approach
-%but is still hard to maintain,
-%especially in face of SPL evolution. Due to lack of separation of concerns
-%and suboptimal traceability of requirements to database elements~\cite{skrhas09DBIS}
-%it is also complex, hard to understand, and unscalable~\cite{slrs12CAiSE}. 
-%Additionally, it suffers from design limitation and 
-%error-proneness since parts of the schema will be irrelevant to each variant,
-%resulting in losing database's integrity constraints~\cite{slrs12CAiSE}.
-%%Irrelevant attributes are typically populated by NULL-values, which may later
-%%be referenced since it is impossible to check or enforce that queries in each
-%%variant use the database in a safe and consistent way.
-%%
-%The third strategy is to define a \emph{variable data model}~\cite{skrhas09DBIS, 
-%slrs12CAiSE, ad11varDataModel} which models a database schema 
-%(usually as an Entity-Relation model) with
-%annotations of features from SPL to indicate their variable existence. 
-%This approach addresses problems of the previous approach, however,
-%it does not address the variation that appears in queries and data. 
-%Thus, developers have to write the required information need as a
-%query encoded as a string per variant. Not only this is labor-some but
-%also due to the nature of queries being encoded as strings there is no
-%static check to ensure that queries are type correct. 
-%\end{comment}
-%
-%Thus, an initial need for considering variation both in time and space
-%as first-class citizen in databases arises.
-%%
-%To this end, we have developed \emph{variational databases (VDBs)}
-%and \emph{variational queries}~\cite{ATW18poly,ATW17dbpl}, which extend ideas
-%developed in the SPL community to the creation, management,
-%and querying of relational databases.
-%%
-%Conceptually, a  \emph{single} variational database represents \emph{many}
-%different plain relational
-%databases, each one corresponding to a different variant of a software system,
-%\emph{at the same time}.
-%Similarly, a variational query represents potentially many different queries,
-%each one corresponding to a variant of a variational database.
-%%
-%Together, they enable safely and efficiently working with many variants of a
-%relational database at once, and reliably integrating the variants of a
-%database with the corresponding variants of a software product line.
-%%
-%We are currently implementing these ideas in \emph{VDBMS}, 
-%a practical implementation of
-%variational databases as a lightweight wrapper on top of a traditional
-%relational database management system.
-%
-%However, the generic and expressive approach of VDB in dealing
-%with database variation creates new complexity and cost of learning
-%which raises the question: is explicitly encoding variation in databases
-%a good idea?
-%To answer this question, in this paper, we
-%\begin{itemize}
-%%
-%\item show the feasibility of VDB by systematically generating
-%two VDBs from real-world instances of variation in time and space
-%from the scratch, \secref{db}
-%%
-%\item illustrate the applicability of variational queries by encoding information
-%needs for the developed VDBs from scenarios described in the literature,
-%\secref{q}
-%%
-%\item  discuss the pros and cons of explicitly
-%encoding variation in databases and future research directions, \secref{dis}
-%\end{itemize}
-%%
-%We distribute the VDBs, SQL scripts for generating them, 
-%and queries of our case studies in a GitHub repository available \href{https://github.com/lambda-land/VDBMS/tree/master/usecases}{here} for public use. 
-%%
-%We distribute the VDBs in either MySQL or Postgres and
-%in two form, one with embedded  
-%schema described in \secref{enron-vsch}, and one without the embedded schema
-%for use with our VDBMS tool in which the schema is provided
-% separately.
-%%
-%We distribute the queries in our encodings and
-%%but also 
-%as simple \cpp{ifdef}-annotated SQL files to promote their broad reuse
-%in the design and evaluation of other systems for managing variational
-%relational data.
-%
-%\begin{comment}
-%\NOTE{I like this paragraph, but the claim at the end is strong. Are database
-%evolution systems really brittle? And if so, how? For a claim like this, we
-%probably need to be a bit more specific and definitely need a citation.}
-%
-%Although we were inspired to design  VDB because of variation 
-%of databases in SPL, we realized variation in databases appear
-%in other contexts and forms. 
-%%
-%For example, schema evolution is an instance of schematic variation in databases
+%%\point{Schema evolution is an instance of variation in databases
+%%that is well-supported.}
+%%Explains how schema evolution (which is unavoidable) 
+%%is an instance of variation in databases.
+%%And mentions some of the current solutions, emphasizing that
+%%they cannot address other instances of the problem.
+%Schema evolution is an instance of schematic variation in databases
 %that is well-supported~\cite{SchEvolRA90McKenzie, 
 %schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass, 
 %prima08Moon}.
@@ -563,11 +220,241 @@ many of the variants simultaneously, \secref{exp-disc}.
 %resulting in brittle systems.
 %
 %
-%
+%%\point{Database-backed software produced by SPL is an instance
+%%of variation in databases that is poorly managed in practice.}
+%%Explains SPL briefly and how variation appears in databases used to
+%%store data for software produced by SPL. As well as how poorly it is 
+%%managed in practice.
+%Database-backed software produced by software product line (SPL) 
+%is an example where variation arises in databases and is poorly 
+%supported. SPL is an
+%approach to developing and maintaining software-intensive systems 
+%in a cost-effective, easy to maintain manner by accommodating variation
+%in the software that is being reused. 
+%%The products of a SPL pertain to a
+%%common application domain or business goal. 
+%%They also have a common
+%%managed set of features that describe the specific need for a product. 
+%%They share 
+%%a common codebase which is used to produce a product with respect to its set of 
+%%selected (enabled) features
+%In SPL, a common codebase is shared and used to produce products w.r.t.
+%a set of selected (enabled) features~\cite{splBook}. 
+%% from the SPL feature set designed to describe
+%%specific needs for products~\cite{splBook}. 
+%Different products of a SPL typically have different
+%sets of enabled features or are tailored to run in different environments. These
+%differences impose different data requirements which creates variation in space 
+%in the shared database used in the common codebase. 
+%%Hence, 
+%%each product has its own database variant.
+%%For example, different legal
+%%requirements often require tracking different data in products tailored for use
+%%in different countries or regions~\cite{splBook}.
+%%Different data requirements results in different desired data which 
+%%creates database variants. 
 %%
-%%Although we have so far considered only SPL-like variation, it's important to
-%%note that software systems can vary in both ``space'' and ``time''.
+%%
+%%The database variants corresponding to software products differ mainly 
+%%in their schema, a relation/attribute can either be included or excluded for a 
+%%specific software product~\cite{vdbSpl18ATW}.
+%The variation is in the form of exclusion/inclusion of tables/attributes based on
+%selected features for a product~\cite{vdbSpl18ATW}.
+%%
+%In practice, software systems produced by a SPL are accommodated with a database that
+%has all attributes and tables available for all variants-- a database with universal schema~\cite{vdbSpl18ATW}. 
+%Unfortunately, this approach is
+%inefficient, error-prone, and filled with lots of null values since not all attributes and tables
+%are valid for all variant products. A possible solution to this could be defining views on 
+%the universal database per software variant and write queries for each variant against its 
+%view~\cite{vdbSpl18ATW}.
+%However, this is burdensome, expensive, and costly to maintain since it 
+%requires developers to generate and maintain numerous view definitions
+%in addition to manually generating
+%and managing the mappings between views and the universal schema for each product.
+%
+%
+%%\point{Schema evolution meets SPL evolution and results in databases
+%%used in SPL that their schemas evolve over time.}EricSPLEvolve19, splEvolveBP14
+%%Mentions that SPL evolution is hot topic. Part of this evolution is database
+%%evolution. This is where two instances of managing variation in databases
+%%interact and even the well-supported systems for schema evolution cannot
+%%address it. 
+%Software evolution is unavoidable, so is its artifacts evolution, 
+%including databases~\cite{dbSPLevolve}.
+%%Variation in software development is unavoidable and 
+%This is where two instances of managing 
+%variation in databases (schema evolution and database-backed software 
+%developed by SPL) interact.
+%% and variation occurs both in time and space. 
+%While there are solutions to schema evolution
+%they cannot adapt to a new situation because they only provide a solution to
+%variation of databases in time and cannot encode the interaction of database variation in
+%time and space.
+%%dismiss variation of databases in space, 
+%%i.e., they dismiss that database variants that have been created due to variation
+%%in time must coexist in parallel (a property of variation in 
+%%space~\cite{EricSPLEvolve19}). 
+%We motivate this case through an example in \secref{mot}.
+%%We use this case as our motivating example in \secref{mot} and explain it 
+%%in more details.
+%
+%%\structure{knowledge gap + challenge}
+%%\point{Reiterate the knowledge gap. Introduce the challenge.} 
+%%Reiterates the knowledge gap. Explains the challenge:
+%%The challenge then becomes encoding variation in databases
+%%that can model different instances and satisfy different specialists' needs 
+%%at different stages (like development, deployment, information extraction, etc).
+%%%Explains the challenge as incorporating variation in databases s.t. all 
+%%%database variants are gathered in one place. 
+%%Also, itemizes the users' 
+%%needs in such an environment: 
+%%1) Query some/all variants simultaneously and selectively.
+%%2) Track the original variant of a piece of data and the variation applied
+%%to it through a query.
+%%3) Deploy the database and its queries to a variant of it.
+%As we have shown, 
+%variation in databases w.r.t. time and space is abundant and inexorable~\cite{dbDecay16Stonebraker};
+%impacts DBAs, data scientists, and developers significantly~\cite{dbSPLevolve}; 
+%and appears in different contexts. Various research has studied variation of databases
+%in time and space, however, they all consider only one of these dimensions and
+%are extremely tailored to a specific context. This becomes a problem when 
+%the two dimensions and different contexts interact. Hence, the challenge becomes
+%%offering a fundamental generic framework that 
+%incorporating variation in databases s.t. it can model different instances of variation
+%in different contexts and it satisfies different specialists' needs at different stages,
+%e.g., development, information extraction, and deployment. 
+%%
+%%We categorize these needs and explain them throughout the paper:
+%%\begin{enumerate}[leftmargin=*]
+%%\item [\textbf{N0}]Have access to all database variants at a given time
+%%\item [\textbf{N1}]Query multiple database variants simultaneously and selectively
+%%\item [\textbf{N2}]Keep track of which variants a piece of data belongs to and ensuring that 
+%%         it is maintained throughout a query
+%%\item [\textbf{N3}]Deploy one variant of the database and its associated queries.
+%%\end{enumerate}
+%%\structure{proposed solution}
+%%%\point{challenge: capturing/representing variability in the database + 
+%%%(put-all-together origin-tracking framework) + solution (contributions).}
+%%%\structure{point-last.}
+%%Therefore, 
+%%\emph{
+%%how can we incorporate variability in databases to allow for
+%%expressive queries over multiple
+%%database variants selectively and simultaneously while keeping
+%%track of the original variation of data and variation applied to it by
+%%a query
+%%%without violating data provenance
+%%%and 
+%%s.t. it is applicable in different contexts?}
+%Our contributions in this paper address this challenge:
+%\begin{itemize}[leftmargin=*]
+%\itemsep0em
+%%[wide, labelwidth=!, labelindent=0pt, topsep=1pt]
+%%[leftmargin=*]
+%\item We provide a framework to capture variation within a database using
+%propositional formulas over  
+%sets of features, called \emph{feature expressions}, following~\cite{vdb17ATW}.
+%\item We incorporate feature expressions  into both the structure (schema) and
+%content (tuples) of the database, introducing \emph{variational schemas}, \secref{vsch}, 
+%and \emph{variational tables}, \secref{vtab}, and together \emph{VDBs},
+%\secref{vdb}.
+%%, satisfying \textbf{N0} and first part of \textbf{N2}.
+%\item To express user information needs we define the 
+%\emph{variational relational algebra} query language,
+%%which is 
+%a combination of relational algebra and 
+%choice calculus~\cite{EW11tosem,Walk13thesis}, \secref{vrel-alg}.
+%%, 
+%%satisfying \textbf{N1}.
+%Users query a VDB by a \emph{variational query}, \secref{vq}.
+%\item 
+%To make variational queries more useable and easier to understand, respectively,
+%we define 
+%a static type system, \secref{type-sys},
+%and \emph{variation-minimiztion} rules, \secref{var-min}.
+%%to make it easier to understand and more useable. 
+%%rules to minimize 
+%%variation in v-query, \secref{var-min}, to provide better
+%%efficiency and usability. 
+%%This completes satisfiability of \textbf{N2}.
+%\item To query a 
+%variational database and receive clear results
+%we implement \emph{Variational Database Management System (VDBMS)}, \secref{impl}.
+%%,
+%%satisfying all four needs: \textbf{N0}-\textbf{N3}.
+%%\textbf{N1}, \textbf{N2}, and \textbf{N3}.
+%\end{itemize}
+%
+%%\point{evaluate VDBMS + its pay off}
+%%To evaluate VDBMS, 
+%VDBMS provides new functionality to databases by accounting for 
+%schematic and content-level variation. We provide two use cases of how VDBMS can
+%model the schema evolution and SPL instances of variation in databases
+%for two real-world databases,
+%%(employee database\footnote{\url{https://github.com/datacharmer/test_db}} 
+%%and Enron email data corpus\footnote{\url{http://www.ahschulz.de/enron-email-data/}}),
+%\secref{exp-disc}. 
+%%We also adopt practical queries from~\cite{prima08Moon} and~\cite{emailSPL},
+%%respectively,
+%%for our use cases to assess VDBMS, \secref{exp-qs}.
+%We hypothesize that it especially pays
+%off when there is lots of variation in the database and the user needs to query
+%many of the variants simultaneously, \secref{exp-disc}. 
+%%To examine our hypothesis,  
+%%we adopt two real-world databases 
+%%from two different contexts (schema evolution and SPL) and
+%%generate their counterpart VDBs (based on the changes applied to them).
+%%, assess
+%%the performance of VDBMS using a set of queries within each context, and
+%%finally analyze and discuss the results, \secref{exp-disc}.
+%%Our experiments show ...
+%%, elucidated more in \secref{exp-disc}.
+%
+%
+%
+%%%\begin{comment}
+%%%vamos intro:
+%%\section{Introduction}
+%%\label{sec:intro}
+%%
+%%%\NOTE{High-level comment: avoid abbreviations like ``w.r.t.'' (I usually edit
+%%%most of these out when revising your writing), or at least use them very
+%%%sparingly. ``i.e.'' and ``e.g.'' are OK in parentheticals (e.g.\ this is fine),
+%%%but should be avoided in the flow of text, e.g.\ this is awkward.}
+%%
+%%%\NOTE{Maybe first paragraph on how variation in software leads to variation in
+%%%databases and vice-versa? Then get into how this breaks down into time and
+%%%space.}
+%%
+%%%\TODO{we show feasibility of our approach. feasibility study.}
 %%%
+%%%\TODO{var in softwar. var in db. var time space. db has looked ...
+%%%vdb more general and complicated. feasibility study.}
+%%%
+%%%\TODO{bulleted contribution list}
+%%%
+%%%\TODO{less harsh claim instead of miss variablity. say they don't recognize these are instances of the same problem.}
+%%%
+%%%\TODO{instead of brittle say specific or not general. very specific to a defined problem. cite a ppr that shows schema evolution sol cannot handle all situations.}
+%%%
+%%%\TODO{remember to go back to unification of time and space.}
+%%
+%%Variation in software leaks into its development code and data structures~\cite{Walk14onward,MMWWK17vamos,alkubaish20},
+%%tools used by the software~\cite{ywt20splc}, and its artifacts. Here we focus on 
+%%one kind of external artifact that is ubiquitous in software to store and manipulate
+%%data: \emph{relational databases}.
+%%%
+%%For example, different clients of a SPL require different information need
+%%and consequently, different databases~\cite{skrhas09DBIS}.
+%%%
+%%Furthermore, software evolves over time resulting in requiring 
+%%new information needs or revising previous information needs.
+%%This makes database evolvement over time unavoidable~\cite{dbDecay16Stonebraker}.
+%%
+%%
+%%
+%%Software systems can vary in two dimensions: ``space'' and ``time''.
 %%Variation over space refers to the simultaneous development and maintenance of
 %%related systems with different feature sets, which is the focus of work on
 %%SPLs.
@@ -576,196 +463,433 @@ many of the variants simultaneously, \secref{exp-disc}.
 %%developed and maintained, and is the focus of revision control systems and
 %%configuration management (CM)~\cite{Dart91}.
 %%%
-%%Although these two kinds of variation have traditionally been studied and
-%%addressed separately, recent work has sought to unify the treatment of both
-%%kinds of variation in order to ease maintenance, support the reuse of
-%%techniques developed in their respective communities, and to support new kinds
+%%Although these two aspects of variation have traditionally been studied and
+%%addressed separately, recent work has sought to unify the treatment of them
+%%%both
+%%%kinds of variation 
+%%to support new kinds
 %%of analyses that consider both dimensions of variation at once~\cite{Thu19vv}.
+%%%in order to ease maintenance, support the reuse of
+%%%techniques developed in their respective communities, and to support new kinds
+%%%of analyses that consider both dimensions of variation at once~\cite{Thu19vv}.
 %%%
-%%The case studies we present illustrate the impact of both dimensions of
-%%variation on relational databases, and demonstrate how our conception of
-%%variational databases is generic with respect to the underlying dimension(s) of
-%%variation.
+%%%The case studies we present illustrate the impact of both dimensions of
+%%%variation on relational databases, and demonstrate how our conception of
+%%%variational databases is generic with respect to the underlying dimension(s) of
+%%%variation.
 %%
-%
-%\NOTE{First part of this paragraph sounds like it's from a conclusion, not an
-%introduction. We haven't shown anything yet!
-%
-%\medskip
-%Is it possible to organize the outline around a bulleted list of
-%contributions?}
-%
-%So far we have shown, 
-%variation in databases w.r.t. time and space is abundant 
-%and inexorable~\cite{dbDecay16Stonebraker};
-%impacts DBAs, data scientists, and developers significantly~\cite{dbSPLevolve}; 
-%and appears in different contexts. 
-%\end{comment}
-%
-%
-%
-%\begin{comment}
+%%%\NOTE{The phrase ``dismissed the nature of the problem'' is strong and
+%%%vague---a bad combination! There are also lots of citations here. Probably need
+%%%to make a handful of more specific claims about the problem and provide a small
+%%%number of citations for each one. Also not clear what the italicized
+%%%\emph{variation} means here.}
 %%
-%We also showed examples
-%of instances of variation in databases, however, the question
-%becomes how would one encode each specific instance of
-%variation in a database in our VDB framework and what 
-%are the pros and cons of doing such. 
 %%
-%We introduce VDB
-%formalism in \secref{background} and use the introduced
-%notation to describe in detail two case studies (one of variation
-%w.r.t. time and the other of variation w.r.t. space) of systematically generating
-%a VDB for an instance of variation in a database from the scratch
-%(we derive the features, schema, adapt and adjust the data,
-%and populate the VDB) in \secref{db}. 
+%%Similarly, variation in databases exists in time and space. 
+%%Variation in time  appears when a database evolves 
+%%over time while variation in space  appears due
+%%to different information requirements by software or different
+%%sources of information. 
+%%%
+%%However, these variation dimensions in databases have not
+%%been studied. Instead, instances of them have been studied
+%%and addressed separately. 
 %%
-%We then outline the steps
-%required to take in order to generate a VDB and \TODO{introduce
-%a semi-automatic approach for generating a VDB from database 
-%variants accompanied with their associated selected features} in
-%\secref{gen-vdb}. 
+%%%
+%%For example, consider the schema evolution problem:
+%%the schema of a database changes over time due to new
+%%business requirements~\cite{SchEvolRA90McKenzie}. 
+%%This requires applying the changes
+%%caused by the evolution to the queries and data. This
+%%problem
+%%%to the queries written on  (i.e., an instance of database
+%%%variation in time) 
+%%has been studied
+%%thoroughly by the database community~\cite{schVersioning97Castro,SchEvolRA90McKenzie,
+%%prima08Moon}.
+%%Yet, it is not recognized as variation in the database by the community:
+%%%
+%%changes applied to the schema over time are \emph{variation} 
+%%in the database and every time the database evolves, a new
+%%\emph{variant} is generated.
+%%%
+%%Current solutions addressing schema
+%%evolution rely on temporal nature of schema evolution by using
+%%timestamps~\cite{SchEvolRA90McKenzie, schVersioning97Castro, 
+%%tempSchEvol91Ariav} 
+%%or keeping an external file of time-line history of 
+%%changes applied to the database~\cite{prima08Moon}. 
+%%These approaches only consider variation in time and do not
+%%%However, none of them 
+%%incorporate the time-based changes into
+%%the database directly, rather they \emph{simulate} the effect of these changes,
+%%resulting in specialized systems that cannot be extended to other instances
+%%of database variation in time.
+%%%
+%%This observation is not limited to schema evolution;
+%%some examples of this include 
+%%database versioning~\cite{datasetVersioning,dbVersioning},
+%%data integration~\cite{dataIntegBook}, 
+%%and data provenance~\cite{bt07sigmod}.
+%%%\TODO{food of thought: temporal databases~\cite{tsql95Snodgrass}.}
 %%
-%We also provide a set of variational queries
-%that capture a wide range of information needs for the introduced
-%use cases in \secref{q}. 
-%%Additionally, 
-%%we distribute the queries not only in our encodings,
-%%but also as simple \cpp{ifdef}-annotated SQL files to promote their broad reuse
+%%%
+%%On the other hand, the SPL community recognizes and addresses the need 
+%%for variable data models which models a database schema 
+%%(usually as an Entity-Relation model) with
+%%annotations of features from SPL to indicate their variable 
+%%existence~\cite{skrhas09DBIS, slrs12CAiSE, 
+%%ad11varDataModel}, but, it does not expand such need to 
+%%the data or the query language. 
+%%%
+%%%it does not address the variation that appears in queries and data. 
+%%These approaches only consider variation in space over a data model
+%%and do not address the variation that appears in queries and data. 
+%%Thus, developers have to write the required information need as a
+%%query encoded as a string per variant. Not only this is labor-some but
+%%also due to the nature of queries being encoded as strings there is no
+%%static check to ensure that queries are type correct. 
+%%This impacts DBAs, data scientists, and developers significantly~\cite{dbSPLevolve}.
+%%
+%%\begin{comment}
+%%Effectively managing variation is a fundamental challenge of software
+%%engineering. Research on CM and SPLs
+%%have developed numerous representations and strategies for effectively managing
+%%different kinds of variation in software. However, these solutions typically do
+%%not extend to managing variation in the artifacts and systems that software
+%%uses.
+%%%An especially tricky aspect is managing corresponding variation in
+%%%the external artifacts and services that a software system interacts with.
+%%%
+%%Here, we focus on \emph{relational databases}.
+%%%one kind of external artifact that is ubiquitous in
+%%%software but not well-supported by current approaches to managing software
+%%%variation: \emph{relational databases}.
+%%%
+%%Different variants of a software system have different information 
+%%needs~\cite{skrhas09DBIS}, which
+%%implies a corresponding need for variation in the structure and content of the
+%%relational databases that these systems use and rely on. This clearly results in 
+%%having variation in the database used to develop a SPL.
+%%%
+%%%While research on software product lines (SPLs) \cite{fospl} 
+%%%has led to a variety of representations and techniques for safely working with
+%%%many variants of a software system, these solutions don't extend to relational
+%%%databases.
+%%
+%%In a database-supported SPL, 
+%%typically a number of strategies are employed to
+%%accommodate the different information needs of different variants.
+%%%
+%%The first is that a different relational database may be \emph{specified and
+%%created per-variant}, according to the information needs of each
+%%variant~\cite{marco13featureAdaptSch}. 
+%%This approach is labor-intensive and difficult to maintain
+%%since changes need to be propagated across variants manually.
+%%%
+%%The second strategy is to define a single \emph{global schema that applies
+%%to all variants}~\cite{batini86dbSchIntegAnalysis}. 
+%%This strategy is more efficient to maintain compared to the previous approach
+%%but is still hard to maintain,
+%%especially in face of SPL evolution. Due to lack of separation of concerns
+%%and suboptimal traceability of requirements to database elements~\cite{skrhas09DBIS}
+%%it is also complex, hard to understand, and unscalable~\cite{slrs12CAiSE}. 
+%%Additionally, it suffers from design limitation and 
+%%error-proneness since parts of the schema will be irrelevant to each variant,
+%%resulting in losing database's integrity constraints~\cite{slrs12CAiSE}.
+%%%Irrelevant attributes are typically populated by NULL-values, which may later
+%%%be referenced since it is impossible to check or enforce that queries in each
+%%%variant use the database in a safe and consistent way.
+%%%
+%%The third strategy is to define a \emph{variable data model}~\cite{skrhas09DBIS, 
+%%slrs12CAiSE, ad11varDataModel} which models a database schema 
+%%(usually as an Entity-Relation model) with
+%%annotations of features from SPL to indicate their variable existence. 
+%%This approach addresses problems of the previous approach, however,
+%%it does not address the variation that appears in queries and data. 
+%%Thus, developers have to write the required information need as a
+%%query encoded as a string per variant. Not only this is labor-some but
+%%also due to the nature of queries being encoded as strings there is no
+%%static check to ensure that queries are type correct. 
+%%\end{comment}
+%%
+%%Thus, an initial need for considering variation both in time and space
+%%as first-class citizen in databases arises.
+%%%
+%%To this end, we have developed \emph{variational databases (VDBs)}
+%%and \emph{variational queries}~\cite{ATW18poly,ATW17dbpl}, which extend ideas
+%%developed in the SPL community to the creation, management,
+%%and querying of relational databases.
+%%%
+%%Conceptually, a  \emph{single} variational database represents \emph{many}
+%%different plain relational
+%%databases, each one corresponding to a different variant of a software system,
+%%\emph{at the same time}.
+%%Similarly, a variational query represents potentially many different queries,
+%%each one corresponding to a variant of a variational database.
+%%%
+%%Together, they enable safely and efficiently working with many variants of a
+%%relational database at once, and reliably integrating the variants of a
+%%database with the corresponding variants of a software product line.
+%%%
+%%We are currently implementing these ideas in \emph{VDBMS}, 
+%%a practical implementation of
+%%variational databases as a lightweight wrapper on top of a traditional
+%%relational database management system.
+%%
+%%However, the generic and expressive approach of VDB in dealing
+%%with database variation creates new complexity and cost of learning
+%%which raises the question: is explicitly encoding variation in databases
+%%a good idea?
+%%To answer this question, in this paper, we
+%%\begin{itemize}
+%%%
+%%\item show the feasibility of VDB by systematically generating
+%%two VDBs from real-world instances of variation in time and space
+%%from the scratch, \secref{db}
+%%%
+%%\item illustrate the applicability of variational queries by encoding information
+%%needs for the developed VDBs from scenarios described in the literature,
+%%\secref{q}
+%%%
+%%\item  discuss the pros and cons of explicitly
+%%encoding variation in databases and future research directions, \secref{dis}
+%%\end{itemize}
+%%%
+%%We distribute the VDBs, SQL scripts for generating them, 
+%%and queries of our case studies in a GitHub repository available \href{https://github.com/lambda-land/VDBMS/tree/master/usecases}{here} for public use. 
+%%%
+%%We distribute the VDBs in either MySQL or Postgres and
+%%in two form, one with embedded  
+%%schema described in \secref{enron-vsch}, and one without the embedded schema
+%%for use with our VDBMS tool in which the schema is provided
+%% separately.
+%%%
+%%We distribute the queries in our encodings and
+%%%but also 
+%%as simple \cpp{ifdef}-annotated SQL files to promote their broad reuse
 %%in the design and evaluation of other systems for managing variational
 %%relational data.
 %%
-%We distribute the VDBs, SQL scripts for generating them, 
-%and queries of our case studies in a GitHub repository available \href{https://github.com/lambda-land/VDBMS/tree/master/usecases}{here} for public use. 
+%%\begin{comment}
+%%\NOTE{I like this paragraph, but the claim at the end is strong. Are database
+%%evolution systems really brittle? And if so, how? For a claim like this, we
+%%probably need to be a bit more specific and definitely need a citation.}
 %%
-%We distribute the VDBs in either MySQL or Postgres and
-%in two form, one with embedded variational 
-%schema described in \secref{enron-vsch}, and one without the embedded schema
-%for use with our VDBMS tool in which the variational schema is provided
-%and distributed separately.
+%%Although we were inspired to design  VDB because of variation 
+%%of databases in SPL, we realized variation in databases appear
+%%in other contexts and forms. 
+%%%
+%%For example, schema evolution is an instance of schematic variation in databases
+%%that is well-supported~\cite{SchEvolRA90McKenzie, 
+%%schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass, 
+%%prima08Moon}.
+%%Changes applied to the schema over time are \emph{variation} 
+%%in the database and every time the database evolves, a new
+%%\emph{variant} is generated.
+%%%which needs to coexists in parallel
+%%%with other variants.
+%%Current solutions addressing schema
+%%evolution rely on temporal nature of schema evolution by using
+%%timestamps~\cite{SchEvolRA90McKenzie, schVersioning97Castro, 
+%%tempSchEvol91Ariav, tsql95Snodgrass} 
+%%or keeping an external file of time-line history of 
+%%changes applied to the database~\cite{prima08Moon}. 
+%%These approaches only consider variation in time and do not
+%%%However, none of them 
+%%incorporate the time-based changes into
+%%the database directly, rather they \emph{simulate} the effect of these changes,
+%%resulting in brittle systems.
 %%
-%We distribute the queries not only in our encodings,
-%but also as simple \cpp{ifdef}-annotated SQL files to promote their broad reuse
-%in the design and evaluation of other systems for managing variational
-%relational data.
 %%
-%Finally, we thoroughly discuss the pros and cons of explicitly
-%encoding variation in databases and future research directions
-%in \secref{dis}.
-%\end{comment}
-%
-%%Thus, a generic explicit encoding of variation in databases, both
-%%in the schema and content, seems beneficial. We introduce this
-%%encoding in \secref{background}. 
 %%
-%%Our contributions in this paper are:
-%%\begin{itemize} [leftmargin=*]
-%%\itemsep0em
 %%%
-%%\item To illustrate the applicability of VDB
-%%we explain in details how we systematically 
-%%generated two VDBs by combining existing, widely
-%%used datasets with variation scenarios described in the literature 
-%%in \secref{db}. 
-%%To illustrate the generality of our encoding the 
-%%first case study focuses on variation in space
-%%while the second one focuses on variation in time.
+%%%Although we have so far considered only SPL-like variation, it's important to
+%%%note that software systems can vary in both ``space'' and ``time''.
+%%%%
+%%%Variation over space refers to the simultaneous development and maintenance of
+%%%related systems with different feature sets, which is the focus of work on
+%%%SPLs.
+%%%%
+%%%Variation over time refers to the incremental evolution of a system as it is
+%%%developed and maintained, and is the focus of revision control systems and
+%%%configuration management (CM)~\cite{Dart91}.
+%%%%
+%%%Although these two kinds of variation have traditionally been studied and
+%%%addressed separately, recent work has sought to unify the treatment of both
+%%%kinds of variation in order to ease maintenance, support the reuse of
+%%%techniques developed in their respective communities, and to support new kinds
+%%%of analyses that consider both dimensions of variation at once~\cite{Thu19vv}.
+%%%%
+%%%The case studies we present illustrate the impact of both dimensions of
+%%%variation on relational databases, and demonstrate how our conception of
+%%%variational databases is generic with respect to the underlying dimension(s) of
+%%%variation.
 %%%
-%%\item We outline required steps to generate a VDB and 
-%%\TODO{provide a semi-automatic technique for generating a VDB from a 
-%%set of database variant with their corresponding selected features} 
-%%in \secref{gen-vdb}.
+%%
+%%\NOTE{First part of this paragraph sounds like it's from a conclusion, not an
+%%introduction. We haven't shown anything yet!
+%%
+%%\medskip
+%%Is it possible to organize the outline around a bulleted list of
+%%contributions?}
+%%
+%%So far we have shown, 
+%%variation in databases w.r.t. time and space is abundant 
+%%and inexorable~\cite{dbDecay16Stonebraker};
+%%impacts DBAs, data scientists, and developers significantly~\cite{dbSPLevolve}; 
+%%and appears in different contexts. 
+%%\end{comment}
+%%
+%%
+%%
+%%\begin{comment}
 %%%
-%%\item We provide a set of variational queries
-%%that captures the information needs of different database variants
-%%for each case study
-%%to demonstrate the use of our query language in \secref{q}.
+%%We also showed examples
+%%of instances of variation in databases, however, the question
+%%becomes how would one encode each specific instance of
+%%variation in a database in our VDB framework and what 
+%%are the pros and cons of doing such. 
 %%%
-%%However, we distribute the queries not only in our encodings,
+%%We introduce VDB
+%%formalism in \secref{background} and use the introduced
+%%notation to describe in detail two case studies (one of variation
+%%w.r.t. time and the other of variation w.r.t. space) of systematically generating
+%%a VDB for an instance of variation in a database from the scratch
+%%(we derive the features, schema, adapt and adjust the data,
+%%and populate the VDB) in \secref{db}. 
+%%%
+%%We then outline the steps
+%%required to take in order to generate a VDB and \TODO{introduce
+%%a semi-automatic approach for generating a VDB from database 
+%%variants accompanied with their associated selected features} in
+%%\secref{gen-vdb}. 
+%%%
+%%We also provide a set of variational queries
+%%that capture a wide range of information needs for the introduced
+%%use cases in \secref{q}. 
+%%%Additionally, 
+%%%we distribute the queries not only in our encodings,
+%%%but also as simple \cpp{ifdef}-annotated SQL files to promote their broad reuse
+%%%in the design and evaluation of other systems for managing variational
+%%%relational data.
+%%%
+%%We distribute the VDBs, SQL scripts for generating them, 
+%%and queries of our case studies in a GitHub repository available \href{https://github.com/lambda-land/VDBMS/tree/master/usecases}{here} for public use. 
+%%%
+%%We distribute the VDBs in either MySQL or Postgres and
+%%in two form, one with embedded variational 
+%%schema described in \secref{enron-vsch}, and one without the embedded schema
+%%for use with our VDBMS tool in which the variational schema is provided
+%%and distributed separately.
+%%%
+%%We distribute the queries not only in our encodings,
 %%but also as simple \cpp{ifdef}-annotated SQL files to promote their broad reuse
 %%in the design and evaluation of other systems for managing variational
 %%relational data.
 %%%
-%%\item We thoroughly discuss the pros and cons of explicitly
+%%Finally, we thoroughly discuss the pros and cons of explicitly
 %%encoding variation in databases and future research directions
 %%in \secref{dis}.
-%%\end{itemize}
-%
-%%\begin{comment}
-%%In this paper, we present two case studies that demonstrate the need for a more
-%%systematic approach to managing variation in relational databases than the
-%%current status quo. Additionally, these case studies support the evaluation of
-%%systems like VDBMS that are intended to address this need.
-%%%
-%%The case studies were created by systematically combining existing, widely used
-%%datasets with software variation scenarios described in the literature.
-%%%
-%%Each case study consists of (1) a variational database whose structure is
-%%defined by a \emph{variational schema} and whose content is given by a set of
-%%\emph{variational tables}, and (2) a set of variational queries over this
-%%database that captures the information needs of different variants of the
-%%corresponding software system.
-%
-%
-%%We give a brief overview of variational databases and queries in
-%%Section~\ref{sec:background} and use the notations and terminology developed in
-%%that section throughout the paper.
-%%
-%%However, we distribute the case studies themselves not only in our encodings,
-%%but also as simple \cpp{ifdef}-annotated SQL files to promote their broad reuse
-%%in the design and evaluation of other systems for managing variational
-%%relational data.
-%
-%
-%%The variational databases for each case study are presented in
-%%Section~\ref{sec:db}.
-%%%
-%%The first case study focuses on variation over space. It develops a variational
-%%schema that captures the information needs of a SPL based on Hall's
-%%decomposition of an email system into its component features~\cite{Hall05}. The
-%%email SPL has been used in several previous SPL research projects (e.g.\
-%%\cite{Apel13:SSP,AlHaj19}). The variational email database is populated using
-%%the Enron email dataset, adapted to fit our variational schema~\cite{Shetty04}.
-%
-%
-%%The second case study demonstrates the changing information needs of a system
-%%that varies over time by developing a variational schema corresponding to an
-%%employee-system evolution scenario described in \citet{prima08Moon}. The
-%%variational employee database is populated by adapting a large, fabricated
-%%employee dataset\footnote{\url{https://github.com/datacharmer/test_db}} that
-%%has been widely used in the databases community.
-%
-%
-%%After describing the development of the database for each case study, we give a
-%%brief statistical overview of their structure and contents, and also identify
-%%some basic validation properties that all variational databases (including the
-%%two examples we provide) should satisfy.
-%
-%
-%%The variational queries for each case study are presented in
-%%Section~\ref{sec:q}. For each case study, we systematically worked through each
-%%scenario, as described in the corresponding paper, and created a query for each
-%%information need that was described.
-%%%
-%%We describe how the queries were developed and give several examples.
 %%\end{comment}
-
-
-
-
-
-To answer these questions we propose the following research goals:
-
-\begin{itemize}
-\item Objective 1: Identify the kinds of variation existing in relational databases in 
-different application domains.
-\item Objective 2: Design a query language and implement a database management 
-system that accommodate  variations identified in objective 1.
-\item Objective 3: Demonstrate how the proposed system can be used to manage
-variation in databases in different application domains.
-\item Objective 4: Mechanize proofs of properties of the language and the system.
-% maybe as a stretch goal
-%\item Objective 5: Generalize the encoding of variation and the design of the query 
-%language to cover more kinds of variation.
-\end{itemize}
-
+%%
+%%%Thus, a generic explicit encoding of variation in databases, both
+%%%in the schema and content, seems beneficial. We introduce this
+%%%encoding in \secref{background}. 
+%%%
+%%%Our contributions in this paper are:
+%%%\begin{itemize} [leftmargin=*]
+%%%\itemsep0em
+%%%%
+%%%\item To illustrate the applicability of VDB
+%%%we explain in details how we systematically 
+%%%generated two VDBs by combining existing, widely
+%%%used datasets with variation scenarios described in the literature 
+%%%in \secref{db}. 
+%%%To illustrate the generality of our encoding the 
+%%%first case study focuses on variation in space
+%%%while the second one focuses on variation in time.
+%%%%
+%%%\item We outline required steps to generate a VDB and 
+%%%\TODO{provide a semi-automatic technique for generating a VDB from a 
+%%%set of database variant with their corresponding selected features} 
+%%%in \secref{gen-vdb}.
+%%%%
+%%%\item We provide a set of variational queries
+%%%that captures the information needs of different database variants
+%%%for each case study
+%%%to demonstrate the use of our query language in \secref{q}.
+%%%%
+%%%However, we distribute the queries not only in our encodings,
+%%%but also as simple \cpp{ifdef}-annotated SQL files to promote their broad reuse
+%%%in the design and evaluation of other systems for managing variational
+%%%relational data.
+%%%%
+%%%\item We thoroughly discuss the pros and cons of explicitly
+%%%encoding variation in databases and future research directions
+%%%in \secref{dis}.
+%%%\end{itemize}
+%%
+%%%\begin{comment}
+%%%In this paper, we present two case studies that demonstrate the need for a more
+%%%systematic approach to managing variation in relational databases than the
+%%%current status quo. Additionally, these case studies support the evaluation of
+%%%systems like VDBMS that are intended to address this need.
+%%%%
+%%%The case studies were created by systematically combining existing, widely used
+%%%datasets with software variation scenarios described in the literature.
+%%%%
+%%%Each case study consists of (1) a variational database whose structure is
+%%%defined by a \emph{variational schema} and whose content is given by a set of
+%%%\emph{variational tables}, and (2) a set of variational queries over this
+%%%database that captures the information needs of different variants of the
+%%%corresponding software system.
+%%
+%%
+%%%We give a brief overview of variational databases and queries in
+%%%Section~\ref{sec:background} and use the notations and terminology developed in
+%%%that section throughout the paper.
+%%%
+%%%However, we distribute the case studies themselves not only in our encodings,
+%%%but also as simple \cpp{ifdef}-annotated SQL files to promote their broad reuse
+%%%in the design and evaluation of other systems for managing variational
+%%%relational data.
+%%
+%%
+%%%The variational databases for each case study are presented in
+%%%Section~\ref{sec:db}.
+%%%%
+%%%The first case study focuses on variation over space. It develops a variational
+%%%schema that captures the information needs of a SPL based on Hall's
+%%%decomposition of an email system into its component features~\cite{Hall05}. The
+%%%email SPL has been used in several previous SPL research projects (e.g.\
+%%%\cite{Apel13:SSP,AlHaj19}). The variational email database is populated using
+%%%the Enron email dataset, adapted to fit our variational schema~\cite{Shetty04}.
+%%
+%%
+%%%The second case study demonstrates the changing information needs of a system
+%%%that varies over time by developing a variational schema corresponding to an
+%%%employee-system evolution scenario described in \citet{prima08Moon}. The
+%%%variational employee database is populated by adapting a large, fabricated
+%%%employee dataset\footnote{\url{https://github.com/datacharmer/test_db}} that
+%%%has been widely used in the databases community.
+%%
+%%
+%%%After describing the development of the database for each case study, we give a
+%%%brief statistical overview of their structure and contents, and also identify
+%%%some basic validation properties that all variational databases (including the
+%%%two examples we provide) should satisfy.
+%%
+%%
+%%%The variational queries for each case study are presented in
+%%%Section~\ref{sec:q}. For each case study, we systematically worked through each
+%%%scenario, as described in the corresponding paper, and created a query for each
+%%%information need that was described.
+%%%%
+%%%We describe how the queries were developed and give several examples.
+%%%\end{comment}
+%
+%
+%
+%
+%

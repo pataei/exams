@@ -24,7 +24,7 @@ this objective.
 different application domains}\tabularnewline
 \midrule
 RQ1.1: What are the application domains that variation appears in a database? 
-What are the dimensions of variation in a database? (\poly)
+What are the dimensions of variation in a database? (\poly, \vamos)
 \tabularnewline[0.2cm]
 RQ1.2: How can all identified variation instances be represented  in a generic encoding without
 regards for the application domain? (\dbpl)
@@ -37,7 +37,30 @@ encoding? (\vamos)
 \end{tabularx}
 \end{table}
 
+\begin{comment}
+* schema evolution
+* repeated pattern in database versioning, data integration
+* this also comes up in software development
+* and software also evolves in time
+* two dimension that can interact with each other: time and space
+\end{comment}
 
+For RQ1.1 we explored different application domains where databases change,
+yet, there is a need to keep and access the older versions (variants) of the 
+database for business reasons. 
+
+\begin{comment}
+* introduce a feature space
+* propositional formulas of features
+\end{comment}
+
+For RQ1.2 ...
+
+\begin{comment}
+* show case the applicability and feasibility of encoding instances of variation using feature expression
+\end{comment}
+
+For RQ1.3 ...
 
 \subsection{Design and implement a database framework
 %a query language and implement a database management 
@@ -68,16 +91,34 @@ to answer for this objective.
 that accommodates identified variations}
 \tabularnewline
 \midrule
-RQ2.1: How should variation in form of feature expression be incorporated in the database as a first-class citizen? (\dbpl, \poly, \vldb)
+RQ2.1: How should variation in form of feature expression be incorporated in the database as a first-class citizen? (\dbpl, \poly)
 \tabularnewline[0.2cm]
-RQ2.2: What are appropriate query languages to interact with a database that accounts for variation explicitly? And how should variation in form of feature expression be incorporated in the query language? (\dbpl, \poly, \vldb)
+RQ2.2: What are appropriate query languages to interact with a database that accounts for variation explicitly? And how should variation in form of feature expression be incorporated in the query language? (\dbpl, \poly)
 \tabularnewline[0.2cm]
-RQ2.3: 
+RQ2.3: Having a theoretical database framework that accounts for variation explicitly, how 
+should we go to implement a database management system that uses that framework? (In progress)
 \tabularnewline
 \bottomrule
 \end{tabularx}
 \end{table}
 
+
+\begin{comment}
+* annotations and choices
+\end{comment}
+
+For RQ2.1 ...
+
+\begin{comment}
+
+\end{comment}
+
+For RQ2.2 ...
+
+\begin{comment}
+\end{comment}
+
+For RQ2.3 ...
 
 \subsection{Demonstrate how the proposed system can be used to manage
 variation in databases in different application domains}
@@ -98,13 +139,26 @@ question we need to answer for this objective.
 variation in databases in different application domains}
 \tabularnewline
 \midrule
+RQ3.1: Can real-world instances of variation in databases be encoded as a VDB?
+What are the steps to generate a VDB from a scenario of variation in a database? (\vamos)
 \tabularnewline[0.2cm]
-\tabularnewline[0.2cm]
-
+RQ3.2: What are the benefits and drawbacks of representing variation generically
+in databases as opposed to having scenario-tailored approaches? (\vamos)
+%\tabularnewline[0.2cm]
 \tabularnewline
 \bottomrule
 \end{tabularx}
 \end{table}
+
+\begin{comment}
+\end{comment}
+
+For RQ3.1 ...
+
+\begin{comment}
+\end{comment}
+
+For RQ3.2 ...
 
 \subsection{Mechanize proofs of properties of the language and the system}
 \label{sec:ro4}
@@ -129,20 +183,48 @@ individual research questions we need to answer for this objective.
  \textbf{Objective 4: Mechanize proofs of properties of the language and the system}
 \tabularnewline
 \midrule
+RQ4.1: What are the desired properties for a VDB and do they hold for VDB? (\vamos)
 \tabularnewline[0.2cm]
+RQ4.2: What are the desired properties for VRA? 
+Can they be mechanically proved? (In progress)
 \tabularnewline[0.2cm]
-
+RQ4.3: Is the implementation of VDBMS compliant to semantics of VRA? (Not started)
 \tabularnewline
 \bottomrule
 \end{tabularx}
 \end{table}
 
+\begin{comment}
+\end{comment}
 
-\subsection{Stretch goal: Generalize the encoding of variation and the design of the query 
-language to cover more kinds of variation}
+For RQ4.1 ...
+
+\begin{comment}
+\end{comment}
+
+For RQ4.2 ..
+
+\begin{comment}
+\end{comment}
+
+For RQ4.3 ...
+
+
+\subsection{Stretch goal: Generalize the encoding of variation to make the framework
+customizable for different application domains}
 \label{sec:ro5}
 
-
+The main goal of this research is to add variation as a first-class citizen to 
+databases to separate the concern of dealing with variation from the application
+domain, however, as discussed in \secref{ro3} there is a trade-off between 
+ expressiveness and complexity. In other words, although VDB allows 
+one to encode different kinds of variation it introduces more complexity than a
+specialized system that only manages a specific instance of variation
+since it is not bind to the application domain. 
+A possible workaround this problem is to generalize the encoding of
+variation to allow developers to customize variation to their use case such 
+that it straps away unneeded complexity from the query language. We will 
+explore this idea once objective 4 is completed and if time permits. 
 
 \subsection{Summary}
 \label{sec:sum}
@@ -156,5 +238,34 @@ language to cover more kinds of variation}
 
 \begin{table}
 \label{tab:timeline}
+\caption{Summary of projected and completed dates for each of the proposed research questions.}
+\centering
+\begin{tabular}{|c|c|c|c|}
+\hline
+Research Question & Target conference & Projected Date & Status\\
+\hline
+1.1 & \poly & N/A & Complete\\
+\hline
+1.2 & \dbpl & N/A & Complete\\
+\hline
+1.3 &  \vamos &N/A & Complete\\
+\hline
+2.1 & \poly, \dbpl, \vldb &Early 2021 & Complete\\
+\hline
+2.2 & \poly, \dbpl, \vldb &Early 2021 & Complete\\
+\hline
+2.3 & \vldb & Early 2021 & In progress\\
+\hline
+3.1 & \vamos &N/A & Complete\\
+\hline
+3.2 & \vamos &N/A & Complete\\
+\hline
+4.1 & \vamos &N/A & Complete\\
+\hline
+4.2 & \vldb, \toplas & Mid 2021 & In progress\\
+\hline
+4.3 & \toplas & Mid 2021 & Not started\\
+\hline
+\end{tabular}
 \end{table}
 
