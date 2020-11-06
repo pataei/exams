@@ -1,0 +1,97 @@
+\subsubsection{Property Checking over a VDB}
+\label{sec:vdb-props}
+
+\TODO{adjust for proposal}
+
+Since
+a \emph{single} database can supply data for \emph{many} different
+database variants \emph{at the same time}
+encoding variability explicitly in a database  allows the developers to 
+check for different properties over all database variants
+For example, to ensure that variability associated with each variant is 
+valid we provide a set of validity checks.
+% constructed VDB is valid we provide a set of validity checks.
+These checks ensure that the presence conditions both at the schema level and
+data level are consistent and satisfiable, that is, they are present in at
+least one database variant. In the following, the function $\sat\dimMeta$
+denotes a satisfiability check that returns \t\ if the feature expression
+\dimMeta\ is satisfiable and \f\ otherwise.
+
+
+At the schema level we check the following properties:
+%
+\begin{enumerate}
+%
+\item That there is at least one valid configuration of the feature model $m$:
+%
+$\sat\fModel$
+%
+\item That every relation $r$ is present in at least one configuration of the
+variational schema:
+%
+$\forall\vRel\in\vSch, \sat{\fModel\wedge\getPC\vRel}$
+%
+\item That every attribute $a$ in every relation $r$ is present in at least one
+configuration of the variational schema:
+%
+$\forall\vAtt\in\vRel, \forall\vRel\in\vSch,
+\sat{\fModel\wedge\getPC\vRel\wedge\getPC\vAtt}$
+%
+\item That if $\vSch_\config$ denotes the expected plain relational schema for
+configuration $c$ of the variational schema \vSch, then configuring the
+variational schema with that configuration, written $\sem[\config]{\vSch}$,
+actually yields that variant:
+%
+$\forall\config\in\confSet, \sem[\config]{\vSch} = \vSch_\config$
+%
+\end{enumerate}
+
+
+\noindent
+%
+At the data level we check the following properties:
+%
+\begin{enumerate}
+%
+\item That every tuple $u$ in relation $r$ is present in at least one variant:
+%
+$\forall\vTuple\in\vRel, \forall\vRel\in\vSch,
+\sat{\fModel\wedge\getPC\vRel\wedge\getPC\vTuple}$ 
+%
+\item That for every tuple $u$ in relation $r$, if an attribute $a$ in $r$ is
+not present in any variants of the tuple, then the value of that attribute in
+the tuple, written $\mathit{value}_\vTuple(\vAtt)$, should be NULL:
+$\forall\vTuple\in\vRel, \forall\vAtt\in\vRel, \forall\vRel\in\vSch,
+\neg\sat{\fModel\wedge\getPC\vRel\wedge\getPC\vAtt\wedge\getPC\vTuple}
+\Rightarrow \mathit{value}_\vTuple(\vAtt) = \text{NULL}$
+%
+\end{enumerate}
+
+
+\noindent
+%
+We implemented these checks in our VDBMS tool and verified that both case
+studies described in this paper satisfy all of them. 
+%
+Depending on the context of the VDB, 
+more specialized properties can be checked too. For example, if temporal 
+variability in a database is accumulated over variants, i.e., the old data
+is also included in a more recent variant in addition to the newly added data,
+it is desirable
+to ensure that older variants are subsets of newer variants. 
+%\TODO{I don't
+%understand the thing we're assuming here.} 
+Assume that configurations \ensuremath{\config_1, \config_2, \cdots}
+represents time-orderly configurations, we formulated
+and checked this for the employee use case:
+\ensuremath{
+\forall \config_i, \config_j \in \confSet, i \le j, \sem[\config_i] {\vDB} \subseteq \sem[\config_j]{\vDB}
+}, 
+where \ensuremath{\sem[\config]{\vDB}} denotes configuring a variational database instance
+\vDB\ for configuration \config. 
+%\parisa{note to myself, impl todo: actually check this for employee db when you got the time!}
+
+%v-table checks:
+%- \ensuremath{\forall tuple \in relation \in schema : sat (fm \wedge pc_relation \wedge pc_tuple)}\\
+%- \ensuremath{\forall attribute \in relation \in schema, \forall val : if unsat (fm \wedge pc_relation \wedge pc_attribute \wedge pc_tuple)} then value must be null\\
+
