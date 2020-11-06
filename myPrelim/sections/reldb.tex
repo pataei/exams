@@ -1,0 +1,80 @@
+\subsection{Relational Databases and Relational Algebra}
+\label{sec:rel-db}
+
+%\point{database schema.}
+A relational database \pDB\ stores information in a structured manner by forcing
+data to conform to a \emph{schema} \pSch\ that is a finite set 
+$\setDef {{\pRelSch}_1, \ldots, {\pRelSch}_n}$ of \emph{relation schemas}.
+A relation schema is defined as
+$\pRelSch = \vRel \paran {\vi \pAtt k}$ where each $\pAtt_i$ is an
+\emph{attribute} contained in a relation named \vRel. 
+$\getRel {\pAtt}$ returns the relation that contains the attribute.
+\type [\pAtt]\ returns the \emph{type} of values associated with attribute \pAtt.
+
+%\point{database content.}
+The content of database \pDB\ is stored in the form of \emph{tuples}. A tuple \pTuple\
+is a mapping between a list of relation schema attributes and their values,
+%\footnote{\TODO{\*we can probably remove this if run out of space! \*Note that we only have
+%pure relational values, thus, values do not have variational counterparts. Hence,
+%we do not use our convention of underlying them to show they are variational.}}, 
+i.e.,
+$\pTuple = \paran {\vi {\underline v} k}$ for the relation schema \vRel \paran {\vi \pAtt k}.
+Hence a \emph{relation content}, \pRelCont, is a set of tuples \setDef {\vi \pTuple m}.
+$\getAtt {\underline v}$ returns the attribute the value corresponds to.
+A \emph{table} \pTab\ is a pair of relation content and relation schema.
+A \emph{database instance}, \pInst, of the database \pDB\ with the
+schema \pSch, is a set of tables $\setDef {\pTab_1, \ldots, \pTab_n}$.
+%relation contents 
+%$\setDef  {{\pRelCont}_1, \ldots, {\pRelCont}_n}$ corresponding
+%to a set of relation schemas $\setDef {{\pRelSch}_1, \ldots, {\pRelSch}_n}$ 
+%defined in \pSch. 
+For brevity, when it is clear from the context we refer to a database instance
+by \emph{database}.
+
+
+\input{formulas/rel-alg-def}
+
+
+Relational algebra allows users to query a relational database~\cite{AliceBook}.
+%
+The first five constructs are adapted from relational algebra:
+%
+A query may simply \emph{reference} a relation \pRel\ in the schema.
+\emph{Renaming} allows giving a name to an intermediate query to be referenced
+ later. Remember that \pRel\ is an overloaded symbol that indicates both a relation
+ and a relation name. 
+%
+A \emph{projection} enables selecting a subset of attributes from the results
+of a subquery, for example, \vPrj[\pAtt_1]{\pRel} would return only attribute $\pAtt_1$
+from $\pRel$.
+%; we extend the standard project operator to work with annotated lists
+%of attributes, for example, \vPrj[a_1,a_2^e]{r} would include $a_1$ for all
+%configurations and also $a_2$ for configurations where $e$ is true.
+%
+A \emph{selection} enables filtering the tuples returned by a subquery based on a
+given condition \pCond, for example, \vSel[\pAtt_1 > 3]{\pRel} would return all tuples
+from $\pRel$ where the value for $\pAtt_1$ is greater than 3.
+%; these conditions may be
+%variational to enable returning different tuples for different configurations
+%of the VDB.
+%
+The \emph{join} operation joins two subqueries based on a condition and
+omitting its condition implies it is a natural join (i.e., join on the
+shared attribute of the two subqueries).
+For example, $\pRel_1 \bowtie_{\pAtt_1 = \pAtt_2} \pRel_2$ joins tuples from $\pRel_1$ 
+and $\pRel_2$ where the attribute $\pAtt_1$ from relation $\pRel_1$ is equal to
+attribute $\pAtt_2$ from relation $\pRel_2$. However, if we have $\pRel_1(\pAtt_1, \pAtt_3)$
+and $\pRel_2 (\pAtt_1, \pAtt_2)$ then
+$\pRel_1 \bowtie \pRel_2$ joins tuples from $\pRel_1$ and $\pRel_2$ where
+attribute $\pAtt_1$ has the same value in $\pRel_1$ and $\pRel_2$. 
+\TODO{add cross product, add union intersection}
+
+%, except
+%that again we allow conditions to be variational.
+%
+%A \emph{choice} encodes a variation point between two subquery alternatives based on a
+%given feature expression, e.g., \chc[f_1\wedge f_2]{\vQ_l,\vQ_r} yields
+%the results of $\vQ_l$ alternative for configurations where $f_1$ and $f_2$ are enabled,
+%and in other configurations yields the results of $\vQ_r$ alternative. Note that the
+%conditions $\vCond$ used by selections and joins also contain choices, and
+%these behave similarly.
