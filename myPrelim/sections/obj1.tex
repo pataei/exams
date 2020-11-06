@@ -37,41 +37,155 @@ encoding? (\vamos)
 \begin{comment}
 * motivating example
 *dimensions of variation
-
-* variation appears when ...
-* schema evolution
-* repeated pattern in database versioning, data integration
-* this also comes up in software development
-* and software also evolves in time
-* two dimension that can interact with each other: time and space
+%* variation appears when ...
+%* schema evolution
+%* repeated pattern in database versioning, data integration
+%* this also comes up in software development
+%* and software also evolves in time
+%* two dimension that can interact with each other: time and space
 \end{comment}
 
-\TODO{for all these research questions here explain what you do intuitively
-and then refer to the formal definition and examples in subsection where they 
-can skip ahead if they want to.}
+%\TODO{for all these research questions here explain what you do intuitively
+%and then refer to the formal definition and examples in subsection where they 
+%can skip ahead if they want to.}
 
-For RQ1.1 \TODO{complete with how variation arises in databases}
-we explored different application domains where databases change,
-yet, there is a need to keep and access the older versions (variants) of the 
-database for business reasons. 
-\secref{mot}
-\TODO{ref to motivation and add a subsection for dimensions of variation}
+For RQ1.1 
+%\TODO{complete with how variation arises in databases}
+we explored different application domains where multiple database instances 
+exists simultaneously or over time and they conceptually represent the same or similar
+data, but, differ slightly in their schema and/or content for business or experimental reasons.
+We introduced some of these application domains in \secref{intro}. 
+
+After investigating the application domains we realized that variation
+in databases is similar to variation in software systems with regards
+to the dimensions of variation
+%
+Software systems can vary in two dimensions: ``space'' and ``time''.
+Variation over space refers to the simultaneous development and maintenance of
+related systems with different feature sets, which is the focus of work on
+SPLs.
+%
+Variation over time refers to the incremental evolution of a system as it is
+developed and maintained, and is the focus of revision control systems and
+configuration management (CM)~\cite{Dart91}.
+%
+Although these two aspects of variation have traditionally been studied and
+addressed separately, recent work has sought to unify the treatment of them
+%both
+%kinds of variation 
+to support new kinds
+of analyses that consider both dimensions of variation at once
+in order to ease maintenance, support the reuse of
+techniques developed in their respective communities, and to support new kinds
+of analyses that consider both dimensions of variation at once~\cite{Thu19vv}.
+%
+%The case studies we present illustrate the impact of both dimensions of
+%variation on relational databases, and demonstrate how our conception of
+%variational databases is generic with respect to the underlying dimension(s) of
+%variation.
+
+
+
+Similarly, variation in databases exists in time and space. 
+Variation in time  appears when a database evolves 
+over time while variation in space  appears due
+to different information requirements by software or different
+sources of information. 
+%
+However, these variation dimensions in databases have not
+been studied. Instead, as we mentioned in \secref{intro},
+instances of them have been studied and addressed separately. 
+%
+For example, schema evolution is an instance of variation in
+time while variation appearing in database of the software 
+when developing software systems using a SPL is variation in 
+space.
+%
+However, software evolution is unavoidable, so is its artifacts evolution, 
+including databases~\cite{dbSPLevolve}.
+This is where two instances of managing 
+variation in databases (schema evolution and database-backed software 
+developed by SPL) interact.
+% and variation occurs both in time and space. 
+While there are solutions to schema evolution
+they cannot adapt to a new situation because they only provide a solution to
+variation of databases in time and cannot encode the interaction of database variation in
+time and space.
+We motivate this case through an example in \secref{mot} and we use this
+example throughout this proposal to elaborate more on the introduced 
+concepts. 
 
 \begin{comment}
 * introduce a feature space
 * propositional formulas of features
 \end{comment}
 
-For RQ1.2 we introduce a \emph{feature space} that captures dimensions of 
-variation that may appear in a variational database scenario.
+For RQ1.2 we introduce a \emph{feature space} that captures aspects of 
+variation that may appear in a variational database scenario. A feature is
+basically some characteristic that is important to the database administrator
+and developers while interacting with the database.
 We then introduce \emph{feature expressions} as propositional formulas of
-features. \secref{encode-var} explains this encoding in details. 
+features to have an expressive representation of variation. 
+\secref{encode-var} provides the formal definition and examples of
+features and feature expressions.
 
 \begin{comment}
 * show case the applicability and feasibility of encoding instances of variation using feature expression
 \end{comment}
 
-For RQ1.3 ...
+For RQ1.3 we provide two case studies by taking 
+two real-world scenarios where variation appears
+in databases and encode their variation using feature expressions.
+%
+In our first case study, we focus on variation in ``space''.
+It shows the use of feature expression to encode the variation
+needed for a database-backed SPL. We consider an email
+SPL which has been used in several previous SPL research projects (e.g.\
+\cite{Apel13:SSP,AlHaj19}).
+Since the SPL has a set of features we use the same feature space 
+to account for variation in the database of the software.
+%It develops a variational
+%schema that captures the information needs of a SPL based on Hall's
+%decomposition of an email system into its component features~\cite{Hall05}. The
+%email SPL has been used in several previous SPL research projects (e.g.\
+%\cite{Apel13:SSP,AlHaj19}). The variational email database is populated using
+%the Enron email dataset, adapted to fit our variational schema~\cite{Shetty04}.
+%
+%Our first case study demonstrates the use of a VDB to encode the variational
+%information needs of a database-backed SPL.
+%
+Our case study is formed by systematically combining two pre-existing works:
+%
+\begin{enumerate}
+%
+\item 
+We use Hall's decomposition of an email system into its component
+features~\cite{Hall05} as high-level specification of a SPL.
+%
+\item 
+We use the Enron email
+dataset\footnote{\url{http://www.ahschulz.de/enron-email-data/}} as 
+%a source of
+a realistic email database.
+\end{enumerate}
+
+
+In our second case study, we focus on variation that occurs in ``time''.
+It demonstrates the use of a feature expressions to encode the variation created by
+ an employee database evolution
+scenario. We systematically adapt an existing database evolution scenario from
+\citet{prima08Moon} into a VDB and populate it by a dataset that is widely used
+in databases research.\footnote{\url{https://github.com/datacharmer/test_db}}
+%
+For this case, we assign a feature to each version of the schema.
+For example, for the original schema we have the feature \vOne\ and
+as the schema is evolving and each time we have a new schema we 
+assign it a new feature. That is, for the second schema we have the 
+feature \vTwo\ and so on. 
+%
+Objective 3 (\secref{ro3}) demonstrates how these features are used later on.
+
+\secref{ro2} discusses the objective 2 and its research questions.
 
 \input{sections/motivation}
 \input{sections/encodeVar}

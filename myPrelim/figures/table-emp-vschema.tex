@@ -1,0 +1,34 @@
+\begin{table}
+\caption{ Employee v-schema with feature model $\fModel_\employee$.}
+\vspace{-8pt}
+\label{tab:emp-vsch}
+\begin{center}
+\small
+\begin{tabular} {|l|l|}
+\hline
+%\textbf{Variational Schema for Employee Evolution} \\
+%\hline 
+ % \annot [\vFour] \name
+\rule{0pt}{3ex}%
+$\engemp(\empno, \name, \hiredate,\titleatt,\deptname)^{\textcolor{blue}
+\vOne}$ \\[1.1ex]
+$\othemp(\empno, \name, \hiredate, \titleatt, \deptname)^{\textcolor{blue}
+\vOne}$ \\[1.1ex]
+$\empacct(\empno, \annot [\textcolor{blue}{\vTwo \vee \vThree}] \name,
+\hiredate, \titleatt,$ \\
+$\qquad\annot[\textcolor{blue} \vTwo]\deptname, \annot
+[\textcolor{blue} {\vThree \vee \vFour \vee \vFive}]\deptno,\annot
+[\textcolor{blue} \vFive]\salary)^{\textcolor{blue}{\vTwo \vee \vThree \vee
+\vFour \vee \vFive}}$ \\[1.1ex]
+$\job(\titleatt, \salary)^{\textcolor{blue}{\vTwo \vee \vThree \vee \vFour}}$
+\\[1.1ex]
+$\dept(\deptname, \deptno, \managerno)^{\textcolor{blue}{\vThree \vee \vFour
+\vee \vFive}}$ \\[1.1ex]
+$\empbio(\empno, \sex, \birthdate, \annot [\textcolor{blue} \vFour] \name,
+\annot[\textcolor{blue}\vFive]{\fname}, \annot[\textcolor{blue}
+\vFive]{\lname})^{\textcolor{blue} {\vFour \vee \vFive}}$ \\
+\hline
+\end{tabular}
+\vspace{-12pt}
+\end{center}
+\end{table}

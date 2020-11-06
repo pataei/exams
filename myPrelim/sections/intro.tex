@@ -63,53 +63,53 @@ incorporate the time-based changes into
 the database directly, rather they \emph{simulate} the effect of these changes,
 resulting in brittle systems.
 
-Database-backed software produced by software product line (SPL) 
-is an example where variation arises in databases and is poorly 
-supported. SPL is an
-approach to developing and maintaining software-intensive systems 
-in a cost-effective, easy to maintain manner by accommodating variation
-in the software that is being reused. 
-%The products of a SPL pertain to a
-%common application domain or business goal. 
-%They also have a common
-%managed set of features that describe the specific need for a product. 
-%They share 
-%a common codebase which is used to produce a product with respect to its set of 
-%selected (enabled) features
-In SPL, a common codebase is shared and used to produce products w.r.t.
-a set of selected (enabled) features~\cite{splBook}. 
-% from the SPL feature set designed to describe
-%specific needs for products~\cite{splBook}. 
-Different products of a SPL typically have different
-sets of enabled features or are tailored to run in different environments. These
-differences impose different data requirements which creates variation in space 
-in the shared database used in the common codebase. 
-%Hence, 
-%each product has its own database variant.
-%For example, different legal
-%requirements often require tracking different data in products tailored for use
-%in different countries or regions~\cite{splBook}.
-%Different data requirements results in different desired data which 
-%creates database variants. 
-%
-%
-%The database variants corresponding to software products differ mainly 
-%in their schema, a relation/attribute can either be included or excluded for a 
-%specific software product~\cite{vdbSpl18ATW}.
-The variation is in the form of exclusion/inclusion of tables/attributes based on
-selected features for a product~\cite{vdbSpl18ATW}.
-%
-In practice, software systems produced by a SPL are accommodated with a database that
-has all attributes and tables available for all variants-- a database with universal schema~\cite{vdbSpl18ATW}. 
-Unfortunately, this approach is
-inefficient, error-prone, and filled with lots of null values since not all attributes and tables
-are valid for all variant products. A possible solution to this could be defining views on 
-the universal database per software variant and write queries for each variant against its 
-view~\cite{vdbSpl18ATW}.
-However, this is burdensome, expensive, and costly to maintain since it 
-requires developers to generate and maintain numerous view definitions
-in addition to manually generating
-and managing the mappings between views and the universal schema for each product.
+%Database-backed software produced by software product line (SPL) 
+%is an example where variation arises in databases and is poorly 
+%supported. SPL is an
+%approach to developing and maintaining software-intensive systems 
+%in a cost-effective, easy to maintain manner by accommodating variation
+%in the software that is being reused. 
+%%The products of a SPL pertain to a
+%%common application domain or business goal. 
+%%They also have a common
+%%managed set of features that describe the specific need for a product. 
+%%They share 
+%%a common codebase which is used to produce a product with respect to its set of 
+%%selected (enabled) features
+%In SPL, a common codebase is shared and used to produce products w.r.t.
+%a set of selected (enabled) features~\cite{splBook}. 
+%% from the SPL feature set designed to describe
+%%specific needs for products~\cite{splBook}. 
+%Different products of a SPL typically have different
+%sets of enabled features or are tailored to run in different environments. These
+%differences impose different data requirements which creates variation in space 
+%in the shared database used in the common codebase. 
+%%Hence, 
+%%each product has its own database variant.
+%%For example, different legal
+%%requirements often require tracking different data in products tailored for use
+%%in different countries or regions~\cite{splBook}.
+%%Different data requirements results in different desired data which 
+%%creates database variants. 
+%%
+%%
+%%The database variants corresponding to software products differ mainly 
+%%in their schema, a relation/attribute can either be included or excluded for a 
+%%specific software product~\cite{vdbSpl18ATW}.
+%The variation is in the form of exclusion/inclusion of tables/attributes based on
+%selected features for a product~\cite{vdbSpl18ATW}.
+%%
+%In practice, software systems produced by a SPL are accommodated with a database that
+%has all attributes and tables available for all variants-- a database with universal schema~\cite{vdbSpl18ATW}. 
+%Unfortunately, this approach is
+%inefficient, error-prone, and filled with lots of null values since not all attributes and tables
+%are valid for all variant products. A possible solution to this could be defining views on 
+%the universal database per software variant and write queries for each variant against its 
+%view~\cite{vdbSpl18ATW}.
+%However, this is burdensome, expensive, and costly to maintain since it 
+%requires developers to generate and maintain numerous view definitions
+%in addition to manually generating
+%and managing the mappings between views and the universal schema for each product.
 
 
 Additionally, the software product line (SPL) community has realized that 
@@ -131,9 +131,27 @@ in the shared database used in the common codebase.
 The SPL community has closed
 the gap of variation appearing in database schema while developing software
 and the database schema used in client's application by
-encoding variation explicitly in data model, called \emph{variable data model}~\cite{}. 
-However, the direct encoding of variation has not been extended to the
-database itself by these approaches. 
+encoding variation explicitly in data model, called \emph{variable data model},
+by tagging features to elements of the schema and deploying the variable
+data model for client's application by only selecting the set of elements that 
+their associated features have been selected for client's application~\cite{}. 
+However, this approach breaks when software itself evolves over time, 
+which is unavoidable~\cite{dbSPLevolve}.
+%\TODO{it suffices for their exact usecase but cannot manage evolution of spl.
+%Software evolution is unavoidable, so is its artifacts evolution, 
+%including databases~\cite{dbSPLevolve}.
+%%Variation in software development is unavoidable and 
+%This is where two instances of managing 
+%variation in databases (schema evolution and database-backed software 
+%developed by SPL) interact.
+%% and variation occurs both in time and space. 
+%While there are solutions to schema evolution
+%they cannot adapt to a new situation because they only provide a solution to
+%variation of databases in time and cannot encode the interaction of database variation in
+%time and space.
+%}
+%However, the direct encoding of variation has not been extended to the
+%database itself by these approaches. 
 
 To the best of our knowledge, 
 there is no generic solution that manages all possible kinds of
@@ -162,7 +180,7 @@ variation in databases in different application domains.
 
 
 %----------------------------------------------------------------------------
-
+%
 %are instances of the general problem that are
 %not well-studied, resulting in using manual approaches that burden experts.
 %Moreover, different kinds of variation can interact which cannot be addressed

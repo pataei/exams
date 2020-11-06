@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  6 NOV 2020 00:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  6 NOV 2020 13:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1172,30 +1172,18 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (./sections/intro.tex Excluding 'comment' comment. [1
 
 {/usr/local/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 100.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 169.
 
-
-Package natbib Warning: Citation `vdbSpl18ATW' on page 2 undefined on input lin
-e 100.
-
-
-Package natbib Warning: Citation `vdbSpl18ATW' on page 2 undefined on input lin
-e 103.
-
-
-Package natbib Warning: Citation `vdbSpl18ATW' on page 2 undefined on input lin
-e 108.
-
-LaTeX Font Info:    Try loading font information for OMS+ptm on input line 151.
 
 (/usr/local/texlive/2019/texmf-dist/tex/latex/psnfss/omsptm.fd
 File: omsptm.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 151.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 169.
 )
-(./sections/stmt.tex [2]) (./sections/prelim.tex
+(./sections/stmt.tex) (./sections/prelim.tex
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 12.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 12.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
@@ -1204,7 +1192,7 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 21.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 21.
- (./sections/reldb.tex
+ (./sections/reldb.tex [2]
 (./formulas/rel-alg-def.tex
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
@@ -1215,39 +1203,40 @@ LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.70 
+l.71 
+     pdfTeX warning (ext4): destination with the same identifier (name{figure.1
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.71 
      ]) (./sections/fcc.tex)) (./sections/goals.tex (./sections/obj1.tex
-[4pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+Excluding 'comment' comment. [4] Excluding 'comment' comment.
+Excluding 'comment' comment.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 167.
+ [5pdfTeX warning (ext4): destination with the same identifier (name{table.2}) 
 has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.13 
-     ] Excluding 'comment' comment. Excluding 'comment' comment.
-Excluding 'comment' comment. (./sections/motivation.tex
+l.170 \end{enumerate}
+                     ] (./sections/motivation.tex
 Overfull \hbox (76.36012pt too wide) in paragraph at lines 26--60
  [] 
  []
 
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 78.
-
-Package natbib Warning: Citation `vdbSpl18ATW' on page 5 undefined on input lin
-e 90.
-
-[5pdfTeX warning (ext4): destination with the same identifier (name{table.2}) h
+[6pdfTeX warning (ext4): destination with the same identifier (name{table.3}) h
 as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.120 
-      ] [6pdfTeX warning (ext4): destination with the same identifier (name{tab
-le.3}) has been already used, duplicate ignored
+l.84 
+     ]
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.169 
-      ]
+Package natbib Warning: Citation `vdbSpl18ATW' on page 7 undefined on input lin
+e 90.
+
 
 LaTeX Warning: Hyper reference `sec:vdb' on page 7 undefined on input line 202.
 
@@ -1291,145 +1280,139 @@ LaTeX Warning: Reference `sec:vdb' on page 7 undefined on input line 230.
 LaTeX Warning: Hyper reference `ex:var-pres' on page 7 undefined on input line 
 232.
 
+[7]
 
-LaTeX Warning: Hyper reference `ex:conf-vq' on page 7 undefined on input line 2
+LaTeX Warning: Hyper reference `ex:conf-vq' on page 8 undefined on input line 2
 44.
 
-Excluding 'comment' comment.) (./sections/encodeVar.tex [7]
+Excluding 'comment' comment.) (./sections/encodeVar.tex [8]
 (./formulas/fexpDef.tex Excluding 'comment' comment.))) (./sections/obj2.tex
 Excluding 'comment' comment. Excluding 'comment' comment.
-Excluding 'comment' comment. (./sections/vsch.tex [8] [9pdfTeX warning (ext4): 
-destination with the same identifier (name{figure.2}) has been already used, du
-plicate ignored
+Excluding 'comment' comment. [9pdfTeX warning (ext4): destination with the same
+ identifier (name{figure.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1 \subsubsection
-                  {Variational Schema}pdfTeX warning (ext4): destination with t
-he same identifier (name{table.4}) has been already used, duplicate ignored
+l.87 F
+      or RQ2.3 ...] (./sections/vset.tex
+
+Package natbib Warning: Citation `vdb17ATW' on page 10 undefined on input line 
+6.
+
+[10pdfTeX warning (ext4): destination with the same identifier (name{table.4}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1 \subsubsection
-                  {Variational Schema}]
+l.127 \end{definition}
+                      ]) (./sections/vsch.tex
 
-LaTeX Warning: Hyper reference `ex:vsch' on page 10 undefined on input line 87.
+LaTeX Warning: Hyper reference `ex:vsch' on page 11 undefined on input line 87.
 
 
 
-LaTeX Warning: Hyper reference `ex:vsch' on page 10 undefined on input line 109
+LaTeX Warning: Hyper reference `ex:vsch' on page 11 undefined on input line 109
 .
 
-) (./sections/vtab.tex [10] (./formulas/vdbConf.tex
+[11]) (./sections/vtab.tex (./formulas/vdbConf.tex
 Excluding 'comment' comment.
 
 LaTeX Warning: Float too large for page by 160.3777pt on input line 176.
 
 )) (./sections/vrelAlg.tex (./formulas/vRelAlgSyn.tex)
 
-LaTeX Warning: Hyper reference `ex:vq-specific' on page 11 undefined on input l
+LaTeX Warning: Hyper reference `ex:vq-specific' on page 12 undefined on input l
 ine 56.
 
-
-LaTeX Warning: Hyper reference `sec:vlist-vset' on page 11 undefined on input l
-ine 60.
-
-
-LaTeX Warning: Reference `sec:vlist-vset' on page 11 undefined on input line 60
-.
-
-[11] [12pdfTeX warning (ext4): destination with the same identifier (name{figur
+[12] [13pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.72 
-     ]
-
-LaTeX Warning: Hyper reference `ex:type' on page 13 undefined on input line 204
-.
-
-[13pdfTeX warning (ext4): destination with the same identifier (name{figure.4})
- has been already used, duplicate ignored
+l.65 
+     ] [14pdfTeX warning (ext4): destination with the same identifier (name{fig
+ure.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.206 
-      ] (./formulas/vRelAlgConfSem.tex) [14]) (./sections/impl.tex
-(./sections/arch.tex
+l.166 \begin{align*}
+                    ]
 
-LaTeX Warning: Hyper reference `sec:exp-disc' on page 15 undefined on input lin
+LaTeX Warning: Hyper reference `ex:type' on page 15 undefined on input line 204
+.
+
+(./formulas/vRelAlgConfSem.tex) [15]) (./sections/impl.tex [16pdfTeX warning (e
+xt4): destination with the same identifier (name{figure.5}) has been already us
+ed, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1 \subsubsection
+                  {VDBMS Implementation}] (./sections/arch.tex
+
+LaTeX Warning: Hyper reference `sec:exp-disc' on page 17 undefined on input lin
 e 6.
 
 
-LaTeX Warning: Reference `sec:exp-disc' on page 15 undefined on input line 6.
+LaTeX Warning: Reference `sec:exp-disc' on page 17 undefined on input line 6.
 
-[15pdfTeX warning (ext4): destination with the same identifier (name{figure.5})
- has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.15 
-     ]
-
-LaTeX Warning: Hyper reference `sec:apps' on page 16 undefined on input line 38
+LaTeX Warning: Hyper reference `sec:apps' on page 17 undefined on input line 38
 .
 
 
-LaTeX Warning: Reference `sec:apps' on page 16 undefined on input line 38.
+LaTeX Warning: Reference `sec:apps' on page 17 undefined on input line 38.
 
 
-LaTeX Warning: Hyper reference `ex:q-flow' on page 16 undefined on input line 4
+LaTeX Warning: Hyper reference `ex:q-flow' on page 17 undefined on input line 4
 0.
 
 
-LaTeX Warning: Reference `eg:q-flow' on page 16 undefined on input line 40.
+LaTeX Warning: Reference `eg:q-flow' on page 17 undefined on input line 40.
 
 
-LaTeX Warning: Hyper reference `app:sql-gen' on page 16 undefined on input line
+LaTeX Warning: Hyper reference `app:sql-gen' on page 17 undefined on input line
  40.
 
 
-LaTeX Warning: Reference `app:sql-gen' on page 16 undefined on input line 40.
+LaTeX Warning: Reference `app:sql-gen' on page 17 undefined on input line 40.
 
 Excluding 'comment' comment.
-<figs/arch7.pdf, id=287, 422.53859pt x 286.1892pt>
+<figs/arch7.pdf, id=377, 422.53859pt x 286.1892pt>
 File: figs/arch7.pdf Graphic file (type pdf)
 <use figs/arch7.pdf>
 Package pdftex.def Info: figs/arch7.pdf  used on input line 68.
 (pdftex.def)             Requested size: 469.75502pt x 318.17157pt.
 ))) (./sections/obj3.tex
 Excluding 'comment' comment. Excluding 'comment' comment.) (./sections/obj4.tex
-Excluding 'comment' comment. Excluding 'comment' comment.
-Excluding 'comment' comment. (./sections/vdbprops.tex [16pdfTeX warning (ext4):
- destination with the same identifier (name{table.5}) has been already used, du
-plicate ignored
+[17] [18pdfTeX warning (ext4): destination with the same identifier (name{figur
+e.6}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1 \subsubsection
-                  {Property Checking over a VDB}] [17pdfTeX warning (ext4): des
-tination with the same identifier (name{figure.6}) has been already used, dupli
-cate ignored
+l.12 
+     pdfTeX warning (ext4): destination with the same identifier (name{table.5}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.1 \subsubsection
-                  {Property Checking over a VDB}pdfTeX warning (ext4): destinat
-ion with the same identifier (name{table.6}) has been already used, duplicate i
-gnored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.1 \subsubsection
-                  {Property Checking over a VDB} <./figs/arch7.pdf
+l.12 
+      <./figs/arch7.pdf
 
 pdfTeX warning: /usr/local/texlive/2019/bin/x86_64-darwin/pdflatex (file ./figs
 /arch7.pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcS
 ets', type <array>); ignored.
->]) (./sections/typeSys.tex
+>] Excluding 'comment' comment. Excluding 'comment' comment.
+Excluding 'comment' comment. (./sections/vdbprops.tex [19pdfTeX warning (ext4):
+ destination with the same identifier (name{table.6}) has been already used, du
+plicate ignored
 
-LaTeX Warning: Hyper reference `ex:conf-vq' on page 18 undefined on input line 
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.93 
+     ]) (./sections/typeSys.tex
+
+LaTeX Warning: Hyper reference `ex:conf-vq' on page 20 undefined on input line 
 15.
 
 (./formulas/vRelAlgTypingRules.tex
@@ -1439,63 +1422,25 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 6.
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 92.
 
-[18])
+)
 
-LaTeX Warning: Hyper reference `def:vset-eq' on page 19 undefined on input line
- 115.
-
-
-LaTeX Warning: Reference `def:vset-eq' on page 19 undefined on input line 115.
-
-
-LaTeX Warning: Hyper reference `def:vset-subsumption' on page 19 undefined on i
-nput line 148.
-
-
-LaTeX Warning: Reference `def:vset-subsumption' on page 19 undefined on input l
-ine 148.
-
-
-LaTeX Warning: Hyper reference `def:vset-intersect' on page 19 undefined on inp
-ut line 153.
-
-
-LaTeX Warning: Reference `def:vset-intersect' on page 19 undefined on input lin
-e 153.
-
-
-LaTeX Warning: Hyper reference `ex:type' on page 19 undefined on input line 155
+LaTeX Warning: Hyper reference `ex:type' on page 20 undefined on input line 155
 .
 
-
-LaTeX Warning: Hyper reference `ex:vq-specific' on page 19 undefined on input l
-ine 164.
-
-[19] [20pdfTeX warning (ext4): destination with the same identifier (name{figur
+[20] [21pdfTeX warning (ext4): destination with the same identifier (name{figur
 e.7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.223 \end{example}
-                   ]
+l.159 \label
+            {eg:type}]
 
-LaTeX Warning: Hyper reference `def:vset-union' on page 21 undefined on input l
-ine 259.
-
-
-LaTeX Warning: Reference `def:vset-union' on page 21 undefined on input line 25
-9.
-
-
-LaTeX Warning: Hyper reference `def:vset-eq' on page 21 undefined on input line
- 310.
-
-
-LaTeX Warning: Reference `def:vset-eq' on page 21 undefined on input line 310.
+LaTeX Warning: Hyper reference `ex:vq-specific' on page 22 undefined on input l
+ine 164.
 
 ) (./sections/constrainVQbySch.tex
 
-LaTeX Warning: Hyper reference `ex:vq-specific' on page 21 undefined on input l
+LaTeX Warning: Hyper reference `ex:vq-specific' on page 22 undefined on input l
 ine 18.
 
 
@@ -1503,38 +1448,25 @@ Overfull \hbox (2.73749pt too wide) in paragraph at lines 15--28
 []\OT1/ptm/m/n/10.95 . 
  []
 
-[21] (./formulas/constrainVQbySch.tex)
+[22] (./formulas/constrainVQbySch.tex) [23pdfTeX warning (ext4): destination wi
+th the same identifier (name{figure.8}) has been already used, duplicate ignore
+d
 
-LaTeX Warning: Hyper reference `ex:type' on page 22 undefined on input line 99.
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.94 \end{theorem}
+                  ]
+
+LaTeX Warning: Hyper reference `ex:type' on page 24 undefined on input line 99.
 
 
 ) (./sections/varPresProp.tex
-
-Package natbib Warning: Citation `CEW16ecoop' on page 22 undefined on input lin
-e 9.
-
-
-Package natbib Warning: Citation `CEW14toplas' on page 22 undefined on input li
-ne 9.
-
-
 Overfull \hbox (40.67133pt too wide) in paragraph at lines 34--35
  [] 
  []
 
-[22pdfTeX warning (ext4): destination with the same identifier (name{figure.8})
- has been already used, duplicate ignored
 
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.38 I
-      n the diagram,]
-
-Package natbib Warning: Citation `RAtypeSys' on page 23 undefined on input line
- 70.
-
-
-LaTeX Warning: Hyper reference `ex:var-pres' on page 23 undefined on input line
+LaTeX Warning: Hyper reference `ex:var-pres' on page 24 undefined on input line
  72.
 
 
@@ -1543,22 +1475,22 @@ Overfull \hbox (2.73749pt too wide) in paragraph at lines 77--85
  []
 
 
-LaTeX Warning: Hyper reference `ex:conf-vq' on page 23 undefined on input line 
+LaTeX Warning: Hyper reference `ex:conf-vq' on page 24 undefined on input line 
 97.
 
 ) (./sections/varMin.tex
 
-LaTeX Warning: Hyper reference `ex:vq-specific' on page 23 undefined on input l
+LaTeX Warning: Hyper reference `ex:vq-specific' on page 24 undefined on input l
 ine 10.
 
 
-LaTeX Warning: Hyper reference `ex:vq-same-intent-mult-vars' on page 23 undefin
+LaTeX Warning: Hyper reference `ex:vq-same-intent-mult-vars' on page 24 undefin
 ed on input line 10.
 
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 32.
 
-(./formulas/varMinRules.tex
+[24] (./formulas/varMinRules.tex
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 45.
 
@@ -1571,36 +1503,139 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 69.
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 69.
 
-))) [23]) (./sections/relWork.tex Excluding 'comment' comment. [24pdfTeX warnin
-g (ext4): destination with the same identifier (name{figure.9}) has been alread
-y used, duplicate ignored
+))) [25pdfTeX warning (ext4): destination with the same identifier (name{figure
+.9}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.26 \subsection
+                {Summary}]) (./sections/relWork.tex
+Excluding 'comment' comment. [26pdfTeX warning (ext4): destination with the sam
+e identifier (name{table.7}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.231 
-      ] [25pdfTeX warning (ext4): destination with the same identifier (name{ta
-ble.7}) has been already used, duplicate ignored
+      ]
+
+Package natbib Warning: Citation `vdbSpl18ATW' on page 27 undefined on input li
+ne 385.
+
+[27]) (./sections/conclusion.tex) [28] (./proposal.bbl [29] [30] [31])
+(./sections/enronvdb.tex [32] (./sections/enronvsch.tex
+Overfull \hbox (154.87387pt too wide) in paragraph at lines 64--107
+[][]
+ []
+
+[33pdfTeX warning (ext4): destination with the same identifier (name{table.8}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.272 
-      ]
+l.142 
+      pdfTeX warning (ext4): destination with the same identifier (name{table.9
+}) has been already used, duplicate ignored
 
-Package natbib Warning: Citation `vdbSpl18ATW' on page 26 undefined on input li
-ne 385.
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.142 
+      ]) (./sections/enronpopulate.tex [34] Excluding 'comment' comment.))
+(./sections/empvdb.tex (./figures/table-emp-schemas.tex
+Overfull \hbox (0.77408pt too wide) in paragraph at lines 16--16
+[]|[]|  
+ []
 
-) (./sections/conclusion.tex) [26] (./proposal.bbl [27] [28])
+
+Overfull \hbox (0.77408pt too wide) in paragraph at lines 23--23
+[]|[]|  
+ []
+
+
+Overfull \hbox (0.77408pt too wide) in paragraph at lines 28--28
+[]|[]|  
+ []
+
+
+Overfull \hbox (0.77408pt too wide) in paragraph at lines 35--35
+[]|[]|  
+ []
+
+
+Overfull \hbox (0.77408pt too wide) in paragraph at lines 44--44
+[]|[]|  
+ []
+
+) [35pdfTeX warning (ext4): destination with the same identifier (name{table.10
+}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.69 
+     ] (./figures/table-emp-vschema.tex) [36pdfTeX warning (ext4): destination 
+with the same identifier (name{table.11}) has been already used, duplicate igno
+red
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.172 
+      ]) (./sections/qs.tex
+
+LaTeX Warning: Hyper reference `sec:background' on page 37 undefined on input l
+ine 57.
+
+
+LaTeX Warning: Reference `sec:background' on page 37 undefined on input line 57
+.
+
+(./sections/enronqs.tex [37] [38]
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 249.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 249.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 273.
+
+
+LaTeX Font Warning: Command \small invalid in math mode on input line 273.
+
+) (./sections/empqs.tex
+Underfull \hbox (badness 10000) in paragraph at lines 21--49
+[]\OT1/ptm/m/n/10.95 Moon's queries are of two types: 6 re-trieve data valid on
+ a par-tic-u-lar date (cor-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--49
+\OT1/ptm/m/n/10.95 re-spond-ing to [] in our en-cod-ing), while 6 re-trieve dat
+a valid on or af-ter that date
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--49
+\OT1/ptm/m/n/10.95 ([]--[] in our en-cod-ing). For ex-am-ple, one query ex-pres
+ses the in-tent ``re-turn the
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--49
+\OT1/ptm/m/n/10.95 salary of em-ployee num-ber $\OT1/ztmcm/m/n/10.95 10004$\OT1
+/ptm/m/n/10.95 '' at a time cor-re-spond-ing to [], which we en-code:
+ []
+
+[39]))
 
 Package natbib Warning: There were undefined citations.
 
-[29]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
+[40]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 209.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 209.
  (./proposal.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 209.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 209.
 Package rerunfilecheck Info: File `proposal.out' has not changed.
-(rerunfilecheck)             Checksum: 5139A9C7B9CA6FAA38CB44BA832D2C34;2188.
+(rerunfilecheck)             Checksum: 63D97665B3FA076B9FF90E32941C2FA7;3289.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1611,14 +1646,14 @@ LaTeX Warning: There were undefined references.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 209.
  ) 
 Here is how much of TeX's memory you used:
- 32604 strings out of 492616
- 617115 string characters out of 6129482
- 1003670 words of memory out of 5000000
- 35798 multiletter control sequences out of 15000+600000
- 602362 words of font info for 179 fonts, out of 8000000 for 9000
+ 32876 strings out of 492616
+ 620450 string characters out of 6129482
+ 1005671 words of memory out of 5000000
+ 35987 multiletter control sequences out of 15000+600000
+ 602529 words of font info for 180 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,25n,84p,5627b,1019s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2019/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -1629,18 +1664,19 @@ live/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texli
 ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/local/texliv
 e/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive
 /2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/
-2019/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texl
-ive/2019/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2019
-/texmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb></usr/local/texlive/2019/t
-exmf-dist/fonts/type1/public/stmaryrd/stmary8.pfb></usr/local/texlive/2019/texm
-f-dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2019/texmf-dist/font
-s/type1/urw/symbol/usyr.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw
-/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utm
-r8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on proposal.pdf (29 pages, 311580 bytes).
+2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/20
+19/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texliv
+e/2019/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2019/t
+exmf-dist/fonts/type1/public/stmaryrd/stmary10.pfb></usr/local/texlive/2019/tex
+mf-dist/fonts/type1/public/stmaryrd/stmary8.pfb></usr/local/texlive/2019/texmf-
+dist/fonts/type1/urw/symbol/usyr.pfb></usr/local/texlive/2019/texmf-dist/fonts/
+type1/urw/symbol/usyr.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/t
+imes/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8
+a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on proposal.pdf (40 pages, 369528 bytes).
 PDF statistics:
- 556 PDF objects out of 1000 (max. 8388607)
- 497 compressed objects within 5 object streams
- 119 named destinations out of 1000 (max. 500000)
- 218 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 757 PDF objects out of 1000 (max. 8388607)
+ 684 compressed objects within 7 object streams
+ 171 named destinations out of 1000 (max. 500000)
+ 322 words of extra memory for PDF output out of 10000 (max. 10000000)
 

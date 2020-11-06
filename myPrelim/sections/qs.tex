@@ -1,0 +1,72 @@
+\section{Variational Queries for Variational Case Studies}
+\label{sec:q}
+
+%\point{For each database, we provide a set of \emph{variational queries}.}\\
+%- describe what you mean by variational query\\ --> background
+%- describe syntax or formally define it\\ --> background
+%- mention that we provide queries in VRA too and also encodings of them in Haskell
+
+Variation in software affects not only databases but also how developers and
+database administrators interact with databases.
+%
+Since different software variants have different information needs, developers
+must often write and maintain different queries for different software
+variants. Moreover, even if a particular information need is similar across
+variants, different variants of a query may need to be created and maintained
+to account for structural differences in the schema for each variant.
+%
+Creating and maintaining different queries for each variant is tedious and
+error-prone, and potentially even intractable for large and open-ended
+configuration spaces, such as most open-source projects~\cite{ATW18poly}.
+
+
+In this section, we illustrate how variation in software leads to variation in
+information needs and variation in the queries that realize those information
+needs. We also show how variational information needs can be captured by
+\emph{v-queries} written in VRA.
+%expressive query languages that account
+%for variation explicitly and link variation in software and databases to
+%queries by using the same feature names and configuration space.
+%
+For each case study, we provide a set of v-queries.
+% that realize the
+%information needs of the different variants of the corresponding software
+%systems.
+%
+We present only a  sample of the queries here for space reasons,
+yet we provide the full query sets in the GitHub repository linked in \secref{intro}.
+%online and will be linked to throughout this
+%section.
+%
+%The full query sets capture all of the information needs described in the
+%papers that  we base our variation scenarios on. It is important to note that
+%this makes our query sets potentially biased toward queries containing more
+%variation points since the focus of the papers is on variational parts of the
+%system (feature interactions in the case of \citet{Hall05} and changes over
+%time for \citet{prima08Moon}). A complete query set, capturing \emph{all}
+%information needs for each scenario might contain more plain queries, that is,
+%queries that perform the same way over all variants.
+%%
+%However, we do not believe this bias is harmful for the role the case studies
+%are intended to serve, namely, motivating and evaluating variational database
+%systems. For this role, queries that contain variation are more useful than
+%plain queries, and additional plain queries can likely be more easily generated
+%if needed.
+
+
+We distribute the v-queries in two formats: (1) VRA, introduced in \secref{background}, 
+encoded in the format used by
+our VDBMS tool, and (2) plain SQL queries with embedded \cpp{ifdef}
+annotations to capture variation points.
+%
+The SQL format provides queries for studying variational data 
+independently of VDBMS tool,
+%will be more immediately useful for other researchers
+%studying variational data independently of our VDBMS tool, 
+but we use VRA in
+this paper for its brevity.
+%because it is much more concise.
+
+\input{sections/enronqs}
+\input{sections/empqs}
+%\input{sections/qprops}
