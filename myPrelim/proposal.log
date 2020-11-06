@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  5 NOV 2020 21:07
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  5 NOV 2020 23:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1203,14 +1203,6 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 21.
 
 
-LaTeX Warning: Hyper reference `sec:encode-var' on page 3 undefined on input li
-ne 25.
-
-
-LaTeX Warning: Reference `sec:encode-var' on page 3 undefined on input line 25.
-
-
-
 LaTeX Warning: Hyper reference `sec:vsch' on page 3 undefined on input line 33.
 
 
@@ -1242,74 +1234,102 @@ LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.70 
-     ]) (./sections/fcc.tex)) (./sections/goals.tex [4pdfTeX warning (ext4): de
-stination with the same identifier (name{figure.1}) has been already used, dupl
-icate ignored
+     ]) (./sections/fcc.tex)) (./sections/goals.tex (./sections/obj1.tex
+[4pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) 
+has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.16 
+l.13 
      ] Excluding 'comment' comment. Excluding 'comment' comment.
+Excluding 'comment' comment. (./sections/encodeVar.tex
+
+LaTeX Warning: Hyper reference `tab:mot' on page 5 undefined on input line 21.
+
+
+LaTeX Warning: Reference `tab:mot' on page 5 undefined on input line 21.
+
+
+LaTeX Warning: Hyper reference `tab:mot' on page 5 undefined on input line 23.
+
+
+LaTeX Warning: Reference `tab:mot' on page 5 undefined on input line 23.
+
+
+LaTeX Warning: Hyper reference `tab:mot' on page 5 undefined on input line 59.
+
+
+LaTeX Warning: Reference `tab:mot' on page 5 undefined on input line 59.
+
+[5pdfTeX warning (ext4): destination with the same identifier (name{table.2}) h
+as been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.64 
+     ] (./formulas/fexpDef.tex Excluding 'comment' comment.)))
+(./sections/obj2.tex Excluding 'comment' comment. Excluding 'comment' comment.
+Excluding 'comment' comment.) (./sections/obj3.tex
+Excluding 'comment' comment. Excluding 'comment' comment.) (./sections/obj4.tex
+[6] [7pdfTeX warning (ext4): destination with the same identifier (name{figure.
+2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1 \subsection
+               {Mechanize proofs of properties of the language and the system}p
+dfTeX warning (ext4): destination with the same identifier (name{table.3}) has 
+been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1 \subsection
+               {Mechanize proofs of properties of the language and the system}p
+dfTeX warning (ext4): destination with the same identifier (name{table.4}) has 
+been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.1 \subsection
+               {Mechanize proofs of properties of the language and the system}]
 Excluding 'comment' comment. Excluding 'comment' comment.
-Excluding 'comment' comment. Excluding 'comment' comment. [5pdfTeX warning (ext
-4): destination with the same identifier (name{table.2}) has been already used,
- duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.121 F
-       or RQ2.3 ...pdfTeX warning (ext4): destination with the same identifier 
-(name{table.3}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.121 F
-       or RQ2.3 ...] Excluding 'comment' comment. Excluding 'comment' comment.
-Excluding 'comment' comment. Excluding 'comment' comment.
-Excluding 'comment' comment. [6pdfTeX warning (ext4): destination with the same
- identifier (name{table.4}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.228 
-      pdfTeX warning (ext4): destination with the same identifier (name{table.5
-}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.228 
-      ]) (./sections/relWork.tex Excluding 'comment' comment. [7pdfTeX warning 
-(ext4): destination with the same identifier (name{table.6}) has been already u
-sed, duplicate ignored
+Excluding 'comment' comment.)) (./sections/relWork.tex
+Excluding 'comment' comment. [8pdfTeX warning (ext4): destination with the same
+ identifier (name{table.5}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.231 
+      ] [9pdfTeX warning (ext4): destination with the same identifier (name{tab
+le.6}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.272 
       ]
 
-Package natbib Warning: Citation `vdbSpl18ATW' on page 8 undefined on input lin
-e 385.
-
-[8]
-
-LaTeX Warning: Hyper reference `sec:vtab' on page 9 undefined on input line 408
-.
+Package natbib Warning: Citation `vdbSpl18ATW' on page 10 undefined on input li
+ne 385.
 
 
-LaTeX Warning: Reference `sec:vtab' on page 9 undefined on input line 408.
+LaTeX Warning: Hyper reference `sec:vtab' on page 10 undefined on input line 40
+8.
 
-) (./sections/conclusion.tex) [9] (./proposal.bbl [10] [11])
+
+LaTeX Warning: Reference `sec:vtab' on page 10 undefined on input line 408.
+
+) (./sections/conclusion.tex) [10] (./proposal.bbl [11] [12])
 
 Package natbib Warning: There were undefined citations.
 
-[12]
+[13]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 205.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 205.
  (./proposal.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 205.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 205.
 Package rerunfilecheck Info: File `proposal.out' has not changed.
-(rerunfilecheck)             Checksum: AE1683AEA7D7DF705DA3D9CD5A2C8E05;1257.
+(rerunfilecheck)             Checksum: D6DCF0EC6DA1488F0DF71BFB9336C499;1337.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
@@ -1320,10 +1340,10 @@ LaTeX Warning: There were undefined references.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 205.
  ) 
 Here is how much of TeX's memory you used:
- 32251 strings out of 492616
- 610864 string characters out of 6129482
+ 32275 strings out of 492616
+ 611206 string characters out of 6129482
  991671 words of memory out of 5000000
- 35594 multiletter control sequences out of 15000+600000
+ 35597 multiletter control sequences out of 15000+600000
  584442 words of font info for 139 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,16n,84p,892b,483s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1340,10 +1360,10 @@ xlive/2019/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/20
 1/urw/times/utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/time
 s/utmr8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.
 pfb>
-Output written on proposal.pdf (12 pages, 144731 bytes).
+Output written on proposal.pdf (13 pages, 153016 bytes).
 PDF statistics:
- 304 PDF objects out of 1000 (max. 8388607)
- 275 compressed objects within 3 object streams
- 64 named destinations out of 1000 (max. 500000)
- 125 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 319 PDF objects out of 1000 (max. 8388607)
+ 289 compressed objects within 3 object streams
+ 67 named destinations out of 1000 (max. 500000)
+ 133 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,68 @@
+\subsection{Identify the kinds of variation existing in relational databases in 
+different application domains}
+\label{sec:ro1}
+
+To encode variation explicitly in databases we investigate different kinds of 
+variation that appears in databases in various application domains. 
+Objective 1 aims to represent an encoding for  variation that is 
+generic enough that can encode different kinds of variation and is
+not bind to a specific instance of variation or application domain. 
+%
+\tabref{ro1} presents individual research questions we need to answer for
+this objective. 
+
+\begin{table}
+\caption{Objective 1 research questions.}
+\label{tab:ro1}
+\centering
+\begin{tabularx}{\textwidth}{X}
+\toprule
+ \textbf{Objective 1: Identify the kinds of variation existing in relational databases in 
+different application domains}\tabularnewline
+\midrule
+RQ1.1: What are the application domains that variation appears in a database? 
+What are the dimensions of variation in a database? (\poly, \vamos)
+\tabularnewline[0.2cm]
+RQ1.2: How can all identified variation instances be represented  in a generic encoding without
+regards for the application domain? (\dbpl)
+\tabularnewline[0.2cm]
+RQ1.3: Can we encode identified instances of variation using our encoding? 
+What are the steps one need to take to encode an instance of variation in our
+encoding? (\vamos)
+\tabularnewline
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{comment}
+* variation appears when ...
+* schema evolution
+* repeated pattern in database versioning, data integration
+* this also comes up in software development
+* and software also evolves in time
+* two dimension that can interact with each other: time and space
+\end{comment}
+
+For RQ1.1 \TODO{complete with how variation arises in databases}
+we explored different application domains where databases change,
+yet, there is a need to keep and access the older versions (variants) of the 
+database for business reasons. 
+
+\begin{comment}
+* introduce a feature space
+* propositional formulas of features
+\end{comment}
+
+For RQ1.2 we introduce a \emph{feature space} that captures dimensions of 
+variation that may appear in a variational database scenario.
+We then introduce \emph{feature expressions} as propositional formulas of
+features. \secref{encode-var} explains this encoding in details. 
+
+\begin{comment}
+* show case the applicability and feasibility of encoding instances of variation using feature expression
+\end{comment}
+
+For RQ1.3 ...
+
+\input{sections/encodeVar}
+
