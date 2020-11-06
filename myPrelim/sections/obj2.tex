@@ -54,6 +54,25 @@ is present (\secref{vtab}).
 \TODO{add def of vdb and what it is conceptually}
 
 \begin{comment}
+The variational nature of a VDB requires a query language that
+accounts for variation directly.
+To express and represent variation in queries,
+we incorporate choice calculus~\cite{Walk13thesis, EW11tosem}  into a 
+structured query language. We formally define 
+\emph{variational relational algebra (VRA)} in \secref{vrel-alg}
+as our algebraic query language.
+A query written in VRA is called a \emph{variational query (v-query)};
+when it is clear from context we use query and v-query interchangeably. 
+A v-query typically conveys the same intent over several 
+relational database variants, however, a single v-query is also capable of capturing different 
+intents over different database variants.
+Consequently, the expressiveness of v-queries may cause them to be 
+more complicated than relational queries, discussed in \secref{type-sys}. 
+Hence, we introduce a 
+\emph{type system} for VRA that statically checks if a 
+v-query conforms to the underlying v-schema and encoded variability within the VDB.
+Finally, we close out this section by providing a set of rules in \secref{var-min} 
+for reducing a query's variation.
 
 \end{comment}
 
