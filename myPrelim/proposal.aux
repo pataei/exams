@@ -30,44 +30,45 @@
 \citation{vdbSpl18ATW}
 \citation{splBook}
 \citation{}
+\citation{AliceBook}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Introduced notations and terminologies with their corresponding section(s).}}{3}{table.1}\protected@file@percent }
 \newlabel{tab:notations}{{1}{3}{Introduced notations and terminologies with their corresponding section(s)}{table.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Statement of Thesis}{3}{section.2}\protected@file@percent }
 \newlabel{sec:stmt}{{2}{3}{Statement of Thesis}{section.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Preliminaries}{3}{section.3}\protected@file@percent }
 \newlabel{sec:prelim}{{3}{3}{Preliminaries}{section.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Relational Databases}{3}{subsection.3.1}\protected@file@percent }
-\newlabel{sec:rel-db}{{3.1}{3}{Relational Databases}{subsection.3.1}{}}
-\citation{EWC13fosd,Walk14onward,vdb17ATW}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Encoding Variability}{4}{subsection.3.2}\protected@file@percent }
-\newlabel{sec:encode-var}{{3.2}{4}{Encoding Variability}{subsection.3.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Feature expression syntax and relations. }}{5}{figure.1}\protected@file@percent }
-\newlabel{fig:fexp-def}{{1}{5}{Feature expression syntax and relations}{figure.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Variational Set}{5}{subsection.3.3}\protected@file@percent }
-\newlabel{sec:vlist-vset}{{3.3}{5}{Variational Set}{subsection.3.3}{}}
-\newlabel{def:vset-union}{{1}{5}{V-set union}{theorem.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Objective 1 research questions.}}{6}{table.2}\protected@file@percent }
-\newlabel{tab:ro1}{{2}{6}{Objective 1 research questions}{table.2}{}}
-\newlabel{def:vset-intersect}{{2}{6}{V-set intersection}{theorem.2}{}}
-\newlabel{def:vset-cross}{{3}{6}{V-set cross product}{theorem.3}{}}
-\newlabel{def:vset-eq}{{4}{6}{V-set equivalence}{theorem.4}{}}
-\newlabel{def:vset-subsumption}{{5}{6}{V-set subsumption}{theorem.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Research Goals and Methods}{6}{section.4}\protected@file@percent }
-\newlabel{sec:goals}{{4}{6}{Research Goals and Methods}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Identify the kinds of variation existing in relational databases in different application domains}{6}{subsection.4.1}\protected@file@percent }
-\newlabel{sec:ro1}{{4.1}{6}{Identify the kinds of variation existing in relational databases in different application domains}{subsection.4.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Objective 2 research questions.}}{7}{table.3}\protected@file@percent }
-\newlabel{tab:ro2}{{3}{7}{Objective 2 research questions}{table.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Objective 3 research questions.}}{7}{table.4}\protected@file@percent }
-\newlabel{tab:ro3}{{4}{7}{Objective 3 research questions}{table.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Design and implement a database framework that accommodate identified variations}{7}{subsection.4.2}\protected@file@percent }
-\newlabel{sec:ro2}{{4.2}{7}{Design and implement a database framework that accommodate identified variations}{subsection.4.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Demonstrate how the proposed system can be used to manage variation in databases in different application domains}{7}{subsection.4.3}\protected@file@percent }
-\newlabel{sec:ro3}{{4.3}{7}{Demonstrate how the proposed system can be used to manage variation in databases in different application domains}{subsection.4.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Mechanize proofs of properties of the language and the system}{7}{subsection.4.4}\protected@file@percent }
-\newlabel{sec:ro4}{{4.4}{7}{Mechanize proofs of properties of the language and the system}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Relational Databases and Relational Algebra}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:rel-db}{{3.1}{3}{Relational Databases and Relational Algebra}{subsection.3.1}{}}
+\citation{HW16fosd}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Syntax of relational algebra, where $\bullet $ ranges over comparison operators ($<, \leq , =, \not =, >, \geq $), \unhbox \voidb@x \hbox {$k$}\ over constant values, \unhbox \voidb@x \hbox {$a$}\ over attribute names, and \unhbox \voidb@x \hbox {$\relax $\@@underline {\hbox {\unhbox \voidb@x \hbox {$A$}}}\mathsurround \z@ $\relax $}\ over lists of attributes. The syntactic category \unhbox \voidb@x \hbox {$\relax $\@@underline {\hbox {\unhbox \voidb@x \hbox {$\theta $}}}\mathsurround \z@ $\relax $}\ is relational conditions, and \unhbox \voidb@x \hbox {$\relax $\@@underline {\hbox {\unhbox \voidb@x \hbox {$q$}}}\mathsurround \z@ $\relax $}\ is relational algebra terms. }}{4}{figure.1}\protected@file@percent }
+\newlabel{fig:v-alg-def}{{1}{4}{Syntax of relational algebra, where $\bullet $ ranges over comparison operators ($<, \leq , =, \neq , >, \geq $), \cte \ over constant values, \att \ over attribute names, and \pAttList \ over lists of attributes. The syntactic category \pCond \^^Mis relational conditions, and \pQ \ is relational algebra terms}{figure.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Formula Choice Calculus}{4}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:fcc}{{3.2}{4}{Formula Choice Calculus}{subsection.3.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Research Goals and Methods}{4}{section.4}\protected@file@percent }
+\newlabel{sec:goals}{{4}{4}{Research Goals and Methods}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Identify the kinds of variation existing in relational databases in different application domains}{4}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:ro1}{{4.1}{4}{Identify the kinds of variation existing in relational databases in different application domains}{subsection.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Objective 1 research questions.}}{5}{table.2}\protected@file@percent }
+\newlabel{tab:ro1}{{2}{5}{Objective 1 research questions}{table.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Objective 2 research questions.}}{5}{table.3}\protected@file@percent }
+\newlabel{tab:ro2}{{3}{5}{Objective 2 research questions}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Design and implement a database framework that accommodate identified variations}{5}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:ro2}{{4.2}{5}{Design and implement a database framework that accommodate identified variations}{subsection.4.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Demonstrate how the proposed system can be used to manage variation in databases in different application domains}{5}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:ro3}{{4.3}{5}{Demonstrate how the proposed system can be used to manage variation in databases in different application domains}{subsection.4.3}{}}
 \citation{SPL2go}
 \citation{apel2013strategies}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Objective 3 research questions.}}{6}{table.4}\protected@file@percent }
+\newlabel{tab:ro3}{{4}{6}{Objective 3 research questions}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Objective 4 research questions.}}{6}{table.5}\protected@file@percent }
+\newlabel{tab:ro4}{{5}{6}{Objective 4 research questions}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Mechanize proofs of properties of the language and the system}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:ro4}{{4.4}{6}{Mechanize proofs of properties of the language and the system}{subsection.4.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Stretch goal: Generalize the encoding of variation to make the framework customizable for different application domains}{6}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:ro5}{{4.5}{6}{Stretch goal: Generalize the encoding of variation to make the framework customizable for different application domains}{subsection.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Summary}{6}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:sum}{{4.6}{6}{Summary}{subsection.4.6}{}}
+\newlabel{fig:conn}{{4.6}{6}{Summary}{subsection.4.6}{}}
 \citation{ad11varDataModel}
 \citation{dbSchVarSPL}
 \citation{varMngDBapp}
@@ -78,23 +79,16 @@
 \citation{ad11varDataModel}
 \citation{dbSchVarSPL}
 \citation{KAK08}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Objective 4 research questions.}}{8}{table.5}\protected@file@percent }
-\newlabel{tab:ro4}{{5}{8}{Objective 4 research questions}{table.5}{}}
-\newlabel{fig:conn}{{4.6}{8}{Summary}{subsection.4.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Stretch goal: Generalize the encoding of variation to make the framework customizable for different application domains}{8}{subsection.4.5}\protected@file@percent }
-\newlabel{sec:ro5}{{4.5}{8}{Stretch goal: Generalize the encoding of variation to make the framework customizable for different application domains}{subsection.4.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Summary}{8}{subsection.4.6}\protected@file@percent }
-\newlabel{sec:sum}{{4.6}{8}{Summary}{subsection.4.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Related Work}{8}{section.5}\protected@file@percent }
-\newlabel{sec:rw}{{5}{8}{Related Work}{section.5}{}}
 \citation{dbSPLevolve}
+\newlabel{tab:timeline}{{4.6}{7}{Summary}{subsection.4.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Summary of projected and completed dates for each of the proposed research questions.}}{7}{table.6}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {5}Related Work}{7}{section.5}\protected@file@percent }
+\newlabel{sec:rw}{{5}{7}{Related Work}{section.5}{}}
 \citation{Prism08Curino,prima08Moon,schEvolUnifyApp,schEvolIssues03Ram}
 \citation{datasetVersioning,dbVersioning}
 \citation{EWC13fosd}
 \citation{Walk14onward,MMWWK17vamos}
 \citation{Walk14onward}
-\newlabel{tab:timeline}{{4.6}{9}{Summary}{subsection.4.6}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Summary of projected and completed dates for each of the proposed research questions.}}{9}{table.6}\protected@file@percent }
 \citation{prima08Moon}
 \citation{SchEvolRA90McKenzie,schVersioning97Castro,tempSchEvol91Ariav,tsql95Snodgrass}
 \citation{schEvolUnifyApp}
@@ -104,8 +98,8 @@
 \citation{dbSPLevolve}
 \citation{cppSpl}
 \citation{dbVersioning}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{10}{section.6}\protected@file@percent }
-\newlabel{sec:con}{{6}{10}{Conclusion}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{9}{section.6}\protected@file@percent }
+\newlabel{sec:con}{{6}{9}{Conclusion}{section.6}{}}
 \bibstyle{plainnat}
 \bibdata{bib/eric,bib/martin,bib/vdbms,bib/change,bib/vds,bib/fp,bib/error-reporting,bib/misc,bib/dblp2_short,bib/variational,bib/db}
 \bibcite{ad11varDataModel}{{1}{2011}{{Abo~Zaid and De~Troyer}}{{}}}
