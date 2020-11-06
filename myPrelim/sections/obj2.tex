@@ -43,7 +43,15 @@ should we go to implement a database management system that uses that framework?
 * annotations and choices
 \end{comment}
 
-For RQ2.1 ...
+For RQ2.1 we annotate elements of a database with feature expression,
+as introduced in \secref{encode-var}. 
+We use annotated elements both in the schema and content.
+Within a schema we allow attributes and relations to exist 
+conditionally based on the feature expression assigned to them (\secref{vsch}).
+At the content level, we annotate each tuple with a feature expression, indicating when the tuple 
+is present (\secref{vtab}). 
+
+\TODO{add def of vdb and what it is conceptually}
 
 \begin{comment}
 
@@ -55,3 +63,6 @@ For RQ2.2 ...
 \end{comment}
 
 For RQ2.3 ...
+
+\input{sections/vsch}
+\input{sections/vtab}

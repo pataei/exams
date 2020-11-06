@@ -1,0 +1,105 @@
+\subsubsection{Variational Table}
+\label{sec:vtab}
+
+\TODO{adjust examples accordingly}
+
+%\arashComment{I did not find the connection between schematic and content variations. Using an example as discussed before, you may explain that annotating only attributes and tables is not enough to create a complete system to express schematic variation and the framework has to support variation in the level of values or tuples. }
+%\resp{addressed in schematic variation vs content-level variation.}
+%\responded
+%\point{tagging tuples, creating v-table, and hierarchal structure of pcs within it.}
+Variation also exists in database content. To account 
+for content variability, we tag tuples with 
+presence conditions, e.g., the tuple $(1,2)^{\A}$ only exists
+when \A\  is enabled. 
+%
+Thus, a \emph{variational tuple (v-tuple)} is an annotated tuple where 
+there is a mapping between the v-relation attribute list and  tuple's values:
+\ensuremath{
+\vTuple \in \vRelCont \eqq \annot  [\dimMeta_\vTuple] {(\vi v \numAtts)}
+} where the a relation schema is 
+\ensuremath{
+\vRel  \annot [\dimMeta_\vRel] {(\vi \vAtt \numAtts)}
+}.
+%
+The content of a v-relation
+%  \emph{variational relation content} 
+is a set of v-tuples 
+$ \vRelCont \in \vRelContSet \eqq \setDef {\vi \vTuple \numTuples}$
+and 
+%
+a  \emph{variational table (v-table)} is the pair of its relation schema and content: 
+\ensuremath{
+\vTab = (\vRelSch, \vRelCont)
+}.
+%
+A \emph{variational database instance}, \ensuremath{\vdbInst_\vSch}, 
+of VDB \vDB\ with v-schema \vSch, 
+is a set of v-tables: 
+$\synDef \vdbInst  \vdbInstSet \eqq \setDef {\vi \vTab \numRels} $.
+%
+
+Note that the value $v_i$ is present iff 
+$\sat {\dimMeta_\vTuple \wedge \dimMeta_\vRel \wedge \dimMeta_\vAtt \wedge \fModel}$,
+where, 
+$\dimMeta_\vAtt = \getPC {\getAtt v_i}$ and
+%,
+%$\dimMeta_\vTuple = \getPC \vTuple$,
+%\dimMeta = \getPC \vRel,
+%and 
+%\fModel\ is the feature model.
+%
+for simplicity, 
+%Also, note that to avoid overcrowding the database with variation and feature 
+%expressions
+we only annotate tuples and not cells. 
+This design decision causes some redundancy.
+For example, the two tuples: 
+\ensuremath{\annot [\fOne] {(1,2)}} and \ensuremath{\annot [\neg\fOne] {(1,3)}}
+cannot be represented as a single tuple \ensuremath{(1, \chc [\fOne] {2,3})} 
+that has variation at its cell-level.
+%
+
+This encoding of variational databases satisfies all of the needs for a variational database described in \secref{mot}.
+Similar to v-schema, a user can configure a v-table or a VDB
+for a specific variant,
+formally defined in \figref{vdb-conf}. 
+This allows users to deploy a VDB for a specific configuration (variant),
+satisfying database part of \nThree\ need.
+%
+Additionally, 
+our VDB framework puts all variants of a database into
+one VDB (satisfying \textbf{N0}) 
+and it keep tracks of which variant a tuple belongs to by 
+annotating them with presence conditions. 
+For example, consider tuples
+\ensuremath{\annot [\tFive] {(38, PL, 678)}}
+and 
+\ensuremath{\annot [\tFour] {(23, DB, \nul)}}
+that belong to the \ecourse\ table. 
+The presence conditions \tFive\ and \tFour\ state that tuples belong to
+variants four and five of this VDB, respectively.
+Hence, this framework tracks which variants a tuple belongs to 
+(first part of \nTwo).
+%
+Note that 
+the VDB framework encodes both schematic and content-level
+variation. A simpler framework could be used to encode 
+only content-level variation (where tables consist of v-tuples but
+they have plain relational schema), similar to frameworks used for 
+database versioning and experimental databases~\cite{dbVersioning}.
+However, schematic variation cannot be encoded without 
+accounting for content-level variation in a framework where
+variants coexist in parallel and they are all put into one database,
+e.g., while 
+\ensuremath{
+\ecourse \left(\cno, \cname, \optAtt [\tFive] [\deptno] \right)^{\edu \wedge \left(\tFour \vee \tFive\right)}
+} encodes variation at the schema-level for relation \ecourse,
+dropping presence conditions of given tuples (i.e., resulting in tuples
+\ensuremath{(38, PL, 678)}
+and 
+\ensuremath{(23, DB, \nul)})
+where it is unclear which variant each tuple belongs to
+and there is no way to recover such information.
+
+
+\input{formulas/vdbConf}
