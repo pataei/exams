@@ -1,0 +1,39 @@
+\subsubsection{VDBMS Implementation}
+\label{sec:impl}
+
+\TODO{adjust for proposal}
+
+%-haskell
+%-any dbms
+%-manually generate vdb explained in expr
+%-provide v-sch
+%-input: vdb, vsch(==> valid configs), vq
+%-arch fig
+%-explain arch
+\TODO{the annotation of tuples is encoded as an attribute in implementation.}
+%\point{impl in haskell on top of any dbms using haskell's type class.}
+To interact with VDBs using v-queries, we implement 
+\emph{Variational Database Management System (VDBMS)}.
+VDBMS is implemented in Haskell. VDBMS sit on 
+top of any DBMS that the user desires and used to store their data 
+%\arashComment{I did not find any explanation on how v-tables are stored in an RDBMS.} 
+%\resp{it is exactly implemented as formalized in v-table section.}
+%\responded
+in form of v-tables, explained in \secref{vtab}.
+%To acquire an extensible system we implement 
+To support running VDBMS with multiple different plain relational DBMS backends,
+we provide
+a shared interface
+for connecting to and inquiring information from a DBMS and
+instantiate it for different database engines such as PostgreSQL and
+MySQL. 
+%\rewrite{any dbms that has a library in haskell that has a function
+%that returns the result to the user. eg that doesn't satisfy this is 
+%database.sqlite3. } --> The following addresses this:
+An expert can extend VDBMS to another database engine by
+writing methods for connecting to and querying from the database.
+
+%\input{sections/implVar}
+\input{sections/arch}
+%\input{sections/sqlGen}
+
