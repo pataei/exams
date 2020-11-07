@@ -10,23 +10,27 @@
 \medskip
 \textbf{Variational relational algebra syntax:}
 \begin{syntax}
-\synDef \vQ \qSet &\eqq& \vRel &\textit{Variational Relation}\\
-								&\myOR& \vSel \vQ &\textit{Variational Selection}\\
-                                &\myOR& \vPrj [\vAttList] \vQ &\textit{Variational Projection}\\
-                                &\myOR&  \chc {\vQ,\vQ} &\textit{Choice of Queries}\\
+\synDef \vQ \qSet &\eqq& \vRel &\textit{Variational relation}\\
+								&\myOR& \vSel \vQ &\textit{Variational selection}\\
+                                &\myOR& \vPrj [\vAttList] \vQ &\textit{Variational projection}\\
+                                &\myOR&  \chc {\vQ,\vQ} &\textit{Choice of queries}\\
 %                                Variational Expression Choices}\\
-%			      &\myOR& \vQ \Join_\vCond \vQ &\textit{Variational Join}\\
-			      &\myOR& \vQ \times \vQ &\textit{Variational Cartesian Product}\\
-                                &\myOR& \vQ \circ \vQ &\textit{Variational Set Operation}\\
+%			      &\myOR& \vQ \Join_\vCond \vQ &\textit{Variational join}\\
+			      &\myOR& \vQ \times \vQ &\textit{Variational cartesian product}\\
+                                &\myOR& \vQ \circ \vQ &\textit{Variational set operation}\\
 %                                &\myOR& \vQ \backslash \vQ &\textit{Variational Set Difference}\\
-                                &\myOR& \empRel &\textit{Empty Relation}
+                                &\myOR& \empRel &\textit{Empty relation}
 \end{syntax}
 
 \caption{Variational relational algebra definitions. 
 $\bullet$ and $\circ$ denote comparison ($<, \leq, =, \neq, >, \geq$) 
-and v-set operations ($\cap, \cup$), respectively. \TODO{remember that
-you removed join (also removed it from query config def and constrain query 
-by schema). if you want use it just say it's a syntactic sugar.}
+and v-set operations ($\cap, \cup$), respectively. We consider 
+\emph{variational join} $\vQ_1 \Join_\vCond \vQ_2$ as syntactic sugar for 
+$\vSel {(\vQ_1 \times \vQ_2)}$.
+%\TODO{remember that
+%you removed join (also removed it from query config def and constrain query 
+%by schema). if you want use it just say it's a syntactic sugar.
+%}
 }
 %$<, \leq, =, \neq, >, \geq$.
 %$\circ$ denotes set operators: union and difference.}

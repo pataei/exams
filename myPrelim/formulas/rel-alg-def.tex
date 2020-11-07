@@ -23,7 +23,9 @@
      &|& \pRen[\pRel]{\pQ}     & \textit{Renaming} \\
      &|& \pPrj[\pAttList]{\pQ} & \textit{Projection} \\
      &|& \pSel\pQ              & \textit{Selection} \\
+     &|& \pQ \times \pQ & \textit{Cartesian product}\\
      &|& \pQ \Join_{\pCond} \pQ  & \textit{Join} \\
+     &|& \pQ \circ \pQ & \textit{Set operation}\\
 %     &|& \chc{\vQ,\vQ}         & \textit{Choice} \\
 %     &|& \empRel               & \textit{Empty relation} \\
 %    &|& \vQ \times \vQ        & \textit{Cartesian Product} \\
@@ -31,7 +33,8 @@
 \end{syntax}
 
 \caption{Syntax of  relational algebra, where $\bullet$ ranges over
-comparison operators ($<, \leq, =, \neq, >, \geq$), \cte\ over constant values,
+comparison operators ($<, \leq, =, \neq, >, \geq$), $\circ$ over 
+set operations ($\cap, \cup$), \cte\ over constant values,
 \att\ over attribute names, and \pAttList\ over lists of attributes.
 The syntactic category
 % \dimMeta\ represents feature expressions, 

@@ -43,17 +43,25 @@ should we implement a database management system that uses that framework? (In p
 * annotations and choices
 \end{comment}
 
-For RQ2.1 we annotate elements of a database with feature expression,
-as introduced in \secref{encode-var}. 
+For RQ2.1 we annotate elements of a database with feature expression.
+%as introduced in \secref{encode-var}. 
 We use annotated elements both in the schema and content.
 Within a schema we allow attributes and relations to exist 
-conditionally based on the feature expression assigned to them (\secref{vsch}).
+conditionally based on the feature expression assigned to them, called \emph{variational schema}.
+\secref{vsch} provides the formal definition of variational schema and examples of it.
 At the content level, we annotate each tuple with a feature expression, indicating when the tuple 
-is present (\secref{vtab}). 
+is present, called \emph{variational table}.
+\secref{vtab} provides the formal definition and examples of variational table
+which uses \emph{variational sets}, introduced in \secref{v-set}, for the formalizations.
+%
+Together variational schema and a set of variational tables associated with the 
+variational schema create a \emph{variational database (VDB)}, defined in \secref{vtab}.
+Conceptually, a  \emph{single} variational database represents \emph{many}
+different plain relational
+databases, each one corresponding to a different variant of a software system,
+\emph{at the same time}.
 
-\TODO{add def of vdb and what it is conceptually}
 
-\TODO{intro vset first}
 
 \begin{comment}
 The variational nature of a VDB requires a query language that
@@ -78,14 +86,45 @@ for reducing a query's variation.
 
 \end{comment}
 
-For RQ2.2 ...
-\TODO{ref to v-rel alg}
+For RQ2.2 we need to design a query language that reflects the variational 
+information need while working with a variational database. 
+To express and represent variation in queries,
+we incorporate formula choice calculus~\cite{HW16fosd}  into a 
+structured query language. We formally define 
+\emph{variational relational algebra (VRA)} in \secref{vrel-alg}
+as our algebraic query language.
+A query written in VRA is called a \emph{variational query (v-query)};
+when it is clear from context we use query and v-query interchangeably. 
+A v-query typically conveys the same intent over several 
+relational database variants, however, a single v-query is also capable of capturing different 
+intents over different database variants.
 
-\begin{comment}
-\end{comment}
 
-For RQ2.3 ...
-\TODO{ref impl}
+For RQ2.3 and to interact with VDBs using v-queries, we are implementing
+and optimizing
+\emph{Variational Database Management System (VDBMS)}.
+VDBMS is implemented in Haskell. VDBMS sit on 
+top of any DBMS that the user desires and used to store their data 
+%\arashComment{I did not find any explanation on how v-tables are stored in an RDBMS.} 
+%\resp{it is exactly implemented as formalized in v-table section.}
+%\responded
+in form of variational tables.
+%, explained in \secref{vtab}.
+%To acquire an extensible system we implement 
+To support running VDBMS with multiple different plain relational DBMS backends,
+we provide
+a shared interface
+for connecting to and inquiring information from a DBMS and
+instantiate it for different database engines such as PostgreSQL and
+MySQL. 
+%\rewrite{any dbms that has a library in haskell that has a function
+%that returns the result to the user. eg that doesn't satisfy this is 
+%database.sqlite3. } --> The following addresses this:
+An expert can extend VDBMS to another database engine by
+writing methods for connecting to and querying from the database.
+\secref{impl} provides details of our implementation and the architectur of 
+VDBMS.
+
 
 \input{sections/vset}
 \input{sections/vsch}

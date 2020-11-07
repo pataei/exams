@@ -58,6 +58,9 @@ from $\pRel$ where the value for $\pAtt_1$ is greater than 3.
 %variational to enable returning different tuples for different configurations
 %of the VDB.
 %
+A \emph{Cartesian products} simply cross products every tuple from its
+left subquery with every tuple from its right subquery. 
+%
 The \emph{join} operation joins two subqueries based on a condition and
 omitting its condition implies it is a natural join (i.e., join on the
 shared attribute of the two subqueries).
@@ -67,7 +70,17 @@ attribute $\pAtt_2$ from relation $\pRel_2$. However, if we have $\pRel_1(\pAtt_
 and $\pRel_2 (\pAtt_1, \pAtt_2)$ then
 $\pRel_1 \bowtie \pRel_2$ joins tuples from $\pRel_1$ and $\pRel_2$ where
 attribute $\pAtt_1$ has the same value in $\pRel_1$ and $\pRel_2$. 
-\TODO{add cross product, add union intersection}
+%
+Also, note that join is simply a syntactic sugar for selection of cross product,
+that is $\pQ_1 \bowtie_{\pCond} \pQ_2 = \vSel [\pCond] {(\pQ_1 \times \pQ_2)}$.
+%
+The set operations, union and intersection, require two subqueries to have the same set of attributes
+and simply apply the operation, either union or intersection, to the tuples returned by
+the subqueries.
+For example, if we have $\pRel_1(\pAtt_1, \pAtt_2)$ with 
+tuples $\{(1,2)(3,4)\}$
+and $\pRel_2(\pAtt_1, \pAtt_2)$ with tuples $\{(1,2),(5,6) \}$
+then $\pRel_1 \cup \pRel_2 $ returns the tuples $\{(1,2), (3,4), (5,6)\}$.
 
 %, except
 %that again we allow conditions to be variational.
