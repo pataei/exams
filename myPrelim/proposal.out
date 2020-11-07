@@ -3,7 +3,7 @@
 \BOOKMARK [1][-]{section.3}{Preliminaries}{}% 3
 \BOOKMARK [2][-]{subsection.3.1}{Relational Databases and Relational Algebra}{section.3}% 4
 \BOOKMARK [2][-]{subsection.3.2}{Formula Choice Calculus and Annotation}{section.3}% 5
-\BOOKMARK [1][-]{section.4}{Research Goals and Methods}{}% 6
+\BOOKMARK [1][-]{section.4}{Research Goals and Approaches}{}% 6
 \BOOKMARK [2][-]{subsection.4.1}{Identify the kinds of variation existing in relational databases in different application domains}{section.4}% 7
 \BOOKMARK [3][-]{subsubsection.4.1.1}{Motivating Example}{subsection.4.1}% 8
 \BOOKMARK [3][-]{subsubsection.4.1.2}{Encoding Variability}{subsection.4.1}% 9
@@ -18,7 +18,7 @@
 \BOOKMARK [3][-]{subsubsection.4.5.1}{Property Checking over a VDB}{subsection.4.5}% 18
 \BOOKMARK [3][-]{subsubsection.4.5.2}{Well-Typed \(Valid\) Query}{subsection.4.5}% 19
 \BOOKMARK [3][-]{subsubsection.4.5.3}{Explicitly Annotating Queries}{subsection.4.5}% 20
-\BOOKMARK [3][-]{subsubsection.4.5.4}{Variation-Preserving Property w.r.t. Schema}{subsection.4.5}% 21
+\BOOKMARK [3][-]{subsubsection.4.5.4}{Variation-Preserving Property with respect to. Schema}{subsection.4.5}% 21
 \BOOKMARK [3][-]{subsubsection.4.5.5}{Variation Minimization}{subsection.4.5}% 22
 \BOOKMARK [2][-]{subsection.4.6}{Stretch goal: Generalize the encoding of variation to make the framework customizable for different application domains}{section.4}% 23
 \BOOKMARK [2][-]{subsection.4.7}{Summary}{section.4}% 24

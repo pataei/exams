@@ -1,5 +1,41 @@
-\begin{figure}
+\begin{figure}[H]
 %\textbf{Configuration selection semantics of \vqsTxt:}
+\textbf{Variational Condition Configuration:}
+\begin{alignat*}{1}
+\ecSem [] . &: \vCondSet \to \confSet \to \pCondSet\\
+%
+\ecSem \bTag &= \bTag \\
+%
+\ecSem \vAttOpCte &= 
+    \vAttOpCte\\
+%	\begin{cases}
+%		\vAttOpCte, &\text{ if } \pAtt \in \attr [\eeSem \vRel]\\
+%		\f, &\text{ otherwise}
+%	\end{cases}\\
+%
+\ecSem \vAttOpAtt &= 
+       \vAttOpAtt\\
+%	\begin{cases}
+%		\pAttOpAtt, &\text{ if } \pAtt_1 \in \attr [\eeSem \vRel] \&\ 
+%		                                   \pAtt_2 \in \attr [\eeSem \vRel] \\
+%		\f,  &\text{ otherwise}
+%	\end{cases}\\
+%
+\ecSem {\neg \vCond} &= \neg \ecSem \vCond\\
+%
+\ecSem {\orr \vCond} &= \ecSem {\vCond_1} \vee \ecSem {\vCond_2}\\
+%
+\ecSem {\annd \vCond} &= \ecSem {\vCond_1} \wedge \ecSem {\vCond_2}\\
+%
+\ecSem {\chc {\vCond_1, \vCond_2}} &=
+	\begin{cases}
+		\ecSem {\vCond_1}, &\text{ if } \fSem \dimMeta  \\
+		\ecSem {\vCond_2}, &\text{ otherwise}
+	\end{cases}
+\end{alignat*}
+
+\medskip
+\textbf{Variational Query Configuration:}
 \begin{alignat*}{1}
 \eeSem [] . &: \qSet \to \confSet \to \pQSet\\
 %

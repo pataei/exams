@@ -12,7 +12,7 @@ individual research questions we need to answer for this objective.
 
 
 
-\begin{table}
+\begin{table}[H]
 \caption{Objective 4 research questions.}
 \label{tab:ro4}
 \centering
@@ -35,8 +35,12 @@ RQ4.3: Is the implementation of VDBMS compliant to semantics of VRA? (Not starte
 \begin{comment}
 \end{comment}
 
-For RQ4.1 ...
-\TODO{ref to vdb prop}
+For RQ4.1 we identified properties that must hold for a variational database 
+to ensure the variation has encoded correctly in both the schema and content.
+\secref{vdb-props} provides these properties and discusses how a database
+administrator can write their own properties over a variational database and
+ensure that it holds.
+
 
 \begin{comment}
 * type system
@@ -45,21 +49,51 @@ For RQ4.1 ...
 * eq rules
 \end{comment}
 
-For RQ4.2 ..
+For RQ4.2 we pay attention to the variational nature of VRA.
+%
 Consequently, the expressiveness of v-queries may cause them to be 
-more complicated than relational queries, discussed in \secref{type-sys}. 
+more complicated than relational queries.
+%, discussed in \secref{type-sys}. 
 Hence, we introduce a 
 \emph{type system} for VRA that statically checks if a 
 v-query conforms to the underlying v-schema and encoded variability within the VDB.
-Finally, we close out this section by providing a set of rules in \secref{var-min} 
-for reducing a query's variation.
+VRA's type system is formally defined in \secref{type-sys}.
+%
 
-\TODO{don't forget refs, intuitive explanation, formal def ref, ex ref}
+Additionally, 
+similar to other applications of variational research~\cite{CEW16ecoop,CEW14toplas},
+the type system must preserve the variation encoded in a v-query.
+We call this property \emph{variation preserving} with respect to the
+variational schema and formally define it in \secref{var-pres}.
+%
+In order for the variation-preserving property to hold we need to define 
+a function that decouples a query from the underlying variational schema.
+We achieve this by \emph{explicitly annotating} a query with the variational
+schema. This function is formally defined in \secref{constrain}.
+We are currently proving this property mechanically using the Coq
+proof assistant.
+%
 
-\begin{comment}
-\end{comment}
+Moreover, since variation points in a v-query can move throughout 
+the query it is important to provide a set of rules that minimize
+the variation in a v-query. We provide some of these rules in \secref{var-min}.
+We plan to mechanically prove that these equivalence rules
+are correct. 
+%
+We also plan to define the formal semantics of VRA to prove
+that the variation-preserving property also holds at the semantic 
+level to ensure that queries behave as expected.
 
-For RQ4.3 ...
+
+
+
+For RQ4.3 we plan to use the the formal semantics of VRA 
+%to ensure that queries behave in the expected manner.
+to
+prove that the implementation of VRA in VDBMS aligns with
+the semantics of it. 
+
+\secref{ro5} discusses a stretch goal that we like to pursue if time permits.
 
 \input{sections/vdbprops}
 \input{sections/typeSys}

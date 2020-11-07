@@ -1,100 +1,25 @@
-\begin{figure}
-
-\begin{comment}
-\textbf{Relational model generic objects:}
-\begin{syntax}
-%OLD
-D\in \mathbf{Dom} &&& \textit{Domain}\\
-A\in \mathbf{Att} &&& \textit{Attribute Name}\\
-R\in \mathbf{R} &&& \textit{Relation Name}\\
-t \in \mathbf{T} &&& \textit{Tuple}
-\end{syntax}
-
-\medskip
-\textbf{Relational model definition:}
-\begin{syntax}
-l\in \mathbf{L} &=& \vn{A} &\textit{Attribute set}\\
-s \in \mathbb{S} &=& R(A_1, \ldots , A_n ) & \textit{Relation specification}\\
-S \in \mathcal{\mathbf{S}} &\Coloneqq& {\vn{s}} & \textit{Schema}\\
-T \in \mathbf{T} &\Coloneqq& \{\llangle t(1), \ldots, t(k)\rrangle \myOR \\
-&&t(i) \in D_i,
-1 \leq i \leq k ,\\
-&&k = \mathit{arity}(R) \} 
-%v_1^1\in D_1, \ldots, v_n^1\in D_n\rrangle, \ldots, \llangle v_1^m\in D_1, \ldots, v_n^m\in D_n\rrangle|\\
-%&& \hspace{0.5cm} m = \textit{number of } R_I\textit{'s tuples}\} 
-&\textit{Relation Instance (Table)}\\
-%I \in \mathbf{Inst} &\Coloneqq& R_{1_I}, \cdots, R_{n_I} & \textit{Database Instance}
-\end{syntax}
-
-
-\medskip
-\textbf{Variational relational algebra objects:}
-\begin{syntax}
-\synDef \dimMeta \ffSet &&&\textit{Presence condition}\\
-\synDef \vAtt \vAttSet &&&\textit{Variational attribute}\\
-\synDef \vAttList \vAttSet &\eqq& \vAtt, \vAttList \myOR \empAtt &\textit{Variational attribute list}\\
-\synDef \vRelSch \vRelSet &\eqq& \vRelDef &\textit{Variational relation schema}\\
- \vRel &&&\textit{Variational relation}\\
-\synDef \vSch \vSchSet &\eqq& \vSchDef &\textit{Variational schema}\\
- &&&\textit{Variational database instance}
-\end{syntax}
-\end{comment}
+\begin{figure}[H]
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Variational Condition Configuration:}
-\begin{alignat*}{1}
-\ecSem [] . &: \vCondSet \to \confSet \to \pCondSet\\
-%
-\ecSem \bTag &= \bTag \\
-%
-\ecSem \vAttOpCte &= 
-    \vAttOpCte\\
-%	\begin{cases}
-%		\vAttOpCte, &\text{ if } \pAtt \in \attr [\eeSem \vRel]\\
-%		\f, &\text{ otherwise}
-%	\end{cases}\\
-%
-\ecSem \vAttOpAtt &= 
-       \vAttOpAtt\\
-%	\begin{cases}
-%		\pAttOpAtt, &\text{ if } \pAtt_1 \in \attr [\eeSem \vRel] \&\ 
-%		                                   \pAtt_2 \in \attr [\eeSem \vRel] \\
-%		\f,  &\text{ otherwise}
-%	\end{cases}\\
-%
-\ecSem {\neg \vCond} &= \neg \ecSem \vCond\\
-%
-\ecSem {\orr \vCond} &= \ecSem {\vCond_1} \vee \ecSem {\vCond_2}\\
-%
-\ecSem {\annd \vCond} &= \ecSem {\vCond_1} \wedge \ecSem {\vCond_2}\\
-%
-\ecSem {\chc {\vCond_1, \vCond_2}} &=
-	\begin{cases}
-		\ecSem {\vCond_1}, &\text{ if } \fSem \dimMeta  \\
-		\ecSem {\vCond_2}, &\text{ otherwise}
-	\end{cases}
-\end{alignat*}
-
-\medskip
 \textbf{Variational Set of Attributes Configuration:}
 \begin{flalign*}
-& \olSem [] . &: &\ \vAttSet \to \confSet \to \pAttSet\\
+& \olSem [] . : \ \vAttSet \to \confSet \to \pAttSet&\\
 %\end{flalign*}
 %
 %\begin{flalign*}
-& \olSem {\{\optAtt\} \cup \vAttList} &\spcEq &\ 
+& \olSem {\{\optAtt\} \cup \vAttList} \spcEq  
     \begin{cases}
         \{\pAtt\} \cup \olSem{\vAttList},
                             & \If \fSem {\dimMeta \wedge \getPC{\getRel \vAtt} \wedge \fModel} \\
         \olSem{\vAttList} , & \Otherwise
-     \end{cases} \\
+     \end{cases} &\\
 % & \olSem {\{\optAtt\} \cup \vAttList} &\spcEq &\  \olSem {\{\optAtt\}} \cup \olSem {\vAttList}\\
-& \olSem {\setDef{}} &\spcEq & \setDef{}
+& \olSem {\setDef{}} \spcEq  \setDef{}&
 \end{flalign*}
 
 %
 \medskip
-\textbf{V-Relation Schema Configuration:}
+\textbf{Variational Relation Schema Configuration:}
 \begin{flalign*}%\raggedleft
 &\orSem [] . : \vRelSchSet \to \confSet \to \pRelSchSet&\\
 %\end{flalign*}
@@ -109,14 +34,15 @@ T \in \mathbf{T} &\Coloneqq& \{\llangle t(1), \ldots, t(k)\rrangle \myOR \\
 
 %
 \medskip
-\textbf{V-Schema Configuration:}
+\textbf{Variational Schema Configuration:}
 \begin{flalign*}%\raggedleft
 &\osSem [] . : \vSchSet \to \confSet \to \pSchSet&\\
 %\end{flalign*}
 %
 %\begin{flalign*}
-&\osSem {\annot [\fModel] {\setDef {\vRelDefNum 1, \ldots, \vRelDefNum \numRels}}}\\
-&\hspace{0.3cm}= \begin{cases}
+&\osSem {\annot [\fModel] {\setDef {\vRelDefNum 1, \ldots, \vRelDefNum \numRels}}}
+%&\hspace{0.3cm}
+= \begin{cases}
 %		\setDef {\orSem {\vRelDefNumF 1}, \ldots, \orSem {\vRelDefNumF n}},
                  \setDef {\orSem {\vRel_1( \vAttList_1 )^{\dimMeta_1 \wedge \fModel} }, \ldots, 
                  \orSem {\vRel_\numRels( \vAttList_\numRels)^{\dimMeta_\numRels \wedge \fModel} }},		
@@ -126,16 +52,18 @@ T \in \mathbf{T} &\Coloneqq& \{\llangle t(1), \ldots, t(k)\rrangle \myOR \\
 \end{flalign*}
 
 \medskip
-\textbf{V-Tuple Configuration:}
+\textbf{Variational Tuple Configuration:}
 %
 \begin{flalign*}%\raggedleft
 &\ouSem [] . : \vRelCont \to \confSet \to \pRelCont&\\
 %\end{flalign*}
 %
 %\begin{flalign*}%\raggedleft
-&\ouSem {\annot [ \dimMeta_\tuple] {\left( {\vi v \numAtts}\right)}} = \left( \ovSem {v_1}, \hdots, \ovSem {v_\numAtts} \right) &\\
-& \textit{ where } \forall 1 \leq i \leq \numAtts: \\
-&\hspace{5pt} \ovSem {v_i} = 
+&\ouSem {\annot [ \dimMeta_\tuple] {\left( {\vi v \numAtts}\right)}} = \left( \ovSem {v_1}, \hdots, \ovSem {v_\numAtts} \right) 
+%&\\
+& \textit{ where } \forall 1 \leq i \leq \numAtts: 
+%&\hspace{5pt} 
+\ovSem {v_i} = 
 \begin{cases}
 v_i, & \If \fSem {\fModel \wedge \getPC{\getRel{\getAtt{v_i}}} \wedge \getPC {\getAtt {v_i}} \wedge \dimMeta_\tuple} \\
 \varepsilon, & \Otherwise

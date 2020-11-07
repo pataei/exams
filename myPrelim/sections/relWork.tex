@@ -313,98 +313,98 @@ more~\cite{Walk14onward}.
 % achieve this).
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %From vldb:
-\textbf{Variational research:}
-%maybe on variational data structure and variational programming and their applications.
-
-\textbf{Schema evolution:}
+%\textbf{Variational research:}
+%%maybe on variational data structure and variational programming and their applications.
 %
-Current solutions addressing schema evolution rely on
-temporal nature of schema evolution. They use timestamps as a 
-means to keep track of historical changes either in an external document~\cite{prima08Moon}
-or as versions attached to 
-databases~\cite{SchEvolRA90McKenzie, schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass}, 
-i.e., either approach fails to incorporate
-the timestamps into the database. 
-Then, they take one of these approaches:
-1) they require the DBA to design a unified schema, map all schema variants
-to the unified one, migrate the database variants to the unified schema, and
-write queries only on the unified schema~\cite{schEvolUnifyApp},
-2) they require the DBA to specify the version for their query and then migrating
-all database variants to the queried 
-version~\cite{SchEvolRA90McKenzie, schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass},
-or 3) they require the user to specify the timestamps for their query and
-then reformulate the query for other database variants~\cite{prima08Moon}.
+%\textbf{Schema evolution:}
+%%
+%Current solutions addressing schema evolution rely on
+%temporal nature of schema evolution. They use timestamps as a 
+%means to keep track of historical changes either in an external document~\cite{prima08Moon}
+%or as versions attached to 
+%databases~\cite{SchEvolRA90McKenzie, schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass}, 
+%i.e., either approach fails to incorporate
+%the timestamps into the database. 
+%Then, they take one of these approaches:
+%1) they require the DBA to design a unified schema, map all schema variants
+%to the unified one, migrate the database variants to the unified schema, and
+%write queries only on the unified schema~\cite{schEvolUnifyApp},
+%2) they require the DBA to specify the version for their query and then migrating
+%all database variants to the queried 
+%version~\cite{SchEvolRA90McKenzie, schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass},
+%or 3) they require the user to specify the timestamps for their query and
+%then reformulate the query for other database variants~\cite{prima08Moon}.
+%%
+%These approaches satisfy \nZero\ by migration techniques.
+%However, they cannot satisfy \nOne\ and \nTwo\ because they
+%only consider variation w.r.t. time and dismiss variation in space,
+%resulting in querying all variants, i.e., variants cannot be queried
+%selectively, and missing which variants data belongs to.
+%Although these approaches do not provide a direct way to satisfy \nThree\
+%one can satisfy \nThree\ for them by manipulating the database with the schema evolution history file.
+%%They are also able to satisfy \nThree\ by keeping a history of schema changes.
 %
-These approaches satisfy \nZero\ by migration techniques.
-However, they cannot satisfy \nOne\ and \nTwo\ because they
-only consider variation w.r.t. time and dismiss variation in space,
-resulting in querying all variants, i.e., variants cannot be queried
-selectively, and missing which variants data belongs to.
-Although these approaches do not provide a direct way to satisfy \nThree\
-one can satisfy \nThree\ for them by manipulating the database with the schema evolution history file.
-%They are also able to satisfy \nThree\ by keeping a history of schema changes.
-
-%~\cite{SchEvolRA90McKenzie} introduces a new lang for schema evolution
-%in relational algebra.
-
-%comprehensive surveys of schema evolution~\cite{schEvolIssues03Ram,schVersioningSurvey95Roddick}.
+%%~\cite{SchEvolRA90McKenzie} introduces a new lang for schema evolution
+%%in relational algebra.
 %
-%automatic schema mapping~\cite{mappingSchEvol03Velegrakis,semanticAdaptationSchEvol05Yu}.
-
-%Furthermore, current approaches usually do not
-%grant users access to old variants of data even if they desire so and it
-%is messy to keep both different copies of a variant, one with the old schema
-%and one with the unified schema, since every data addition/update now requires to 
-%be applied to all copies of the database variant. A better solution
-%is maintaining a history of the changes applied to the database and the unified schema
-%as an XML document and providing a language that allows users/developers to choose
-%the variant they desire~\cite{prima08Moon}. Unfortunately, this is achieved by limiting
-%the schema evolution to temporal changes, offering a beautifully tailored approach for 
-%temporal changes, however, resulting in a non-extensible approach for non-temporal changes.
+%%comprehensive surveys of schema evolution~\cite{schEvolIssues03Ram,schVersioningSurvey95Roddick}.
+%%
+%%automatic schema mapping~\cite{mappingSchEvol03Velegrakis,semanticAdaptationSchEvol05Yu}.
 %
-%Temporal evolution is tracked by requiring the database to always have a time-related 
-%attribute in tables. Thus, queries have to specify the time frame for which they are inquiring 
-%information~\cite{prima08Moon}. 
-%Now the user can choose a wide enough time frame in their queries to access 
-%to their desired variant(s). Aside from the detailed mapping of time frames and variants, this
-%approach requires a query to have one and only one information need, no matter how many
-%variants it is aiming. That is, if a time frame includes assumingely two variants a user cannot 
-%write a query that extract two separate information needs for each of them accumulatively 
-%in one query. Even worse, if this query does not conform to one of the variant's schema
-%but it conforms to the other one, the query still fails since there is no systematic way to 
-%identify that the query is ill (does not conform to the schema) for one of the variants. 
-%These limitations and constraint are the result of ignoring that temporal changes to a 
-%database is a form of variability.
-
-\textbf{SPL and its evolution including its artifacts evolution:}
+%%Furthermore, current approaches usually do not
+%%grant users access to old variants of data even if they desire so and it
+%%is messy to keep both different copies of a variant, one with the old schema
+%%and one with the unified schema, since every data addition/update now requires to 
+%%be applied to all copies of the database variant. A better solution
+%%is maintaining a history of the changes applied to the database and the unified schema
+%%as an XML document and providing a language that allows users/developers to choose
+%%the variant they desire~\cite{prima08Moon}. Unfortunately, this is achieved by limiting
+%%the schema evolution to temporal changes, offering a beautifully tailored approach for 
+%%temporal changes, however, resulting in a non-extensible approach for non-temporal changes.
+%%
+%%Temporal evolution is tracked by requiring the database to always have a time-related 
+%%attribute in tables. Thus, queries have to specify the time frame for which they are inquiring 
+%%information~\cite{prima08Moon}. 
+%%Now the user can choose a wide enough time frame in their queries to access 
+%%to their desired variant(s). Aside from the detailed mapping of time frames and variants, this
+%%approach requires a query to have one and only one information need, no matter how many
+%%variants it is aiming. That is, if a time frame includes assumingely two variants a user cannot 
+%%write a query that extract two separate information needs for each of them accumulatively 
+%%in one query. Even worse, if this query does not conform to one of the variant's schema
+%%but it conforms to the other one, the query still fails since there is no systematic way to 
+%%identify that the query is ill (does not conform to the schema) for one of the variants. 
+%%These limitations and constraint are the result of ignoring that temporal changes to a 
+%%database is a form of variability.
 %
-As mentioned in \secref{intro}, SPLs use a database with universal schema
-for all variants of database, which is burdensome and time-consuming for
-SPL developers and DBAs~\cite{vdbSpl18ATW}. While SPLs have techniques
-to satisfy \nZero\ and \nThree\ they do not have sufficient techniques to satisfy
-\nOne\ and \nTwo.
+%\textbf{SPL and its evolution including its artifacts evolution:}
+%%
+%As mentioned in \secref{intro}, SPLs use a database with universal schema
+%for all variants of database, which is burdensome and time-consuming for
+%SPL developers and DBAs~\cite{vdbSpl18ATW}. While SPLs have techniques
+%to satisfy \nZero\ and \nThree\ they do not have sufficient techniques to satisfy
+%\nOne\ and \nTwo.
+%%
+%%\textbf{Database evolution in SPL:}
+%The problem of schema evolution when a SPL evolves is currently addressed by
+%designing
+%a new domain-specific language so that SPL developers 
+%can write scripts of the schema changes~\cite{dbSPLevolve},
+%which requires a great effort by DBAs and SPL developers.
+%This approach only provides mechanisms for \nZero\ and \nThree.
+%Note that the amount of work grows exponentially 
+%as the number of potential variants grows,
+%a concerning behavior because
+%%, which in our example depends on the temporal
+%%changes and SPL features. 
+%%As a reminder, 
+%a SPL usually has hundreds of 
+%features~\cite{cppSpl}. As the SPL and its database evolve,
+%manually managing the variants becomes virtually impossible. 
 %
-%\textbf{Database evolution in SPL:}
-The problem of schema evolution when a SPL evolves is currently addressed by
-designing
-a new domain-specific language so that SPL developers 
-can write scripts of the schema changes~\cite{dbSPLevolve},
-which requires a great effort by DBAs and SPL developers.
-This approach only provides mechanisms for \nZero\ and \nThree.
-Note that the amount of work grows exponentially 
-as the number of potential variants grows,
-a concerning behavior because
-%, which in our example depends on the temporal
-%changes and SPL features. 
-%As a reminder, 
-a SPL usually has hundreds of 
-features~\cite{cppSpl}. As the SPL and its database evolve,
-manually managing the variants becomes virtually impossible. 
-
-
-\textbf{Database versioning:}
-As mentioned in \secref{vtab}, database versioning approaches only consider
-content-level variation~\cite{dbVersioning} which is usually used for experimental and
-scientific databases.
+%
+%\textbf{Database versioning:}
+%As mentioned in \secref{vtab}, database versioning approaches only consider
+%content-level variation~\cite{dbVersioning} which is usually used for experimental and
+%scientific databases.

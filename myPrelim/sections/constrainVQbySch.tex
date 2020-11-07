@@ -1,7 +1,6 @@
 \subsubsection{Explicitly Annotating Queries}
 \label{sec:constrain}
 
-\TODO {adjust for proposal}
 
 %\TODO{Eric, don't read this yet, I need to work on it more.}
 %\TODO {fix the ex wrt the new formulation for the base case of relation ref.
@@ -19,24 +18,32 @@ For example, the query \ensuremath{\vQ_1} shown in \exref{vq-specific}
 does not contradict the schema and
 thus is type correct. However,
  it does not include the presence conditions of attributes and the relation encoded in
-the schema while \ensuremath{\vQ_5} repeats this information:\\
+the schema while \ensuremath{\vQ_5} repeats this information:
 %
-\centerline{
-\ensuremath{
-\vQ_5=
-\pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } \chc [\fModel_2] {\empbio, \empRel}}}.
+\begin{align*}
+\VVal {\vQ_5} &= 
+\pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } 
+%\\
+%&
+(\chc [ \fModel_2 ] {\pi_{\empno, \sex, \birthdate, \optAtt [\vFour ] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]} \empbio, \empRel  })
+\end{align*}
+%
+%\centerline{
+%\ensuremath{
+%\vQ_5=
+%\pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } \chc [\fModel_2] {\empbio, \empRel}}}.
 
 %\pi_{\optAtt [(\vFour \vee \vFive) \wedge \fModel_2] [\empno], \optAtt [\vFour \wedge \fModel_2] [\name], \optAtt [\vFive \wedge \fModel_2] [\fname], \optAtt [\vFive \wedge \fModel_2] [\lname]  } \empbio}}.
 %
 
-\NOTE{
-This is the unsimplified version:
-\begin{align*}
-\VVal {\vQ_5} &= 
-\pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } \\
-&(\chc [ \fModel_2 ] {\pi_{\empno, \sex, \birthdate, \optAtt [\vFour ] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]} \empbio, \empRel  })
-\end{align*}
-}
+%\NOTE{
+%This is the unsimplified version:
+%\begin{align*}
+%\VVal {\vQ_5} &= 
+%\pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } \\
+%&(\chc [ \fModel_2 ] {\pi_{\empno, \sex, \birthdate, \optAtt [\vFour ] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]} \empbio, \empRel  })
+%\end{align*}
+%}
 Similarly, the outer projection in the query \ensuremath{\vQ_6} written over 
 \ensuremath{\vSch_2} \\
 \centerline{
@@ -90,7 +97,9 @@ If the query \vQ\ has the type \vType\ then its explicitly annotated counterpart
 }
 }
 %
-This shows that the type system applies the schema to the type of a query although it does not apply it to the query\footnote{We proved this theorem in the Coq proof assistant. The encoding of the theorem and the proof can be fine here: \TODO{update later. you may have to upload extra files instead of providing a link if submission is double-blind.}}.
+This shows that the type system applies the schema to the type of a query although it does not apply it to the query\footnote{We plan to prove this theorem in the Coq proof assistant. 
+%The encoding of the theorem and the proof can be fine here: \TODO{update later. you may have to upload extra files instead of providing a link if submission is double-blind.}
+}.
 \end{theorem}
 
 We illustrate the application of \thmref{expl-same-type} for queries

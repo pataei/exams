@@ -1,7 +1,6 @@
 \subsubsection{Variational Schema}
 \label{sec:vsch}
 
-\TODO{adjust examples accordingly}
 
 A variational schema captures variation in the structure of a database by indicating which attributes and relations are included or excluded in which variants.
 %
@@ -48,11 +47,12 @@ to account for such a condition, e.g., the \salary\ attribute only exists when \
 %
 \begin{align*}
 \vSch_1 &=
-\{ \empacct ( \empno, \hiredate, \titleatt, \deptno, \annot [\vFive] \salary, \\
-&\hspace{55pt} \annot [\edu] \isstudent,
+\{ \empacct ( \empno, \hiredate, \titleatt, \deptno, \annot [\vFive] \salary, 
+%&\hspace{55pt}
+ \annot [\edu] \isstudent,
 \annot [\edu] \isteacher )^{\vFour \vee \vFive}\\
 %
-&\hspace{17pt} \ecourse ( \cno, \cname, \annot [\tFive] \deptno )^{\tFour \vee \tFive} \}^{\fModel_1}\\
+&\hspace{17pt} ,\ecourse ( \cno, \cname, \annot [\tFive] \deptno )^{\tFour \vee \tFive} \}^{\fModel_1}\\
 \fModel_1 &= 
 \paran {\neg \edu \wedge \paran {\vFour \oplus \vFive}
  }

@@ -3,23 +3,24 @@
 
 \begin{table}
 \caption{Original Enron email dataset schema.}
-\vspace{-8pt}
+%\vspace{-8pt}
 \label{tab:enron}
-%\begin{center}
+\begin{center}
 \small
 \begin{tabular} {|l|}
 %\hline
 %\textbf{Enron Schema} \\
 \hline 
-\employees(\eid, \fname, \lname, \emailid, $\mathit{email2}$, \\
-\hspace{40pt} $\mathit{email3}$, $\mathit{email4}$, \folder, \status) \\
+\employees(\eid, \fname, \lname, \emailid, $\mathit{email2}$, 
+%\hspace{40pt}
+ $\mathit{email3}$, $\mathit{email4}$, \folder, \status) \\
 \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder)  \\ 
 \recipientinfo(\rid, \midatt, \rtype, \rvalue)  \\
 \referenceinfo(\rid, \midatt, \reference)  \\
 \hline
 \end{tabular}
-%\end{center}
-\vspace{-13pt}
+\end{center}
+%\vspace{-13pt}
 \end{table}
 
 
@@ -52,14 +53,14 @@ reference-info ID (\rid), the message ID (\midatt), and the entire message
 This table simply backs up the emails.
 
 
-\begin{table*}
+\begin{table}
 \caption{V-schema of the email VDB with feature model
 \ensuremath{\fModel_\enron}. 
 Presence conditions are colored blue for clarity.
 }
-\vspace{-8pt}
+%\vspace{-8pt}
 \label{tab:enron-vsch}
-% \begin{center}
+ \begin{center}
 \small
 \begin{tabular} {|l|}
 %\hline
@@ -69,42 +70,48 @@ Presence conditions are colored blue for clarity.
 $\employees(\eid, \fname, \lname, \emailid, \folder, \status,$ 
 %\\ \hspace{40pt} 
 $\annot[\fsignature]{\verificationkey},
-  \annot[\fencryption]{\publickey})$ \hspace{20pt}
- $\recipientinfo(\rid, \midatt, \rtype, \rvalue)$ 
-  \\ %[1.1ex]
+  \annot[\fencryption]{\publickey})$\\
+%   \hspace{20pt}
 $\messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder,$ 
 %\\ \hspace{30pt} 
 $\issystemnotification,
-  \annot[\fencryption]{\isencrypted}, 
-  \annot[\fautoresponder]{\isautoresponse},\annot[\fsignature]{\issigned} $ 
-  \\ \hspace{30pt} 
+  \annot[\fencryption]{\isencrypted}$\\
+\hspace{37pt} $ ,\annot[\fautoresponder]{\isautoresponse},\annot[\fsignature]{\issigned} $ 
+%  \\ \hspace{30pt} 
   $,
-  \annot[\fforwardmsg]{\isforwardmsg})$  \hspace{40pt}
+  \annot[\fforwardmsg]{\isforwardmsg})$  \\
+ $\recipientinfo(\rid, \midatt, \rtype, \rvalue)$ 
+  \\ %[1.1ex]
+%  \hspace{40pt}
 %   \\ %[1.1ex]
 %$\recipientinfo(\rid, \midatt, \rtype, \rvalue)$   
-${\forwardmsg(\eid, \forwardaddr)}^{\fforwardmsg} $\hspace{40pt}
+${\forwardmsg(\eid, \forwardaddr)}^{\fforwardmsg} $\\
+%\hspace{40pt}
 ${\mailhost(\eid, \username, \mailhost)}^{\fmailhost}$ 
 \\
 %\hspace{20pt}
 % \\ %[1.1ex]
 %\referenceinfo(\rid, \midatt, \reference)  \\
-  ${\filtermsg(\eid, \suffix)}^{\ffiltermsg} $ \hspace{3pt}
+  ${\filtermsg(\eid, \suffix)}^{\ffiltermsg} $ \\
+%  \hspace{3pt}
 %\\ %[1.1ex]
 %  \hspace{47pt}
 %\\ %[1.1ex]
-${\remailmsg(\eid, \pseudonym)}^{\fremailmsg}$    \hspace{3pt}
+${\remailmsg(\eid, \pseudonym)}^{\fremailmsg}$  \\
+%  \hspace{3pt}
 %\hspace{20pt}
 %\\ %[1.1ex]
-${\automsg(\eid, \subject, \body)}^{\fautoresponder} $  \hspace{3pt}
+${\automsg(\eid, \subject, \body)}^{\fautoresponder} $ \\
+% \hspace{3pt}
 %\\ %[1.1ex]
 ${\alias(\eid, \emailAtt, \nickname)}^{\faddressbook}$\\
 %\\ %[1.1ex]
 %${\filtermsg(\eid, \suffix)}^{\ffiltermsg} $\\ %[1.1ex]
 \hline
 \end{tabular}
-\vspace{-13pt}
-% \end{center}
-\end{table*}
+%\vspace{-13pt}
+ \end{center}
+\end{table}
 
 
 From this starting point, we introduce new attributes and relations that are

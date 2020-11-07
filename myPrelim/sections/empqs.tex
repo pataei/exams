@@ -24,14 +24,14 @@ after that date (\vThree--\vFive\ in our encoding).
 %
 For example, one query expresses the intent ``return the salary of employee
 number $10004$'' at a time corresponding to \vThree, which we encode:
-%\[
-\centerline{
-\ensuremath{
+\[
+%\centerline{
+%\ensuremath{
 Q_1 = \vPrj[\oatt{\salary}{\vThree}]{%
   \joinRelR{\selectRel{\empno=10004}{\empacct}}{\job}
            {\empacct.\titleatt = \job.\titleatt}}
-%\]
-}.}
+\]
+%}.}
 % Note that the presence condition of the only attribute \salary\ determines the
 % presence condition of the resulting table.
 %
@@ -48,8 +48,10 @@ We encode the same intent, but for all times at or after \vThree\ as follows:
 %
 \begin{align*}
 Q_2 &=  \vThree\vee\vFour\vee\vFive \langle \pi_\salary 
- (\vThree\vee\vFour\langle\\
-&    \joinRelR{(\vSel[\empno=10004]{\empacct})}{\job}
+ (\vThree\vee\vFour\langle
+% \\
+%&
+    \joinRelR{(\vSel[\empno=10004]{\empacct})}{\job}
              {}, 
 %&\quad\qquad 
 {\vSel[\empno=10004]{\empacct}}\rangle), \empRel\rangle
@@ -101,18 +103,23 @@ name of the manager of department d001'' during the time frame of
 \vThree--\vFive:
 %
 %\begin{align*}
-\ensuremath{ Q_3 = \vThree\vee\vFour\vee\vFive \langle
-  \pi_{\name,\fname,\lname} }
+%\ensuremath{ 
+
+\[
+Q_3 = \vThree\vee\vFour\vee\vFive \langle
+  \pi_{\name,\fname,\lname} 
+%  }
 %  \\
 %&
-\centerline{
-\ensuremath{  
+%\centerline{
+%\ensuremath{  
 %\hspace{10pt}
 %\qquad
 (\joinRel{\chc[\vThree]{\empacct,\empbio}}{(\vSel[\deptno=\deptOne]{\dept})}
            {\empno=\managerno}),
   \empRel \rangle
-  }.}
+\]  
+%  }.}
 %\end{align*}
 %
 %\noindent
@@ -125,16 +132,20 @@ presence conditions of the attributes from the variational schema are listed
 explicitly in the projection:
 %
 %\begin{align*}
-\ensuremath{
+%\ensuremath{
+\[
 Q_3' = \vThree\vee\vFour\vee\vFive \langle
-  \pi_{\oatt{\name}{\vThree\vee\vFour},\oatt{\fname}{\vFive},\oatt{\lname}{\vFive}} }
+  \pi_{\oatt{\name}{\vThree\vee\vFour},\oatt{\fname}{\vFive},\oatt{\lname}{\vFive}} 
+%  }
 %  \\
 %&
-\centerline{
-\ensuremath{
+%\centerline{
+%\ensuremath{
   (\joinRel{\chc[\vThree]{\empacct,\empbio}}{(\vSel[\deptno=\deptOne]{\dept})}
            {\empno=\managerno}),
-  \empRel \rangle}.}
+  \empRel \rangle
+  \]
+%  }.}
 %\end{align*}
 %
 %
