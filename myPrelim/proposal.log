@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  7 NOV 2020 13:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  7 NOV 2020 14:17
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1404,14 +1404,14 @@ LaTeX Warning: Hyper reference `ex:conf-vq' on page 27 undefined on input line
 ) (./sections/varMin.tex
 
 LaTeX Warning: Hyper reference `ex:vq-specific' on page 27 undefined on input l
-ine 10.
+ine 9.
 
 
 LaTeX Warning: Hyper reference `ex:vq-same-intent-mult-vars' on page 27 undefin
-ed on input line 10.
+ed on input line 9.
 
 
-LaTeX Font Warning: Command \small invalid in math mode on input line 32.
+LaTeX Font Warning: Command \small invalid in math mode on input line 31.
 
 (./formulas/varMinRules.tex
 
@@ -1439,21 +1439,21 @@ sed, duplicate ignored
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.245 
-      ]) (./sections/conclusion.tex) [30] (./proposal.bbl [31] [32] [33])
-(./sections/enronvdb.tex [34] (./sections/enronvsch.tex [35pdfTeX warning (ext4
-): destination with the same identifier (name{table.8}) has been already used, 
-duplicate ignored
+      ]) (./sections/conclusion.tex) [30] [31] (./proposal.bbl [32] [33]
+[34]) (./sections/enronvdb.tex [35] (./sections/enronvsch.tex [36pdfTeX warning
+ (ext4): destination with the same identifier (name{table.8}) has been already 
+used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.54 
-     ] [36pdfTeX warning (ext4): destination with the same identifier (name{tab
+     ] [37pdfTeX warning (ext4): destination with the same identifier (name{tab
 le.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.225 
-      ]) (./sections/enronpopulate.tex [37] Excluding 'comment' comment.))
+l.149 
+      ]) (./sections/enronpopulate.tex [38] Excluding 'comment' comment.))
 (./sections/empvdb.tex (./figures/table-emp-schemas.tex
 Overfull \hbox (0.77408pt too wide) in paragraph at lines 16--16
 []|[]|  
@@ -1479,29 +1479,29 @@ Overfull \hbox (0.77408pt too wide) in paragraph at lines 44--44
 []|[]|  
  []
 
-) [38pdfTeX warning (ext4): destination with the same identifier (name{table.10
+) [39pdfTeX warning (ext4): destination with the same identifier (name{table.10
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.96 \end{align*}
-                 ] (./figures/table-emp-vschema.tex)) (./sections/qs.tex
-[39pdfTeX warning (ext4): destination with the same identifier (name{table.11})
- has been already used, duplicate ignored
+l.69 
+     ] (./figures/table-emp-vschema.tex) [40pdfTeX warning (ext4): destination 
+with the same identifier (name{table.11}) has been already used, duplicate igno
+red
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.21 
-     ]
+l.176 
+      ]) (./sections/qs.tex
 
-LaTeX Warning: Hyper reference `sec:background' on page 40 undefined on input l
+LaTeX Warning: Hyper reference `sec:background' on page 41 undefined on input l
 ine 57.
 
 
-LaTeX Warning: Reference `sec:background' on page 40 undefined on input line 57
+LaTeX Warning: Reference `sec:background' on page 41 undefined on input line 57
 .
 
-(./sections/enronqs.tex [40] [41]
+(./sections/enronqs.tex [41] [42]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 260.
 
@@ -1514,7 +1514,7 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 284.
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 284.
 
-) (./sections/empqs.tex [42]
+[43]) (./sections/empqs.tex
 Overfull \hbox (3.51126pt too wide) detected at line 146
 \OML/ztmcm/m/it/10.95 Q[] \OT1/ztmcm/m/n/10.95 = \OML/ztmcm/m/it/10.95 V[] \OMS
 /ztmcm/m/n/10.95 _ \OML/ztmcm/m/it/10.95 V[] \OMS/ztmcm/m/n/10.95 _ \OML/ztmcm/
@@ -1527,7 +1527,7 @@ m/it/10.95 V[]\OMS/ztmcm/m/n/10.95 h\OML/ztmcm/m/it/10.95 ^^Y[]\OT1/ztmcm/m/n/1
 
 Package natbib Warning: There were undefined citations.
 
-[43]
+[44]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 211.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 211.
  (./proposal.aux)
@@ -1548,10 +1548,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 211.
  ) 
 Here is how much of TeX's memory you used:
- 32903 strings out of 492616
- 620786 string characters out of 6129482
+ 32908 strings out of 492616
+ 620862 string characters out of 6129482
  997671 words of memory out of 5000000
- 35998 multiletter control sequences out of 15000+600000
+ 36001 multiletter control sequences out of 15000+600000
  604994 words of font info for 185 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,25n,84p,5627b,1021s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1574,10 +1574,10 @@ ist/fonts/type1/public/stmaryrd/stmary8.pfb></usr/local/texlive/2019/texmf-dist
 1/urw/symbol/usyr.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times
 /utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on proposal.pdf (43 pages, 392486 bytes).
+Output written on proposal.pdf (44 pages, 394114 bytes).
 PDF statistics:
- 811 PDF objects out of 1000 (max. 8388607)
- 732 compressed objects within 8 object streams
- 182 named destinations out of 1000 (max. 500000)
+ 820 PDF objects out of 1000 (max. 8388607)
+ 740 compressed objects within 8 object streams
+ 184 named destinations out of 1000 (max. 500000)
  322 words of extra memory for PDF output out of 10000 (max. 10000000)
 
