@@ -5,7 +5,7 @@ The choice calculus~\cite{Walk13thesis,EW11tosem} is a metalanguage for
 describing variation in programs and its elements such as data 
 structures~\cite{Walk14onward,EWC13fosd}.
 In the choice calculus, variation is represented in-place as
-choices between alternative subexpressions. For example, the
+choices between alternative subexpressions. For example, 
 the variational expression 
 $e = \chc [A] {1,2} + \chc [B] {3,4} + \chc [A] {5,6}$
  contains three choices.
@@ -16,25 +16,27 @@ two dimensions, $A$ and $B$, and the two choices in dimension
 $A$ are synchronized. Therefore, the variational expression
 $e$ represents four different plain expressions, depending
 on whether the left or right alternatives are selected from each
-dimension. Assuming that dimensions evaluate to boolean values, we
-have: (1) $1+2+5$, $A$ and $B$ evaluate to \t,
-(2) $1+4+5$, $A$ evaluates to \t\ and $B$ evaluates to \f,
-(3) $2+3+6$, $A$ evaluates to \f\ and $B$ evaluates to \t,
-and (4) $2+4+6$, $A$ and $B$ evaluate to \f.
+dimension. Assuming that dimensions may be set to boolean values
+where \t\ indicates the left alternative and \f\ indicates the
+right alternative, we
+have: (1) $1+3+5$, when $A$ and $B$ are \t,
+(2) $1+4+5$, when $A$ is \t\ and $B$ is \f,
+(3) $2+3+6$, when $A$ is \f\ and $B$ is \t,
+and (4) $2+4+6$, when $A$ and $B$ are \f.
 
 %
 The formula
 choice calculus~\cite{HW16fosd} extends the choice calculus 
 by allowing dimensions to be propositional formulas. For example,
 the variational expression $e' = \chc [A \vee B] {1,2}$ represents
-two plain expressions: (1) $1$, $A \vee B$ evaluate to \t\
-and (2) $1$, $A \vee B$ evaluate to \f.
+two plain expressions: (1) $1$, when $A \vee B$ evaluates to \t\
+and (2) $1$, when $A \vee B$ evaluates to \f.
 
 %
-Dimension $\dimMeta$ can also be used to \emph{annotate/tag} element $\elem$
+A formula $\dimMeta$ can also be used to \emph{annotate/tag} an element $\elem$
 which is denoted by $\annot \elem$.
 For example, the variational expression $\annot [A \vee B] 1$ states that 
-the expression $1$ is valid when $A \vee B$ evaluates to \t\ and otherwise it is invalid. 
+the expression $1$ is present when $A \vee B$ evaluates to \t\ and otherwise it is absent. 
 
 
 %%\point{vset.}

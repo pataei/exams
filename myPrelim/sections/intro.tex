@@ -28,14 +28,14 @@ schema evolution~\cite{SchEvolRA90McKenzie, schVersioning97Castro,
 tempSchEvol91Ariav,prima08Moon}, 
 data integration~\cite{dataIntegBook}, 
 and database versioning~\cite{datasetVersioning,dbVersioning},
-where each instance has a context-specific solution that is hard-wired
+where each instance has a context-specific solution that is tailored
 to the constrained problem definition. 
 %
-While schema
-evolution approaches deal with variation in the schema (i.e., the structure
-of the data) database versioning and data integration systems 
+For example, schema
+evolution approaches deal with variation in a schema (i.e., the structure
+of the data) over time, and database versioning and data integration systems 
 manage variation in the content of the database. Yet, the database
-community does not consider them as instances of the same problem.
+community does not consider all of these as instances of a similar problem.
 %For example, 
 %approaches designed to manage schema evolution over time force
 %database administrators to add timestamps to each version of the schema
@@ -53,16 +53,17 @@ in the database and every time the database evolves, a new
 %which needs to coexists in parallel
 %with other variants.
 Current solutions addressing schema
-evolution rely on temporal nature of schema evolution by using
+evolution rely on the temporal nature of schema evolution by using
 timestamps~\cite{SchEvolRA90McKenzie, schVersioning97Castro, 
 tempSchEvol91Ariav, tsql95Snodgrass} 
-or keeping an external file of time-line history of 
+or keeping an external history of 
 changes applied to the database~\cite{prima08Moon}. 
 These approaches only consider variation in time and do not
 %However, none of them 
 incorporate the time-based changes into
 the database directly, rather they \emph{simulate} the effect of these changes,
-resulting in brittle systems.
+resulting in context-specific systems that break when used in another instance of
+variation in databases. 
 
 %Database-backed software produced by software product line (SPL) 
 %is an example where variation arises in databases and is poorly 
@@ -114,8 +115,10 @@ resulting in brittle systems.
 
 
 Additionally, the software product line (SPL) community has realized that 
-variation in software development travels to its artifact including the database.
+variation in software propagates to the artifacts the software relies on, 
+including the database.
 %
+\TODO{revise def. Eric said it's awkward!}
 SPL is an
 approach to developing and maintaining software-intensive systems 
 in a cost-effective, easy to maintain manner by accommodating variation
@@ -124,18 +127,24 @@ in the software that is being reused.
 In SPL, a common codebase is shared and used to produce products w.r.t.
 a set of selected (enabled) features~\cite{splBook}. 
 %
-Different client's products of a SPL typically have different
+Different products of an SPL typically have different
 sets of enabled features or are tailored to run in different environments. These
-differences impose different data requirements which creates variation in space 
-in the shared database used in the common codebase. 
+differences impose different data requirements, which in turn requires a different database 
+for each product.
+% creates variation in space 
+%in the shared database used in the common codebase. 
 %
-The SPL community has closed
-the gap of variation appearing in database schema while developing software
-and the database schema used in client's application by
-encoding variation explicitly in data model, called \emph{variable data model},
-by tagging features to elements of the schema and deploying the variable
-data model for client's application by only selecting the set of elements that 
-their associated features have been selected for client's application~\cite{skrhas09DBIS, slrs12CAiSE, 
+%The SPL community has closed
+%the gap of variation appearing in database schema while developing software
+%and the database schema used in client's application 
+Researchers have addressed this problem by
+encoding variation explicitly in the data model, called a \emph{variable data model},
+by associating features with elements of the schema.
+% and deploying the variable
+%data model for 
+The specific database for a client's application can then be generated 
+ by only selecting the set of elements 
+associated with features that have been selected for the client's application~\cite{skrhas09DBIS, slrs12CAiSE, 
 ad11varDataModel}. 
 However, this approach breaks when software itself evolves over time, 
 which is unavoidable~\cite{dbSPLevolve}.
@@ -158,12 +167,13 @@ which is unavoidable~\cite{dbSPLevolve}.
 To the best of our knowledge, 
 there is no generic solution that manages all possible kinds of
 variation in databases. Thus, we explore the idea of considering
-variation as a \emph{first-class citizen} in databases. Such exploration
-poses questions such as: How can variation be represented in a generic
-expressive manner? How can variation be encoded explicitly in databases?
+variation as an orthogonal concern in databases. Such exploration
+poses questions such as: How can variation be represented in a generic and
+expressive manner? 
+%How can variation be encoded explicitly in databases?
 What are the benefits and drawbacks of explicitly encoding variation in 
-databases? How applicable and feasible it is to encode variation 
-directly in databases?
+databases? How feasible is it to encode variation 
+directly in databases for realistic problems?
 
 To answer these research questions we propose the following research goals:
 
@@ -171,7 +181,7 @@ To answer these research questions we propose the following research goals:
 \item Objective 1: Identify the kinds of variation existing in relational databases in 
 different application domains.
 \item Objective 2: Design a query language and implement a database management 
-system that accommodate  variations identified in objective 1.
+system that accommodate  variations identified in Objective 1.
 \item Objective 3: Demonstrate how the proposed system manages
 variation in databases in different application domains and how effective and efficient it is.
 \item Objective 4: Mechanize proofs of properties of the language and the system.
@@ -180,12 +190,18 @@ variation in databases in different application domains and how effective and ef
 %language to cover more kinds of variation.
 \end{itemize}
 
-The proposal is structured such that 
-for each objective we pose research questions that need to be answered.
-The answers or our plan to explore a question follows after posing the question,
-however, the details of our approach for a question is referenced in a separate
-section so that the reader can skip ahead if they choose not to go deep in details
-for an approach.
+\TODO{at the end, make sure the abstract and objectives are promising the same thing}
+
+%The proposal is structured such that 
+%for 
+Each objective has some research questions that need to be answered
+which are followed by how we approached or will approach questions with references to
+sections including details of our approach.
+% The details
+%How we approach a question followsThe answers or our plan to explore a question follows after posing the question,
+%however, the details of our approach for a question is referenced in a separate
+%section so that the reader can skip ahead if they choose not to go deep in details
+%for an approach.
 
 %----------------------------------------------------------------------------
 %
