@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  7 NOV 2020 14:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  8 NOV 2020 18:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1426,34 +1426,56 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 69.
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 69.
 
-)) [27]) [28pdfTeX warning (ext4): destination with the same identifier (name{f
-igure.9}) has been already used, duplicate ignored
+)) [27])
+<figs/conn.pdf, id=541, 599.35919pt x 466.62328pt>
+File: figs/conn.pdf Graphic file (type pdf)
+<use figs/conn.pdf>
+Package pdftex.def Info: figs/conn.pdf  used on input line 36.
+(pdftex.def)             Requested size: 479.48799pt x 373.29912pt.
+
+Overfull \hbox (9.73297pt too wide) in paragraph at lines 36--38
+ [][] 
+ []
+
+[28pdfTeX warning (ext4): destination with the same identifier (name{figure.9})
+ has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.70 
-     ]) (./sections/relWork.tex Excluding 'comment' comment. [29pdfTeX warning 
-(ext4): destination with the same identifier (name{table.7}) has been already u
-sed, duplicate ignored
+l.74 
+     ] [29pdfTeX warning (ext4): destination with the same identifier (name{fig
+ure.10}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.74 
+      <./figs/conn.pdf
+
+pdfTeX warning: /usr/local/texlive/2019/bin/x86_64-darwin/pdflatex (file ./figs
+/conn.pdf): PDF inclusion: invalid other resource which is no dict (key 'ProcSe
+ts', type <array>); ignored.
+>]) (./sections/relWork.tex Excluding 'comment' comment. [30pdfTeX warning (ext
+4): destination with the same identifier (name{table.7}) has been already used,
+ duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.245 
-      ]) (./sections/conclusion.tex) [30] [31] (./proposal.bbl [32] [33]
-[34]) (./sections/enronvdb.tex [35] (./sections/enronvsch.tex [36pdfTeX warning
+      ]) (./sections/conclusion.tex) [31] [32] (./proposal.bbl [33] [34]
+[35]) (./sections/enronvdb.tex [36] (./sections/enronvsch.tex [37pdfTeX warning
  (ext4): destination with the same identifier (name{table.8}) has been already 
 used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.54 
-     ] [37pdfTeX warning (ext4): destination with the same identifier (name{tab
+     ] [38pdfTeX warning (ext4): destination with the same identifier (name{tab
 le.9}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.149 
-      ]) (./sections/enronpopulate.tex [38] Excluding 'comment' comment.))
+      ]) (./sections/enronpopulate.tex [39] Excluding 'comment' comment.))
 (./sections/empvdb.tex (./figures/table-emp-schemas.tex
 Overfull \hbox (0.77408pt too wide) in paragraph at lines 16--16
 []|[]|  
@@ -1479,13 +1501,13 @@ Overfull \hbox (0.77408pt too wide) in paragraph at lines 44--44
 []|[]|  
  []
 
-) [39pdfTeX warning (ext4): destination with the same identifier (name{table.10
+) [40pdfTeX warning (ext4): destination with the same identifier (name{table.10
 }) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
 l.69 
-     ] (./figures/table-emp-vschema.tex) [40pdfTeX warning (ext4): destination 
+     ] (./figures/table-emp-vschema.tex) [41pdfTeX warning (ext4): destination 
 with the same identifier (name{table.11}) has been already used, duplicate igno
 red
 
@@ -1494,14 +1516,14 @@ red
 l.176 
       ]) (./sections/qs.tex
 
-LaTeX Warning: Hyper reference `sec:background' on page 41 undefined on input l
+LaTeX Warning: Hyper reference `sec:background' on page 42 undefined on input l
 ine 57.
 
 
-LaTeX Warning: Reference `sec:background' on page 41 undefined on input line 57
+LaTeX Warning: Reference `sec:background' on page 42 undefined on input line 57
 .
 
-(./sections/enronqs.tex [41] [42]
+(./sections/enronqs.tex [42] [43]
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 260.
 
@@ -1514,7 +1536,7 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 284.
 
 LaTeX Font Warning: Command \small invalid in math mode on input line 284.
 
-[43]) (./sections/empqs.tex
+[44]) (./sections/empqs.tex
 Overfull \hbox (3.51126pt too wide) detected at line 146
 \OML/ztmcm/m/it/10.95 Q[] \OT1/ztmcm/m/n/10.95 = \OML/ztmcm/m/it/10.95 V[] \OMS
 /ztmcm/m/n/10.95 _ \OML/ztmcm/m/it/10.95 V[] \OMS/ztmcm/m/n/10.95 _ \OML/ztmcm/
@@ -1527,7 +1549,7 @@ m/it/10.95 V[]\OMS/ztmcm/m/n/10.95 h\OML/ztmcm/m/it/10.95 ^^Y[]\OT1/ztmcm/m/n/1
 
 Package natbib Warning: There were undefined citations.
 
-[44]
+[45]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 211.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 211.
  (./proposal.aux)
@@ -1548,10 +1570,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 211.
  ) 
 Here is how much of TeX's memory you used:
- 32908 strings out of 492616
- 620862 string characters out of 6129482
+ 32915 strings out of 492616
+ 620981 string characters out of 6129482
  997671 words of memory out of 5000000
- 36001 multiletter control sequences out of 15000+600000
+ 36005 multiletter control sequences out of 15000+600000
  604994 words of font info for 185 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  56i,25n,84p,5627b,1021s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1574,10 +1596,10 @@ ist/fonts/type1/public/stmaryrd/stmary8.pfb></usr/local/texlive/2019/texmf-dist
 1/urw/symbol/usyr.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times
 /utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on proposal.pdf (44 pages, 394114 bytes).
+Output written on proposal.pdf (45 pages, 494242 bytes).
 PDF statistics:
- 820 PDF objects out of 1000 (max. 8388607)
- 740 compressed objects within 8 object streams
- 184 named destinations out of 1000 (max. 500000)
- 322 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 865 PDF objects out of 1000 (max. 8388607)
+ 773 compressed objects within 8 object streams
+ 186 named destinations out of 1000 (max. 500000)
+ 327 words of extra memory for PDF output out of 10000 (max. 10000000)
 
