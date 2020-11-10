@@ -148,14 +148,14 @@ if configuration \config\ violates the relationship then
 %evaluating the feature model \fModel\
 %under this configuration evaluates to \f: 
 \fSem \fModel = \f.
-For example, the restriction that at a given time only one of temporal features $\vOne - \vFive$
-can be enabled is represented by:
+For example, the restriction that at a given time exactly one of the temporal features $\vOne - \vFive$
+must be enabled is represented by:
 %the feature expression:
 \ensuremath{
 \vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
 },
-where $\A \oplus \B \oplus \ldots \oplus \fName_n$ is syntactic sugar for $(\A \wedge \neg \B \wedge \ldots \wedge \neg \fName_n) \vee (\neg \A \wedge \B \wedge \ldots \wedge \neg \fName_n) \vee (\neg \A \wedge \neg \B \wedge \ldots \wedge \fName_n)$
-, i.e., features are mutually exclusive.
+where $\A \oplus \B \oplus \ldots \oplus \fName_n$ is syntactic sugar for $(\A \wedge \neg \B \wedge \ldots \wedge \neg \fName_n) \vee (\neg \A \wedge \B \wedge \ldots \wedge \neg \fName_n) \vee (\neg \A \wedge \neg \B \wedge \ldots \wedge \fName_n)$.
+%, i.e., features are mutually exclusive.
 %multiple features cannot be enabled simultaneously.
 %$\left(\vOne \wedge \neg \left(\vTwo \vee \hdots \vee \vFive \right) \right)
 %\vee \left(\vTwo \wedge \neg \left(\vOne \vee \vThree \vee \vFour \vee \vFive \right) \right) 

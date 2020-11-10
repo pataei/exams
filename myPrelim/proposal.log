@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  9 NOV 2020 18:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  9 NOV 2020 20:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1233,8 +1233,8 @@ e 90.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.195 \item
-            [\textbf{(\nZero)}]] Excluding 'comment' comment.)
+l.210 \item [\textbf{(\nOne)}]
+                              ] Excluding 'comment' comment.)
 (./sections/encodeVar.tex [8] (./formulas/fexpDef.tex
 Excluding 'comment' comment.))) (./sections/obj2.tex [9pdfTeX warning (ext4): d
 estination with the same identifier (name{figure.2}) has been already used, dup
@@ -1242,7 +1242,7 @@ licate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.17 
+l.40 
      ] Excluding 'comment' comment.
 
 LaTeX Warning: Hyper reference `sec:v-set' on page 10 undefined on input line 5
@@ -1307,7 +1307,7 @@ e.5}) has been already used, duplicate ignored
                                                   \fi \fi 
 l.23 
      ] Excluding 'comment' comment. [18]
-<figs/arch8.pdf, id=410, 422.53859pt x 286.1892pt>
+<figs/arch8.pdf, id=408, 422.53859pt x 286.1892pt>
 File: figs/arch8.pdf Graphic file (type pdf)
 <use figs/arch8.pdf>
 Package pdftex.def Info: figs/arch8.pdf  used on input line 167.
@@ -1424,7 +1424,7 @@ LaTeX Font Warning: Command \small invalid in math mode on input line 69.
 LaTeX Font Warning: Command \small invalid in math mode on input line 69.
 
 )) [27])
-<figs/conn2.pdf, id=541, 599.35919pt x 472.64577pt>
+<figs/conn2.pdf, id=539, 599.35919pt x 472.64577pt>
 File: figs/conn2.pdf Graphic file (type pdf)
 <use figs/conn2.pdf>
 Package pdftex.def Info: figs/conn2.pdf  used on input line 36.
@@ -1561,11 +1561,14 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 212.
  ) 
 Here is how much of TeX's memory you used:
- 32921 strings out of 492616
- 621071 string characters out of 6129482
+ 32919 strings out of 492616
+ 621057 string characters out of 6129482
  997671 words of memory out of 5000000
  36009 multiletter control sequences out of 15000+600000
  604994 words of font info for 185 fonts, out of 8000000 for 9000
@@ -1590,10 +1593,10 @@ ist/fonts/type1/public/stmaryrd/stmary8.pfb></usr/local/texlive/2019/texmf-dist
 1/urw/symbol/usyr.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times
 /utmb8a.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmr8a.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on proposal.pdf (46 pages, 498849 bytes).
+Output written on proposal.pdf (46 pages, 499105 bytes).
 PDF statistics:
- 889 PDF objects out of 1000 (max. 8388607)
- 796 compressed objects within 8 object streams
- 188 named destinations out of 1000 (max. 500000)
+ 886 PDF objects out of 1000 (max. 8388607)
+ 793 compressed objects within 8 object streams
+ 186 named destinations out of 1000 (max. 500000)
  327 words of extra memory for PDF output out of 10000 (max. 10000000)
 

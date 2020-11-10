@@ -4,7 +4,7 @@
 that accommodate identified variations}
 \label{sec:ro2}
 
-Having an encoding that represent variation we need to incorporate it within the 
+Having an encoding that represents variation, we need to incorporate it within the 
 database and the query language to allow explicit storing and manipulation of 
 variation in a database. Objective 2 aims to design and implement a database framework
 that encodes variation directly.
@@ -27,11 +27,12 @@ to answer for this objective.
 that accommodates identified variations}
 \tabularnewline
 \midrule
-RQ2.1: How should variation in form of feature expression be incorporated in the database directly? (\dbpl, \poly)
+RQ2.1: How should variation be incorporated to a database directly? (\dbpl, \poly)
 \tabularnewline[0.2cm]
-RQ2.2: What are appropriate query languages to interact with a database that accounts for variation explicitly? And how should variation in form of feature expression be incorporated in the query language? (\dbpl, \poly)
+RQ2.2: What are appropriate query languages to interact with a database that contains  variation? 
+How should variation be incorporated to the query language? (\dbpl, \poly)
 \tabularnewline[0.2cm]
-RQ2.3: Having a theoretical database framework that accounts for variation explicitly, how 
+RQ2.3: Having a theoretical database framework that accounts for variation, how 
 should we implement a database management system that uses that framework? (In progress)
 \tabularnewline
 \bottomrule
@@ -43,18 +44,18 @@ should we implement a database management system that uses that framework? (In p
 * annotations and choices
 \end{comment}
 
-For RQ2.1 we annotate elements of a database with feature expression.
+For RQ2.1, we annotate elements of a database with feature expressions.
 %as introduced in \secref{encode-var}. 
 We use annotated elements both in the schema and content.
 Within a schema we allow attributes and relations to exist 
-conditionally based on the feature expression assigned to them, called \emph{variational schema}.
+conditionally based on the feature expression assigned to them, called a \emph{variational schema}.
 \secref{vsch} provides the formal definition of variational schema and examples of it.
 At the content level, we annotate each tuple with a feature expression, indicating when the tuple 
-is present, called \emph{variational table}.
-\secref{vtab} provides the formal definition and examples of variational table
-which uses \emph{variational sets}, introduced in \secref{v-set}, for the formalizations.
+is present, called a \emph{variational table}.
+\secref{vtab} provides the formal definition and examples of variational tables,
+which uses \emph{variational sets}, introduced in \secref{vlist-vset}, for the formalizations.
 %
-Together variational schema and a set of variational tables associated with the 
+Together a variational schema and a set of variational tables associated with the 
 variational schema create a \emph{variational database (VDB)}, defined in \secref{vtab}.
 Conceptually, a  \emph{single} variational database represents \emph{many}
 different plain relational
@@ -86,7 +87,7 @@ for reducing a query's variation.
 
 \end{comment}
 
-For RQ2.2 we need to design a query language that reflects the variational 
+For RQ2.2, we need to design a query language that reflects the variational 
 information need while working with a variational database. 
 To express and represent variation in queries,
 we incorporate formula choice calculus~\cite{HW16fosd}  into a 
@@ -100,21 +101,21 @@ relational database variants, however, a single v-query is also capable of captu
 intents over different database variants.
 
 
-For RQ2.3 and to interact with VDBs using v-queries, we are implementing
-and optimizing
+For RQ2.3, and to interact with VDBs using v-queries, we are implementing
+the
 \emph{Variational Database Management System (VDBMS)}.
-VDBMS is implemented in Haskell. VDBMS sit on 
-top of any DBMS that the user desires and used to store their data 
+VDBMS is implemented in Haskell. VDBMS sits on 
+top of any DBMS that the user desires and is used to store  data 
 %\arashComment{I did not find any explanation on how v-tables are stored in an RDBMS.} 
 %\resp{it is exactly implemented as formalized in v-table section.}
 %\responded
-in form of variational tables.
+in the form of variational tables.
 %, explained in \secref{vtab}.
 %To acquire an extensible system we implement 
 To support running VDBMS with multiple different plain relational DBMS backends,
 we provide
 a shared interface
-for connecting to and inquiring information from a DBMS and
+for connecting to and querying information from a DBMS and
 instantiate it for different database engines such as PostgreSQL and
 MySQL. 
 %\rewrite{any dbms that has a library in haskell that has a function
@@ -122,10 +123,10 @@ MySQL.
 %database.sqlite3. } --> The following addresses this:
 An expert can extend VDBMS to another database engine by
 writing methods for connecting to and querying from the database.
-\secref{impl} provides details of our implementation and the architectur of 
+\secref{impl} provides details of our implementation and the architecture of 
 VDBMS.
 
-\secref{ro3} discusses the objective 3 and its research questions.
+%\secref{ro3} discusses the objective 3 and its research questions.
 
 \input{sections/vset}
 \input{sections/vsch}
