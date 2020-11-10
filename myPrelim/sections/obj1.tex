@@ -1,12 +1,21 @@
-\subsection{Identify the kinds of variation existing in relational databases in 
-different application domains}
+\subsection{Identify the dimension of variation space and design an encoding to represent parts of a variation space}
 \label{sec:ro1}
 
-To encode variation explicitly in databases we investigate different kinds of 
-variation that appears in databases in various application domains. 
-Objective 1 aims to represent an encoding for  variation that is 
-generic enough that can encode different kinds of variation and is
-not bind to a specific instance of variation or application domain. 
+After studying
+different application domains where multiple database instances 
+exists simultaneously or over time and they conceptually represent the same or similar
+data, but, differ slightly in their schema and/or content for business or experimental reasons,
+we needed to understand the variation space that appears in databases.
+%Some of these application domains in \secref{intro}. 
+Objective 1 aims to identify the dimensions of variation space in databases
+and design a generic encoding to represent parts of a variation space independent 
+from the application domain.
+
+%To encode variation explicitly in databases we investigate different kinds of 
+%variation that appear in databases in various application domains. 
+%Objective 1 aims to represent an encoding for  variation that is 
+%generic enough that can encode different kinds of variation and is
+%not bind to a specific instance of variation or application domain. 
 %
 \tabref{ro1} presents individual research questions we need to answer for
 this objective. 
@@ -17,48 +26,23 @@ this objective.
 \centering
 \begin{tabularx}{\textwidth}{X}
 \toprule
- \textbf{Objective 1: Identify the kinds of variation existing in relational databases in 
-different application domains}\tabularnewline
+ \textbf{Objective 1: Identify the dimension of variation space and design an encoding to represent parts of a variation space}\tabularnewline
 \midrule
-RQ1.1: What are the application domains that variation appears in a database? 
-What are the dimensions of variation in a database? (\poly, \vamos)
+RQ1.1: What are the dimensions of variation space appearing in databases? (\poly, \vamos)
 \tabularnewline[0.2cm]
-RQ1.2: How can all identified variation instances be represented  in a generic encoding without
-regards for the application domain? (\dbpl)
+RQ1.2: How can parts of the variation space be described and encoded? (\dbpl)
 \tabularnewline[0.2cm]
-RQ1.3: Can we encode identified instances of variation using our encoding? 
-What are the steps one need to take to encode an instance of variation in our
-encoding? (\vamos)
+RQ1.3: Can the encoding chosen in RQ1.2 represent realistic variation spaces in databases? (\vamos)
 \tabularnewline
 \bottomrule
 \end{tabularx}
 \end{table}
 
-\begin{comment}
-* motivating example
-*dimensions of variation
-%* variation appears when ...
-%* schema evolution
-%* repeated pattern in database versioning, data integration
-%* this also comes up in software development
-%* and software also evolves in time
-%* two dimension that can interact with each other: time and space
-\end{comment}
-
-%\TODO{for all these research questions here explain what you do intuitively
-%and then refer to the formal definition and examples in subsection where they 
-%can skip ahead if they want to.}
 
 For RQ1.1 
-%\TODO{complete with how variation arises in databases}
-we explored different application domains where multiple database instances 
-exists simultaneously or over time and they conceptually represent the same or similar
-data, but, differ slightly in their schema and/or content for business or experimental reasons.
-We introduced some of these application domains in \secref{intro}. 
-
-After investigating the application domains we realized that variation
+we investigated the application domains and realized that variation
 in databases is similar to variation in software systems with regards
-to the dimensions of variation
+to the dimensions of variation.
 %
 Software systems can vary in two dimensions: ``space'' and ``time''.
 Variation over space refers to the simultaneous development and maintenance of
@@ -120,22 +104,20 @@ concepts.
 * propositional formulas of features
 \end{comment}
 
-For RQ1.2 we introduce a \emph{feature space} that captures aspects of 
+For RQ1.2 we take advantage of SPL literature and use a \emph{feature space} 
+that captures aspects of 
 variation that may appear in a variational database scenario. A feature is
 basically some characteristic that is important to the database administrator
 and developers while interacting with the database.
-We then introduce \emph{feature expressions} as propositional formulas of
-features to have an expressive representation of variation. 
+We then construct propositional formulas of features, called \emph{feature expressions},
+to indicate a specific partition of the variation spaces.
 \secref{encode-var} provides the formal definition and examples of
 features and feature expressions.
 
-\begin{comment}
-* show case the applicability and feasibility of encoding instances of variation using feature expression
-\end{comment}
 
 For RQ1.3 we provide two case studies by taking 
 two real-world scenarios where variation appears
-in databases and encode their variation using feature expressions.
+in databases and encode their variation space using feature expressions.
 %
 In our first case study, we focus on variation in ``space''.
 It shows the use of feature expression to encode the variation
@@ -177,7 +159,9 @@ scenario. We systematically adapt an existing database evolution scenario from
 \citet{prima08Moon} into a VDB and populate it by a dataset that is widely used
 in databases research.\footnote{\url{https://github.com/datacharmer/test_db}}
 %
-For this case, we assign a feature to each version of the schema.
+For this case, the variation space must include features that indicate
+each version of the database, thus,
+we assign a feature to each version of the schema.
 For example, for the original schema we have the feature \vOne\ and
 as the schema is evolving and each time we have a new schema we 
 assign it a new feature. That is, for the second schema we have the 

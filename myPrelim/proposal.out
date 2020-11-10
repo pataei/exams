@@ -4,7 +4,7 @@
 \BOOKMARK [2][-]{subsection.3.1}{Relational Databases and Relational Algebra}{section.3}% 4
 \BOOKMARK [2][-]{subsection.3.2}{Formula Choice Calculus and Annotation}{section.3}% 5
 \BOOKMARK [1][-]{section.4}{Research Goals and Approaches}{}% 6
-\BOOKMARK [2][-]{subsection.4.1}{Identify the kinds of variation existing in relational databases in different application domains}{section.4}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Identify the dimension of variation space and design an encoding to represent parts of a variation space}{section.4}% 7
 \BOOKMARK [3][-]{subsubsection.4.1.1}{Motivating Example}{subsection.4.1}% 8
 \BOOKMARK [3][-]{subsubsection.4.1.2}{Encoding Variability}{subsection.4.1}% 9
 \BOOKMARK [2][-]{subsection.4.2}{Design and implement a database framework that accommodate identified variations}{section.4}% 10
