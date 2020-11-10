@@ -22,11 +22,11 @@ RQ3.1: Can realistic scenarios of variation in databases be encoded as a VDB
 and can their variational information need be queried by VRA?
 What are the steps to generate a VDB from a scenario of variation in a database? (\vamos)
 \tabularnewline[0.2cm]
-RQ3.2: What are the benefits and drawbacks of representing variation generically
-in databases as opposed to having scenario-tailored approaches? What are 
-possible improvements in the future? (\vamos)
-\tabularnewline[0.2cm]
-RQ3.3: How effective and efficient is VDBMS? (\vldb)
+%RQ3.2: What are the benefits and drawbacks of representing variation generically
+%in databases as opposed to having scenario-tailored approaches? What are 
+%possible improvements in the future? (\vamos)
+%\tabularnewline[0.2cm]
+RQ3.2: How effective and efficient is VDBMS? (\vldb)
 \tabularnewline
 \bottomrule
 \end{tabularx}
@@ -62,110 +62,110 @@ we did not have any database variants and their corresponding
 configuration. It is easy to generate a VDB from a set of 
 database variants with their corresponding configurations.
 
-%\TODO{rewrite the discussion}
-Generating the case studies provides us with an insight for RQ3.2.
-%
-%They helped us understand the flow of
-%data and the query through VDBMS better and allowed us to refactor
-%our data types to achieve a more useable and understandable encoding. 
+%%\TODO{rewrite the discussion}
+%Generating the case studies provides us with an insight for RQ3.2.
 %%
-%We are using the introduced case studies to debug and evaluate the
-%performance of different approaches implemented in VDBMS 
-%for running a variational query on a VDB. Profiling the result
-%of said evaluation will help us recognize where we can optimize
-%our system. 
-%
-%Additionally, 
-We expected our language to be more useable, readable, and
-easier to understand. However, we realize that there is a buy-in cost
-for programmers to pay when they first learn the language. Furthermore,
-the variation in queries may get complicated, yet the programmer can 
-still express their information need the way they are most comfortable
-since variability flows in different parts of a query as shown in \appref{emp-qs}, 
-that is, the overall query
-can be wrapped in a choice, attributes can be projected variationally and
-conditions can be encoded variationally. 
-Still, we believe that the expressiveness of our
-language allows for type checking queries (with variation encoded in them)
-even though it adds more complexity 
-to the language.
-
-%\textbf{How can other researchers benefit from the introduced case studies?}
-%
-%
-The case studies provide an accessible example of how one can encode different 
-kinds of variability in a database using a VDB. 
-The capability to encode variation directly in databases allows one to have a 
-starting point for attacking a new kind of variability appearing in databases,
-for example, one could have used the employee case study to attack database 
-evolution without developing an entirely new system. 
-%For example, 
-We suspect that VDBs can be used to also model database 
-versioning~\cite{datasetVersioning,dbVersioning} and
-data provenance~\cite{bt07sigmod}. Such applications can be pursued in future.
-%
-%Additionally, the distribution of our databases and queries in a generic
-%manner allows others to parse them easily to fit their research.
- %
-Furthermore, our encoding can be used to emulate the encoding of 
- variation within other sorts of data such as spreadsheets.
- 
- 
-%\textbf{What are the lessons learned while generating these case studies?}
-%do they illustrate common challenges/problems when handling variational data?
-%
-%Beyond the use of these studies for development of our system,
-%%The case studies 
-%they illustrate that the most critical step of
-%generating a VDB is recognizing the features and configurations
-%in order to correctly encode variability of each variant.
-%
-Encoding variation explicitly in both the database and the query
-provides developers with tracing variation and connecting
-the variation in data to variation in software development.
-For example,
-the ability to check properties over data as mentioned in
-\secref{vdb-props} is really useful for debugging the
-human mistakes. Similarly, the type system ensures that 
-queries do not contain undesired behavior. 
-%
-Thus, we believe that explicitly
-encoding variability in the data and the queries gives developers the 
-power of testing properties that otherwise would not be possible. 
-This is arguably the strongest advantage of VDBs. Recently
-lots of attempts have been done
-on statically analysis, theorem proving, model checking, and program verification
-of variable programs and 
-variable structure~\cite{brkts20vamos, bks11fvoos, ldl07jss, tmbhvs14}, especially 
-for safety-critical systems,
-%\eric{Eric, feel free to add other related work to support this argument.}
- and since databases are part of 
-software system the ability to analyze, check, and verify 
-properties over variational databases provides programmers
-with a seamless framework where they can verify software
-and its artifacts.
-%
-
-
-%\textbf{What are the future research directions?}
-%The case studies can be used to develop further research directions
-%to make programming with variational databases easier and safer.
+%%They helped us understand the flow of
+%%data and the query through VDBMS better and allowed us to refactor
+%%our data types to achieve a more useable and understandable encoding. 
+%%%
+%%We are using the introduced case studies to debug and evaluate the
+%%performance of different approaches implemented in VDBMS 
+%%for running a variational query on a VDB. Profiling the result
+%%of said evaluation will help us recognize where we can optimize
+%%our system. 
 %%
-%%The first direct future work following these case studies is generating
-%%a VDB automatically from a set of databases with their corresponding
-%%configuration. 
-%%\parisa{remove this if we have a semi-auto gen vdb approach.}
+%%Additionally, 
+%We expected our language to be more useable, readable, and
+%easier to understand. However, we realize that there is a buy-in cost
+%for programmers to pay when they first learn the language. Furthermore,
+%the variation in queries may get complicated, yet the programmer can 
+%still express their information need the way they are most comfortable
+%since variability flows in different parts of a query as shown in \appref{emp-qs}, 
+%that is, the overall query
+%can be wrapped in a choice, attributes can be projected variationally and
+%conditions can be encoded variationally. 
+%Still, we believe that the expressiveness of our
+%language allows for type checking queries (with variation encoded in them)
+%even though it adds more complexity 
+%to the language.
+%
+%%\textbf{How can other researchers benefit from the introduced case studies?}
 %%
-%%considering the new complexity and expressiveness added 
-%%to the language (explicit encoding of variability), 
-%For example, one can extend the query language with holes and even suggestions for 
-%the holes would make programmers job easier in both writing queries
-%and debugging them.
 %%
-%It will be very interesting to see the application of VDBs and 
-%variational queries in software testing.
+%The case studies provide an accessible example of how one can encode different 
+%kinds of variability in a database using a VDB. 
+%The capability to encode variation directly in databases allows one to have a 
+%starting point for attacking a new kind of variability appearing in databases,
+%for example, one could have used the employee case study to attack database 
+%evolution without developing an entirely new system. 
+%%For example, 
+%We suspect that VDBs can be used to also model database 
+%versioning~\cite{datasetVersioning,dbVersioning} and
+%data provenance~\cite{bt07sigmod}. Such applications can be pursued in future.
+%%
+%%Additionally, the distribution of our databases and queries in a generic
+%%manner allows others to parse them easily to fit their research.
+% %
+%Furthermore, our encoding can be used to emulate the encoding of 
+% variation within other sorts of data such as spreadsheets.
+% 
+% 
+%%\textbf{What are the lessons learned while generating these case studies?}
+%%do they illustrate common challenges/problems when handling variational data?
+%%
+%%Beyond the use of these studies for development of our system,
+%%%The case studies 
+%%they illustrate that the most critical step of
+%%generating a VDB is recognizing the features and configurations
+%%in order to correctly encode variability of each variant.
+%%
+%Encoding variation explicitly in both the database and the query
+%provides developers with tracing variation and connecting
+%the variation in data to variation in software development.
+%For example,
+%the ability to check properties over data as mentioned in
+%\secref{vdb-props} is really useful for debugging the
+%human mistakes. Similarly, the type system ensures that 
+%queries do not contain undesired behavior. 
+%%
+%Thus, we believe that explicitly
+%encoding variability in the data and the queries gives developers the 
+%power of testing properties that otherwise would not be possible. 
+%This is arguably the strongest advantage of VDBs. Recently
+%lots of attempts have been done
+%on statically analysis, theorem proving, model checking, and program verification
+%of variable programs and 
+%variable structure~\cite{brkts20vamos, bks11fvoos, ldl07jss, tmbhvs14}, especially 
+%for safety-critical systems,
+%%\eric{Eric, feel free to add other related work to support this argument.}
+% and since databases are part of 
+%software system the ability to analyze, check, and verify 
+%properties over variational databases provides programmers
+%with a seamless framework where they can verify software
+%and its artifacts.
+%%
+%
+%
+%%\textbf{What are the future research directions?}
+%%The case studies can be used to develop further research directions
+%%to make programming with variational databases easier and safer.
+%%%
+%%%The first direct future work following these case studies is generating
+%%%a VDB automatically from a set of databases with their corresponding
+%%%configuration. 
+%%%\parisa{remove this if we have a semi-auto gen vdb approach.}
+%%%
+%%%considering the new complexity and expressiveness added 
+%%%to the language (explicit encoding of variability), 
+%%For example, one can extend the query language with holes and even suggestions for 
+%%the holes would make programmers job easier in both writing queries
+%%and debugging them.
+%%%
+%%It will be very interesting to see the application of VDBs and 
+%%variational queries in software testing.
 
-For RQ3.3, we are currently evaluating VDBMS with our case studies and we plan
+For RQ3.2, we are currently evaluating VDBMS with our case studies and we plan
 to compare our different implementation approaches in terms of performance.
  
 %\secref{ro4} discusses the objective 4 and its research questions.
