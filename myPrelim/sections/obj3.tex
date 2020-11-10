@@ -32,33 +32,35 @@ RQ3.3: How effective and efficient is VDBMS? (\vldb)
 \end{tabularx}
 \end{table}
 
-For RQ3.1 we develop the two case studies discussed in \secref{ro1} as
+For RQ3.1, we develop the two case studies discussed in \secref{ro1} as
 variational databases with a set of variational queries that capture
 a variety of their variational information needs. \appref{db} provides
 the systematic approach we took to generate these databases and
 \appref{q} provides their set of queries. 
 
-\appref{db} and \appref{q} illustrate steps of explicitly encoding
-variation in the database and queries. The first step 
-is recognizing features involved in the variational scenario. 
-A feature is a trait that is essential for convey some information
-need. 
+\appref{db} and \appref{q} illustrate steps to explicitly encode
+variation in databases and queries. The first step 
+is identifying the features involved in the variation scenario. 
+%A feature is a unit of functionality that may be required for 
+%some variation of a database. 
+%A feature is a trait that is essential for convey some information
+%need. 
 %
-Thus, for each feature, one should (1) enumerate the operations that must be supported both
+Then, for each feature, one should (1) enumerate the functionality that must be supported both
 to implement the feature itself and to resolve undesirable feature
-conflicts, (2) identified the information needs to implement these
-operations, and (3) map features to database elements accordingly.
+conflicts, (2) identified the information needs to implement the
+functionality, and (3) map features to database elements accordingly.
 %extended the variational schema to satisfy these
 %information needs.
 %
-This process outlines generating the v-schema for a variational
+This process outlines generating the v-schema for a variation
 scenario as show cased for our case studies in 
 \appref{emp-vsch} and \appref{enron-vsch}.
 %
-Note that we generated our VDBs from scratch, that is,
+Note that we generated our VDBs by systematically adapting variation scenarios, that is,
 we did not have any database variants and their corresponding
 configuration. It is easy to generate a VDB from a set of 
-database variants with their corresponding configuration.
+database variants with their corresponding configurations.
 
 %\TODO{rewrite the discussion}
 Generating the case studies provides us with an insight for RQ3.2.
@@ -163,7 +165,7 @@ and its artifacts.
 %It will be very interesting to see the application of VDBs and 
 %variational queries in software testing.
 
-For RQ3.3 we are currently evaluating VDBMS with our case studies and we plan
+For RQ3.3, we are currently evaluating VDBMS with our case studies and we plan
 to compare our different implementation approaches in terms of performance.
  
 %\secref{ro4} discusses the objective 4 and its research questions.

@@ -21,12 +21,12 @@ individual research questions we need to answer for this objective.
  \textbf{Objective 4: Mechanize proofs of properties of the language and the system}
 \tabularnewline
 \midrule
-RQ4.1: What are the desired properties for a VDB and do they hold for VDB? (\vamos)
+RQ4.1: What are the desired properties for a VDB and do they hold for our VDB representation? (\vamos)
 \tabularnewline[0.2cm]
-RQ4.2: What are the desired properties for VRA? 
-Can they be mechanically proved? (In progress)
+RQ4.2: What are the desired properties for VRA
+and do they hold? (In progress)
 \tabularnewline[0.2cm]
-RQ4.3: Is the implementation of VDBMS compliant to semantics of VRA? (Not started)
+RQ4.3: Is the implementation of VDBMS consistent with the semantics of VRA? (Not started)
 \tabularnewline
 \bottomrule
 \end{tabularx}
@@ -35,11 +35,11 @@ RQ4.3: Is the implementation of VDBMS compliant to semantics of VRA? (Not starte
 \begin{comment}
 \end{comment}
 
-For RQ4.1 we identified properties that must hold for a variational database 
-to ensure the variation has encoded correctly in both the schema and content.
+For RQ4.1, we identified properties that must hold for a variational database 
+to ensure the variation has been encoded correctly in both the schema and content.
 \secref{vdb-props} provides these properties and discusses how a database
 administrator can write their own properties over a variational database and
-ensure that it holds.
+ensure that they hold.
 
 
 \begin{comment}
@@ -49,7 +49,7 @@ ensure that it holds.
 * eq rules
 \end{comment}
 
-For RQ4.2 we pay attention to the variational nature of VRA.
+For RQ4.2, we pay attention to the variational nature of VRA.
 %
 Consequently, the expressiveness of v-queries may cause them to be 
 more complicated than relational queries.
@@ -74,11 +74,12 @@ We are currently proving this property mechanically using the Coq
 proof assistant.
 %
 
-Moreover, since variation points in a v-query can move throughout 
-the query it is important to provide a set of rules that minimize
+%Moreover, since variation points in a v-query can move throughout 
+%the query it is important to
+We provide a set of rules that minimize
 the variation in a v-query. We provide some of these rules in \secref{var-min}.
 We plan to mechanically prove that these equivalence rules
-are correct. 
+are correct~\footnote{The mechanical proofs are being conducted with the help of a colleague}. 
 %
 We also plan to define the formal semantics of VRA to prove
 that the variation-preserving property also holds at the semantic 
@@ -87,13 +88,13 @@ level to ensure that queries behave as expected.
 
 
 
-For RQ4.3 we plan to use the the formal semantics of VRA 
+For RQ4.3, we plan to use the the formal semantics of VRA 
 %to ensure that queries behave in the expected manner.
 to
 prove that the implementation of VRA in VDBMS aligns with
 the semantics of it. 
 
-\secref{ro5} discusses a stretch goal that we like to pursue if time permits.
+\secref{ro5} discusses a stretch goal that we would like to pursue if time permits.
 
 \input{sections/vdbprops}
 \input{sections/typeSys}

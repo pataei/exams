@@ -1,15 +1,15 @@
 \section{Conclusion}
 \label{sec:con}
 
-Informed by different instances of variation appearing in databases, we hypothesize that considering 
-variation as an orthogonal concern to database provides benefits researchers, database administrators, and developers.
-To investigate this hypothesis, we plan the following:
+Informed by different kinds of variation appearing in databases, we hypothesize that considering 
+variation as an orthogonal concern to databases provides benefits to researchers, database administrators, and developers.
+To investigate this hypothesis, we planed the following:
 
 \begin{itemize}
-\item Activity 1: We have studied various instances of variation in databases and based on them
+\item Activity 1: We have studied various kinds of variation in databases and based on them
 we have provided a framework that considers variation as an orthogonal concern of databases~\cite{ATW17dbpl,ATW18poly}.
-\item Activity 2: We have used the framework to represent real-world instances of variation in database,
-showing the applicability of our frames~\cite{ALW21vamos}.
+\item Activity 2: We have used the framework to represent realistic scenarios of variation in databases,
+showing the applicability of our framework~\cite{ALW21vamos}.
 \item Activity 3: We are implementing and refactoring VDBMS, a database management system for our
 framework.
 \item Activity 4: We will mechanically prove the properties of our framework.
@@ -19,15 +19,14 @@ framework.
 The result of these activities will provide the following contributions:
 
 \begin{itemize}
-\item The first work to establish theoretical framework for variational databases where the database and the query language both 
-allow explicit encoding of variation. (Activity 1 and 4)
+\item The first work to establish a theoretical framework for variational databases that considers variation as an orthogonal concern to databases. (Activity 1 and 4)
 \item The first database management system that allows developers and database administrators to interact with variational databases. (Activity 1, 2, and 3)
-\item Real-world case studies of variation in databases that can be used in future research on variational data. (Activity 2)
+\item Realistic case studies of variation in databases that can be used in future research on variational data. (Activity 2)
 \end{itemize}
 
-The database community has researched instances of variation in databases extensively without 
-acknowledging that they are instances of the same problem, variation in a database. On the other
-hand, the SPL community has realized the need for encoding variation at the data model, however,
+The database community has researched different kinds of variation in databases extensively without 
+acknowledging that they are instances of the same problem. On the other
+hand, the SPL community has realized the need for encoding variation in the data model, however,
 they do not go beyond the data model. Our work on RQ1.1 and RQ1.3~\cite{ALW21vamos} has
 shown that different instances of variation in databases could interact with each other, thus, 
 having a generic encoding of variation in databases is beneficial. 
