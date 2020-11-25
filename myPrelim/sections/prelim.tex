@@ -1,6 +1,36 @@
 \section{Preliminaries}
 \label{sec:prelim}
 
+$1^{\vOne}$
+\\
+
+$\chc [\vOne \wedge \vTwo] {1,2} + \chc [\vOne] {3,6} 
+= \left\{ \begin{array}{rl}
+1+3, & \vOne = \t, \vTwo = \t\\
+2+3, & \vOne = \t, \vTwo = \f\\
+2+6, & \vOne = \f, \vTwo = \t\\
+2+6, & \vOne = \f, \vTwo = \f
+\end{array} \right.
+$
+\\
+
+$\{1^{\vOne}, 2, 3^{\vOne \vee \vTwo} \}
+=\left\{ \begin{array} {ll}
+\{1,2,3\}, & \vOne = \t, \vTwo = \t\\
+\{1,2,3\}, & \vOne = \t, \vTwo = \f\\
+\{2,3\}, & \vOne = \f, \vTwo = \t\\
+\{2\}, & \vOne = \f, \vTwo = \f
+\end{array} \right.
+$
+\\
+
+$\{1^{\vOne}, 2, 3^{\vOne \vee \vTwo} \}^{\vTwo}$
+\\
+
+$\pushIn {\{1^{\vOne}, 2, 3^{\vOne \vee \vTwo} \}^{\vTwo}} = 
+\{1^{\vOne \wedge \vTwo}, 2^{\vTwo}, 3^{\vTwo} \}$
+\\
+
 In this section, we introduce concepts and notations that we use
 throughout the proposal. \tabref{notations} 
 provides a short overview 

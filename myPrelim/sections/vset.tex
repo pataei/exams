@@ -93,17 +93,21 @@ input v-sets.
 \begin{definition}[V-set union]
 \label{def:vset-union}
 The \emph {union} of two v-sets is the union of their elements with the disjunction of 
-presence conditions if an element exists in both v-sets:
+presence conditions if an element exists in both v-sets:\\
 \ensuremath{
 \vset_1 \cup \vset_2 = \setDef {\annot [\dimMeta_1] \elem \myOR \annot [\dimMeta_1] \elem \in \vset_1, \annot [\dimMeta_2] \elem \not \in \vset_2}
 \cup \setDef {\annot [\dimMeta_2] \elem \myOR \annot [\dimMeta_2] \elem \in \vset_2, \annot [\dimMeta_1] \elem  \not \in \vset_1}
 \cup \setDef {\annot [\dimMeta_1 \vee \dimMeta_2] \elem \myOR 
 \annot [\dimMeta_1] \elem \in \vset_1, \annot [\dimMeta_2] \elem \in \vset_2}
-}.
+}
+
+.
 For example, \\
 \ensuremath{
 \setDef {2,\annot [\dimMeta_1] 3, \annot [\dimMeta_1] 4} \cup \setDef {\annot [\dimMeta_2] 3, \annot [\neg \dimMeta_1] 4} = \setDef {2, \annot [\dimMeta_1 \vee \dimMeta_2] 3, 4}
-}.
+}
+
+.
 \end{definition}
 
 % 
@@ -111,25 +115,30 @@ For example, \\
 \begin{definition}[V-set intersection]
 \label{def:vset-intersect}
 The \emph{intersection} of two v-sets is a v-set of their shared elements
-annotated with the conjunction of their presence conditions, i.e., 
+annotated with the conjunction of their presence conditions, i.e., \\
 \ensuremath{
 \vset_1 \cap \vset_2 = \setDef {
 \annot [\dimMeta_1 \wedge \dimMeta_2 ]\elem \myOR
 \annot [\dimMeta_1] \elem \in \vset_1, \annot [\dimMeta_2] \elem \in \vset_2,
 \sat {\dimMeta_1 \wedge \dimMeta_2}
 }
-}.
-For example, \ensuremath{
+}
+
+.
+For example,\\
+ \ensuremath{
 \setDef {2, \annot [\A] 3, \annot [\neg \B] 4} \cap
 \pushIn {\annot [\B] {\setDef{2,3,4,5}}} =
 \setDef{\annot [\B] 2, \annot [\A \wedge \B] 3}
-}.
+}
+
+.
 \end{definition}
 
 \begin{definition} [V-set cross product]
 \label{def:vset-cross}
 The \emph{cross product} of two v-sets is a pair of every two elements of 
-them annotated with the conjunction of their presence conditions.
+them annotated with the conjunction of their presence conditions.\\
 \ensuremath{
 \vset_1 \times \vset_2 = \setDef{
 \annot [\dimMeta_1 \wedge \dimMeta_2] {(\elem_1, \elem_2)} \myOR
@@ -142,12 +151,14 @@ them annotated with the conjunction of their presence conditions.
 
 \begin{definition} [V-set equivalence]
 \label{def:vset-eq}
-Two v-sets are \emph{equivalent}, denoted by
-\ensuremath{\vset_1 \equiv \vset_2}, iff
+Two v-sets are \emph{equivalent}, denoted by\\
+\ensuremath{\vset_1 \equiv \vset_2} iff
 \ensuremath{
 \forall \annot  \elem \in (\vset_1 \cup \vset_2). 
 \annot [\dimMeta_1] \elem \in \vset_1, \annot [\dimMeta_2] \elem \in \vset_2, 
-\dimMeta_1 \equiv \dimMeta_2},
+\dimMeta_1 \equiv \dimMeta_2}
+
+,
 i.e., they both cover the same set of elements and the presence conditions
 of elements from the two v-sets are equivalent.
 \end{definition}
@@ -155,22 +166,26 @@ of elements from the two v-sets are equivalent.
 %
 \begin{definition} [V-set subsumption]
 \label{def:vset-subsumption}
-The v-set \ensuremath{\vset_1} \emph {subsumes} the v-set
+The v-set \ensuremath{\vset_1} \emph {subsumes} the v-set\\
 \ensuremath{\vset_2}, $\subsume {\vset_2} {\vset_1}$, iff
 \ensuremath{ \forall \annot [\dimMeta_2] \elem \in \vset_2.
 \annot [\dimMeta_1] \elem \in \vset_1, 
 %\neg \sat {\dimMeta_2 \wedge \neg \dimMeta_1}
 \sat {\dimMeta_2 \wedge  \dimMeta_1}
-},
+}
+
+,
 i.e., all elements in $\vset_2$ also exist in $\vset_1$ 
 s.t. the element is valid in a shared configuration between the v-sets.
-For example, 
+For example, \\
 \ensuremath{
  \subsume {\pushIn {\annot [\A] {\setDef {2,3}}}} {\setDef {2, \annot [\A \vee \B] 3, 4}}},
-however, 
+
+however, \\
 \ensuremath{
  \nsubsume {\pushIn {\annot [\A] {\setDef {2,3}}}} {\setDef {2, \annot [\neg \A \wedge \B] 3}}}
-and
+
+and\\
 \ensuremath{
 \nsubsume {\setDef {\annot [\A] 2,\annot [\A] 3, 4}} {\setDef {2, \annot [\A \wedge \B] 3}}}.
 \end{definition}

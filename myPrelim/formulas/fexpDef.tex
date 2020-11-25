@@ -14,13 +14,24 @@
 \end{syntax}
 
 
+%\medskip
+%\textbf{Relations over feature expressions:}
+%\begin{alignat*}{1}
+%\dimMeta_1 \equiv \dimMeta_2 \textit{ iff \ } \forall \config \in \confSet: \fSem {\dimMeta_1} = \fSem {\dimMeta_2}\\
+%\sat {\dimMeta} \textit{ iff \ } \exists \config \in \confSet: \fSem {\dimMeta} = \t\\
+%\unsat {\dimMeta} \textit{ iff \ } \forall \config \in \confSet: \fSem {\dimMeta} = \f
+%%\dimMeta_1 \oplus \dimMeta_2 = (\dimMeta_1 \wedge \neg \dimMeta_2) \vee (\dimMeta_2 \wedge \neg \dimMeta_1)
+%\end{alignat*}
+
 \medskip
-\textbf{Relations over feature expressions:}
+\textbf{Semantics of feature expressions:}
 \begin{alignat*}{1}
-\dimMeta_1 \equiv \dimMeta_2 \textit{ iff \ } \forall \config \in \confSet: \fSem {\dimMeta_1} = \fSem {\dimMeta_2}\\
-\sat {\dimMeta} \textit{ iff \ } \exists \config \in \confSet: \fSem {\dimMeta} = \t\\
-\unsat {\dimMeta} \textit{ iff \ } \forall \config \in \confSet: \fSem {\dimMeta} = \f
-%\dimMeta_1 \oplus \dimMeta_2 = (\dimMeta_1 \wedge \neg \dimMeta_2) \vee (\dimMeta_2 \wedge \neg \dimMeta_1)
+\fSem [] . &: \ffSet \to \confSet \to \bSet\\
+\fSem \bTag &= \bTag\\
+\fSem \fName &= \config \ \fName\\
+\fSem {\neg \fName} &= \neg \fSem \fName\\
+\fSem {\annd \dimMeta} &= \fSem {\dimMeta_1} \wedge \fSem {\dimMeta_2}\\
+\fSem {\orr \dimMeta} &= \fSem {\dimMeta_1} \vee \fSem {\dimMeta_2}\\
 \end{alignat*}
 
 \begin{comment}

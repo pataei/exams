@@ -21,17 +21,17 @@ At the schema level we check the following properties:
 %
 \begin{enumerate}
 %
-\item That there is at least one valid configuration of the feature model $m$:
+\item That there is at least one valid configuration of the feature model $m$:\\
 %
 $\sat\fModel$
 %
 \item That every relation $r$ is present in at least one configuration of the
-variational schema:
+variational schema:\\
 %
 $\forall\vRel\in\vSch, \sat{\fModel\wedge\getPC\vRel}$
 %
 \item That every attribute $a$ in every relation $r$ is present in at least one
-configuration of the variational schema:
+configuration of the variational schema:\\
 %
 $\forall\vAtt\in\vRel, \forall\vRel\in\vSch,
 \sat{\fModel\wedge\getPC\vRel\wedge\getPC\vAtt}$
@@ -39,7 +39,7 @@ $\forall\vAtt\in\vRel, \forall\vRel\in\vSch,
 \item That if $\vSch_\config$ denotes the expected plain relational schema for
 configuration $c$ of the variational schema \vSch, then configuring the
 variational schema with that configuration, written $\sem[\config]{\vSch}$,
-actually yields that variant:
+actually yields that variant:\\
 %
 $\forall\config\in\confSet, \sem[\config]{\vSch} = \vSch_\config$
 %
@@ -52,17 +52,17 @@ At the data level we check the following properties:
 %
 \begin{enumerate}
 %
-\item That every tuple $u$ in relation $r$ is present in at least one variant:
+\item That every tuple $u$ in relation $r$ is present in at least one variant:\\
 %
 $\forall\vTuple\in\vRel, \forall\vRel\in\vSch,
 \sat{\fModel\wedge\getPC\vRel\wedge\getPC\vTuple}$ 
 %
 \item That for every tuple $u$ in relation $r$, if an attribute $a$ in $r$ is
 not present in any variants of the tuple, then the value of that attribute in
-the tuple, written $\mathit{value}_\vTuple(\vAtt)$, should be NULL:
+the tuple, written $\mathit{value}_\vTuple(\vAtt)$, should be NULL:\\
 $\forall\vTuple\in\vRel, \forall\vAtt\in\vRel, \forall\vRel\in\vSch,
 \neg\sat{\fModel\wedge\getPC\vRel\wedge\getPC\vAtt\wedge\getPC\vTuple}
-\Rightarrow \mathit{value}_\vTuple(\vAtt) = \text{NULL}$
+\Rightarrow \mathit{value}_\vTuple(\vAtt) = \NULL$
 %
 \end{enumerate}
 
@@ -82,7 +82,7 @@ to ensure that older variants are subsets of newer variants.
 %understand the thing we're assuming here.} 
 Assume that configurations \ensuremath{\config_1, \config_2, \cdots}
 represents time-orderly configurations, we formulated
-and checked this for the employee use case:
+and checked this for the employee use case:\\
 \ensuremath{
 \forall \config_i, \config_j \in \confSet, i \le j, \sem[\config_i] {\vDB} \subseteq \sem[\config_j]{\vDB}
 }, 

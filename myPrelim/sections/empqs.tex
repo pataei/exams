@@ -28,8 +28,8 @@ number $10004$'' at a time corresponding to \vThree, which we encode:
 %\centerline{
 %\ensuremath{
 Q_1 = \vPrj[\oatt{\salary}{\vThree}]{%
-  \joinRelR{\selectRel{\empno=10004}{\empacct}}{\job}
-           {\empacct.\titleatt = \job.\titleatt}}
+\left(  \joinRelR{\selectRel{\empno=10004}{\empacct}}{\job}
+           {\empacct.\titleatt = \job.\titleatt} \right) }
 \]
 %}.}
 % Note that the presence condition of the only attribute \salary\ determines the
@@ -59,8 +59,12 @@ Q_2 &=  \vThree\vee\vFour\vee\vFive \langle \pi_\salary
 %
 There are a variety of ways we could have encoded both $Q_1$ and $Q_2$.
 %
-For $Q_1$ we could equivalently have embedded the projection in a choice,
-$\chc[\vThree]{\vPrj[\salary]{(\ldots)},\empRel}$, however attaching the presence
+For $Q_1$ we could equivalently have embedded the projection in a choice,\\
+
+$Q_1' = \chc[\vThree]{\vPrj[\salary]{  \left(\joinRelR{\selectRel{\empno=10004}{\empacct}}{\job}
+           {\empacct.\titleatt = \job.\titleatt}\right)},\empRel}$
+           
+           , however attaching the presence
 condition to the only projected attribute determines the presence condition of
 the resulting table and so achieves the same effect.
 %
@@ -154,6 +158,35 @@ preference makes VRA more flexible and easy to use.
 Also, v-queries are statically type-checked to ensure that
 the variation encoded in them does not conflict the variation encoded
 in the v-schema. 
+
+\[
+\pi_{\mathit{middleName}} \mathit{employee}
+\]
+
+\[
+\sigma_{\mathit{middleName} \neq \NULL} \mathit{employee}
+\]
+
+\[
+\empacct
+\]
+
+\[
+\pi_{\empno, \name, \hiredate, \titleatt, \deptno,  \deptname, \salary} \empacct
+\]
+
+
+\[
+\chc [m_{\employee} \wedge (\vTwo \vee \vThree \vee \vFour \vee \vFive)] {\pi_{\empno, \name, \hiredate, \titleatt, \deptno,  \deptname, \salary} \empacct, \empRel}
+\]
+
+\[
+\chc [m_{\employee} \wedge (\vTwo \vee \vThree \vee \vFour \vee \vFive)] {\pi_{\empno, \optAtt [\vTwo \vee \vThree] [\name], \hiredate, \titleatt, \optAtt [\vThree \vee \vFour \vee \vFive] [\deptno], \optAtt [\vTwo] [\deptname], \optAtt [\vFive] [\salary]} \empacct, \empRel}
+\]
+
+\[
+q_1 \bowtie_{a_1=a_2} q_2 \equiv \sigma_{a_1=a_2} (q_1 \times q_2)
+\]\cite{Li19}
 
  %
 % Finally, we want to briefly illustrate what queries look like in the

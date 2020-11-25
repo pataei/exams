@@ -21,11 +21,11 @@ thus is type correct. However,
 the schema while \ensuremath{\vQ_5} repeats this information:
 %
 \begin{align*}
-\VVal {\vQ_5} &= 
+\VVal {\vQ_1} &= 
 \pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } 
 %\\
 %&
-(\chc [ \fModel_2 ] {\pi_{\empno, \sex, \birthdate, \optAtt [\vFour ] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]} \empbio, \empRel  })
+(\chc [ \fModel_\emp ] {\pi_{\empno, \sex, \birthdate, \optAtt [\vFour ] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]} \empbio, \empRel  })
 \end{align*}
 %
 %\centerline{
@@ -44,8 +44,8 @@ the schema while \ensuremath{\vQ_5} repeats this information:
 %&(\chc [ \fModel_2 ] {\pi_{\empno, \sex, \birthdate, \optAtt [\vFour ] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]} \empbio, \empRel  })
 %\end{align*}
 %}
-Similarly, the outer projection in the query \ensuremath{\vQ_6=
-\pi_{\name, \fname} \chc [ \vFour] {\pi_\name \vQ_5, \pi_\fname \vQ_5}} written over 
+Similarly, the outer projection in the query \ensuremath{\vQ_2=
+\pi_{\name, \fname} \chc [ \vFour] {\pi_\name \vQ_1, \pi_\fname \vQ_1}} written over 
 \ensuremath{\vSch_2} 
 %\centerline{
 %\ensuremath{
@@ -58,8 +58,8 @@ The query
 %\centerline{
 %\ensuremath{
 \[
-\vQ_7 =
-\pi_{\optAtt [\vFour ] \name,\optAtt [\neg \vFour] [\fname]} \chc [ \vFour] {\pi_\name \vQ_5, \pi_\fname \vQ_5}
+\VVal {\vQ_2} =
+\pi_{\optAtt [\vFour ] [\name],\optAtt [\neg \vFour] [\fname]} \chc [ \vFour] {\pi_\name \vQ_1', \pi_\fname \vQ_1'}
 \]
 %}}
 makes the annotations of projected attributes \emph{explicit} w.r.t. both 
