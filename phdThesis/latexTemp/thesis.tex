@@ -9,15 +9,48 @@
 \depthead{Director}
 \major{Computer Science}
 \advisor{Eric Walkingshaw}
-\submitdate{June 1, 2021}
+\submitdate{June ?, 2021}
 \commencementyear{2021}
 %
 \abstract{
-This is an abstract statement.
+Databases used in the same context that are intended to satisfy the same information need
+share commonalities while varying in some aspects as well. 
+% 
+For example, databases used to store information for a software system are intended to 
+satisfy the client's information need and they share some parts of the schema, however, 
+they still vary in some parts of the schema and most of the content.
+%
+That is, they are \emph{variants} of a conceptual hypothetical database that captures all 
+the \emph{variation} among them.
+%
+This pattern appears repeatedly in databases. Instances of variation occurring in databases
+are: schema evolution, database integration, database versioning, data extraction, and 
+software development either using software product lines approaches or not. 
+%
+While there are specialized approaches to some instances of variation in databases
+there are no generic solutions to manage variation in databases.
+
+In this thesis, we answer the question: ``can we abstract out this repeating pattern of 
+variation appearing in databases and bring the hypothetical database that captures all
+the variation among a number of databases to life?''
+%
+To this end, we formalize the database that captures all variation of a number of databases,
+called a \emph{variational database}, and a query language that allows interaction with
+the said database, called \emph{variational relational algebra}. 
+\TODO{maybe two languages, another: variational SQL, depends on my timing!}
+%
+We implement these concepts in \emph{Variational Database Management System (VDBMS)},
+demonstrate the feasibility of our concepts by developing two real-world use cases, and 
+examine the performance of VDBMS over our two use cases. 
 }
 %
 \acknowledgements{
-I would like to acknowledge the Starting State and the Transition Function.
+\TODO{Eric.
+Committee.
+partner.
+abu.
+parents.
+}
 }
 
 \usepackage{algorithm}
