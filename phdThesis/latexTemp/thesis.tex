@@ -1,62 +1,130 @@
 
 \documentclass[onehalf,11pt]{beavtex}
-\title{The Meaning of Life}
-\author{John Smith}
+\title{Theory and Implementation of a Variational Database Management System}
+\author{Parisa Ataei}
 \degree{Doctor of Philosophy}
 \doctype{Dissertation}
 \department{Electrical Engineering and Computer Science}
 \depttype{School}
 \depthead{Director}
 \major{Computer Science}
-\advisor{Joan Smythe}
-\submitdate{September 23, 2011}
-\commencementyear{2012}
-\abstract{This is an abstract statement.}
-\acknowledgements{I would like to acknowledge the Starting State and the Transition Function.}
+\advisor{Eric Walkingshaw}
+\submitdate{June 1, 2021}
+\commencementyear{2021}
+%
+\abstract{
+This is an abstract statement.
+}
+%
+\acknowledgements{
+I would like to acknowledge the Starting State and the Transition Function.
+}
 
 \usepackage{algorithm}
 \usepackage{algorithmic}
+
+\usepackage{ebproof} %for derivation trees
+\usepackage{lscape} %to force a page to be in landscape mode
+\usepackage{graphicx}
+\usepackage{balance}  % for  \balance command ON LAST PAGE  (only there!)
+\usepackage{comment}
+\usepackage{accents}
+\usepackage{lambda,cc}
+%\usepackage{mathtools} 
+\usepackage{array,multirow}
+%\usepackage{hhline}
+\usepackage{arydshln}
+%\usepackage{color}
+%\usepackage[usenames, dvipsnames]{xcolor}
+\usepackage{xcolor}
+%\usepackage{colortbl}
+%\usepackage{booktabs}
+\usepackage{mathpartir}
+\usepackage{hyperref}
+\usepackage[normalem]{ulem}
+% commuting diagram packages
+\usepackage{tikz}
+\usepackage{tikz-cd}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{wrapfig}
+%\usepackage{blindtext}% for example text here only
+\usepackage{enumitem,kantlipsum} %remove enumerate indent
+\usepackage{amssymb}%for arrow labels
+
+\usepackage{listings} % for v-sql example code
+%
+% references
+\newcommand{\tabref}[1]{\hyperref[tab:#1]{Table~\ref*{tab:#1}}}
+\newcommand{\figref}[1]{\hyperref[fig:#1]{Figure~\ref*{fig:#1}}}
+\newcommand{\secref}[1]{\hyperref[sec:#1]{Section~\ref*{sec:#1}}}
+\newcommand{\defref}[1]{\hyperref[def:#1]{Definition~\ref*{def:#1}}}
+\newcommand{\appref}[1]{\hyperref[app:#1]{Appendix~\ref*{app:#1}}}
+\newcommand{\chref}[1]{\hyperref[ch:#1]{Chapter~\ref*{ch:#1}}}
+\newcommand{\thmref}[1]{\hyperref[thm:#1]{Theorem~\ref*{thm:#1}}}
+\newcommand{\lemref}[1]{\hyperref[lem:#1]{Lemma~\ref*{lem:#1}}}
+\newcommand{\exref}[1]{\hyperref[ex:#1]{Example~\ref*{eg:#1}}}
+%
+%%colors
+\definecolor{deepcarminepink}{rgb}{0.94, 0.19, 0.22}%all shared
+\definecolor{mediumelectricblue}{rgb}{0.01, 0.31, 0.59}%middlename
+\definecolor{frenchblue}{rgb}{0.0, 0.45, 0.73}%lastname
+\definecolor{green(munsell)}{rgb}{0.0, 0.66, 0.47}%iceland
+\definecolor{violet(ryb)}{rgb}{0.53, 0.0, 0.69}%us,invest
+\definecolor{navyblue}{rgb}{0.0, 0.0, 0.5}%v-table
+\definecolor{persimmon}{rgb}{0.93, 0.35, 0.0}%iran
+\definecolor{Plum}{rgb}{0.78, 0.08, 0.52}%us,bank
+\definecolor{ruby}{rgb}{0.88, 0.07, 0.37}%us,bank
+
+\definecolor{light-gray}{gray}{0.95}
+\newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
+
+%names
+\input{names}
+
+%ops
+\input{vdbOps}
 
 \begin{document}
 \maketitle
 
 \mainmatter
 
-\chapter{Introduction}
-I have done some excellent research \cite{matrix}.
-\section{Introduction to the Introduction}
-\begin{figure}[!ht]
-\centering
-\fbox{\huge Box}
-\caption{Go figure.}
-\end{figure}
 
-\chapter{The Body}
-This is the meat.
-\section{Meat}
-We're born meat and we die meat. Meanwhile, we learn (see Algorithm \ref{alg:learning}).
-
-\begin{algorithm}[h]
-\caption{\textsc{Learning}}
-\label{alg:learning}
-\begin{algorithmic}[1]
-\ENSURE{Optimal policy $\mathcal{C}$}
-	\STATE $\mathcal{C} \gets 42$
-	\RETURN $\mathcal{C}$
-\end{algorithmic}
-\end{algorithm}
-
-\chapter{Conclusion}
-Wow, that really was excellent.
-\section{Fin}
-This is the end, my only friend, the end.
+%\chapter{Introduction}
+%I have done some excellent research \cite{matrix}.
+%\section{Introduction to the Introduction}
+%\begin{figure}[!ht]
+%\centering
+%\fbox{\huge Box}
+%\caption{Go figure.}
+%\end{figure}
+%
+%\chapter{The Body}
+%This is the meat.
+%\section{Meat}
+%We're born meat and we die meat. Meanwhile, we learn (see Algorithm \ref{alg:learning}).
+%
+%\begin{algorithm}[h]
+%\caption{\textsc{Learning}}
+%\label{alg:learning}
+%\begin{algorithmic}[1]
+%\ENSURE{Optimal policy $\mathcal{C}$}
+%	\STATE $\mathcal{C} \gets 42$
+%	\RETURN $\mathcal{C}$
+%\end{algorithmic}
+%\end{algorithm}
+%
+%\chapter{Conclusion}
+%Wow, that really was excellent.
+%\section{Fin}
+%This is the end, my only friend, the end.
 
 
 \bibliographystyle{plain}
 \bibliography{thesis}
 
 \appendix
-\chapter{Redundancy}
-This appendix is inoperable.
+%\chapter{Redundancy}
+%This appendix is inoperable.
 
 \end{document}
