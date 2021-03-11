@@ -13,35 +13,60 @@
 \commencementyear{2021}
 %
 \abstract{
-Databases used in the same context that are intended to satisfy the same information need
-share commonalities while varying in some aspects as well. 
-% 
-For example, databases used to store information for a software system are intended to 
-satisfy the client's information need and they share some parts of the schema, however, 
-they still vary in some parts of the schema and most of the content.
+%In this thesis I present the variational database, a formal framework for representing variation 
+%in relational databases, the variational relational algebra, a query language for extracting
+%information from the variational database that accounts explicitly for variation in the query
+%language.
+In this thesis I present the variational database management system, a formal framework and its
+implementation for representing variation in relational databases and managing variational
+information needs. 
 %
-That is, they are \emph{variants} of a conceptual hypothetical database that captures all 
-the \emph{variation} among them.
+The variational database is intended to support any instance of variation in database, both
+the existing instances and more importantly newly arisen instances which could be a 
+combination of existing instances.
 %
-This pattern appears repeatedly in databases. Instances of variation occurring in databases
-are: schema evolution, database integration, database versioning, data extraction, and 
-software development either using software product lines approaches or not. 
-%
-While there are specialized approaches to some instances of variation in databases
-there are no generic solutions to manage variation in databases.
+For example, existing instances of variation in databases are when a single database evolves
+over time and when data from different sources is combined. While there are context-specific 
+solutions to both problems neither solution can address when data sources combined in one
+database evolves over time. 
 
-In this thesis, we answer the question: ``can we abstract out this repeating pattern of 
-variation appearing in databases and bring the hypothetical database that captures all
-the variation among a number of databases to life?''
 %
-To this end, we formalize the database that captures all variation of a number of databases,
-called a \emph{variational database}, and a query language that allows interaction with
-the said database, called \emph{variational relational algebra}. 
-\TODO{maybe two languages, another: variational SQL, depends on my timing!}
+This thesis collects a large amount of work: 
 %
-We implement these concepts in \emph{Variational Database Management System (VDBMS)},
-demonstrate the feasibility of our concepts by developing two real-world use cases, and 
-examine the performance of VDBMS over our two use cases. 
+It 
+%Variation occurs in databases in many different forms and contexts. For example, a single database schema evolves over time, data from different sources may be combined, and the various configurations of a software product line (SPL) may have different data needs. 
+%%
+%While approaches have been developed to deal with many such scenarios, particularly in the fields of database evolution and data integration, there is no solution that treats variation as a general and orthogonal concern in databases. This is a problem when various kinds of variation intersect, such as during the evolution of a SPL.
+%%
+%Databases used in the same context that are intended to satisfy the same information need
+%share commonalities while varying in some aspects as well. 
+%% 
+%For example, databases used to store information for a software system are intended to 
+%satisfy the client's information need and they share some parts of the schema, however, 
+%they still vary in some parts of the schema and most of the content.
+%%
+%That is, they are \emph{variants} of a conceptual hypothetical database that captures all 
+%the \emph{variation} among them.
+%%
+%This pattern appears repeatedly in databases. Instances of variation occurring in databases
+%are: schema evolution, database integration, database versioning, data extraction, and 
+%software development either using software product lines approaches or not. 
+%%
+%While there are specialized approaches to some instances of variation in databases
+%there are no generic solutions to manage variation in databases.
+%
+%In this thesis, we answer the question: ``can we abstract out this repeating pattern of 
+%variation appearing in databases and bring the hypothetical database that captures all
+%the variation among a number of databases to life?''
+%%
+%To this end, we formalize the database that captures all variation of a number of databases,
+%called a \emph{variational database}, and a query language that allows interaction with
+%the said database, called \emph{variational relational algebra}. 
+%\TODO{maybe two languages, another: variational SQL, depends on my timing!}
+%%
+%We implement these concepts in \emph{Variational Database Management System (VDBMS)},
+%demonstrate the feasibility of our concepts by developing two real-world use cases, and 
+%examine the performance of VDBMS over our two use cases. 
 }
 %
 \acknowledgements{
