@@ -33,7 +33,29 @@ database evolves over time.
 %
 This thesis collects a large amount of work: 
 %
-It 
+It defines the variational database framework and the syntax and \TODO{specific kind of} 
+semantics of the variational relational algebra.
+% along with its type system and 
+%semantic-preserving syntax-based equivalence rules. 
+%
+It also defines
+the variational information needs that must be satisfied in a generic variational database 
+framework and \TODO{shows/proves} that the introduced framework satisfies all these
+needs. 
+%
+It illustrates two usecases of the variational database framework that represent two existing 
+instances of variation in databases.
+%
+It presents the variational database management system which is the implementation of 
+the variational database and variational relational algebra and is an abstract layer on top
+of a traditional RDBMS. 
+%
+It also presents several theoretical results related to the framework and query language, such 
+as syntax-based equivalence rules that preserve the semantics of a query, 
+a type system for ensuring that a variational query is well formed with regards to the 
+underlying variational schema, and a confluence property of variational relational
+algebra type system and semantics with regards to the relational algebra type system 
+and semantics. 
 %Variation occurs in databases in many different forms and contexts. For example, a single database schema evolves over time, data from different sources may be combined, and the various configurations of a software product line (SPL) may have different data needs. 
 %%
 %While approaches have been developed to deal with many such scenarios, particularly in the fields of database evolution and data integration, there is no solution that treats variation as a general and orthogonal concern in databases. This is a problem when various kinds of variation intersect, such as during the evolution of a SPL.
