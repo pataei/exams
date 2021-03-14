@@ -21,40 +21,55 @@ In this thesis I present the variational database management system, a formal fr
 implementation for representing variation in relational databases and managing variational
 information needs. 
 %
-The variational database is intended to support any instance of variation in database, both
-the existing instances and more importantly newly arisen instances which could be a 
-combination of existing instances.
+The variational database is intended to support any kind of variation in a database.
+Specific kinds of variation in databases have already been studied and are well-supported,
+for example, schema evolution systems address the variation of the schema of a database
+evolving over time and integrated databases address the variation of accessing data 
+from multiple data sources simultaneously. 
+%, both
+%the existing instances and more importantly newly arisen instances which could be a 
+%combination of existing instances.
 %
-For example, existing instances of variation in databases are when a single database evolves
-over time and when data from different sources is combined. While there are context-specific 
-solutions to both problems neither solution can address when data sources combined in one
-database evolves over time. 
+However, due to new business requirements new kinds of variation in databases raises and
+they are not addressed by existing work. Even though some of the new kinds of variation
+in databases are the result of combining well-studied kinds of variation, their solutions
+cannot address the new kind of variation.
+For example, neither the schema evolution systems nor the database integration systems
+can address the variation in databases when data sources combined in one database
+evolve over time.
+%For example, existing instances of variation in databases are when a single database evolves
+%over time and when data from different sources is combined. While there are context-specific 
+%solutions to both problems neither solution can address when data sources combined in one
+%database evolves over time. 
 
 %
 This thesis collects a large amount of work: 
 %
 It defines the variational database framework and the syntax and \TODO{specific kind of} 
-semantics of the variational relational algebra.
+semantics of the variational relational algebra, a query language for variational databases.
 % along with its type system and 
 %semantic-preserving syntax-based equivalence rules. 
 %
 It also defines
-the variational information needs that must be satisfied in a generic variational database 
-framework and \TODO{shows/proves} that the introduced framework satisfies all these
+the properties of a generic variational database framework that must be met in order to satisfy 
+the variety of information needs users when variation appears in databases and 
+%variational information needs that must be satisfied in a generic variational database 
+%framework and 
+it \TODO{shows/proves} that the introduced framework satisfies all these
 needs. 
 %
-It illustrates two usecases of the variational database framework that represent two existing 
+It illustrates two use cases of the variational database framework that represent two existing 
 instances of variation in databases.
 %
 It presents the variational database management system which is the implementation of 
-the variational database and variational relational algebra and is an abstract layer on top
-of a traditional RDBMS. 
+the variational database and variational relational algebra as an abstract layer written in Haskell
+on top of a traditional RDBMS. 
 %
 It also presents several theoretical results related to the framework and query language, such 
 as syntax-based equivalence rules that preserve the semantics of a query, 
-a type system for ensuring that a variational query is well formed with regards to the 
-underlying variational schema, and a confluence property of variational relational
-algebra type system and semantics with regards to the relational algebra type system 
+a type system for ensuring that a variational query is well formed with respect to the 
+underlying variational schema, and a confluence property of the variational relational
+algebra type system and semantics with respect to the relational algebra type system 
 and semantics. 
 %Variation occurs in databases in many different forms and contexts. For example, a single database schema evolves over time, data from different sources may be combined, and the various configurations of a software product line (SPL) may have different data needs. 
 %%
