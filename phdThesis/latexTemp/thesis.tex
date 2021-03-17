@@ -21,21 +21,24 @@ In this thesis I present the variational database management system, a formal fr
 implementation for representing variation in relational databases and managing variational
 information needs. 
 %
-The variational database is intended to support any kind of variation in a database.
+A variational database is intended to support any kind of variation in a database.
 Specific kinds of variation in databases have already been studied and are well-supported,
-for example, schema evolution systems address the variation of the schema of a database
-evolving over time and integrated databases address the variation of accessing data 
+for example, schema evolution systems address the variation of a database's schema
+ over time and data integration systems address  variation caused by accessing data 
 from multiple data sources simultaneously. 
 %, both
 %the existing instances and more importantly newly arisen instances which could be a 
 %combination of existing instances.
 %
-However, due to new business requirements new kinds of variation in databases raises and
-they are not addressed by existing work. Even though some of the new kinds of variation
-in databases are the result of combining well-studied kinds of variation, their solutions
-cannot address the new kind of variation.
+However, many other kinds of variation in databases arise in practice, and different 
+kinds of variation often interact, but these scenarios are not well-supported by the existing work.
+%However, due to new business requirements new kinds of variation in databases raises and
+%they are not addressed by existing work. Even though some of the new kinds of variation
+%in databases are the result of combining well-studied kinds of variation, their solutions
+%cannot address the new kind of variation.
+%
 For example, neither the schema evolution systems nor the database integration systems
-can address the variation in databases when data sources combined in one database
+can address variation that arises when data sources combined in one database
 evolve over time.
 %For example, existing instances of variation in databases are when a single database evolves
 %over time and when data from different sources is combined. While there are context-specific 
@@ -51,18 +54,21 @@ semantics of the variational relational algebra, a query language for variationa
 %semantic-preserving syntax-based equivalence rules. 
 %
 It also defines
-the properties of a generic variational database framework that must be met in order to satisfy 
-the variety of information needs users when variation appears in databases and 
+the requirements of a generic variational database framework
+% that must be met 
+that makes the framework expressive enough to encode any kind of variation in databases.
+% in order to satisfy 
+%the variety of information needs users when variation appears in databases and 
 %variational information needs that must be satisfied in a generic variational database 
 %framework and 
-it \TODO{shows/proves} that the introduced framework satisfies all these
+Additionally, it  \TODO{shows/proves} that the introduced framework satisfies all these
 needs. 
 %
 It illustrates two use cases of the variational database framework that represent two existing 
 instances of variation in databases.
 %
 It presents the variational database management system which is the implementation of 
-the variational database and variational relational algebra as an abstract layer written in Haskell
+ variational databases and variational relational algebra as an abstract layer written in Haskell
 on top of a traditional RDBMS. 
 %
 It also presents several theoretical results related to the framework and query language, such 
