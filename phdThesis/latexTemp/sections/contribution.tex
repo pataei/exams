@@ -3,3 +3,55 @@
 
 \TODO{contribution}
 
+Our contributions in this paper address this challenge:
+\begin{itemize}
+%[leftmargin=*]
+%\itemsep0em
+\item We define the requirements of a a variational database framework, \secref{req}.
+%[wide, labelwidth=!, labelindent=0pt, topsep=1pt]
+%[leftmargin=*]
+%\item To account for variation explicitly, we use a \emph{variation space} 
+%and propositional formulas of features to refer to a subset of the space (\secref{encode-var})~\cite{ATW17dbpl}.
+%\item We provide a framework to capture variation within a database using
+%propositional formulas over  
+%sets of features, called \emph{feature expressions}, following~\cite{ATW17dbpl}.
+\item We define the \emph{variational database (VDB)} by incorporating 
+variation directly in the database, \secref{vdb}.
+%both the structure (schema) and
+%content (tuples) of the database, introducing \emph{variational schemas}, \secref{vsch}, 
+%and \emph{variational tables}, \secref{vtab}, and together \emph{VDBs},
+%\secref{vdb}.
+%, satisfying \textbf{N0} and first part of \textbf{N2}.
+\item We define the 
+%To express user information needs 
+\emph{variational relational algebra} query language, \secref{vrel-alg}, 
+its static type system, \secref{type-sys},
+and \emph{variation-minimzation} rules, \secref{var-min}.
+%a combination of relational algebra and 
+%choice calculus~\cite{EW11tosem,Walk13thesis}, \secref{vrel-alg}.
+%Users query a VDB by a \emph{variational query}, \secref{vq}.
+%\item 
+%%To make variational 
+%\revised{
+%%For more usability, w
+%We define VRA's static type system, \secref{type-sys},
+%and \emph{variation-minimzation} rules, \secref{var-min}.}
+% queries more useable and easier to understand, respectively,
+%by defining 
+%a static type system, \secref{type-sys},
+%and \emph{variation-minimiztion} rules, \secref{var-min}.
+%to make it easier to understand and more useable. 
+%rules to minimize 
+%variation in v-query, \secref{var-min}, to provide better
+%efficiency and usability. 
+%This completes satisfiability of \textbf{N2}.
+\item 
+%To query a 
+%variational database and receive clear results
+%\revised{To interact with a VDB}
+We implement a prototype of our framework, called  \emph{Variational Database Management System (VDBMS)}, on top a traditional DBMS, \secref{impl}.
+We test VDBMS on previously developed use cases, \secref{exp-disc}.
+%,
+%satisfying all four needs: \textbf{N0}-\textbf{N3}.
+%\textbf{N1}, \textbf{N2}, and \textbf{N3}.
+\end{itemize}

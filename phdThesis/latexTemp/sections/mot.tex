@@ -301,3 +301,140 @@ Hence, the challenge becomes defining a variation-aware database that can
 can model different kinds of variation
 in different contexts such that it satisfies different specialists' needs at different stages,
 e.g., development, information extraction, deployment, and testing. 
+
+%In this section, we define the requirements that make a database framework
+%variational. 
+For a variational framework  to be expressive enough to encode
+any kind of variation in databases, it must satisfy some requirements.
+Thus, we define the requirements that make a database framework
+variational through studying different kinds of variation in databases.  
+%These requirements distinguish a database framework that 
+%simulates the effect of variation compared to one that is variational. 
+A variational artifact, including databases, encompasses multiple 
+\emph{variants} of the artifact and provides a way to distinguishes 
+between different variants that are all encoded in one place, the 
+variational artifact. It also provides a way to get the variants from
+the variational artifact, we call this \emph{configuration function}.
+%
+These requirements that help distinguish a database framework that 
+simulates the effect of variation compared to one that is variational are
+listed below:
+
+%Our example demonstrates how instances of variation
+%% in time and space
+%arise and interact with each other, an unavoidable consequence of modern software
+%development.
+%We categorize the needs of a variational database framework at different stages
+%such as development, test, and deployment and
+%use our motivating example to illustrate them. Throughout the paper,
+%we show how our framework achieves these needs via examples, proofs, and tests.
+%%To be concrete throughout the paper we itemize
+%%the needs of users working with a database with variation
+%%through the needs of SPL developers and \revised{analysts and} DBAs:
+%% for our motivating example.
+%%These needs cover all general needs when variation appears in databases
+%%because our motivating example considers variation in both possible 
+%%dimensions; time and space:
+%
+\begin{enumerate}
+%[wide, labelwidth=!, labelindent=0pt, topsep=1pt]
+%[leftmargin=*]
+\itemsep0em
+\item [\textbf{(\nZero)}]
+\emph{All database variants must be accessible at a given time}.
+For example, in our motivating example, a company that started with 
+\vOne\ of the \basic\ schema evolves over time but its different 
+branches adopt the new schema at different paces, thus, it 
+requires access to all variants of the \basic\ schema. 
+%For example,
+%SPL developers need to access all database variants while
+%writing code to be able to 
+% extract information for 
+% all software variants
+%they are developing. 
+%
+%Hence,
+%\emph{users need to have access to all database variants at a given time}.
+%
+%\secref{vdb} explains how a VDB achieves this.
+%%\tabref{mot-vsch} shows how v-schema achieves
+%\exref{vsch} shows how v-schema achieves
+%this at schema level for a part of our motivating example.
+%%make sure the following is the case.
+%%\TODO{and \secref{exp-disc} discusses two databases
+%%that achieve this at both content and schema level.}
+%
+\item [\textbf{(\nOne)}]
+\emph{The query language must allow for querying
+%One must be able to query 
+multiple database variants simultaneously.
+Additionally, it must allow for filtering tuples to specific variants.}
+That is, the framework must provide a query language that allows users to query multiple
+database variants at the same time in addition to giving them the freedom to choose
+the variants that they want to query. 
+For example, an SPL tester that is testing a piece of code for the not highlighted 
+variants of the software in \tabref{mot} needs to write queries that exclude the 
+ variants associated with yellow cells of \tabref{mot}. 
+%For example,
+%depending on what component they are working on,
+%\revised{SPL testers} need to be able to query all or some of the variants.
+%
+%Hence, 
+%\emph{users need to query multiple database variants simultaneously and selectively}.
+%
+%\secref{vq} shows how our query language achieves this.
+%% by introducing variation into queries, \secref{vq}.
+%\exref{vq-specific} and \exref{vq-same-intent-mult-vars} illustrate this 
+%for our motivating example.
+%
+\item [\textbf{(\nTwo)}]
+\emph{Every piece of data must clearly state the variant it belongs to and 
+this information must be kept throughout the entire framework.}
+Continuing the example of the SPL tester, they need to know the variant that
+some results belong to in order to be able to debug the software correctly and
+accordingly. 
+%The framework needs to 
+%keep track of which variants a piece of data belongs to and ensuring that 
+%it is maintained throughout a query}.
+%For example,
+%given that one can access all database variants and that they
+%can query all variants simultaneously, for test purposes, 
+%analysts need to know which variant a tuple belongs to.
+%
+%Hence,
+%\emph{the framework needs to 
+%keep track of which variants a piece of data belongs to and ensuring that 
+%it is maintained throughout a query}.
+%
+%\revised{\secref{vdb} and \secref{type-sys} illustrate how our framework achieves this.}
+%%We call this \emph{variation-preserving} property and }
+%%Storing variants that a tuple belongs to in a VDB achieves the first part, \secref{vdb}, and
+%%VRA's type system ensures the second part, \secref{type-sys}.
+%\exref{var-pres} illustrates this for a given query.
+%\TODO{we should show this for content level too. but for this submission we can say that 
+%all approaches account for this and don't lose that info. discuss with Eric. say that it has been tested for all queries but not proved.}
+%
+\item [\textbf{(\nThree)}]
+\emph{The variational database must provide a way for generating database
+and query variants.}
+For example, the SPL developers need to deploy the management software for each client,
+thus, they need to configure the database schema and its queries in the code 
+for each software variant.  
+%Users need to deploy one variant of the database and its associated queries}.
+%For example,
+%SPL developers need to deploy the database and its queries
+%to generate a specific software product for a client based on their
+%requested features. 
+%
+%Hence,
+%\emph{users need to deploy one variant of the database and its associated queries}.
+%
+%We define a \emph{configure} function for a VDB and its elements, \figref{vdb-conf}, 
+%in addition to queries, \figref{v-alg-conf-sem}, that achieves this. 
+%\exref{conf-vq} illustrate deploying an example query.
+%
+\end{enumerate}
+
+Throughout the paper,
+we show how our framework satisfies these requirements 
+via examples, proofs, and tests.
