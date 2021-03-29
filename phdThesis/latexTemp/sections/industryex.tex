@@ -1,0 +1,36 @@
+\subsection{New Instance of Data Variation in Industry}
+\label{sec:industry-ex}
+
+\TODO{revise base on what you've explained so far in thesis.}
+
+%\point{briefly iterate contributions and how they solve needs.}
+New variational scenarios could appear, either from combination of other scenarios
+or even a new scenario could reveal itself. For example, the following is
+a scenario we recently discussed with an industry contact:
+%
+A software company develops software for different networking companies and
+analyzes data from its clients to advise them accordingly. 
+%
+The company records information from each of its clients' networks in databases
+customized to the particular hardware, operating systems, etc.\ that each
+client uses.
+%
+The company analysts need to query information from all clients who agreed to
+share their information, but the same information need will be represented
+differently for each client.
+%
+This problem is essentially a combination of the SPL variation problem (the
+company develops and maintains many databases that vary in structure and
+content) and the data integration problem (querying over many databases that
+vary in structure and content). However, neither the existing solutions from
+the SPL community nor database integration address both sides of the problem.
+%
+Currently the company manually maintains variant schemas and queries, but this
+does not take advantage of sharing and is a major maintenance challenge.
+% , for the reasons SPL researchers are familiar with.
+%
+With a database encoding that supports explicit variation in schemas, content,
+and queries, the company could maintain a single variational database that can
+be configured for each client, import shared data into a VDB, and write
+v-queries over the VDB to analyze the data, significantly reducing redundancy
+across clients.
