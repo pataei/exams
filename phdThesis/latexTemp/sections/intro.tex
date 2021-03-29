@@ -1,23 +1,81 @@
 \chapter{Introduction}
 \label{ch:intro}
 
-\TODO{points: 
-- def variation in db and is everywhere
-- instances but context specific solution don't suffice
-- thus a generic framework that addresses problems}
+%\TODO{points: 
+%- def variation in db and is everywhere
+%- instances but context specific solution don't suffice
+%- thus a generic framework that addresses problems}
+%
+%\TODO{
+%- dimension, behaviour
+%- instances but context specific solution don't suffice
+%- example of instances
+%  - well-studied: schema evolution
+%  - partial: SPL
+%  - new instance either out of combination of other or new
+%- generic framework to instantiate for each instance and address all variational needs.}
 
-\TODO{
-- dimension, behaviour
-- instances but context specific solution don't suffice
-- example of instances
-  - well-studied: schema evolution
-  - partial: SPL
-  - new instance either out of combination of other or new
-- generic framework to instantiate for each instance and address all variational needs.}
+
+Managing variation in databases is a perennial problem in database literature
+and appears in different forms and 
+contexts~\cite{curateVdata,ALW21vamos,ready17cidr,clams16sigmod,datahub15cidr}
+and it is inevitable~\cite{dbDecay16Stonebraker}.
+%
+Variation in databases mainly arises when multiple database instances 
+conceptually represent the same database, but, differ
+in their schema, content, or constraints.
+%
+Specific kinds of variation in databases have been addressed by 
+context-specific solutions, such as
+%Existing work on variation in databases addresses specific  kinds of 
+%variation in a context and proposes solutions specific to the context of the
+%variation, such as  
+schema evolution~\cite{SchEvolRA90McKenzie, 
+schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass, 
+prima08Moon}, 
+data integration~\cite{dataIntegBook}, 
+and database versioning~\cite{datasetVersioning,dbVersioning}.
+%
+However, there are no generic solution that addresses any kind of variation
+in databases. We motivate the need for a generic solution to variation
+in databases in \secref{mot}.
+%
+%These problems have a context-specific solution. However, different
+%kinds of variation in databases behave differently. 
+%For example, as illustrated in 
+%\figref{behave}, the variation
+%in schema evolution evolves linearly over time while the variation in data
+%integration comes from multiple input databases creating one output database. 
+%Thus, a context-specific solution for one kind of variation in databases cannot
+%be used to address another kind of variation in databases. This becomes 
+%problematic when different kinds of variation in databases interact, creating
+%a new kind of variation in databases. 
+
+
+The major contribution of this thesis is the \emph{variational database} framework,
+a generic relational database framework that explicitly accounts for database changes (variation),
+and \emph{variational relational algebra}, a data manipulation language for our framework
+that allows for information extraction from a variational database. 
+The variational framework is generic because it can encode any kind of variation
+in databases. Additionally and more importantly, it is designed such that it satisfies
+any information need that a user may have in a variational database scenario. 
+Based on information needs in a variational database scenario, we define 
+requirements of a variational database framework in \secref{mot} and throughout the
+thesis, we show that our framework satisfies these requirements.
+
+In addition to a formal description of the variational database framework and
+variational relational algebra and some theoretical results,
+this thesis distributes and presents two variational data sets (including both a variational
+database and a set of queries) as well as a \emph{variational database management system}
+that implements the variational database framework as an abstraction layer on top of a 
+traditional relational database management system in Haskell.
+\secref{contribution} enumerates the specific contributions in the contest of an outline
+of the structure of the rest of the thesis. 
+
 
 \input{sections/mot}
 \input{sections/motex}
+\input{sections/industryex}
 %\input{sections/varneeds}
 \input{sections/contribution}
 
-I think this revision looks great. My only minor suggestion is to change the sentence about the case studies to something like "It presents two use cases of the variational database framework that are based on existing data sets and scenarios that are not well supported by existing techniques". Basically, make it clear that the use cases are based on prior work and that they demonstrate how we can solve problems that are not well supported otherwise.

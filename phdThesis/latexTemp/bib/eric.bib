@@ -103,6 +103,26 @@
   core      = {N/A},
 }
 
+@inproceedings{ALW21vamos,
+author = {Ataei, Parisa and Li, Qiaoran and Walkingshaw, Eric},
+title = {Should Variation Be Encoded Explicitly in Databases?},
+year = {2021},
+isbn = {9781450388245},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3442391.3442395},
+doi = {10.1145/3442391.3442395},
+abstract = {Variation occurs in databases in many different forms and contexts. For example, a single database schema evolves over time, data from different sources may be combined, and the various configurations of a software product line (SPL) may have different data needs. While approaches have been developed to deal with many such scenarios, particularly in the fields of database evolution and data integration, there is no solution that treats variation as a general and orthogonal concern in databases. This is a problem when various kinds of variation intersect, such as during the evolution of a SPL. Previously, we have proposed variational databases (VDB) as a general way to represent variation in both the structure and content of databases. Although the model underlying VDB is simple, encoding variation explicitly in databases introduces complexity akin to using preprocessing directives in software. In this paper, we explore the feasibility of VDB and its associated variational query language for encoding different kinds of database variability. We develop two use cases that illustrate how different kinds of variation can be encoded and integrated in VDB, and how the corresponding information needs can be expressed as variational queries. We then use these use cases to discuss the benefits and drawbacks of such a direct encoding of variation in data and queries.},
+booktitle = {15th International Working Conference on Variability Modelling of Software-Intensive Systems},
+articleno = {3},
+numpages = {9},
+keywords = {variational queries, Variational databases, variability in data},
+location = {Krems, Austria},
+series = {VaMoS'21}
+}
+
+
+
 @inproceedings{ATW18poly,
   author    = {Ataei, Parisa and Termehchy, Arash and Walkingshaw, Eric},
   title     = {{Managing Structurally Heterogeneous Databases in Software Product Lines}},
@@ -162,7 +182,6 @@
   publisher = {IEEE},
   year      = 2017,
   pages     = {122--127},
-  note      = {\textbf{Best~presentation}},
   kind      = {Workshop},
   status    = {Appeared},
   rate      = {71\%},
@@ -265,13 +284,13 @@
   booktitle = GPCE,
   year      = 2014,
   pages     = {29--38},
-  note      = {\textbf{Best~paper}},
   kind      = {Conference},
   status    = {Appeared},
   rate      = {30\%},
   core      = {B},
   abstract  = {Editing the source code of variational software is complicated by the presence of variation annotations, such as \#ifdef statements, and by code that is only included in some configurations. When we want to edit some configurations and not others, it would be easier to edit a simplified version of the source code that contains only the variability we currently care about. In this paper, we present a projectional editing model for variational software. Using our approach, a programmer can partially configure a variational program, edit this simplified view of the code, and then automatically update the original, fully variational source code. The model is based on an isolation principle where edits affect only the variants that are visible in the view. We show that this principle has several nice properties that are suggested by related work on bidirectional transformations.},
 }
+  note      = {\textbf{Best~paper}},
 
 @article{CEW14toplas,
   author    = {Chen, Sheng and Erwig, Martin and Walkingshaw, Eric},
@@ -581,13 +600,13 @@
   volume    = 5658,
   year      = 2009,
   pages     = {335--359},
-  note      = {\textbf{Best~paper}},
   kind      = {Conference},
   status    = {Appeared},
   rate      = {37\%},
   core      = {N/A},
   abstract  = {We propose a new focus in language design where languages provide constructs that not only describe the computation of results, but also produce explanations of how and why those results were obtained. We posit that if users are to understand computations produced by a language, that language should provide explanations to the user.  As an example of such an explanation-oriented language we present a domain-specific language for explaining probabilistic reasoning, a domain that is not well understood by non-experts. We show the design of the DSL in several steps. Based on a story-telling metaphor of explanations, we identify generic constructs for building stories out of events, and obtaining explanations by applying stories to specific examples. These generic constructs are then adapted to the particular explanation domain of probabilistic reasoning. Finally, we develop a visual notation for explaining probabilistic reasoning.},
 }
+  note      = {\textbf{Best~paper}},
 
 @inproceedings{WE09dsl,
   author    = {Walkingshaw, Eric and Erwig, Martin},
