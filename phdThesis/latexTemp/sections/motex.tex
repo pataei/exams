@@ -81,8 +81,8 @@
 %%and managing the mappings between views and the universal schema for each product.
 
 
-\begin{table}[t]
-\caption{Schema variants of the employee database developed for multiple software variants by an SPL.
+\begin{table}[htbp]
+\caption{Schema variants of the employee database developed for multiple software variants by an SPL. Note that an \educational\ database variant must contain a \basic\ database variant too. 
 %Employee schema evolution of a database for a SPL.
 %%(evolution features \vOne -- \vFive\ for employee part of the schema (the left schema column), evolution features \tOne -- \tFive\ for education part
 %%of the schema (the right schema column), and \edu\ feature representing the education feature of SPL). 
@@ -98,51 +98,82 @@
 %%in addition to \ensuremath{2^5 \times 2^5} when \edu\ is enabled.
 }
 \label{tab:mot}
-\begin{center}
+\centering
 \small
 %\footnotesize
 %\scriptsize
-\begin{tabular} {| c | l || l | c |}
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{Database schema variants for \basic\ software variants.}
+\label{tab:mot-basic}
+\begin{tabular} {| c | l |}
 \hline
-\textbf{\tiny Temporal} & \multicolumn{2}{ c |}{\textbf{Database Schema Variants for SPL Software Variants}} & \textbf{\tiny Temporal}\\
-\cline{2-3}
-\textbf{\tiny Features} & \multicolumn{1}{ c ||} {\basic} & \multicolumn{1}{ c |} {\educational} & \textbf{\tiny Features}\\
+\textbf{Temporal Features} & \textbf{\basic\ Database Schema Variants}\\
+\hline
+\multirow{3}{*}{\vOne} &  \engemp\ (\empno, \name, \hiredate, \titleatt, \deptname) \\
+& \othemp\ (\empno, \name, \hiredate, \titleatt, \deptname) \\
+& \job\ (\titleatt, \salary) \\
+\hline
+\multirow{2}{*}{\vTwo} & \cellcolor{yellow}{\empacct\ (\empno, \name, \hiredate, \titleatt, \deptname)}\\
+& \cellcolor{yellow}{\job\ (\titleatt, \salary)} \\
+\hline
+\multirow{4}{*}{\vThree} & \empacct\ (\empno, \name, \hiredate, \titleatt, \deptno)\\
+& \job\ (\titleatt, \salary) \\
+& \dept\ (\deptname, \deptno, \managerno) \\
+& \empbio\ (\empno, \sex, \birthdate)\\
+\hline
+\multirow{4}{*}{\vFour} & \empacct\ (\empno, \hiredate, \titleatt, \deptno, \dashuline{\isstudent}, \dashuline{\isteacher}) \\
+& \job\ (\titleatt, \salary) \\
+& \dept\ (\deptname, \deptno, \managerno) \\
+& \empbio\ (\empno, \sex, \birthdate, \name) \\
+\hline
+\multirow{4}{*}{\vFive} & \empacct\ (\empno, \hiredate, \titleatt, \deptno,  \dashuline{\isstudent}, \dashuline{\isteacher}, \salary)\\
+& \dept\ (\deptname, \deptno, \managerno,  \dashuline{\studentnum}, \dashuline{\teachernum}) \\
+& \empbio\ (\empno, \sex, \birthdate, \fname, \lname) \\
+\hline
+\end{tabular}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{Database schema variants for \educational\ software variants.}
+\label{tab:mot-edu}
+\begin{tabular} {| c | l |}
+\hline
+\textbf{Temporal Feature} & \textbf{\educational\ Database Schema Variants }\\
+%\cline{2-3}
+%\textbf{\tiny Features} & \multicolumn{1}{ c ||} {\basic} & \multicolumn{1}{ c |} {\educational} & \textbf{\tiny Features}\\
 \hline
 %\cline{2-3}
 %\cline{2-3}
 %\hhline{-==}
-\multirow{3}{*}{\vOne} &  \engemp\ (\empno, \name, \hiredate, \titleatt, \deptname) & 
-\course\ (\cname, \tno) & \multirow{3}{*}{\tOne}\\
-& \othemp\ (\empno, \name, \hiredate, \titleatt, \deptname)  & \student\ (\sno, \cname) &\\
-& \job\ (\titleatt, \salary) &  &\\
+\multirow{2}{*}{\tOne} & \course\ (\cname, \tno)\\
+& \student\ (\sno, \cname) \\
 \hline
-\multirow{2}{*}{\vTwo} & \cellcolor{yellow}{\empacct\ (\empno, \name, \hiredate, \titleatt, \deptname)} & \course\ (\cno, \cname, \tno) & \multirow{2}{*}{\tTwo}\\
+\multirow{2}{*}{\tTwo} & \course\ (\cno, \cname, \tno)\\
 %\cdashline{2-3}
-& \cellcolor{yellow}{\job\ (\titleatt, \salary)} & \student\ (\sno, \cno) & \\
+& \student\ (\sno, \cno)\\
 \hline
-\multirow{4}{*}{\vThree} & \empacct\ (\empno, \name, \hiredate, \titleatt, \deptno) & \cellcolor{yellow}{\course\ (\cno, \cname)} & \multirow{4}{*}{\tThree}\\
-& \job\ (\titleatt, \salary) & \cellcolor{yellow}{\teach\ (\tno, \cno)} &\\
-& \dept\ (\deptname, \deptno, \managerno) & \cellcolor{yellow}{\student\ (\sno, \cno, \grade)} &\\
-& \empbio\ (\empno, \sex, \birthdate) &\cellcolor{yellow}{} &\\
+\multirow{3}{*}{\tThree} & \cellcolor{yellow}{\course\ (\cno, \cname)} \\
+& \cellcolor{yellow}{\teach\ (\tno, \cno)} \\
+& \cellcolor{yellow}{\student\ (\sno, \cno, \grade)} \\
 \hline
-\multirow{4}{*}{\vFour} & \empacct\ (\empno, \hiredate, \titleatt, \deptno, \dashuline{\isstudent}, \dashuline{\isteacher}) & \ecourse\ (\cno, \cname) & \multirow{4}{*}{\tFour}\\
-& \job\ (\titleatt, \salary) & \course\ (\cno, \cname, \timeatt, \class) & \\
-& \dept\ (\deptname, \deptno, \managerno) & \teach\ (\tno, \cno) & \\
-& \empbio\ (\empno, \sex, \birthdate, \name) & \student\ (\sno, \cno, \grade) & \\
+\multirow{4}{*}{\tFour} & \ecourse\ (\cno, \cname) \\
+& \course\ (\cno, \cname, \timeatt, \class) \\
+& \teach\ (\tno, \cno) \\
+& \student\ (\sno, \cno, \grade) \\
 \hline
-\multirow{4}{*}{\vFive} & \empacct\ (\empno, \hiredate, \titleatt, \deptno,  \dashuline{\isstudent}, \dashuline{\isteacher}, \salary) & \ecourse\ (\cno, \cname, \deptno) & \multirow{4}{*}{\tFive}\\
-& \dept\ (\deptname, \deptno, \managerno,  \dashuline{\studentnum}, \dashuline{\teachernum}) & \course\ (\cno, \cname, \timeatt, \class, \deptno) & \\
-& \empbio\ (\empno, \sex, \birthdate, \fname, \lname) & \teach\ (\tno, \cno) & \\
-&& \take\ (\sno, \cno, \grade) & \\
+\multirow{4}{*}{\tFive}  & \ecourse\ (\cno, \cname, \deptno) \\
+& \course\ (\cno, \cname, \timeatt, \class, \deptno) \\
+& \teach\ (\tno, \cno)\\
+& \take\ (\sno, \cno, \grade)\\
 \hline
 \end{tabular}
-\end{center}
+\end{subtable}
 \end{table}
-
-%\arashComment{Section 2 has a useful example but it is unnecessarily too complicated as combines SPL and schema evolution right off the bat.
-%1) If you want to use both, you may start with one and then enrich the example with the other. 2) It may be useful to combine and summarize Sections 1 and 2 and use the example to ground the abstract description in Section 1. 3) You might have to make the example shorter to page limits for conferences.} 
-%\resp{I numbered your concerns and responded to them one by one: 1) I introduced schema evolution first and then its happening in spl. 2) I still prefer separating motivating ex and introduction to avoid complicating the intro. I want the intro to be to the point and brief, explaining that variational databases have multiple application (instances), they have appeared in literature except that researchers have failed to recognize the commonality in all those instance which is the fact that they are all variation appearing in different contexts and applications. The purpose of motivating example is to draw the reader to continue reading the paper that is more structured. It respects the reader time (if they're interested they'll continue reading into motivating example) and is more organized. 3) I'll come back to this in the final version. However, I think it's important to put the time in and use the space to establish the functionality of VDB.}
-%\responded
 
 %\point{Overall scenario.}
 
@@ -179,10 +210,10 @@ about employees, but SPL features impact the database: While
 %by using the \edu\ feature.
 We visualize the impact of features on the schema variants in \tabref{mot}:
 It has two
-schema types: \basic\ and \educational.
-A \basic\ schema variant contains only the schema in one of the cells in column \basic\
-while an \educational\ schema variant consists of two sub-schemas: one from the \basic\
-column and another from the \educational\ one, e.g., 
+schema types: \basic, shown in \tabref{mot-basic}, and \educational, shown in \tabref{mot-edu}.
+A \basic\ schema variant contains only the schema in one of the cells in \tabref{mot-basic}
+while an \educational\ schema variant consists of two sub-schemas: one from the \basic\ 
+and another from \tabref{mot-edu}. For example,
 the yellow highlighted cells include relation schemas for an \educational\ schema variant. 
 %Note that these sub-schemas do not 
 %have to be adjunct cells.
@@ -194,7 +225,7 @@ two disjoint sets of features which again are boolean variables.
 % and call them
 %\emph{temporal features}. 
 The temporal feature sets are disjoint to allow 
-individual paces for the evolution of each type of schema, e.g.
+individual paces for the evolution of each type of schema. For example,
 yellow cells of \tabref{mot} show a valid schema variant even though
 the \basic\ and \educational\ sub-schemas are not in the same row. 
 %For example, a valid software variant 
@@ -231,7 +262,7 @@ the \basic\ and \educational\ sub-schemas are not in the same row.
 %\point{Component evolution.}
 Now, consider the following scenario:
 In the initial design of the \basic\ database, SPL  DBAs
-settle on three tables \engemp, \othemp, and \job; shown in \tabref{mot} and associated
+settle on three tables \engemp, \othemp, and \job; shown in \tabref{mot-basic} and associated
 with feature \vOne. 
 After some time, they decide
 to refactor the schema to remove redundant tables,
