@@ -1,7 +1,84 @@
 \subsection{Motivating Example}
 \label{sec:motex}
 
-\TODO{combination of instances, behaviours, and dimensions}
+
+%%%\point{Database-backed software produced by SPL is an instance
+%%%of variation in databases that is poorly managed in practice.}
+%%%Explains SPL briefly and how variation appears in databases used to
+%%%store data for software produced by SPL. As well as how poorly it is 
+%%%managed in practice.
+%Database-backed software produced by software product line (SPL) 
+%is an example variation in databases in space and is \revised{partially}
+%supported. 
+%SPL is an
+%approach to developing and maintaining software-intensive systems 
+%in a cost-effective, easy to maintain manner by accommodating variation
+%in the software that is being reused~\cite{splBook}. 
+%An SPL produces multiple software products for different business requirements and environments.
+%%%The products of a SPL pertain to a
+%%%common application domain or business goal. 
+%%%They also have a common
+%%%managed set of features that describe the specific need for a product. 
+%%%They share 
+%%%a common codebase which is used to produce a product with respect to its set of 
+%%%selected (enabled) features
+%%In SPL, a common codebase is shared and used to produce products w.r.t.
+%%a set of selected (enabled) features~\cite{splBook}. 
+%%% from the SPL feature set designed to describe
+%%%specific needs for products~\cite{splBook}. 
+%%Different products of an SPL typically have different
+%%sets of enabled features or are tailored to run in different environments. 
+%These
+%differences impose different data requirements which creates variation in space 
+%in the shared database used in the common codebase. 
+%%Hence, 
+%%each product has its own database variant.
+%%For example, different legal
+%%requirements often require tracking different data in products tailored for use
+%%in different countries or regions~\cite{splBook}.
+%%Different data requirements results in different desired data which 
+%%creates database variants. 
+%%
+%%
+%%
+%\revised{
+%Since the existing data variation models developed in the databases community
+%do not align with all of the variation scenarios that arise in software, SPL
+%researchers have identified the need for more general encodings of variation in
+%data models and database schema.
+%%
+%%Since the variation in this case is mainly exclusion/inclusion of attributes/relations
+%%for different variants of the software~\cite{ATW18poly}, researchers
+%%%the database variants corresponding to software products differ mainly 
+%%in their schema, a relation/attribute can either be included or excluded for a 
+%%specific software product~\cite{ATW18poly}.
+%%
+% To this end, they 
+% have developed
+%encodings of data models that allow for arbitrary variation by annotating
+%different elements of the model with features from the
+%SPL~\cite{skrhas09DBIS,slrs12CAiSE,ad11varDataModel}.
+%%
+%However, these solutions address \emph{only} variation in the data model but do not
+%extend to the level of the data or queries. The lack of variation support in
+%queries leads to unsafe techniques such as encoding different variants of query
+%through string munging, while the lack of variation support in data precludes
+%testing with multiple variants of a database at once.
+%}
+%%The variation is in the form of exclusion/inclusion of tables/attributes based on
+%%selected features for a product~\cite{ATW18poly}.
+%%%
+%%In practice, software systems produced by a SPL are accommodated with a database that
+%%has all attributes and tables available for all variants-- a database with universal schema~\cite{ATW18poly}. 
+%%Unfortunately, this approach is
+%%inefficient, error-prone, and filled with lots of null values since not all attributes and tables
+%%are valid for all variant products. A possible solution to this could be defining views on 
+%%the universal database per software variant and write queries for each variant against its 
+%%view~\cite{ATW18poly}.
+%%However, this is burdensome, expensive, and costly to maintain since it 
+%%requires developers to generate and maintain numerous view definitions
+%%in addition to manually generating
+%%and managing the mappings between views and the universal schema for each product.
 
 
 \begin{table}[t]
@@ -218,7 +295,7 @@ Our example demonstrates how different kinds of variation
 interact with each other, an indispensable consequence of modern software
 development.
 The described interaction is similar to a recent scenario we discussed with an
-industry contact in \appref{industry-ex}.
+industry contact in \secref{industryex}.
 %In practice, new instances of variation in databases arises. We discuss such a scenario that 
 %we discussed with an industry contact in \appref{industry-ex}.
 
