@@ -1,0 +1,45 @@
+\begin{figure}
+%\textbf{Feature expression generic object:}
+%\begin{syntax}
+%\synDef \fName \fSet &\textit{Feature Name}
+%%c \in \mathbf{C} &\textit{Configuration}
+%\end{syntax}
+%
+%\medskip
+\textbf{Feature expression syntax:}
+\begin{syntax}
+\synDef \fName \fSet &&&\textit{Feature Name}\\
+\synDef \bTag \bSet &\eqq& \t \myOR \f & \textit{Boolean Value}\\
+\synDef \dimMeta \ffSet &\eqq& \bTag \myOR \fName \myOR \neg \dimMeta \myOR \dimMeta \wedge \dimMeta \myOR \dimMeta \vee \dimMeta & \textit{Feature Expression}\\
+\synDef \config \confSet &:& \fSet \to \bSet &\textit{Configuration}
+\end{syntax}
+
+
+\medskip
+\textbf{Relations over feature expressions:}
+\begin{alignat*}{1}
+\dimMeta_1 \equiv \dimMeta_2 \textit{ iff \ } \forall \config \in \confSet: \fSem {\dimMeta_1} = \fSem {\dimMeta_2}\\
+\sat {\dimMeta} \textit{ iff \ } \exists \config \in \confSet: \fSem {\dimMeta} = \t\\
+\unsat {\dimMeta} \textit{ iff \ } \forall \config \in \confSet: \fSem {\dimMeta} = \f
+%\dimMeta_1 \oplus \dimMeta_2 = (\dimMeta_1 \wedge \neg \dimMeta_2) \vee (\dimMeta_2 \wedge \neg \dimMeta_1)
+\end{alignat*}
+
+\begin{comment}
+\medskip
+\textbf{Configuration constraint:}
+\begin{equation*}
+\forall \overrightarrow{f_i} \in c :
+%( \neg o_1 \wedge o_2 \wedge o_3 \wedge \ldots \wedge o_{|f_i|})
+\bigvee_{1\leq j \leq |f_i|}(\neg o_j \wedge \bigwedge_{\substack{k\not = j\\1 \leq k\leq |f_i|}} o_k)
+= \prog{true}
+\end{equation*}
+\end{comment}
+
+\caption{Feature expression syntax and relations.
+% and functions over feature expressions. 
+%We informally define \emph{exclusive or} \ensuremath{\oplus} of \ensuremath{n} features to be \t\ 
+%only when one feature is \t.
+}
+\label{fig:fexp-def}
+\end{figure}
+

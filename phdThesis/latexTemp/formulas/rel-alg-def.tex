@@ -1,0 +1,47 @@
+\begin{figure}
+
+\begin{syntax}
+
+% feature expressions
+%\synDef{\dimMeta}{\ffSet}
+%  &\eqq& \multicolumn{2}{l}{%
+%         \t \myOR \f \myOR \fName \myOR \neg\fName
+%         \myOR \dimMeta\wedge\dimMeta \myOR \dimMeta\vee\dimMeta}
+%\\[1.5ex]
+
+% relation conditions
+\synDef{\pCond}{\pCondSet}
+  &\eqq& \multicolumn{2}{l}{%
+         \t \myOR \f \myOR \att\bullet\cte \myOR \att\bullet\att
+         \myOR \neg\pCond \myOR \pCond\vee\pCond} \\
+%     &|& \multicolumn{2}{l}{\vCond\wedge\vCond \myOR \chc{\vCond,\vCond}}
+\\[1.5ex]
+
+% variational relational algebra
+\synDef{\pQ}{\pQSet}
+  &\eqq& \pRel                 & \textit{Relation reference} \\
+     &|& \pRen[\pRel]{\pQ}     & \textit{Renaming} \\
+     &|& \pPrj[\pAttList]{\pQ} & \textit{Projection} \\
+     &|& \pSel\pQ              & \textit{Selection} \\
+     &|& \pQ \times \pQ & \textit{Cartesian product}\\
+     &|& \pQ \Join_{\pCond} \pQ  & \textit{Join} \\
+     &|& \pQ \circ \pQ & \textit{Set operation}\\
+%     &|& \chc{\vQ,\vQ}         & \textit{Choice} \\
+%     &|& \empRel               & \textit{Empty relation} \\
+%    &|& \vQ \times \vQ        & \textit{Cartesian Product} \\
+%    &|& \vQ \circ \vQ         & \textit{Set operation} \\
+\end{syntax}
+
+\caption{Syntax of  relational algebra, where $\bullet$ ranges over
+comparison operators ($<, \leq, =, \neq, >, \geq$), $\circ$ over 
+set operations ($\cap, \cup$), \cte\ over constant values,
+\att\ over attribute names, and \pAttList\ over lists of attributes.
+The syntactic category
+% \dimMeta\ represents feature expressions, 
+ \pCond\
+is relational conditions, and \pQ\ is  relational algebra terms.
+}
+%\vspace{-20pt}
+\label{fig:rel-alg}
+\end{figure}
+%\vspace{-20pt}
