@@ -5,10 +5,19 @@
 
 \newcommand{\vlift}[1]{\lceil #1 \rceil_S^{S'}}
 
+\newcommand{\vsetOp}{\OB{\odot}}
+\newcommand{\psetOp}{\OB{\underline{\vsetOp}}}
+
+\newcommand{\boldmth}[1]{\textcolor{green(munsell)}{\OB{#1}}}
+\newcommand{\pushInBold}[1]{\textcolor{green(munsell)}{\OB{\downarrow}}\left({#1}\right)}
+
+%\newcommand{\filterSet}[1]{\OB{\otimes{#1}}}
+\newcommand{\filterSet}[1]{\pushIn {#1}}
+
 
 % defining syntax
 \newcommand{\synDef}[2]{\OB{#1 \in #2 }}
-\newcommand{\eqq}{\OB{\Coloneqq}}
+\newcommand{\eqq}{\OB{\coloneqq}}
 \renewcommand{\t}{\OB{\prog{true}}}
 \newcommand{\f}{\OB{\prog{false}}}
 
@@ -44,10 +53,12 @@
 \newcommand*{\orSem}[2][\config]{\OB{\orS\sem[#1]{#2}}}
 
 \newcommand*{\otS}{\OB{\mathbb{T}}}
-\newcommand*{\otSem}[2][\config]{\OB{\otS\sem[#1]{#2}}}
+\newcommand*{\otSemType}[2][\config]{\OB{\otS\sem[#1]{#2}}}
+\newcommand*{\otSem}[3][\config]{\OB{\otS\sem[\left({#2}, {#1}\right)]{#3}}}
 
 \newcommand*{\ouS}{\OB{\mathbb{U}}}
-\newcommand*{\ouSem}[2][\config]{\OB{\ouS\sem[#1]{#2}}}
+\newcommand*{\ouSemType}[2][\config]{\OB{\ouS\sem[#1]{#2}}}
+\newcommand*{\ouSem}[3][\config]{\OB{\ouS\sem[\left({#2}, {#1}\right)]{#3}}}
 
 \newcommand*{\ovS}{\OB{\mathbb{V}}}
 \newcommand*{\ovSem}[2][\config]{\OB{\ovS\sem[#1]{#2}}}
@@ -57,6 +68,9 @@
 
 \newcommand*{\odbS}{\OB{\mathbb{I}}}
 \newcommand*{\odbSem}[2][\config]{\OB{\odbS\sem[#1]{#2}}}
+
+\newcommand*{\osetS}{\OB{\mathbb{X}}}
+\newcommand*{\osetSem}[2][\config]{\OB{\osetS\sem[#1]{#2}}}
 
 %\newcommand*{\eS}{\OB{Q}}
 %\newcommand*{\eSem}[2][\config]{\OB{\eS\sem[#1]{#2}}}
@@ -77,6 +91,7 @@
 \newcommand{\pPrj}[2][\pAtt]{\OB{\pi_{#1} #2}}
 \newcommand{\pSel}[2][\pCond]{\OB{\sigma_{#1} #2}}
 \newcommand{\setDef}[1]{\OB{\{#1\}}}
+\newcommand{\pRen}[2][\nameVar]{\OB{\rho_{#1} #2}}
 
 % conditions
 \newcommand{\op}[2]{\OB{#1\bullet#2}}
@@ -90,18 +105,18 @@
 % query type environment
 %\newcommand{\env}[4][\vctx][\vSch]{\OB{#1,#2 \vdash#3:#4}}
 \makeatletter
-\def\env{
-  \@ifnextchar[
-    {\env@i}
-    {\env@i[\vctx]}
+\def\env{%
+  \@ifnextchar[%
+    {\env@i}%
+    {\env@i[\vctx]}%
 }
-\def\env@i[#1]{
-  \@ifnextchar[
-    {\env@ii{#1}}
-    {\env@ii{#1}[\vSch]}
+\def\env@i[#1]{%
+  \@ifnextchar[%
+    {\env@ii{#1}}%
+    {\env@ii{#1}[\vSch]}%
 }
-\def\env@ii#1[#2]#3#4{
-{\OB{#1,#2 \vdash#3:#4}}
+\def\env@ii#1[#2]#3#4{%
+{\OB{#1,#2 \vdash#3:#4}}%
 }
 \makeatother
 
@@ -110,13 +125,14 @@
 \newcommand{\pEnv}[3][\pSch]{\OB{#1 \vdash #2 : #3}}
 \newcommand{\envWithSchema}[2][\OB{\vctx}]{\env[#1]{\vRel}{#2}}
 \newcommand{\envRelInSch}[2][\vSch]{\env[#1]{#2}{\vType}}
-\newcommand{\envOne}[1][\vctx]{\env[#1]{\vQ_1}{\envInContext [\vctx_1] \vType_1}}
-\newcommand{\envTwo}[1][\vctx]{\env[#1]{\vQ_2}{\envInContext [\vctx_2] \vType_2}}
-\newcommand{\envPrime}{\env{\vQ}{\envInContext[\VVal \vctx]{\VVal \vType}}}
+\newcommand{\envOne}[1][\vctx]{\env[#1]{\vQ_1}{\envInContext[\vctx_1]{\vType_1}}}
+\newcommand{\envTwo}[1][\vctx]{\env[#1]{\vQ_2}{\envInContext[\vctx_2]{\vType_2}}}
+\newcommand{\envPrime}{\env{\vQ}{\envInContext[\VVal{\vctx}]{\VVal{\vType}}}}
 
 % condition type environment
 \newcommand{\envCond}[2][\vctx, \vType]{\OB{#1\vdash #2}}
-\newcommand{\envCondAnnot}[2][\vctx, {\pushIn{\annot [\VVal \vctx] \vType}}]{\OB{#1\vdash #2}}
+\newcommand{\envCondAnnot}[2][\vctx,{\pushIn{\annot[\VVal{\vctx}]{\vType}}}]
+  {\OB{#1\vdash #2}}
 
 % type and variation context
 \newcommand{\envL}{\OB{\lfloor}}
@@ -141,6 +157,7 @@
 
 % dbms
 \renewcommand{\dom}[2][\vdbInst]{\OB{\mathit{dom}_{#1}{\left(#2\right)}}}
+\newcommand{\domSet}{\OB{\mathit{dom}}}
 \newcommand{\type}[1][\pAtt]{\OB{\mathit{type}{\left({#1}\right)}}}
 \newcommand{\attr}[1][\pRel]{\OB{\mathit{attr}{\left(#1\right)}}}
 \newcommand{\arity}[1][\pRel]{\OB{\mathit{arity}{\left(#1\right)}}}

@@ -1,10 +1,40 @@
 \chapter{Background}
 \label{ch:bg}
 
-\TODO{background}
+The core of this thesis is injecting a new aspect to relational databases: \emph{variation}.
+Thus, the goals of this chapter are twofold: 
+%
+first, to introduce how variation is encoded and represented in our variational database framework;
+%
+second, to provide the reader with the concepts and notations
+used to build up the main contributions of this thesis, mainly relational databases and
+relational algebra.
+%
+%third, to familiarize the reader with
+%main notations and design decision of the thesis. 
 
-\input{sections/types}
+%\secref{types} describes types. Types provide readers with a strong tool to understand 
+%some formalizations easier and more intuitively.
+%
+\secref{rdb} describes the database model of relational databases and the specification of
+the structured used to store the data. \secref{ra} describes SPJC relational algebra to query
+relational databases. 
+%
+Then, 
+\secref{varspace} defines our choice of encoding for the variation space used in the 
+variational database as propositional formulas of boolean variables.
+%
+Finally, we introduce main approaches used to incorporate variation into our variational 
+database framework.
+\secref{vset} introduces variation into sets which forms the basis of the variational database
+framework and \secref{fcc} describes the formula choice calculus used to incorporate 
+variation into relational algebra.
+
+
+
+%\input{sections/types}
 \input{sections/rdb}
 \input{sections/ra}
+\input{sections/varspace}
 \input{sections/vset}
 \input{sections/fcc}

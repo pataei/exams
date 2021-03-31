@@ -1,3 +1,5 @@
+\newcommand{\Pone}{\OB{\left(P_1\right)}}
+
 %approaches
 \newcommand{\nbf}{NBF}
 \newcommand{\ubf}{UBF}
@@ -251,6 +253,7 @@
 %\newcommand*{\lN}{\OB{\mathit{lastName}}}
 
 %spj objects
+\newcommand*{\maybe}[1]{\OB{#1\textbf{?}}}
 \newcommand*{\pDB}{\OB{\underline{\db}}}
 \newcommand*{\pQ}{\OB{\underline{\q}}}
 \newcommand*{\pQSet}{\OB{\underline{\qSet}}}
@@ -294,6 +297,7 @@
 \newcommand*{\elemSet}{\OB{X}}
 \newcommand*{\cond}{\OB{\theta}}
 \newcommand*{\pset}{\OB{\underline {X}}}
+\newcommand*{\psetSet}{\OB{\underline {\mathcal{\vset}}}}
 \newcommand*{\numRels}{\OB{n}}
 \newcommand*{\numTuples}{\OB{k}}
 \newcommand*{\numAtts}{\OB{l}}
@@ -326,6 +330,7 @@
 \newcommand*{\vSch}{\OB{\sch}}
 %\newcommand*{\vSch}{\OB{\VVSet {\mathcal{S}}}}
 \newcommand*{\vset}{\OB{X}}
+\newcommand*{\vsetSet}{\OB{\mathcal{\vset}}}
 \newcommand*{\vTab}{\tab}
 \newcommand*{\vRel}{\rel}
 \newcommand*{\vAtt}{\att}
@@ -424,12 +429,13 @@
 \newcommand*{\empRel}{\OB{\varepsilon}}
 \newcommand*{\vAttOpCte}{\OB{\op \pAtt \cte}}
 \newcommand*{\vAttOpAtt}{\OB{\op {\pAtt_1} {\pAtt_2}}}
-\newcommand*{\tag}[2]{\OB{{#1}^{#2}}}
+\renewcommand*{\tag}[2]{\OB{{#1}^{#2}}}
 \newcommand*{\pc}{\OB{pc}}
 \newcommand*{\getPC}[1]{\OB{\mathit{pc}{\left({#1}\right)}}}
+\newcommand*{\getPCfrom}[2]{\OB{\mathit{pc}{\left({#1},{#2}\right)}}}
 \newcommand*{\getRel}[1]{\OB{\mathit{rel}{\left({#1}\right)}}}
 \newcommand*{\getAtt}[1]{\OB{\mathit{att}{\left({#1}\right)}}}
-
+\newcommand*{\empPRel}{\OB{\empRel}}
 %conditions
 \newcommand*{\pCond}{\OB{\underline{\cond}}}
 \newcommand*{\cte}{\OB{k}}

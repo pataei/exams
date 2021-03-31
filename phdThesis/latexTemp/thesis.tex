@@ -122,6 +122,7 @@ friends.
 }
 }
 
+\usepackage{mathtools} 
 \usepackage{algorithm}
 \usepackage{algorithmic}
 
@@ -135,7 +136,8 @@ friends.
 \usepackage{comment}
 \usepackage{accents}
 \usepackage{lambda,cc}
-%\usepackage{mathtools} 
+
+%\usepackage{txfonts} 
 \usepackage{array,multirow}
 %\usepackage{hhline}
 \usepackage{arydshln}
@@ -169,6 +171,14 @@ friends.
 \newcommand{\lemref}[1]{\hyperref[lem:#1]{Lemma~\ref*{lem:#1}}}
 \newcommand{\exref}[1]{\hyperref[ex:#1]{Example~\ref*{eg:#1}}}
 %
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{definition}[theorem]{Definition}
+
 %%colors
 \definecolor{deepcarminepink}{rgb}{0.94, 0.19, 0.22}%all shared
 \definecolor{mediumelectricblue}{rgb}{0.01, 0.31, 0.59}%middlename
