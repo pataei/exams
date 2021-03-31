@@ -1,0 +1,179 @@
+\subsection{Employee Query Set}
+\label{sec:emp-qs}
+
+%\point{We adapt and adjust the queries from~\cite{prima08Moon}.}\\
+%- there are two kinds of queries\\
+%- give an example of each
+
+For this use case, we have a set of existing plain queries to start from.
+\cite{prima08Moon} \TODO{fix citet} provides 12 queries to evaluate the Prima schema evolution
+system. We adapt these queries to fit our encoding of the employee VDB
+described in \secref{emp-vdb}.
+%
+%We provide the queries in both the VRA format usable by VDBMS and as
+%\cpp{ifdef} annotated SQL, as described in \secref{enron-qs}.%
+%\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/time-employee/queries}{usecases/time-employee/queries}}
+%
+9 of these queries have one variant, 2 have two variants, and 1 has three
+variants. 
+
+
+Moon's queries are of two types: 6 retrieve data valid on a particular date
+(corresponding to \vThree\ in our encoding), while 6 retrieve data valid on or
+after that date (\vThree--\vFive\ in our encoding).
+%
+For example, one query expresses the intent ``return the salary of employee
+number $10004$'' at a time corresponding to \vThree, which we encode:
+%\[
+\centerline{
+\ensuremath{
+Q_1 = \vPrj[\oatt{\salary}{\vThree}]{%
+  \joinRelR{\selectRel{\empno=10004}{\empacct}}{\job}
+           {\empacct.\titleatt = \job.\titleatt}}
+%\]
+}.}
+% Note that the presence condition of the only attribute \salary\ determines the
+% presence condition of the resulting table.
+%
+% In general and for simplicity, the shared part of presence conditions of
+%  projected attributes is factored out and applied to 
+%  the entire table. Assume the returned table as a result of
+%  query has the schema $\left(\oatt {\vAtt_1} {\dimMeta \wedge \dimMeta_1}, 
+%  \oatt {\vAtt_2} {\dimMeta \wedge \dimMeta_2} \right)$.
+% The shared restriction can be factored out and applied
+% to the entire table, i.e., $\left( \oatt {\vAtt_1} {\dimMeta_1},
+% \oatt {\vAtt_2} {\dimMeta_2} \right)^\dimMeta$.
+%
+We encode the same intent, but for all times at or after \vThree\ as follows:
+%
+\begin{align*}
+Q_2 &=  \vThree\vee\vFour\vee\vFive \langle \pi_\salary 
+ (\vThree\vee\vFour\langle\\
+&    \joinRelR{(\vSel[\empno=10004]{\empacct})}{\job}
+             {}, 
+%&\quad\qquad 
+{\vSel[\empno=10004]{\empacct}}\rangle), \empRel\rangle
+\end{align*}
+%
+There are a variety of ways we could have encoded both $Q_1$ and $Q_2$.
+%
+For $Q_1$ we could equivalently have embedded the projection in a choice,
+$\chc[\vThree]{\vPrj[\salary]{(\ldots)},\empRel}$, however attaching the presence
+condition to the only projected attribute determines the presence condition of
+the resulting table and so achieves the same effect.
+%
+In $Q_2$ we use choices to structure the query since we have to project on a
+different intermediate result for \vFive\ than for \vThree\ and \vFour.
+
+% The feature expression $\vThree \vee \vFour \vee \vFive$
+% determines the database variants to be inquired. 
+% Since the schema of \empacct\ and \job\ tables are the same
+% in variants \vThree\ and \vFour\ they both have the same 
+% query. Note that one could move the condition 
+% $\vThree \vee \vFour \vee \vFive$ to the projected attribute
+% which results in $\VVal {\eq_2}$, however, this query is wrong 
+% because the last alternative of the choice projects attribute \salary\
+% from an empty relation which is incorrect. It is important to 
+% understand that the behavior of an empty relation is exactly the
+% same as its behavior in relational algebra and one
+% should be careful of using it in operations such as projection,
+% selection, and join.
+
+% \begin{align*}
+% \small
+% \VVal {\eq_2} &= 
+% \pi_{\oatt \salary {\vThree \vee \vFour \vee \vFive}}\\
+% &\hspace{-15pt}
+% (\vThree \vee \vFour\langle
+% (\sigma_{\empno=10004} \empacct)
+% %&\hspace{0pt}
+% \bowtie_{\empacct . \titleatt = \job . \titleatt}
+% \job\\
+% &\hspace{20pt},
+% \vFive\langle{\selectRel {\empno=10004} \empacct},
+% \empRel
+% \rangle
+% \rangle)
+% \end{align*}
+
+As another example, the following query realizes the intent to ``return the
+name of the manager of department d001'' during the time frame of
+\vThree--\vFive:
+%
+%\begin{align*}
+\ensuremath{ Q_3 = \vThree\vee\vFour\vee\vFive \langle
+  \pi_{\name,\fname,\lname} }
+%  \\
+%&
+\centerline{
+\ensuremath{  
+%\hspace{10pt}
+%\qquad
+(\joinRel{\chc[\vThree]{\empacct,\empbio}}{(\vSel[\deptno=\deptOne]{\dept})}
+           {\empno=\managerno}),
+  \empRel \rangle
+  }.}
+%\end{align*}
+%
+%\noindent
+Note that even though the attributes \name, \fname, and \lname\ are not present
+in all three of the variants corresponding to \vThree--\vFive, the VRA encoding
+permits omitting presence conditions that can be completely determined by the
+presence conditions of the corresponding relations or attributes in the
+variational schema. So, $Q_3$ is equivalent to the following query in which the
+presence conditions of the attributes from the variational schema are listed
+explicitly in the projection:
+%
+%\begin{align*}
+\ensuremath{
+Q_3' = \vThree\vee\vFour\vee\vFive \langle
+  \pi_{\oatt{\name}{\vThree\vee\vFour},\oatt{\fname}{\vFive},\oatt{\lname}{\vFive}} }
+%  \\
+%&
+\centerline{
+\ensuremath{
+  (\joinRel{\chc[\vThree]{\empacct,\empbio}}{(\vSel[\deptno=\deptOne]{\dept})}
+           {\empno=\managerno}),
+  \empRel \rangle}.}
+%\end{align*}
+%
+%
+% \noindent
+Allowing developers to encode variation in v-queries based on their
+preference makes VRA more flexible and easy to use. 
+Also, v-queries are statically type-checked to ensure that
+the variation encoded in them does not conflict the variation encoded
+in the v-schema. 
+
+ %
+% Finally, we want to briefly illustrate what queries look like in the
+% \cpp{ifdef}-annotated SQL format that we distribute as a potentially more
+% portable and easy-to-use format for other researchers. Below is the query $Q_3$
+% in this format.
+% 
+% \begin{lstlisting}[language={}]
+% #ifdef V3 || V4 || v5
+%   #ifdef V3 || V4
+% SELECT name
+%   #else
+% SELECT firstname, lastname
+%   #endif
+% FROM
+%   #ifdef V3
+%     empacct
+%   #else
+%     empbio
+%   #endif
+% JOIN (SELECT dept WHERE deptno="d001")
+%   ON empno=manageno  
+% \end{lstlisting}
+
+% \begin{lstlisting}
+% #ifdef v3
+% SELECT salary
+% FROM empacct JOIN job ON empacct.title=job.title
+% WHERE empno=10004 
+% #endif
+% \end{lstlisting}
+
+%\input{formulas/empQs}

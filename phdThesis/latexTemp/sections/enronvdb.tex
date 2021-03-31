@@ -1,0 +1,181 @@
+\subsection{Variation in Space: Email SPL Use Case}
+\label{sec:enron-vdb}
+
+
+%In our first case study, we focus on variation that occurs in ``space'', that
+%is, where multiple software variants are developed and maintained in parallel.
+%In software, variation in space corresponds to a SPL, where many distinct
+%variants (products) can be produced from a single shared code base by enabling
+%or disabling features. A variety of representations and tools have been
+%developed for indicating which code belongs to which feature(s) and supporting
+%the process of configuring a SPL to obtain a particular variant.
+
+
+% E: This is repetitive with the intro, but I think it's OK to remind them here
+% of what the current bad solutions are. Plus, we have space to fill. :-)
+
+%Naturally, different variants of a SPL have different information needs. For
+%example, an optional feature in the SPL may require a corresponding attribute
+%or relation in the database that is not needed by the other features in the
+%SPL.
+%%
+%Currently, there is no good solution to managing the varying information needs
+%of different variants at the level of the database.
+%%
+%One possible solution is to manually maintain a separate database schema for
+%each variant of the SPL. This works for some SPLs where the number of products
+%is relatively small and the developer has control over the configuration
+%process. However, it does not scale to open-source SPLs or other scenarios
+%where the number of products is large and/or configuration is out of the
+%developer's hands.
+%%
+%Another possible solution is to use and maintain a single universal schema that
+%includes all of the relations and attributes used by any feature in the SPL. In
+%this solution, every product will use the same database schema regardless of
+%the features that are enabled. This solves the problem of scaling to large
+%numbers of products but is dangerous because it means that potentially several
+%attributes and relations will be unused in any given product. Unused attributes
+%will typically be populated by NULL values, which are a well-known source of
+%errors in relational databases~\cite{AliceBook}.
+
+
+%VDBs solve the problem by allowing the structure of a relational database to
+%vary in a synchronous way with the SPL. Attributes and relations may be
+%annotated by presence conditions to indicate in which feature(s) those
+%attributes and relations are needed.
+%%
+%An implementation of the VDB model might use a universal schema under-the-hood
+%to realize VDBs on top of a standard relational database management system
+%(indeed, this is exactly how our prototype VDBMS implementation works), but by
+%capturing the variation in the schema explicitly, we can validate (potentially
+%variational) queries against the relevant variants of the variational schema to
+%statically ensure that no NULL values will be referenced.
+
+Our first use case focuses on variation in space.
+It shows the use of VDB to encode the variational
+information needs of a database-backed SPL. We consider an email
+SPL that has been used in several previous SPL research projects (e.g.\
+\cite{apel2013strategies,AlHaj19}).
+%It develops a variational
+%schema that captures the information needs of a SPL based on Hall's
+%decomposition of an email system into its component features~\cite{Hall05}. The
+%email SPL has been used in several previous SPL research projects (e.g.\
+%\cite{Apel13:SSP,AlHaj19}). The variational email database is populated using
+%the Enron email dataset, adapted to fit our variational schema~\cite{Shetty04}.
+%
+%Our first case study demonstrates the use of a VDB to encode the variational
+%information needs of a database-backed SPL.
+%
+Our use case is formed by systematically combining two pre-existing works:
+%
+%\begin{enumerate}
+%
+%\item 
+(1) We use Hall's decomposition of an email system into its component
+features~\cite{Hall05} as high-level specification of a SPL.
+%
+%\item 
+(2) We use the Enron email
+dataset\footnote{\url{http://www.ahschulz.de/enron-email-data/}} as 
+%a source of
+a realistic email database.
+%
+%\end{enumerate}
+%
+In combining these works, we show how variation in space in an email SPL
+requires corresponding variation in a supporting database, how we can link the
+variation in the software to variation in the database, and how all of these
+variants can be encoded in a single VDB.
+
+
+\subsubsection{Variation Scenario: An Email SPL}
+\label{sec:enron-scenario}
+
+
+The email SPL consists of the following features from \cite{Hall05}: \TODO{fix citet}
+%
+%\begin{itemize}
+%[leftmargin=*]
+%\itemsep0em
+%
+%\item 
+\addressbook, users can maintain lists of known email addresses with
+corresponding aliases, which may be used in place of recipient addresses;
+%
+%\item 
+\signature, messages may be digitally signed and verified using
+cryptographic keys;
+%
+%\item 
+\encryption, messages may be encrypted before sending and decrypted upon
+receipt using cryptographic keys;
+%
+%\item 
+\autoresponder, users can enable automatically generated email responses
+to incoming messages;
+%
+%\item 
+\forwardmessages, users can forward all incoming messages automatically to another
+address;
+%
+%\item 
+\remailmessage, users may send messages anonymously;
+%
+%\item 
+\filtermessages, incoming messages can be filtered according to a
+provided white list of known sender address suffixes; and
+%
+%\item 
+\mailhost, a list of known users is maintained and known users may
+retrieve messages on demand while messages sent to unknown users are rejected.
+%
+%\end{itemize}
+
+%\noindent
+%
+%Note that 
+Hall's decomposition separates \signature\ and \encryption\ into two
+features each (corresponding to signing and verifying, encrypting and
+decrypting). Since these pairs of features must always be enabled together,
+% and
+%they are so closely conceptually related, 
+we 
+reduce them to one feature each for simplicity.
+
+
+The listed features are used in presence conditions within the
+v-schema for the email VDB, linking the software variation to
+variation in the database.
+%
+In the email SPL, each feature is optional and independent, resulting in the
+  simple feature model $\fModel_\enron = \t$.
+% , which is equivalent to \t, 
+%given as a feature expression.
+%%\eric{should we just consider this feature model as true? that is how 
+%%we're implementing it.}
+%%
+%\begin{align*}
+%\fModel_\enron
+%  &= \t \vee \addressbook \vee \signature \vee \encryption \\
+%  &\quad \vee \autoresponder \vee \forwardmessages \\
+%  &\quad \vee \remailmessage \vee \filtermessages \vee \mailhost
+%\end{align*}
+%
+%The feature model $\fModel_\enron$ is used as the root presence condition of
+%the variational schema for the email VDB, implicitly applying it to all
+%relations, attributes, and tuples in the database.
+
+%For the rest of this section, we study a SPL that 
+%generates email systems with different features and demonstrate
+%how variation appears in its database in addition to how all variants
+%of a database can be encoded in a single variational database. We adapt the
+%email system explained in~\cite{} by considering the following features:
+%...
+%
+%We consider the simple feature model of:
+%...
+%The feature model is part of the variational schema too and is applied
+%to all its tables and attributes. 
+
+\input{sections/enronvsch}
+%\input{sections/enronpopulate}

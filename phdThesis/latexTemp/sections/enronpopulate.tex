@@ -1,0 +1,214 @@
+\subsubsection{Populating the Email SPL VDB}
+\label{sec:enron-pop}
+
+The final step to create the email VDB is to populate the database with data
+from the Enron email dataset, adapted to fit our v-schema~\cite{Shetty04}.
+%
+For evaluation purposes, we want the data from the dataset to be distributed
+across multiple variants of the VDB. To simulate this, we identified five
+plausible configurations of the email SPL, which we divide the data among. The
+five configurations of the email SPL are:
+% we considered are:
+%
+%\begin{itemize}
+%
+%\item 
+\emph{basic email}, which includes only basic email functionality
+and does not include any of the optional features;
+% from the SPL.
+%
+%\item 
+\emph{enhanced email}, which extends \emph{basic email} by
+enabling two of the most commonly used email features, \forwardmessages\ and
+\filtermessages;
+%
+%\item 
+\emph{privacy-focused email}, which extends \emph{basic email}
+with features that focus on privacy, specifically, the
+\signature, \encryption, and \remailmessage\ features;
+%
+%\item 
+\emph{business email}, which extends \emph{basic email} with
+features tailored to an environment where most emails are expected to be among
+users within the same business network, specifically, \addressbook,
+\signature, \encryption, \autoresponder, and \mailhost; and
+%
+%\item 
+\emph{premium email}, in which all of the optional features
+in the SPL are enabled.
+%
+%\end{itemize}
+%
+For all variants, any features that are not enabled are disabled. 
+
+
+The original Enron dataset has 150 employees with 252,759 email messages. 
+%
+We load this data into the \employees\ and \messages\ tables defined in
+\secref{enron-vsch}, initializing all attributes that are not present in the
+original dataset to \NULL.
+
+
+For the \employees\ table, we construct five views corresponding to the five
+variants of the email system described above. We allocate 30 employees to each
+view based on their employee ID, that is, the first 30 employees sorted by
+employee ID are associated with the basic email variant, the next 30 with the
+enhanced email variant, and so on. The presence condition for each tuple is set
+to the conjunction of features enabled in that view.
+%
+We then modify each of the views of the \employees\ table by adding randomly
+generated values for attributes associated with the enabled features; 
+e.g., in the view for the privacy-focused variant, we populate the
+\verificationkey\ and \publickey\ attributes.
+%
+Any attribute that is not present in the given tuple due to a conflicting
+presence condition will remain \NULL. For example, both the \verificationkey\
+and \publickey\ attributes remain \NULL\ for employees in the enhanced variant
+view since the presence condition does not include the corresponding features.
+
+
+For the \messages\ table, we again create five views corresponding to each of
+the variants. Each tuple is added to the view of the variant that contains the
+message's sender, which updates the tuple's presence condition accordingly.
+%
+The \messages\ table also contains several additional attributes corresponding
+to optional features, which we populate in a systematic way.
+%
+We set \issigned\ to \tru\ if the message sender has the \fsignature\ feature
+enabled, and we set \isencrypted\ to \tru\ if \emph{both} the message sender
+and recipient have \fencryption\ enabled.
+%
+We populate the \isforwardmsg, \isautoresponse, and \issystemnotification\
+attributes by doing a lightweight analysis of message subjects to determine
+whether the email is any of these special kinds of messages; for example, if
+the subject begins with ``FWD'', we set the \isforwardmsg\ attribute to \tru.
+%
+If a forward or auto-reply message was sent by a user that does not have the
+corresponding feature enabled, we filter it out of the dataset. After
+filtering, the \messages\ relation contains 99,727 messages.
+%
+For each forward or auto-reply message, we also add a tuple with the relevant
+information to the new \forwardmsg\ and \automsg\ tables.
+%
+For employees belonging to database variants that enable \remailmessage,
+\autoresponder, \addressbook, or \mailhost\ we randomly generate tuples in the
+tables that are specific to each of these features.
+%
+Finally, the \recipientinfo\ relation is imported directly from the dataset. We
+set each tuple's presence condition to a conjunction of the presence conditions
+of the sender and recipient.
+% \eric{actually I conjuncted them, which now I'm not so sure about it!}
+
+
+%We provide more detailed instructions for systematically constructing the email
+%VDB in both MySQL and PostgreSQL in a wiki page associated with the
+%repository.%
+%\footnote{\url{https://github.com/lambda-land/VDBMS/wiki/Enron-Email-Database-UseCase-Doc\#steps-take-to-build-vdb-for-enron-case-study}}
+%%
+%Additionally, we provide SQL scripts to automate the creation of views for each
+%variant%
+%%
+%\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/space-emailSPL/database/build/step1_build_email_variants.sql}{usecases/space-emailSPL/database/build/step1\_build\_email\_variants.sql}}
+%%
+%and to automate the population of these views with tuples from the original
+%dataset,%
+%%
+%\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/space-emailSPL/database/build/step2_build_email_vdb.sql}{usecases/space-emailSPL/database/build/step2\_build\_email\_vdb.sql}} 
+%%
+%which also sets each tuple's presence condition.
+%
+%
+%The resulting database is distributed in two forms, one with the embedded
+%variational schema as described in \secref{enron-vsch},%
+%%
+%\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/space-emailSPL/database/withSchema}{usecases/space-emailSPL/database/withSchema}}
+%%
+%and one without the embedded schema%
+%\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/space-emailSPL/database/withoutSchema}{usecases/space-emailSPL/database/withoutSchema}}
+%%
+%for use with our VDBMS tool in which the variational schema is provided
+%separately.
+
+
+%\point{VDBs are a good fit to encode variation in a database of a 
+%database-backed SPL.}
+%%variation over space
+%
+%
+%\point{To showcase how a VDB captures different needs arising in SPLs 
+%w.r.t. variation in their databases we generate a VDB for an email SPL.}\\
+%- where data is coming from\\
+%- where spl is coming from
+%
+%\point{We adopt the features and feature model from the SPL and 
+%consider five database variants.}\\
+%- describe 5 variants and their config.
+%
+%\point{Features are incorporated into both the schema and data.}\\
+%- feature model\\
+%- schema\\
+%- data\\
+%\rewrite{revise tables! taken from @Q!}
+\begin{comment}
+\begin{table*}
+\caption{Schema variants for the email VDB.}
+\label{tab:enron_sch}
+\begin{center}
+\small
+\begin{tabular} {| l |l| c | l |}
+\hline
+\textbf{Product} & \textbf{Schema Variants} \\
+% \cline{2-3}
+% \textbf{Features} & \multicolumn{1}{ c ||} {$\edu \vee \neg \edu \equiv \t$} & \multicolumn{1}{ c |} {\edu} & \textbf{Features}\\
+\hline 
+\hline 
+\multirow{4}{*}{\textbf{Basic Email}} &  \employees(\eid, \fname, \lname, \emailid, \folder, \status) \\
+ &  \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder\\
+ & \phantom{invisible h}, \issystemnotification)  \\ 
+ &  \recipientinfo(\rid, \midatt, \rtype, \rvalue)  \\
+& \referenceinfo(\rid, \midatt, \reference)  \\
+\hline
+\multirow{6}{1cm}{\textbf{Enhanced Email}} &  \employees(\eid, \fname, \lname, \emailid, \folder, \status) \\
+&  \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder \\ 
+& \phantom{invisible h}, \issystemnotification, \isforwardmsg) \\ 
+& \recipientinfo(\rid, \midatt, \rtype, \rvalue)  \\
+& \referenceinfo(\rid, \midatt, \reference)  \\
+& \forwardmsg(\eid, \forwardaddr)  \\
+& \filtermsg(\eid, \suffix)  \\
+\hline
+\multirow{5}{1cm}{\textbf{Privacy-focus Email}} &  \employees(\eid, \fname, \lname, \emailid, \folder, \status\\
+& \phantom{invisible hhh}, \verificationkey, \publickey) \\
+&  \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder  \\  
+& \phantom{invisible h}, \issystemnotification, \issigned, \isencrypted)   \\ 
+&  \recipientinfo(\rid, \midatt, \rtype, \rvalue)   \\
+& \referenceinfo(\rid, \midatt, \reference)  \\
+& \remailmsg(\eid, \pseudonym)  \\
+\hline
+\multirow{7}{1cm}{\textbf{Group Email}} &  \employees(\eid, \fname, \lname, \emailid, \folder, \status\\
+ & \phantom{invisible hhh}, \verificationkey, \publickey) \\
+ &  \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder   \\ 
+ & \phantom{invisible h}, \issystemnotification, \isautoresponse, \issigned, \isencrypted)   \\ 
+ &  \recipientinfo(\rid, \midatt, \rtype, \rvalue)   \\
+& \referenceinfo(\rid, \midatt, \reference)  \\
+& \automsg(\eid, \subject, \body)  \\
+& \alias(\eid, \emailAtt, \nickname)  \\
+& \mailhost(\eid, \username, \mailhost)  \\
+\hline
+\multirow{10}{1cm}{\textbf{Premium Email}} &  \employees(\eid, \fname, \lname, \emailid, \folder, \status\\
+& \phantom{invisible hhh}, \veirficationkey, \publickey) \\
+ &  \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder \\  
+ &  \phantom{invisible h}, \issystemnotification,  \isencrypted, \issigned, \isautoresponse \\
+ & \phantom{invisible h}, \isforwardmsg)   \\ 
+ & \recipientinfo(\rid, \midatt, \rtype, \rvalue)   \\
+& \referenceinfo(\rid, \midatt, \reference)  \\
+& \forwardmsg(\eid, \forwardaddr)  \\
+& \filtermsg(\eid, \suffix)  \\
+& \remailmsg(\eid, \pseudonym)  \\
+& \automsg(\eid, \subject, \body)  \\
+& \alias(\eid, \emailAtt, \nickname)  \\
+& \mailhost(\eid, \username, \mailhost)  \\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+\end{comment}

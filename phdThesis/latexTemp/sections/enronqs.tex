@@ -1,0 +1,282 @@
+%\vspace{-7.5pt}
+\subsection{Email Query Set}
+\label{sec:enron-qs}
+
+%\point{We write queries based on SPL developers needs when different SPL features
+%interact with each other~\cite{blah}.}\\
+%- give an example.
+
+To produce a set of queries for the email SPL use case, we collected all of
+the information needs that we could identify in the description of the email
+SPL by \cite{Hall05}. \TODO{fix citet}. In order to make the information needs more concrete, we
+viewed the requirements of the email SPL mostly through the lens of
+constructing an email header.
+%
+An email header includes all of the relevant information needed to send an
+email and is used by email systems and clients to ensure that an email is sent to
+the right place and interpreted correctly. 
+%More specifically, the email header
+%includes the sender and receiver of the email, whether an email is signed and
+%the location of a signature verification key, whether an email is encrypted and
+%the location of the corresponding public key, the subject and body of the
+%email, the mail host it belongs to, whether the email should be filtered,
+%% the verification status of the email and who has verified the email, 
+%and so on.
+%
+Although there is obviously other infrastructure involved, the fundamental
+information needs of an email system can be understood by considering how to
+construct email headers.
+% that ensures the email would get where it needs to go
+% and be interpreted correctly on the other end.
+
+
+Hall's decomposition focuses on enumerating the features of the email SPL and
+enumerating the potential interactions of those features.
+%
+We deduce the information need for each feature by asking: ``what information
+is needed to modify the email header in a way that incorporates the new
+functionality?''. We deduce the information need for each interaction by
+asking: ``what information is needed to modify the email header in a way that
+avoids the undesirable feature interaction?''.
+%
+We can then translate these information needs into queries on the underlying
+variational database.
+
+
+In total, we provide $27$ queries for the email SPL.
+%, encoded in both VRA
+%format usable by our VDBMS tool and as \cpp{ifdef} annotated SQL, as described
+%above.%
+%
+%\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/space-emailSPL/queries}{usecases/space-emailSPL/queries}}
+%
+This consists of $1$ query for constructing the basic email header, $8$ queries
+for realizing the information needs corresponding to each feature, and $18$
+queries for realizing the information needs to correctly handle the feature
+interactions described by Hall.
+
+
+We start by presenting the query to assemble the basic email header, \Qbasic.
+This corresponds to the information need of a system with no features enabled.
+We use $X$ to stand for the specific message ID (\midatt) of the email whose
+header we want to construct.
+%
+\vspace{-2pt}
+\begin{align*}
+\Qbasic &= 
+%\pi_{\sender,\rvalue,\subject,\body} 
+%((\selectRel\midCond\messages)\\
+%&\hspace{20pt} \bowtie_{\messages.\midatt = \recipientinfo.\midatt} \recipientinfo)
+\projectRel{\sender,\rvalue,\subject,\body} \mrtable \\
+\mrtable &\leftarrow (\selectRel\midCond\messages) \bowtie \recipientinfo
+%\mrtable &\leftarrow (\selectRel\midCond\messages) \\
+%&\qquad \bowtie_{\messages.\midatt = \recipientinfo.\midatt} \recipientinfo
+\end{align*}
+\vspace{-13pt}
+%
+%This query extracts the sender, recipient, subject, and body of the email to
+%populate the header. The projection is applied to an intermediate result
+%\mrtable\ constructed by joining the \messages\ table with the \recipientinfo\
+%table on recipient IDs; we reuse this intermediate result also in subsequent
+%queries.
+
+
+Taking \Qbasic\ as our starting point, we next construct our set of $8$
+\emph{single-feature queries} that capture the information needs specific to
+each feature.
+%
+When a feature is enabled in the SPL, more information is needed to construct
+the header of email $X$. For example, if the feature \filtermessages\ is
+enabled, then the query \Qfilter\ extends \Qbasic\ with the \suffix\ attribute
+used in filtering. This additional information allows the system to filter a
+message if its address contains any of the suffixes set by the receiver.
+%
+%% Since this queries involve features that are optional, these
+%% queries are variational and correspond to multiple different plain queries.
+%% However, as described in \secref{background}...
+%
+\vspace{-2pt}
+\begin{align*}
+\Qfilter &= 
+%\pi_{\sender,\rvalue,\suffix,\subject,\body}
+%((\employees \\
+%&\bowtie_{\rvalue=\emailid}
+% \mrtable) \bowtie\filtermsg )
+%%_{\employees.\eid = \filtermsg.\eid}\filtermsg )\\
+%% \bowtie_{\rvalue=\emailid}{\employees}\\
+\projectRel{\sender,\rvalue,\suffix,\subject,\body} \temp \\
+\temp & \leftarrow \mretable
+ \bowtie \filtermsg \\
+%&\qquad \bowtie_{\employees.\eid = \filtermsg.\eid}\filtermsg \\
+\mretable &\leftarrow \joinRel{\mrtable}{\employees}{\rvalue=\emailid}
+\end{align*}
+\vspace{-1pt}
+%
+%The intermediate result \mretable\ formed by joining \mrtable\ with the
+%\employees\ relation will be reused in later queries.
+%
+We can construct a query that retrieves the required header information whether
+\filtermessages\ is enabled or not by combining \Qbasic\ and \Qfilter\ in a
+choice, as $\Qbf=\chc[\filtermessages]{\Qfilter,\Qbasic}$. 
+%
+Although we do not show the process in this paper, we can use equivalence laws
+from the choice calculus~\cite{EW11tosem,HW16fosd} to factor commonalities out
+of choices and reduce redundancy in queries like \Qbf.
+% For clarity, we distribute the un-factored form presented here in our case
+% studies.
+The other single-feature queries are written similarly.
+% to the one shown here.
+
+
+% \centerline{$\choiceS \forwardmessages {\Qforward} {\Qbasic}$}
+
+%As another example of a single-feature query, \Qforward\ captures the
+%information needs for implementing the \forwardmessages\ feature. It is similar
+%to the previous queries except that it extracts the \forwardaddr\ from the
+%\automsg\ table, which is needed to construct the message header for the new
+%email to be forwarded when email $X$ is received by a user with a \forwardaddr\
+%set.
+%%
+%\begin{align*}
+%\Qforward &=
+%\projectRel{\rvalue,\forwardaddr,\subject,\body}{\temp} \\
+%\temp &\leftarrow \mretable \\
+%&\qquad \bowtie_{\employees.\eid = \forwardmsg.\eid} \automsg
+%\end{align*}
+%
+%The other single-feature queries are similar to those shown here.
+
+
+Besides single-feature queries, we also provide queries that gather information
+needed to identify and address the undesirable feature interactions described
+by \cite{Hall05}. \TODO{fix citet} Out of Hall's 27 feature interactions, we determined 16 of
+them to have corresponding information needs related to the database; 2 of the
+interactions require 2 separate queries to resolve. Therefore, we define and
+provide 18 queries addressing all 16 of the relevant feature interactions.
+%
+As before, we deduced the information needs through the lens of constructing an
+email header; in these cases, the header would correspond to an email produced
+after successfully resolving the interaction.
+%
+However, some interactions can only be detected but not automatically resolved.
+In these cases, we constructed a query that would retrieve the relevant
+information to detect and report the issue.
+
+
+One undesirable feature interaction occurs between the \signature\ and
+\forwardmessages\ features: if Philippe signs a message and sends it to Sarah,
+and Sarah forwards the message to an alternate address Sarah-2, then signature
+verification may incorrectly interpret Sarah as the sender rather than Philippe
+and fail to verify the message (Hall's interaction \#4).
+%
+A solution to this interaction is to embed the original sender's verification
+information into the email header of the forwarded message so that it can be
+used to verify the message, rather than relying solely on the message's
+``from'' field.
+
+
+Below, we show a variational query \Qsf\ that includes four variants
+corresponding to whether \signature\ and \forwardmessages\ are enabled or not
+independently. The information need for resolving the interaction is satisfied
+by the first alternative of the outermost choice with condition
+$\signature\wedge\forwardmessages$. The alternatives of the choices nested to
+the right satisfy the information needs for when only \signature\ is enabled,
+only \forwardmessages\ is enabled, or neither is enabled (\Qbasic). We don't
+show the single-feature \Qsig\ query, but it is similar to other
+single-feature queries shown above.
+%
+\begin{align*}
+\Qsf &=  \signature\wedge\forwardmessages \\
+&\quad\langle
+  \vPrj[\rvalue,\forwardaddr,\mathit{emp1}.\issigned,\mathit{emp1}.\verificationkey]{\temp}, \\
+&\quad\signature\langle\Qsig, 
+\chc[\forwardmessages]{\Qforward,\Qbasic} \rangle\rangle \\
+\temp &\leftarrow
+  ((((\sigma_{\midCond} \messages) 
+ \bowtie
+%_{\messages.\midatt = \recipientinfo.\midatt}
+ \recipientinfo) \\
+& \bowtie_{\sender = \mathit{emp1}.\emailid}
+    (\vRen[\mathit{emp1}]{\employees})) \\
+& \bowtie_{\rvalue = \mathit{emp2}.\emailid}
+    (\vRen[\mathit{emp2}]{\employees})) \bowtie \forwardmsg
+%\temp &\leftarrow
+%  ((((\sigma_{\midCond} \messages) \\
+%& \bowtie_{\messages.\midatt = \recipientinfo.\midatt} \recipientinfo) \\
+%& \bowtie_{\messages.\sender = \mathit{emp1}.\emailid}
+%    (\vRen[\mathit{emp1}]{\employees})) \\
+%& \bowtie_{\recipientinfo.\rvalue = \mathit{emp2}.\emailid}
+%    (\vRen[\mathit{emp2}]{\employees}))\\
+%& \bowtie_{\mathit{emp2}.\eid = \forwardmsg.\eid} \forwardmsg
+\end{align*}
+%
+% The query $\Qsf$ also resolves another consequence of the interaction between
+% these two features. This time Sam successfully verifies message $X$ and
+% forwards it to Sam2 which changes the header in the system s.t. it states
+% message $X$ has been successfully verified, thus, the message could be
+% altered by hackers while it is being forwarded (Hall's interaction 27). The
+% system can use $\Qsf$ to generate the correct header in this scenario again.
+
+%\begin{comment}
+\noindent
+%
+Some feature interactions require more than one query to satisfy their
+information need.
+% due to VRA's limitation that values cannot be variational.
+For example, assume both \encryption\ and \forwardmessages\ are enabled.
+Philippe sends an encrypted email $X$ to Sarah; upon receiving it the message
+is decrypted and forwarded it to Sarah-2 (Hall's interaction \#9). This
+violates the intention of encrypting the message and the system should warn the
+user.
+%
+Queries \Qef\ and $\Qef'$ satisfy the information need for this interaction
+when a message is encrypted or unencrypted, respectively.
+%
+\begin{align*}
+\small
+\Qef &= \encryption\wedge\forwardmessages \\
+  &\langle
+    \projectRel{\rvalue}{(\selectRel{\midCond\wedge\isencrypted}{\messages})},
+    \encryption\langle\Qencrypt, \\
+  &\qquad \chc[\forwardmessages]{\Qforward,\Qbasic} \rangle \\
+\OB{\Qef'} &= \encryption\wedge\forwardmessages
+  \langle \temp, \encryption \langle \Qencrypt, \\
+  &\qquad \chc[\forwardmessages]{\Qforward,\Qbasic} \rangle \rangle \\
+% \end{align*}
+% %
+% \begin{align*}
+\temp &\leftarrow
+  \pi_{\rvalue,\forwardaddr,\subject,\body} (\sigma_{\midCond \wedge \neg\isencrypted} \\
+  & (\mretable \bowtie_{\employees.\eid = \forwardmsg.\eid} \forwardmsg))
+\end{align*}
+
+\noindent
+%
+However, managing feature interactions is not necessarily complicated. Some
+interactions simply require projecting more attributes from the corresponding
+single-feature queries. For example, assume both \filtermessages\ and
+\mailhost\ features are enabled. Philippe sends a message to a non-existant
+user in a mailhost that he has filtered. The mailhost generates a non-delivery
+notification and sends it to Philippe, but he never receives it since it is filtered out
+(Hall's interaction \#26). The system can check the \issystemnotification\
+attribute for the $\Qfilter$ query and decide whether to filter a message or
+not. Therefore, we can resolve this interaction by extending the single-feature
+query for \filtermessages\ to $\Qfilter'$.
+%
+\begin{align*}
+\small
+\OB{\Qfilter'} &= 
+\projectRel {\sender, \rvalue, \suffix, \issystemnotification, \subject, \body} \temp\\
+\temp &\leftarrow 
+{\joinRel \mretable
+\filtermsg
+{\employees . \eid = \filtermsg . \eid }
+}
+\end{align*}
+%\end{comment}
+\noindent
+%
+Overall, for the 18 interaction queries we provide, 12 have 4 variants, 3 have
+3 variants, 2 have 2 variants, and 1 has 1 variant.
+
+%%\input{formulas/enronQs}
