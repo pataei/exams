@@ -69,6 +69,7 @@
 \newcommand{\educational}{\OB{\mathsf{educational}}}
 
 %motivating ex names
+\newcommand{\employee}{\OB{\mathit{emp}}}
 \newcommand{\eng}{\OB{\mathit{eng}}}
 \newcommand{\edu}{\OB{\mathit{edu}}}
 \newcommand{\base}{\OB{\mathit{base}}}
@@ -472,3 +473,139 @@
 \newcommand{\VList}[1]{\smash{\accentset{\rightarrowtriangle}{#1}}}
 \newcommand{\VVList}[1]{\smash{\accentset{\lhook\joinrel\rightarrowtriangle}{#1}}}
 \newcommand{\VMap}[1]{\smash{\accentset{\mapsto}{#1}}}
+
+%encoding of variational schema in the database
+\newcommand{\vdbpc}{\OB{\mathit{vdb\_pcs}\left(\mathit{element\_id}, \mathit{pres\_cond} \right)}}
+\newcommand{\tablespc}{\OB{\mathit{tables\_pc}\left(\mathit{table\_name},\mathit{pres\_cond}\right)}}
+
+% enron email system example names
+\newcommand{\enron}{\OB{\mathit{en}}}
+\newcommand{\eid}{\OB{\mathit{eid}}}
+\newcommand{\emailid}{\OB{\mathit{email\_id}}}
+\newcommand{\folder}{\OB{\mathit{folder}}}
+\newcommand{\status}{\OB{\mathit{status}}}
+\newcommand{\verificationkey}{\OB{\mathit{verification\_key}}}
+\newcommand{\publickey}{\OB{\mathit{public\_key}}}
+\newcommand{\midatt}{\OB{\mathit{mid}}}
+\newcommand{\sender}{\OB{\mathit{sender}}}
+\newcommand{\dateatt}{\OB{\mathit{date}}}
+\newcommand{\messageid}{\OB{\mathit{message\_id}}}
+\newcommand{\subject}{\OB{\mathit{subject}}}
+\newcommand{\body}{\OB{\mathit{body}}}
+\newcommand{\issigned}{\OB{\mathit{is\_signed}}}
+\newcommand{\isencrypted}{\OB{\mathit{is\_encrypted}}}
+\newcommand{\isfromremailer}{\OB{\mathit{is\_from\_remaler}}}
+\newcommand{\issystemnotification}{\OB{\mathit{is\_system\_notification}}}
+\newcommand{\isautoresponse}{\OB{\mathit{is\_autoresponse}}}
+\newcommand{\isforwardmsg}{\OB{\mathit{is\_forward\_msg}}}
+\newcommand{\rid}{\OB{\mathit{rid}}}
+\newcommand{\rtype}{\OB{\mathit{rtype}}}
+\newcommand{\rvalue}{\OB{\mathit{rvalue}}}
+\newcommand{\rfid}{\OB{\mathit{rfid}}}
+\newcommand{\reference}{\OB{\mathit{reference}}}
+\newcommand{\forwardaddr}{\OB{\mathit{forwardaddr}}}
+\newcommand{\pseudonym}{\OB{\mathit{pseudonym}}}
+\newcommand{\suffix}{\OB{\mathit{suffix}}}
+\newcommand{\username}{\OB{\mathit{username}}}
+\newcommand{\mailhost}{\OB{\mathit{mailhost}}}
+\newcommand{\nickname}{\OB{\mathit{nickname}}}
+\newcommand{\emailAtt}{\OB{\mathit{email}}}
+\newcommand{\employees}{\OB{\mathit{employeelist}}}
+\newcommand{\messages}{\OB{\mathit{messages}}}
+\newcommand{\recipientinfo}{\OB{\mathit{recipientinfo}}}
+\newcommand{\referenceinfo}{\OB{\mathit{referenceinfo}}}
+\newcommand{\automsg}{\OB{\mathit{auto\_msg}}}
+\newcommand{\forwardmsg}{\OB{\mathit{forward\_msg}}}
+\newcommand{\remailmsg}{\OB{\mathit{remail\_msg}}}
+\newcommand{\filtermsg}{\OB{\mathit{filter\_msg}}}
+\newcommand{\alias}{\OB{\mathit{alias}}}
+\newcommand{\id}{\OB{\mathit{id}}}
+\newcommand{\scores}{\OB{\mathit{SATscores}}}
+%\newcommand{\midatt}{\OB{\mathit{mid}}}
+\newcommand{\midCond}{\OB{\midatt = \xvalue}}
+\newcommand{\header}{\OB{\mathit{header}}}
+\newcommand{\headerAtts}{\OB{\mathit{header\_attributes}}}
+\newcommand{\verifiedAt}{\OB{\mathit{verified\_at}}}
+\newcommand{\signedBy}{\OB{\mathit{signed\_by}}}
+\newcommand{\recievedBy}{\OB{\mathit{recieved\_by}}}
+\newcommand{\verStat}{\OB{\mathit{verification\_status}}}
+\newcommand{\shouldFilter}{\OB{\mathit{should\_filter}}}
+
+\newcommand{\addressbook}{\OB{\mathit{addressbook}}}
+\newcommand{\signature}{\OB{\mathit{signature}}}
+\newcommand{\encryption}{\OB{\mathit{encryption}}}
+\newcommand{\autoresponder}{\OB{\mathit{autoresponder}}}
+\newcommand{\forwardmessages}{\OB{\mathit{forwardmessages}}}
+\newcommand{\remailmessage}{\OB{\mathit{remailmessage}}}
+\newcommand{\filtermessages}{\OB{\mathit{filtermessages}}}
+\newcommand{\basicq}{\OB{\mathit{basic}}}
+
+%query names
+\newcommand{\xvalue}{\OB{\mathit{X}}}
+\newcommand{\temp}{\OB{\mathit{temp}}}
+\newcommand{\tempOne}{\OB{\mathit{temp1}}}
+\newcommand{\tempTwo}{\OB{\mathit{temp2}}}
+\newcommand{\eq}{\OB{\mathit{empQ}}}
+\newcommand{\nfq}{\OB{\mathit{Q}}}
+\newcommand{\ntemp}{\OB{\mathit{temp_\mathit{enron}}}}
+\newcommand{\deptOne}{\OB{\mathit{``d001"}}}
+\newcommand{\mrtable}{\OB{\mathit{mes\_rec}}}
+\newcommand{\mretable}{\OB{\mathit{mes\_rec\_emp}}}
+
+% some specific queries
+\newcommand{\Qbasic}{\OB{\nfq_\basicq}}
+\newcommand{\Qfilter}{\OB{\nfq_\mathit{filter}}}
+\newcommand{\Qforward}{\OB{\nfq_\mathit{forward}}}
+\newcommand{\Qencrypt}{\OB{\nfq_\mathit{encrypt}}}
+\newcommand{\Qsig}{\OB{\nfq_\mathit{sig}}}
+\newcommand{\Qbf}{\OB{\nfq_\mathit{bf}}}
+\newcommand{\Qsf}{\OB{\nfq_\mathit{sf}}}
+\newcommand{\Qef}{\OB{\nfq_\mathit{ef}}}
+
+\newcommand{\addressbooku}{{ADDRESSBOOK}}
+\newcommand{\signatureu}{SIGNATURE}
+\newcommand{\encryptionu}{ENCRYPTION}
+\newcommand{\autoresponderu}{AUTORESPONDER}
+\newcommand{\forwardmsgu}{FORWARDMESSAGES}
+\newcommand{\remailmsgu}{REMAILMESSAGE}
+\newcommand{\filtermsgu}{FILTERMESSAGES}
+\newcommand{\mailhostu}{MAILHOST}
+
+\newcommand{\addressbookl}{{ADDRESSBOOK}}
+\newcommand{\signaturel}{SIGNATURE}
+\newcommand{\encryptionl}{ENCRYPTION}
+\newcommand{\autoresponderl}{AUTORESPONDER}
+\newcommand{\forwardmsgl}{FORWARDMESSAGES}
+\newcommand{\remailmsgl}{REMAILMESSAGES}
+\newcommand{\filtermsgl}{FILTERMESSAGES}
+\newcommand{\mailhostl}{MAILHOST}
+
+\newcommand{\faddressbook}{\textcolor{blue} {\OB{\mathit{addressbook}}}}
+\newcommand{\fsignature}{\textcolor{blue} {\OB{\mathit{signature}}}}
+\newcommand{\fencryption}{\textcolor{blue} {\OB{\mathit{encryption}}}}
+\newcommand{\fautoresponder}{\textcolor{blue} {\OB{\mathit{autoresponder}}}}
+\newcommand{\fforwardmsg}{\textcolor{blue} {\OB{\mathit{forwardmessages}}}}
+\newcommand{\fremailmsg}{\textcolor{blue} {\OB{\mathit{remailmessage}}}}
+\newcommand{\ffiltermsg}{\textcolor{blue} {\OB{\mathit{filtermessages}}}}
+\newcommand{\fmailhost}{\textcolor{blue} {\OB{\mathit{mailhost}}}}
+
+\newcommand{\addressbookf}{\OB{\mathit{addressbook}}}
+\newcommand{\signaturef}{\OB{\mathit{signature}}}
+\newcommand{\encryptionf}{\OB{\mathit{encryption}}}
+\newcommand{\autoresponderf}{\OB{\mathit{autoresponder}}}
+\newcommand{\forwardmsgf}{\OB{\mathit{forwardmessages}}}
+\newcommand{\remailmsgf}{\OB{\mathit{remailmessage}}}
+\newcommand{\filtermsgf}{\OB{\mathit{filtermessages}}}
+\newcommand{\mailhostf}{\OB{\mathit{mailhost}}}
+
+\newcommand{\vemployees}{\OB{\mathit{v\_employeelist}}}
+\newcommand{\vmessages}{\OB{\mathit{v\_messages}}}
+\newcommand{\vrecipientinfo}{\OB{\mathit{v\_recipientinfo}}}
+\newcommand{\vreferenceinfo}{\OB{\mathit{v\_referenceinfo}}}
+\newcommand{\vautomsg}{\OB{\mathit{v\_auto\_msg}}}
+\newcommand{\vforwardmsg}{\OB{\mathit{v\_forward\_msg}}}
+\newcommand{\vremailmsg}{\OB{\mathit{v\_remail\_msg}}}
+\newcommand{\vfiltermsg}{\OB{\mathit{v\_filtermsg}}}
+\newcommand{\vmailhost}{\OB{\mathit{v\_mailhost}}}
+\newcommand{\valias}{\OB{\mathit{v\_alias}}}
+\newcommand{\midvalue}{\OB{\mathit{X}}}

@@ -100,7 +100,28 @@
 
 % vspj operations
 \newcommand{\vPrj}[2][\vAttList]{\OB{\pi_{#1} #2}}
-\newcommand{\vSel}[2][\vCond]{\OB{\sigma_{#1} #2}}
+\newcommand{\vSel}[2][\vCond]{\OB{\sigma_{#1} {#2}}}
+\newcommand{\vRen}[2][\nameVar]{\OB{\rho_{#1} #2}}
+\newcommand{\project}[2]{\OB{\pi_{#1} \left({#2}\right)}}
+\newcommand{\projectRel}[2]{\OB{\pi_{#1} {#2}}}
+\newcommand{\select}[2]{\OB{\sigma_{#1} \left({#2}\right)}}
+\newcommand{\selectRel}[2]{\OB{\sigma_{#1} {#2}}}
+\newcommand{\oatt}[2]{\OB{{#1}^{#2}}}
+\newcommand{\join}[3]{\OB{\left({#1}\right) \bowtie_{#3} \left({#2}\right)}}
+\newcommand{\joinRelL}[3]{\OB{{#1} \bowtie_{#3} \left({#2}\right)}}
+\newcommand{\joinRelR}[3]{\OB{\left({#1}\right) \bowtie_{#3} {#2}}}
+\newcommand{\joinRel}[3]{\OB{{#1} \bowtie_{#3} {#2}}}
+\newcommand{\rename}[2]{\OB{\rho_{#1}  \left({#2}\right)}}
+%\newcommand{\choiice}[3]{\OB{\chc [\left({#1}\right)] {\left({#2}\right), \left({#3}\right)}}}
+\newcommand{\choiice}[3]{\OB{\chc [\left({#1}\right)] {{#2}, {#3}}}}
+%\newcommand{\choiceL}[3]{\OB{\chc [\left({#1}\right)] {{#2}, \left({#3}\right)}}}
+%\newcommand{\choiceR}[3]{\OB{\chc [\left({#1}\right)] {\left({#2}\right), {#3}}}}
+%\newcommand{\choiceS}[3]{\OB{\chc [{#1}] {\left({#2}\right), \left({#3}\right)}}}
+\newcommand{\choiceS}[3]{\OB{\chc [{#1}] {{#2}, {#3}}}}
+%\newcommand{\choiceSL}[3]{\OB{\chc [{#1}] {{#2}, \left({#3}\right)}}}
+%\newcommand{\choiceSR}[3]{\OB{\chc [{#1}] {\left({#2}\right), {#3}}}}
+%\newcommand{\chc}[2][\dimMeta]{\OB{#1\chcL#2\chcR}}
+
 
 % query type environment
 %\newcommand{\env}[4][\vctx][\vSch]{\OB{#1,#2 \vdash#3:#4}}
@@ -182,3 +203,4 @@
 
 % formulation in general
 \newcommand{\paran}[1]{\OB{\left(#1\right)}}
+
