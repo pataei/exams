@@ -1,9 +1,91 @@
 \chapter{Variational Database Use Cases}
 \label{ch:vdbusecase}
 
-\TODO{add this chapter text.}
-\TODO{revise sections}
-\TODO{add some commented out text from vamos}
+%\point{We describe how we systematically generated two 
+%variational databases from real world scenarios where variation appears
+%in databases.}\\
+%- explain one comes from schema evlution and another from spl.
+In this chapter, we describe how we systematically generated two 
+variational databases from real world scenarios where variation appears
+in databases. We take a scenario where variation over either time or space
+exists in the database, use the schema variants to generate the variational schema, 
+and attach feature expressions to tables and tuples to populate the VDB with
+data for each use case. 
+
+Additionally, variation in software affects not only databases but also how developers and
+database administrators interact with databases.
+%
+Since different software variants have different information needs, developers
+must often write and maintain different queries for different software
+variants. Moreover, even if a particular information need is similar across
+variants, different variants of a query may need to be created and maintained
+to account for structural differences in the schema for each variant.
+%
+Creating and maintaining different queries for each variant is tedious and
+error-prone, and potentially even intractable for large and open-ended
+configuration spaces, such as most open-source projects~\cite{dbDecay16Stonebraker}.
+%Thus, we illustrate how variational information needs can be captured by
+%variational queries written in VRA.
+
+%expressive query languages that account
+%for variation explicitly and link variation in software and databases to
+%queries by using the same feature names and configuration space.
+%
+Thus, for each use case we present a set of variational queries 
+and we illustrate how VRA realizes the
+information needs of the different variants of the database and potentially the 
+corresponding software systems.
+%
+It achieves this level of expressiveness by accounting 
+for variation explicitly and linking variation in software and databases to
+queries by using the same feature names and configuration space.
+%
+We present only a  sample of the queries here,
+yet we provide the full query sets in the link provided in \secref{intro}.
+online and will be linked to throughout this
+section.
+\TODO{fix link}
+The full query sets capture all of the information needs described in the
+papers that  we base our variation scenarios on. It is important to note that
+this makes our query sets potentially biased toward queries containing more
+variation points since the focus of the papers is on variational parts of the
+system. A complete query set, capturing \emph{all}
+information needs for each scenario might contain more plain queries, that is,
+queries that perform the same way over all variants.
+%
+However, we do not believe this bias is harmful for the role the case studies
+are intended to serve, namely, motivating and evaluating variational database
+systems. For this role, queries that contain variation are more useful than
+plain queries, and additional plain queries can likely be more easily generated
+if needed.
+
+\TODO{fix link}
+We distribute the v-queries in two formats: (1) VRA,
+% introduced in \secref{background}, 
+encoded in the format used by
+our VDBMS tool, and (2) plain SQL queries with embedded \cpp{ifdef}
+annotations to capture variation points.\footnote{Complete sets of queries in both formats are available at: \url{https://zenodo.org/record/4321921}} 
+%
+The SQL format provides queries for studying variational data 
+independently of VDBMS tool and
+will be more immediately useful for other researchers
+studying variational data independently of our VDBMS tool, 
+but we use VRA in
+this paper for its brevity
+because it is much more concise.
+
+\TODO{add details}
+The use case introduced in \secref{enron-vdb} illustrates variation in databases over space. 
+It illustrates generating a VDB from a SPL that produces email systems. It also demonstrates
+how variational queries can be used to address the inquiries of the email systems from the
+database. 
+On the other hand, the use case introduced in \secref{emp-vdb} illustrates variation in 
+databases over time. It illustrates generating a VDB from the schema evolution of 
+an employee database and popular queries used to extract employees information
+from the VDB.
+
+
+
 
 \input{sections/enronvdb}
 \input{sections/enronqs}
