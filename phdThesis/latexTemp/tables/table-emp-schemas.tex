@@ -1,0 +1,54 @@
+\begin{table}
+\caption{Evolution of an employee database schema~\cite{prima08Moon}.
+%%from \citet{prima08Moon}.
+}
+\vspace{-8pt}
+\label{tab:emp-sch}
+\begin{center}
+\small
+\begin{tabular} {|l|l|}
+\hline
+\textbf{Version} & \textbf{Schema}\\
+% & \multirow{1}{0.3cm}{\textbf{\sI}}&  \\
+\hline 
+\hline 
+% \dashuline{\isstudent}
+\multirow{3}{0.3cm}{\vOne} &  \engemp\ (\empno, \name, \hiredate, \titleatt, \deptname) \\
+%& &  \multirow{3}{2cm}{hiredate $<$ 1988-01-01}\\
+& \othemp\ (\empno, \name, \hiredate, \titleatt, \deptname) \\
+%& \sOne &\\
+& \job\ (\titleatt, \salary)\\
+% & &\\
+\hline
+\multirow{2}{0.3cm}{\vTwo} & \empacct\ (\empno, \name, \hiredate, \titleatt, \deptname) \\
+%& \multirow{2}{0.5cm}{\sTwo}&  \multirow{2}{2cm}{hiredate $<$ 1991-01-01}\\
+& \job\ (\titleatt, \salary) \\
+%&  &\\
+\hline
+\multirow{3}{0.3cm}{\vThree} & \empacct\ (\empno, \name, \hiredate, \titleatt, \deptno) \\
+%&\multirow{3}{0.5cm}{\sThree}&  \multirow{3}{2cm}{hiredate $<$ 1994-01-01}\\
+& \job\ (\titleatt, \salary)\\
+% &  &\\
+& \dept\ (\deptname, \deptno, \managerno) \\
+%& &\\
+\hline
+\multirow{4}{0.3cm}{\vFour} & \empacct\ (\empno, \hiredate, \titleatt, \deptno) \\
+%& \multirow{4}{0.5cm}{\sFour} &  \multirow{3}{2cm}{hiredate $<$ 1997-01-01}\\
+& \job\ (\titleatt, \salary) \\
+%& & \\
+& \dept\ (\deptname, \deptno, \managerno)\\
+%& & \\
+& \empbio\ (\empno, \sex, \birthdate, \name)\\
+%  & & \\
+\hline
+\multirow{3}{0.3cm}{\vFive} & \empacct\ (\empno, \hiredate, \titleatt, \deptno, \salary) \\
+%& \multirow{3}{0.5cm}{\sFive} &  \multirow{3}{2.3cm}{hiredate $<$ 2000-01-28}\\
+& \dept\ (\deptname, \deptno, \managerno) \\
+%& & \\
+& \empbio\ (\empno, \sex, \birthdate, \fname, \lname)\\
+% & & \\
+\hline
+\end{tabular}
+\vspace{-5pt}
+\end{center}
+\end{table}
