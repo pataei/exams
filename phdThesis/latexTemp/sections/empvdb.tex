@@ -1,4 +1,4 @@
-\subsection{Variation in Time: Employee Use Case}
+\section{Variation in Time: Employee Use Case}
 \label{sec:emp-vdb}
 
 %\TODO{from old intro}
@@ -10,43 +10,43 @@
 %has been widely used in the databases community.
 
 
-%In our second case study, we focus on variation that occurs in ``time'', that
-%is, where the software variants are produced sequentially by incrementally
-%extending and modifying the previous variant in order to accommodate new
-%features or changing business requirements. Although new variants conceptually
-%replace older variants, in practice, older variants must often be maintained in
-%parallel; external dependencies, requirements, and other issues may prevent
-%clients from updating to the latest version.
-%%
-%Variation in software over time directly affects the databases such software
-%depends on~\cite{dbDecay16Stonebraker}, and dealing with such changes is a
-%well-studied problem in the database community known as \emph{database
-%evolution}~\cite{schVersioningSurvey95Roddick}.
+In our second case study, we focus on variation that occurs in ``time'', that
+is, where the software variants are produced sequentially by incrementally
+extending and modifying the previous variant in order to accommodate new
+features or changing business requirements. Although new variants conceptually
+replace older variants, in practice, older variants must often be maintained in
+parallel; external dependencies, requirements, and other issues may prevent
+clients from updating to the latest version.
 %
-%
-%Although research on database evolution has produced a variety of solutions for
-%managing database variation over time, these solutions do not treat variation
-%as an orthogonal property and so cannot also accommodate variation in space.
-%The goal of our work on variational databases is not to directly compete with
-%database evolution solutions for time-only variation scenarios, but rather to
-%present a more general model of database variation that can accommodate
-%variation in both time and space, and that integrates with related software via
-%feature annotations.
+Variation in software over time directly affects the databases such software
+depends on~\cite{dbDecay16Stonebraker}, and dealing with such changes is a
+well-studied problem in the database community known as \emph{database
+evolution}~\cite{schVersioningSurvey95Roddick}.
 
-Our second use case focuses on variation in time by demonstrating
-the use of a VDB to encode an employee database evolution scenario
+
+Although research on database evolution has produced a variety of solutions for
+managing database variation over time, these solutions do not treat variation
+as an orthogonal property and so cannot also accommodate variation in space.
+The goal of our work on variational databases is not to directly compete with
+database evolution solutions for time-only variation scenarios, but rather to
+present a more general model of database variation that can accommodate
+variation in both time and space, and that integrates with related software via
+feature annotations.
+
+We demonstrate variation in time by 
+using a VDB to encode an employee database evolution scenario
 systematically adapted from
-\cite{prima08Moon} \TODO{fix citet} and populated by a dataset that is widely used
+\citet{prima08Moon} and populated by a dataset that is widely used
 in databases research.\footnote{\url{https://github.com/datacharmer/test_db}}
 
 
-\subsubsection{Variation Scenario: An Evolving Employee Database}
+\subsection{Variation Scenario: An Evolving Employee Database}
 \label{sec:emp-scenario}
 
-%\input{tables/table-emp-schemas}
-\TODO{fix and include table}
+\input{tables/table-emp-schemas}
+\TODO{fix caption}
 
-\cite{prima08Moon} \TODO{fix citet} describe an evolution scenario in which the schema of a
+\citet{prima08Moon} describe an evolution scenario in which the schema of a
 company's employee management system changes over time, yielding the five
 versions of the schema shown in \tabref{emp-sch}.
 %
@@ -73,11 +73,11 @@ We associate a feature with each version of the schema, named
 $\vOne\ldots\vFive$.
 %
 These features are mutually exclusive since only one version of the
-schema is valid at a time. This yields the  feature model:
-%$\fModel_\employee$:
+schema is valid at a time. This yields the  feature model
+$\fModel_\employee$.
 %
-% Also, note that the feature model represent a restriction on the entire
-% database.
+ Also, note that the feature model represent a restriction on the entire
+ database.
 %
 \begin{align*}
 \fModel_\employee
@@ -98,11 +98,11 @@ schema is valid at a time. This yields the  feature model:
 %relations, attributes, and tuples in the database.
 
 
-\subsubsection{Generating V-Schema of the Employee VDB}
+\subsection{Generating V-Schema of the Employee VDB}
 \label{sec:emp-vsch}
 
-%\input{tables/table-emp-vschema}
-\TODO{fix and include table}
+\input{tables/table-emp-vschema}
+\TODO{fix caption}
 
 The v-schema for this scenario is given in \tabref{emp-vsch}. It
 encodes all five of the schema versions in \tabref{emp-sch} and was
@@ -118,37 +118,37 @@ $\vTwo\vee\vThree\vee\vFour\vee\vFive$, while the \salary\ attribute within the
 \empacct\ relation is present only in version \vFive, so it will be annotated
 by simply \vFive.
 %
-% The overall variational schema will be annotated by the feature model
-% $\fModel_\employee$, described in \secref{emp-scenario}.
+ The overall variational schema will be annotated by the feature model
+ $\fModel_\employee$, described in \secref{emp-scenario}.
 %
 Since the presence conditions of attributes are implicitly conjuncted with the
-presence condition of their relation,
-% that contains them, 
+presence condition of their relation
+ that contains them, 
  we can avoid redundant
 annotations when an attribute is present in all instances of its parent
 relation. For example, the \empbio\ relation is present in $\vFour\vee\vFive$,
 and the \birthdate\ attribute is present in the same versions, so we do not
-need to redundantly annotate it.
-% \birthdate.
+need to redundantly annotate 
+ \birthdate.
 
+\TODO{make sure it's consistent}
+Similar to the email SPL VDB, we distribute the variational schema for the
+employee VDB in two formats:
+%
+First, we provide the schema in the encoding used by our prototype VDBMS tool.%
+\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/time-employee/schema/EmployeeSchema.hs}{usecases/time-employee/schema/EmployeeSchema.hs}}
+%
+Second, we provide a direct encoding in SQL that generates the universal schema
+for the VDB in either MySQL or Postgres.%
+\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/time-employee/database/create}{usecases/time-employee/database/create}}
+%
+The variability of the schema is embedded within the employee VDB%
+\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/time-employee/database/withSchema}{usecases/time-employee/database/withSchema}}
+%
+using the same encoding as described at the end of \secref{enron-vsch}.
 
-%Similar to the email SPL VDB, we distribute the variational schema for the
-%employee VDB in two formats:
-%%
-%First, we provide the schema in the encoding used by our prototype VDBMS tool.%
-%\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/time-employee/schema/EmployeeSchema.hs}{usecases/time-employee/schema/EmployeeSchema.hs}}
-%%
-%Second, we provide a direct encoding in SQL that generates the universal schema
-%for the VDB in either MySQL or Postgres.%
-%\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/time-employee/database/create}{usecases/time-employee/database/create}}
-%%
-%The variability of the schema is embedded within the employee VDB%
-%\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/time-employee/database/withSchema}{usecases/time-employee/database/withSchema}}
-%%
-%using the same encoding as described at the end of \secref{enron-vsch}.
-
-\begin{comment}
-\subsubsection{Populating the Employee VDB}
+%\begin{comment}
+\subsection{Populating the Employee VDB}
 \label{sec:emp-pop}
 
 Finally, we populate the employee VDB using data from the widely used employee
@@ -157,9 +157,9 @@ database linked to in this subsection's lede.
 This database contains information for $240,124$ employees. To simulate the
 evolution of the database over time, we divide the employees into five roughly
 equal groups based on their hire date within the company. 
-%For example, the
-%first group consists of employees hired before $1988-01-01$, while the second
-%group contains employees hired from $1988-01-01$ to $1991-01-01$.
+For example, the
+first group consists of employees hired before $1988-01-01$, while the second
+group contains employees hired from $1988-01-01$ to $1991-01-01$.
 %
 Each group is assumed to have been hired during the lifetime of a particular
 version of the database, and is therefore added to that version of the database
@@ -180,28 +180,29 @@ v-schema, yet it includes all required information. Thus,
 %the VDB, 
 we manually mapped data from the original schema onto each version of
 the v-schema.
-\end{comment}
+%\end{comment}
 
-%We provide SQL scripts of required queries to automatically 
-%generate the employee VDB.
-%\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/time-employee/database/build}{usecases/time-employee/database/build}}
-%%We provide SQL scripts to automate the separation of each group of employees
-%%into views according to their hire date%
-%%\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/time-employee/database/build/step1_chop_employees.sql}{usecases/time-employee/database/build/step1\_chop\_employees.sql}}
-%%%
-%%and populating those views from data in the employee database.%
-%%\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/time-employee/database/build/step2_build_vdb.sql}{usecases/time-employee/database/build/step2\_build\_vdb.sql}}
+\TODO{check}
+We provide SQL scripts of required queries to automatically 
+generate the employee VDB.
+\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/time-employee/database/build}{usecases/time-employee/database/build}}
+%We provide SQL scripts to automate the separation of each group of employees
+%into views according to their hire date%
+%\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/time-employee/database/build/step1_chop_employees.sql}{usecases/time-employee/database/build/step1\_chop\_employees.sql}}
 %%
-%%As for any VDB, if an attribute is not present in any of the variants covered
-%%by a tuple's presence condition, that attribute will be set to NULL in the
-%%tuple. We do this even though the relevant information may be contained in the
-%%original employee database to ensure that we have a consistent VDB. For
-%%example, while inserting tuples into the \vFour\ view of the \empbio\ table, we
-%%always insert NULL values attributes \fname\ and \lname.
-%%
-%We also provide the final employee VDB in four flavors: both with and without the
-%embedded schema, and in both cases, encoded in MySQL and PostgreSQL format.%
-%\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/time-employee/database}{usecases/time-employee/database}}
+%and populating those views from data in the employee database.%
+%\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/time-employee/database/build/step2_build_vdb.sql}{usecases/time-employee/database/build/step2\_build\_vdb.sql}}
+%
+%As for any VDB, if an attribute is not present in any of the variants covered
+%by a tuple's presence condition, that attribute will be set to NULL in the
+%tuple. We do this even though the relevant information may be contained in the
+%original employee database to ensure that we have a consistent VDB. For
+%example, while inserting tuples into the \vFour\ view of the \empbio\ table, we
+%always insert NULL values attributes \fname\ and \lname.
+%
+We also provide the final employee VDB in four flavors: both with and without the
+embedded schema, and in both cases, encoded in MySQL and PostgreSQL format.%
+\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/time-employee/database}{usecases/time-employee/database}}
 
 
 %\point{VDBs are a good fit to capture schema evolution of a database.}

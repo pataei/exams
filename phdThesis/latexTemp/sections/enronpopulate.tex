@@ -1,4 +1,4 @@
-\subsubsection{Populating the Email SPL VDB}
+\subsection{Populating the Email SPL VDB}
 \label{sec:enron-pop}
 
 The final step to create the email VDB is to populate the database with data
@@ -7,37 +7,37 @@ from the Enron email dataset, adapted to fit our v-schema~\cite{Shetty04}.
 For evaluation purposes, we want the data from the dataset to be distributed
 across multiple variants of the VDB. To simulate this, we identified five
 plausible configurations of the email SPL, which we divide the data among. The
-five configurations of the email SPL are:
-% we considered are:
+five configurations of the email SPL 
+ we considered are:
 %
-%\begin{itemize}
+\begin{itemize}
 %
-%\item 
+\item 
 \emph{basic email}, which includes only basic email functionality
-and does not include any of the optional features;
-% from the SPL.
+and does not include any of the optional features
+ from the SPL.
 %
-%\item 
+\item 
 \emph{enhanced email}, which extends \emph{basic email} by
 enabling two of the most commonly used email features, \forwardmessages\ and
-\filtermessages;
+\filtermessages.
 %
-%\item 
+\item 
 \emph{privacy-focused email}, which extends \emph{basic email}
 with features that focus on privacy, specifically, the
-\signature, \encryption, and \remailmessage\ features;
+\signature, \encryption, and \remailmessage\ features.
 %
-%\item 
+\item 
 \emph{business email}, which extends \emph{basic email} with
 features tailored to an environment where most emails are expected to be among
 users within the same business network, specifically, \addressbook,
-\signature, \encryption, \autoresponder, and \mailhost; and
+\signature, \encryption, \autoresponder, and \mailhost.
 %
-%\item 
+\item 
 \emph{premium email}, in which all of the optional features
 in the SPL are enabled.
 %
-%\end{itemize}
+\end{itemize}
 %
 For all variants, any features that are not enabled are disabled. 
 
@@ -46,7 +46,7 @@ The original Enron dataset has 150 employees with 252,759 email messages.
 %
 We load this data into the \employees\ and \messages\ tables defined in
 \secref{enron-vsch}, initializing all attributes that are not present in the
-original dataset to \NULL.
+original dataset to \nul.
 
 
 For the \employees\ table, we construct five views corresponding to the five
@@ -62,8 +62,8 @@ e.g., in the view for the privacy-focused variant, we populate the
 \verificationkey\ and \publickey\ attributes.
 %
 Any attribute that is not present in the given tuple due to a conflicting
-presence condition will remain \NULL. For example, both the \verificationkey\
-and \publickey\ attributes remain \NULL\ for employees in the enhanced variant
+presence condition will remain \nul. For example, both the \verificationkey\
+and \publickey\ attributes remain \nul\ for employees in the enhanced variant
 view since the presence condition does not include the corresponding features.
 
 
@@ -74,14 +74,14 @@ message's sender, which updates the tuple's presence condition accordingly.
 The \messages\ table also contains several additional attributes corresponding
 to optional features, which we populate in a systematic way.
 %
-We set \issigned\ to \tru\ if the message sender has the \fsignature\ feature
-enabled, and we set \isencrypted\ to \tru\ if \emph{both} the message sender
-and recipient have \fencryption\ enabled.
+We set \issigned\ to \t\ if the message sender has the \signature\ feature
+enabled, and we set \isencrypted\ to \t\ if \emph{both} the message sender
+and recipient have \encryption\ enabled.
 %
 We populate the \isforwardmsg, \isautoresponse, and \issystemnotification\
 attributes by doing a lightweight analysis of message subjects to determine
 whether the email is any of these special kinds of messages; for example, if
-the subject begins with ``FWD'', we set the \isforwardmsg\ attribute to \tru.
+the subject begins with ``FWD'', we set the \isforwardmsg\ attribute to \t.
 %
 If a forward or auto-reply message was sent by a user that does not have the
 corresponding feature enabled, we filter it out of the dataset. After

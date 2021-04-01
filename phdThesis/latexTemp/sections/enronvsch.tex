@@ -1,4 +1,4 @@
-\subsubsection{Generating V-Schema of the Email SPL VDB}
+\subsection{Generating V-Schema of the Email SPL VDB}
 \label{sec:enron-vsch}
 
 \begin{table}
@@ -6,13 +6,14 @@
 %\vspace{-8pt}
 \label{tab:enron}
 %\begin{center}
+\centering
 \small
 \begin{tabular} {|l|}
 %\hline
 %\textbf{Enron Schema} \\
 \hline 
-\employees(\eid, \fname, \lname, \emailid, $\mathit{email2}$, \\
-\hspace{40pt} $\mathit{email3}$, $\mathit{email4}$, \folder, \status) \\
+\employees(\eid, \fname, \lname, \emailid, $\mathit{email2}$, 
+ $\mathit{email3}$, $\mathit{email4}$, \folder, \status) \\
 \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder)  \\ 
 \recipientinfo(\rid, \midatt, \rtype, \rvalue)  \\
 \referenceinfo(\rid, \midatt, \reference)  \\
@@ -26,70 +27,75 @@
 To produce a v-schema for the email VDB, we start from plain schema
 of the Enron email dataset shown in \tabref{enron}, then systematically adjust
 its schema to align with the information needs of the email SPL described by
-\cite{Hall05}. \TODO{fix citet}
+\citet{Hall05}. 
 %
-The \employees\ table contains information about the employees of the company.
-%including the employee identification number (\eid), their first name and last
-%name (\fname\ and \lname), their primary email address (\emailid), alternative
-%email addresses (e.g.\ $\mathit{email2}$), a path to the folder that contains
-%their data (\folder), and their last status in the company (\status).
+The \employees\ table contains information about the employees of the company
+including the employee identification number (\eid), their first name and last
+name (\fname\ and \lname), their primary email address (\emailid), alternative
+email addresses (e.g.\ $\mathit{email2}$), a path to the folder that contains
+their data (\folder), and their last status in the company (\status).
 %
-The \messages\ table contains information about the email messages.
-% including
-%the message ID (\midatt), the sender of the message (\sender), the date
-%(\dateatt), the internal message ID (\messageid), the subject and body of the
-%message (\subject\ and \body), and the exact folder of the email (\folder).
+The \messages\ table contains information about the email messages
+ including
+the message ID (\midatt), the sender of the message (\sender), the date
+(\dateatt), the internal message ID (\messageid), the subject and body of the
+message (\subject\ and \body), and the exact folder of the email (\folder).
 % 
-The \recipientinfo\ table contains information about the recipient of a message.
-%including the recipient ID (\rid), the message ID (\midatt), the type of the
-%message (\rtype), and the email address of the recipient (\rvalue).
+The \recipientinfo\ table contains information about the recipient of a message
+including the recipient ID (\rid), the message ID (\midatt), the type of the
+message (\rtype), and the email address of the recipient (\rvalue).
 %
 The \referenceinfo\ table contains messages that have been referenced in other
-email messages.
-%, for example, in a forwarded message; it contains a
-%reference-info ID (\rid), the message ID (\midatt), and the entire message
-%(\reference). 
+email messages
+, for example, in a forwarded message; it contains a
+reference-info ID (\rid), the message ID (\midatt), and the entire message
+(\reference). 
 This table simply backs up the emails.
 
-\TODO{fix and include table}
-%\begin{table}
-%\caption{V-schema of the email VDB with feature model
+\TODO{fix caption.}
+\begin{table}
+\caption{V-schema of the email VDB with feature model ?
 %\ensuremath{\fModel_\enron}. 
-%Presence conditions are colored blue for clarity.
-%}
-%%\vspace{-8pt}
-%\label{tab:enron-vsch}
-%% \begin{center}
-%\small
+Presence conditions are colored blue for clarity.
+}
+%\vspace{-8pt}
+\label{tab:enron-vsch}
+% \begin{center}
+\centering
+\small
+\begin{tabular}{| l |}
+\hline
 %\fbox{
 %\begin{minipage}{0.975\textwidth}
 %\begin{minipage}{0.69\textwidth}
-%$\employees(\eid,\fname,\lname,\emailid,\folder,\status,
-% \annot[\fsignature]{\verificationkey},
-%  \annot[\fencryption]{\publickey})$ \\[1.1ex]
-%$\messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder,
-%  \issystemnotification,
-%  \annot[\fencryption]{\isencrypted},$ \\
-%\hspace*{10pt}$\annot[\fautoresponder]{\isautoresponse},\annot[\fsignature]{\issigned},
-%  \annot[\fforwardmsg]{\isforwardmsg})$
+$\employees(\eid,\fname,\lname,\emailid,\folder,\status,
+ \annot[\fsignature]{\verificationkey},$\\
+\hspace{60pt} $  \annot[\fencryption]{\publickey})$ \\
+$\messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder,
+  \issystemnotification,$\\
+\hspace{44pt}  $  \annot[\fencryption]{\isencrypted},
+\annot[\fautoresponder]{\isautoresponse},\annot[\fsignature]{\issigned},$\\
+\hspace{44pt} $  \annot[\fforwardmsg]{\isforwardmsg})$\\
 %\end{minipage}\hfill
 %\begin{minipage}{0.285\textwidth}
-%$\recipientinfo(\rid, \midatt, \rtype, \rvalue)$ \\[0.9ex]
-%${\forwardmsg(\eid, \forwardaddr)}^{\fforwardmsg}$ \\[0.9ex]
-%${\mailhost(\eid, \username, \mailhost)}^{\fmailhost}$
+$\recipientinfo(\rid, \midatt, \rtype, \rvalue)$ \\
+${\forwardmsg(\eid, \forwardaddr)}^{\fforwardmsg}$ \\
+${\mailhost(\eid, \username, \mailhost)}^{\fmailhost}$\\
 %\end{minipage} \\[1.1ex]
-%${\filtermsg(\eid, \suffix)}^{\ffiltermsg}$
+${\filtermsg(\eid, \suffix)}^{\ffiltermsg}$\\
 %\hspace{2pt}
-%${\remailmsg(\eid, \pseudonym)}^{\fremailmsg}$
+${\remailmsg(\eid, \pseudonym)}^{\fremailmsg}$\\
 %\hspace{2pt}
-%${\automsg(\eid, \subject, \body)}^{\fautoresponder}$
+${\automsg(\eid, \subject, \body)}^{\fautoresponder}$\\
 %\hspace{2pt}
-%${\alias(\eid, \emailAtt, \nickname)}^{\faddressbook}$
+${\alias(\eid, \emailAtt, \nickname)}^{\faddressbook}$\\
+\hline
 %\end{minipage}
 %}
-%%\vspace{-13pt}
-%% \end{center}
-%\end{table}
+%\vspace{-13pt}
+% \end{center}
+\end{tabular}
+\end{table}
 
 %\begin{table*}
 %\caption{V-schema of the email VDB with feature model
@@ -154,9 +160,9 @@ attributes are annotated by the \signature\ presence condition, indicating that
 they correspond to the \signature\ feature and are unused in configurations
 that exclude this feature.
 %
-Additionally, several features require adding entirely new relations, e.g.,
+Additionally, several features require adding entirely new relations.
 %
-%For example, 
+For example, 
 when the \forwardmsg\ feature is enabled, the system must keep
 track of which users have forwarding enabled and the address to forward the messages to.
 %should be forwarded to. 
@@ -176,24 +182,27 @@ way; preventing this creates an information need to identify auto-generated
 emails, which is realized in the variational schema by attributes like
 \isforwardmsg\ and \isautoresponse.
 %
-% occurs between the \signature\ and \fremailmsg\ features: the \fremailmsg\
-% feature enables anonymously sending messages by replacing the sender with a
-% pseudonym, but this prevents the recipient from being able to verify a signed
-% email.
+As another example consider the interaction that 
+ occurs between the \signature\ and \remailmsg\ features: the \remailmsg\
+ feature enables anonymously sending messages by replacing the sender with a
+ pseudonym, but this prevents the recipient from being able to verify a signed
+ email.
 %
-% occurs between the \signature\ and \forwardmsg\ features: if Sarah signs a
-% message and sends it to Ina, and Ina forwards the message to Philippe, then
-% the signature verification operation may incorrectly interpret Ina as the
-% sender rather than Sarah and fail to verify the message.
+Furthermore, consider the interaction that 
+ occurs between the \signature\ and \forwardmsg\ features: if Sarah signs a
+ message and sends it to Ina, and Ina forwards the message to Philippe, then
+ the signature verification operation may incorrectly interpret Ina as the
+ sender rather than Sarah and fail to verify the message.
 
 %p: moved the following paragraph to discussion.
-%For each feature, we (1) enumerated the operations that must be supported both
-%to implement the feature itself and to resolve undesirable feature
-%interactions, (2) identified the information needs to implement these
-%operations, and (3) extended the variational schema to satisfy these
-%information needs.
+For each feature, we (1) enumerated the operations that must be supported both
+to implement the feature itself and to resolve undesirable feature
+interactions, (2) identified the information needs to implement these
+operations, and (3) extended the variational schema to satisfy these
+information needs.
 %
-% The changes made to accommodate the features \addressbook, \encryption,
+We make similar changes made to accommodate all features and their interactions.
+% \addressbook, \encryption,
 % \autoresponder, \remailmessage, \filtermessages, and \mailhost\ are similar. 
 %
 
@@ -201,23 +210,22 @@ emails, which is realized in the variational schema by attributes like
 %second author's MS project report~\citet{Li19}.
 %
 For brevity, we omit some attributes and relations from the original schema
-that are irrelevant to the email SPL described by Hall.
-% , such as the \referenceinfo\ relation and alternative email addresses. 
+that are irrelevant to the email SPL described by~\citet{Hall05},
+such as the \referenceinfo\ relation and alternative email addresses. 
 %
 %p: will ref qiaoran's work somewhere else, if space permits.
 %\citet{Li19} provides
 %a complete description of adaptations done in the process in her MS project report.
 % \t presence condition can be omitted.
 
-
-%We distribute the variational schema for the email VDB in two formats.
+\TODO{fix distribution}
+We distribute the variational schema for the email VDB in two formats.
 %%
-%First, we provide the schema in the encoding used by our prototype VDBMS tool.%
-%\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/space-emailSPL/schema/EnronSchema.hs}{usecases/space-emailSPL/schema}}
+First, we provide the schema in the encoding used by our prototype VDBMS tool.%
+\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/space-emailSPL/schema/EnronSchema.hs}{usecases/space-emailSPL/schema}}
 %
-%Second, 
-We provide the v-schema both in the encoding used by our VDBMS tool and also
-in plain SQL.
+Second, 
+we provide the v-schema in plain SQL.
 %The SQL encoding 
 % that generates the
 % \eric{Eric, I don't like universal here! it may give the wrong idea!

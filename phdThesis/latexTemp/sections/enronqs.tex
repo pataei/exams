@@ -8,26 +8,26 @@
 
 To produce a set of queries for the email SPL use case, we collected all of
 the information needs that we could identify in the description of the email
-SPL by \cite{Hall05}. \TODO{fix citet}. In order to make the information needs more concrete, we
+SPL by \citet{Hall05}.. In order to make the information needs more concrete, we
 viewed the requirements of the email SPL mostly through the lens of
 constructing an email header.
 %
 An email header includes all of the relevant information needed to send an
 email and is used by email systems and clients to ensure that an email is sent to
 the right place and interpreted correctly. 
-%More specifically, the email header
-%includes the sender and receiver of the email, whether an email is signed and
-%the location of a signature verification key, whether an email is encrypted and
-%the location of the corresponding public key, the subject and body of the
-%email, the mail host it belongs to, whether the email should be filtered,
-%% the verification status of the email and who has verified the email, 
-%and so on.
+More specifically, the email header
+includes the sender and receiver of the email, whether an email is signed and
+the location of a signature verification key, whether an email is encrypted and
+the location of the corresponding public key, the subject and body of the
+email, the mail host it belongs to, whether the email should be filtered,
+% the verification status of the email and who has verified the email, 
+and so on.
 %
 Although there is obviously other infrastructure involved, the fundamental
 information needs of an email system can be understood by considering how to
-construct email headers.
-% that ensures the email would get where it needs to go
-% and be interpreted correctly on the other end.
+construct email headers
+ that ensures the email would get where it needs to go
+ and be interpreted correctly on the other end.
 
 
 Hall's decomposition focuses on enumerating the features of the email SPL and
@@ -61,7 +61,7 @@ This corresponds to the information need of a system with no features enabled.
 We use $X$ to stand for the specific message ID (\midatt) of the email whose
 header we want to construct.
 %
-\vspace{-2pt}
+%\vspace{-2pt}
 \begin{align*}
 \Qbasic &= 
 %\pi_{\sender,\rvalue,\subject,\body} 
@@ -72,13 +72,13 @@ header we want to construct.
 %\mrtable &\leftarrow (\selectRel\midCond\messages) \\
 %&\qquad \bowtie_{\messages.\midatt = \recipientinfo.\midatt} \recipientinfo
 \end{align*}
-\vspace{-13pt}
+%\vspace{-13pt}
 %
-%This query extracts the sender, recipient, subject, and body of the email to
-%populate the header. The projection is applied to an intermediate result
-%\mrtable\ constructed by joining the \messages\ table with the \recipientinfo\
-%table on recipient IDs; we reuse this intermediate result also in subsequent
-%queries.
+This query extracts the sender, recipient, subject, and body of the email to
+populate the header. The projection is applied to an intermediate result
+\mrtable\ constructed by joining the \messages\ table with the \recipientinfo\
+table on recipient IDs; we reuse this intermediate result also in subsequent
+queries.
 
 
 Taking \Qbasic\ as our starting point, we next construct our set of $8$
@@ -95,7 +95,7 @@ message if its address contains any of the suffixes set by the receiver.
 %% queries are variational and correspond to multiple different plain queries.
 %% However, as described in \secref{background}...
 %
-\vspace{-2pt}
+%\vspace{-2pt}
 \begin{align*}
 \Qfilter &= 
 %\pi_{\sender,\rvalue,\suffix,\subject,\body}
@@ -110,7 +110,7 @@ message if its address contains any of the suffixes set by the receiver.
 %&\qquad \bowtie_{\employees.\eid = \filtermsg.\eid}\filtermsg \\
 \mretable &\leftarrow \joinRel{\mrtable}{\employees}{\rvalue=\emailid}
 \end{align*}
-\vspace{-1pt}
+%\vspace{-1pt}
 %
 %The intermediate result \mretable\ formed by joining \mrtable\ with the
 %\employees\ relation will be reused in later queries.
@@ -130,26 +130,26 @@ The other single-feature queries are written similarly.
 
 % \centerline{$\choiceS \forwardmessages {\Qforward} {\Qbasic}$}
 
-%As another example of a single-feature query, \Qforward\ captures the
-%information needs for implementing the \forwardmessages\ feature. It is similar
-%to the previous queries except that it extracts the \forwardaddr\ from the
-%\automsg\ table, which is needed to construct the message header for the new
-%email to be forwarded when email $X$ is received by a user with a \forwardaddr\
-%set.
-%%
-%\begin{align*}
-%\Qforward &=
-%\projectRel{\rvalue,\forwardaddr,\subject,\body}{\temp} \\
-%\temp &\leftarrow \mretable \\
-%&\qquad \bowtie_{\employees.\eid = \forwardmsg.\eid} \automsg
-%\end{align*}
+As another example of a single-feature query, \Qforward\ captures the
+information needs for implementing the \forwardmessages\ feature. It is similar
+to the previous queries except that it extracts the \forwardaddr\ from the
+\automsg\ table, which is needed to construct the message header for the new
+email to be forwarded when email $X$ is received by a user with a \forwardaddr\
+set.
 %
-%The other single-feature queries are similar to those shown here.
+\begin{align*}
+\Qforward &=
+\projectRel{\rvalue,\forwardaddr,\subject,\body}{\temp} \\
+\temp &\leftarrow \mretable \\
+&\qquad \bowtie_{\employees.\eid = \forwardmsg.\eid} \automsg
+\end{align*}
+
+The other single-feature queries are similar to those shown here.
 
 
 Besides single-feature queries, we also provide queries that gather information
 needed to identify and address the undesirable feature interactions described
-by \cite{Hall05}. \TODO{fix citet} Out of Hall's 27 feature interactions, we determined 16 of
+by \citet{Hall05}. Out of Hall's 27 feature interactions, we determined 16 of
 them to have corresponding information needs related to the database; 2 of the
 interactions require 2 separate queries to resolve. Therefore, we define and
 provide 18 queries addressing all 16 of the relevant feature interactions.
@@ -210,12 +210,12 @@ single-feature queries shown above.
 %& \bowtie_{\mathit{emp2}.\eid = \forwardmsg.\eid} \forwardmsg
 \end{align*}
 %
-% The query $\Qsf$ also resolves another consequence of the interaction between
-% these two features. This time Sam successfully verifies message $X$ and
-% forwards it to Sam2 which changes the header in the system s.t. it states
-% message $X$ has been successfully verified, thus, the message could be
-% altered by hackers while it is being forwarded (Hall's interaction 27). The
-% system can use $\Qsf$ to generate the correct header in this scenario again.
+ The query $\Qsf$ also resolves another consequence of the interaction between
+ these two features. This time Sam successfully verifies message $X$ and
+ forwards it to Sam2 which changes the header in the system such that it states
+ message $X$ has been successfully verified, thus, the message could be
+ altered by hackers while it is being forwarded (Hall's interaction \#27). The
+ system can use $\Qsf$ to generate the correct header in this scenario again.
 
 %\begin{comment}
 \noindent
