@@ -1,6 +1,8 @@
 \chapter{Variational Database Use Cases}
 \label{ch:vdbusecase}
 
+\TODO{add props hold}
+
 %\point{We describe how we systematically generated two 
 %variational databases from real world scenarios where variation appears
 %in databases.}\\
@@ -84,7 +86,23 @@ databases over time. It illustrates generating a VDB from the schema evolution o
 an employee database and popular queries used to extract employees information
 from the VDB.
 
-
+\NOTE{the following is from VaMoS intro regarding link.}
+We distribute the VDBs, SQL scripts for generating them, and queries of our
+use cases.\footnote{Available at: \url{https://zenodo.org/record/4321921}}
+%in a GitHub repository.%
+%\footnote{\url{https://github.com/lambda-land/VDBMS/tree/master/usecases}}
+%
+We distribute the VDBs in both MySQL and Postgres in two forms, one intended
+for use with our VDBMS tool, and one intended for more general-purpose research
+on variation in databases.
+%
+% with an embedded  schema representation described in \secref{enron-vsch}, and
+% one without the embedded schema for use with our VDBMS tool, in which the
+% variational schema is provided separately.
+%
+We distribute the variational queries as simple \cpp{ifdef}-annotated SQL files
+to promote their broad reuse in the design and evaluation of other systems for
+managing variational relational data.
 
 
 \input{sections/enronvdb}
