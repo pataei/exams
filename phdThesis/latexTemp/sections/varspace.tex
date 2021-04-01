@@ -5,16 +5,13 @@
 \TODO{define oplus in fig as syntactic sugar.}
 
 %\point{using a feature set to represent variability within a context.}
-To account for variability in a database we need to 
-encode it.
+We encode variability in terms of \emph{features}.
 %
-%The first challenge of incorporating variability into a database
-%is to represent variability. 
+The \emph{feature space}, \fSet, of a variational database
+is a closed set of boolean variables called features.
 %
-To encode variability we introduce a \emph{feature space} \fSet\ as 
-a closed set of boolean variables. 
 A feature \ensuremath{\fName \in \fSet} can be enabled (i.e., \fName = \t) or disabled (\fName = \f).
-Features capture the variation in a given variational scenario.
+Features describe the variability in a given variational scenario.
 %first organize the configuration space into
 %a set of features \fSet.
 %, denoted by \fSet.
@@ -23,11 +20,11 @@ Features capture the variation in a given variational scenario.
 %appropriate for the context that the database is used for.
 %
 For example, in the context of schema evolution, features can be generated from version 
-numbers (e.g. features \vOne\ to \vFive\ and \tOne\ to \tFive\ in the 
+numbers (e.g., features \vOne\ to \vFive\ and \tOne\ to \tFive\ in the 
 motivating example, \tabref{mot}); for SPLs, 
-the features can be adopted from the SPL feature set (e.g. the \edu\ feature in
+the features can be adopted from the SPL feature set (e.g., the \edu\ feature in
 our motivating example, \tabref{mot}); and 
-for data integration, the features can be representatives of resources.  
+for data integration, the features may represent different data sources.  
 %For simplicity, the set of features is assumed to be closed and features are
 %assumed to be boolean variables, however, it is easy to extend them
 %to multi-valued variables that have finite set of values.
@@ -39,7 +36,8 @@ for data integration, the features can be representatives of resources.
 %Assuming that all the features by default are set to \prog{false},
 %enabling some of them specifies a variant. 
 
-Features describe local points of variation in a database.
+Features are used at variation points to indicate which variants a particular
+element belongs to.
 %, i.e,
 %in \fSet\ 
 %are used to 
@@ -47,8 +45,8 @@ Features describe local points of variation in a database.
 %of a variational entity within the database 
 %are different 
 %among different variants. 
-Thus, enabling or disabling all
-the features 
+Thus, enabling or disabling each of
+the features in the feature set
 %in \fSet\ 
 produces a particular database \emph{variant} where
 %of the entity in which 
@@ -63,22 +61,23 @@ that maps every feature in the feature set to a boolean value.
 %By definition, a configuration is a \emph{total} function,
 %i.e., it is defined for \emph{all} features in the feature set. 
 %For brevity, 
-We represent a configuration  by the set of enabled features.
+We represent a configuration by the set of enabled features.
 %which represents a variant. 
 %\ensure{make sure referring to a variant can be done by the set of enabled features. HERE!}
 For example, in our motivating scenario, the configuration \ensuremath{
 \setDef {\vTwo,\tThree,\edu}
 }
-represents a database variant where only features \vTwo, \tThree, and \edu\ are enabled.
+represents a database variant where only features \vTwo, \tThree, and \edu\ are
+enabled (and the rest are disabled).
 This database variant contains relation schemas in the yellow cells of \tabref{mot}.
 %of the
 %employee and education sub-schemas associated with \vTwo\ and
 %\tThree\ in \tabref{mot}, respectively.
 %For brevity, 
-We refer to a variant with configuration \config\ as variant \config, e.g.,
+We refer to a variant by the configuration that produces it, e.g.,
 %For example, 
-variant \setDef {\vTwo,\tThree,\edu} refers to the variant
-with configuration \setDef {\vTwo,\tThree,\edu}.
+variant \setDef {\vTwo,\tThree,\edu} refers to the variant produced by applying
+that configuration.
 %and education sub-schema associated with \tThree\ in \tabref{mot}.
 
 %\point{represent variability in db by prop formula of features, called feature expression.}
@@ -86,8 +85,8 @@ with configuration \setDef {\vTwo,\tThree,\edu}.
 %To encode features in the database, we construct propositional formulas of features
 %such that the formula evaluates to \t\ for a set of configurations. 
 When describing variation points in the database, we need to 
-refer to subsets of the configuration space. We achieve this by 
-constructing propositional formulas of features.
+refer to subsets of the configuration space. We do this with
+propositional formulas of features.
 Thus, 
 such a propositional formula defines a condition that holds for 
 a subset of configurations and their corresponding variants. 
@@ -96,19 +95,17 @@ a subset of configurations and their corresponding variants.
 %i.e., assigning features to their values defined in variant's configuration and 
 %evaluating the propositional formula results in \prog{true}.
 %
-For example,
-the propositional formula $\neg \edu$ represents all variants of our
-motivating example that do not 
-have the education part of the schema, i.e., variant schemas of the 
-left schema column. 
-
+For example, the propositional formula $\neg \edu$ represents all variants of
+our motivating example where the $\edu$ feature is disabled, i.e., variant
+schemas of the  left schema column. 
+%
 We call a propositional formula of features a \emph{feature expression} and define
 it formally in \figref{fexp-def}. 
 %\figref{fexp-def} defines the syntax of feature expressions.
 The evaluation function of feature expressions 
 $\fSem \dimMeta : \ffSet \to \confSet \to \bSet$ simply substitutes each
-feature \fName\ in the expression \dimMeta\ with its boolean value 
-set in the given configuration \config\ and then
+feature \fName\ in the expression \dimMeta\ with the boolean value 
+given by configuration \config\ and then
 simplifies the propositional formula to a boolean value.
 %  evaluates the 
 %feature expression \dimMeta\ w.r.t. the configuration \config.
@@ -117,9 +114,8 @@ simplifies the propositional formula to a boolean value.
 %and defined in \appref{fexp},
 %evaluates feature expression \dimMeta\ under configuration \config,
 %also called \emph{configuration of feature expression \dimMeta\ under \config}. 
-For example, assuming that 
-\ensuremath{\fSet = \setDef{\A, \B}}
- $\fSem [\{\A\}] {\A \vee \B} = \t \vee \f = \t$, however,
+For example, 
+$\fSem [\{\A\}] {\A \vee \B} = \t \vee \f = \t$, while
 %which states that the feature expression
 %$\A \vee \B$ evaluates to \t\ w.r.t. configuration that only enables $\A$, however,
 $\fSem [\{\}] {\A \vee \B} = \f \vee \f = \f$.
@@ -127,9 +123,10 @@ $\fSem [\{\}] {\A \vee \B} = \f \vee \f = \f$.
 %are enabled.
 %which states that the same feature expression evaluates
 %to \f\ when neither $\A$ nor $\B$ are enabled.
-Additionally, we define the binary \emph{equivalence ($\equiv$)} relation and
-the unary \emph{satisfiable (sat)} and \emph{unsatisfiable (unsat)}
-relations over feature expressions in \figref{fexp-def}.
+Additionally, in \figref{fexp-def}, we define a binary \emph{equivalence
+relation} ($\equiv$) relation on feature expressions corresponding to logical
+equivalence, and unary \emph{sat} and \emph{unsat} predicates that determine
+whether a feature expression is satisfiable or unsatisfiable, respectively.
 %
 % some of the functions needed over feature
 %expressions:
@@ -148,45 +145,43 @@ relations over feature expressions in \figref{fexp-def}.
 
 %\point{annotating elements of database with feature expressions.}
 To incorporate feature expressions into the database,
-we \emph{annotate/tag} database elements (including attributes, relations, and tuples) 
+we \emph{annotate} database elements (including attributes, relations, and tuples) 
 with feature expressions. An \emph{annotated element} \elem\ with feature expression \dimMeta\
 is denoted by \annot \elem. 
 %The feature expression \dimMeta\ represents
 %the set of configurations where their variants contain element \elem\ because
 %
-The feature expression attached to an element is called a \emph{presence condition}
-since it determines the condition (set of configurations) under which the element is present.
-\getPC {\annot \elem} returns the presence condition of the variational element
-\annot \elem.
-For example, the
-annotated number $\annot [\A \vee \B] 2$ is present in variants
-\setDef \A, \setDef \B, 
-\ensuremath{\setDef {\A, \B}}
+The feature expression attached to an element is called its \emph{presence
+condition} since it determines the condition (set of configurations) under
+which the element is present in the database. For example, assuming
+$\ffSet=\set{\A,\B}$, the annotated number $\annot [\A \vee \B] 2$ is present
+in variants \setDef{\A}, \setDef{\B}, and \setDef{\A,\B} but not in variant
+\setDef{}.
+%
+The operation $\getPC{\annot{\elem}}=e$ returns the presence condition of an
+annotated element.
 % with a configuration
 %that enables either $\A$ or $\B$ or both
-but it does not exist in variant \setDef {}.
 %variants that disable both $\A$ and $\B$.
-Here, $\getPC {\annot [\A \vee \B] 2} = \A \vee \B$.
+% Here, $\getPC {\annot [\A \vee \B] 2} = \A \vee \B$.
 
 %\point{relationship between features is captured by a propositional formula, called feature model.} 
 No matter the context, features often have a relationship with each other that
-constrains configurations. For example, only one of the temporal features of $\vOne - \vFive$
-can be \t\ for a given variant.
-This relationship is captured by a feature expression, called a \emph{feature model} and
-denoted by \fModel,
-which restricts the set of \emph{valid configurations}:
-if configuration \config\ violates the relationship then 
-%evaluating the feature model \fModel\
-%under this configuration evaluates to \f: 
-it follows from the \fSem . definition that \fSem \fModel = \f.
-For example, the restriction that at a given time only one of temporal features $\vOne - \vFive$
-can be enabled is represented by:
-%the feature expression:
-\ensuremath{
-\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
-},
-where $\A \oplus \B \oplus \ldots \oplus \fName_n$ is syntactic sugar for $(\A \wedge \neg \B \wedge \ldots \wedge \neg \fName_n) \vee (\neg \A \wedge \B \wedge \ldots \wedge \neg \fName_n) \vee (\neg \A \wedge \neg \B \wedge \ldots \wedge \fName_n)$
-, i.e., features are mutually exclusive.
+constrains the set of possible configurations. For example, only one of the
+temporal features of \vOne--\vFive\ can be \t\ for a given variant. This
+relationship is captured by a feature expression, called a \emph{feature model}
+and denoted by \fModel, which restricts the set of \emph{valid configurations}.
+That is, a configuration $c$ is only valid if $\fSem{\fModel}=\t$.
+%
+For example, the restriction that at a given time only one of temporal features
+\vOne--\vFive\ 
+can be enabled is represented by the feature model
+$\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive$,
+where $\A \oplus \B \oplus \ldots \oplus \fName_n$ is syntactic sugar for
+$(\A \wedge \neg \B \wedge \ldots \wedge \neg \fName_n)
+\vee (\neg \A \wedge \B \wedge \ldots \wedge \neg \fName_n)
+\vee (\neg \A \wedge \neg \B \wedge \ldots \wedge \fName_n)$,
+that is, the features are mutually exclusive.
 %multiple features cannot be enabled simultaneously.
 %$\left(\vOne \wedge \neg \left(\vTwo \vee \hdots \vee \vFive \right) \right)
 %\vee \left(\vTwo \wedge \neg \left(\vOne \vee \vThree \vee \vFour \vee \vFive \right) \right) 
