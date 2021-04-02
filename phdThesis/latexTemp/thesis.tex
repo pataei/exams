@@ -198,6 +198,36 @@ friends.
 \definecolor{light-gray}{gray}{0.95}
 \newcommand{\code}[1]{\colorbox{light-gray}{\texttt{#1}}}
 
+%TODO
+\usepackage{lipsum}                     % Dummytext
+\usepackage{xargs}                      % Use more than one optional parameter
+                                        % in a new commands
+\usepackage{etoolbox}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\newcommandx{\eric}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
+%\newcommandx{\arash}[2][1=]{\todo[linecolor=violet(ryb),backgroundcolor=violet(ryb)!25,bordercolor=violet(ryb),#1]{#2}}
+%\newcommandx{\arashResp}[2][1=]{\todo[linecolor=blue,backgroundcolor=violet(ryb)!25,bordercolor=violet(ryb),#1]{#2}}
+%\newcommand{\arashComment}[1]{\TODO {#1}}
+\newcommandx{\fromppr}[2][1=]{\todo[linecolor=green,backgroundcolor=green!25,bordercolor=green,#1]{#2}}
+\newcommandx{\think}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
+\newcommandx{\moredet}[2][1=]{\todo[linecolor=green(munsell),backgroundcolor=green(munsell)!25,bordercolor=green(munsell),#1]{#2}}
+\newcommandx{\wrrite}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
+\newcommandx{\rewrite}[2][1=]{\todo[linecolor=frenchblue,backgroundcolor=frenchblue!25,bordercolor=frenchblue,#1]{#2}}
+\newcommandx{\ensure}[2][1=]{\todo[linecolor=ruby,backgroundcolor=ruby!25,bordercolor=ruby,#1]{#2}}
+\newcommandx{\dropit}[2][1=]{\todo[linecolor=persimmon,backgroundcolor=persimmon!25,bordercolor=persimmon,#1]{#2}}
+\newcommandx{\maybeAdd}[2][1=]{\todo[linecolor=navyblue,backgroundcolor=navyblue!25,bordercolor=navyblue,#1]{#2}}
+\newcommandx{\structure}[2][1=]{\todo[linecolor=yellow,backgroundcolor=yellow!25,bordercolor=yellow,#1]{#2}}
+%\newcommandx{\dfref}[2][1=]{\todo[linecolor=gray,backgroundcolor=gray!25,bordercolor=gray,#1]{#2}}
+%\newcommand{\soc}{\rewrite {stream of consciousness}}
+%\newcommand{\badph}{\rewrite {bad pharagraph}}
+%\newcommand{\badstory}{\rewrite {bad story}}
+%\newcommand{\badsent}{\rewrite {bad sentence}}
+%\newcommand{\tbf}{\wrrite {fill later}}
+%\newcommand{\point}{\textcolor {green(munsell)}}
+%\newcommand{\chck}{\rewrite{read the ref to make sure your understanding is right!}}
+%\newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
+
+
 %names
 \input{names}
 
