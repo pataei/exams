@@ -74,6 +74,7 @@ header we want to construct.
 \end{align*}
 %\vspace{-13pt}
 %
+\noindent
 This query extracts the sender, recipient, subject, and body of the email to
 populate the header. The projection is applied to an intermediate result
 \mrtable\ constructed by joining the \messages\ table with the \recipientinfo\
@@ -115,11 +116,12 @@ message if its address contains any of the suffixes set by the receiver.
 %The intermediate result \mretable\ formed by joining \mrtable\ with the
 %\employees\ relation will be reused in later queries.
 %
+\noindent
 We can construct a query that retrieves the required header information whether
 \filtermessages\ is enabled or not by combining \Qbasic\ and \Qfilter\ in a
 choice, as $\Qbf=\chc[\filtermessages]{\Qfilter,\Qbasic}$. 
 %
-Although we do not show the process in this paper, we can use equivalence laws
+Although we do not show the process in this thesis, we can use equivalence laws
 from the choice calculus~\cite{EW11tosem,HW16fosd} to factor commonalities out
 of choices and reduce redundancy in queries like \Qbf.
 % For clarity, we distribute the un-factored form presented here in our case
@@ -140,8 +142,8 @@ set.
 \begin{align*}
 \Qforward &=
 \projectRel{\rvalue,\forwardaddr,\subject,\body}{\temp} \\
-\temp &\leftarrow \mretable \\
-&\qquad \bowtie_{\employees.\eid = \forwardmsg.\eid} \automsg
+\temp &\leftarrow \mretable 
+ \bowtie_{\employees.\eid = \forwardmsg.\eid} \automsg
 \end{align*}
 
 The other single-feature queries are similar to those shown here.
@@ -163,8 +165,8 @@ In these cases, we constructed a query that would retrieve the relevant
 information to detect and report the issue.
 
 
-One undesirable feature interaction occurs between the \signature\ and
-\forwardmessages\ features: if Philippe signs a message and sends it to Sarah,
+One undesirable feature interaction occurs between the two features \signature\ and
+\forwardmessages: if Philippe signs a message and sends it to Sarah,
 and Sarah forwards the message to an alternate address Sarah-2, then signature
 verification may incorrectly interpret Sarah as the sender rather than Philippe
 and fail to verify the message (Hall's interaction \#4).
@@ -187,18 +189,18 @@ single-feature queries shown above.
 %
 \begin{align*}
 \Qsf &=  \signature\wedge\forwardmessages \\
-&\quad\langle
-  \vPrj[\rvalue,\forwardaddr,\mathit{emp1}.\issigned,\mathit{emp1}.\verificationkey]{\temp}, \\
-&\quad\signature\langle\Qsig, 
+&\qquad\langle
+  \vPrj[\rvalue,\forwardaddr,\mathit{emp1}.\issigned,\mathit{emp1}.\verificationkey]{\temp} \\
+&\qquad, \signature\langle\Qsig, 
 \chc[\forwardmessages]{\Qforward,\Qbasic} \rangle\rangle \\
 \temp &\leftarrow
   ((((\sigma_{\midCond} \messages) 
  \bowtie
 %_{\messages.\midatt = \recipientinfo.\midatt}
  \recipientinfo) \\
-& \bowtie_{\sender = \mathit{emp1}.\emailid}
+& \qquad\bowtie_{\sender = \mathit{emp1}.\emailid}
     (\vRen[\mathit{emp1}]{\employees})) \\
-& \bowtie_{\rvalue = \mathit{emp2}.\emailid}
+& \qquad\bowtie_{\rvalue = \mathit{emp2}.\emailid}
     (\vRen[\mathit{emp2}]{\employees})) \bowtie \forwardmsg
 %\temp &\leftarrow
 %  ((((\sigma_{\midCond} \messages) \\
@@ -233,21 +235,22 @@ Queries \Qef\ and $\Qef'$ satisfy the information need for this interaction
 when a message is encrypted or unencrypted, respectively.
 %
 \begin{align*}
-\small
+%\small
 \Qef &= \encryption\wedge\forwardmessages \\
-  &\langle
-    \projectRel{\rvalue}{(\selectRel{\midCond\wedge\isencrypted}{\messages})},
-    \encryption\langle\Qencrypt, \\
-  &\qquad \chc[\forwardmessages]{\Qforward,\Qbasic} \rangle \\
-\OB{\Qef'} &= \encryption\wedge\forwardmessages
-  \langle \temp, \encryption \langle \Qencrypt, \\
-  &\qquad \chc[\forwardmessages]{\Qforward,\Qbasic} \rangle \rangle \\
+  &\qquad\langle
+    \projectRel{\rvalue}{(\selectRel{\midCond\wedge\isencrypted}{\messages})}\\
+&    \qquad,
+    \encryption\langle\Qencrypt, 
+ \chc[\forwardmessages]{\Qforward,\Qbasic} \rangle \\
+\OB{\Qef'} &= \encryption\wedge\forwardmessages\\
+&\qquad  \langle \temp, \encryption \langle \Qencrypt, 
+ \chc[\forwardmessages]{\Qforward,\Qbasic} \rangle \rangle \\
 % \end{align*}
 % %
 % \begin{align*}
 \temp &\leftarrow
   \pi_{\rvalue,\forwardaddr,\subject,\body} (\sigma_{\midCond \wedge \neg\isencrypted} \\
-  & (\mretable \bowtie_{\employees.\eid = \forwardmsg.\eid} \forwardmsg))
+  &\qquad (\mretable \bowtie_{\employees.\eid = \forwardmsg.\eid} \forwardmsg))
 \end{align*}
 
 \noindent

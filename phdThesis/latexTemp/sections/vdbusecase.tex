@@ -1,8 +1,6 @@
 \chapter{Variational Database Use Cases}
 \label{ch:vdbusecase}
 
-\TODO{add props hold}
-
 %\point{We describe how we systematically generated two 
 %variational databases from real world scenarios where variation appears
 %in databases.}\\
@@ -42,11 +40,12 @@ It achieves this level of expressiveness by accounting
 for variation explicitly and linking variation in software and databases to
 queries by using the same feature names and configuration space.
 %
-We present only a  sample of the queries here,
-yet we provide the full query sets in the link provided in \secref{intro}.
-online and will be linked to throughout this
-section.
-\TODO{fix link}
+We present only a  sample of the queries,
+yet we provide the full query sets online.\footnote{Complete sets of queries in both formats are available at: \url{https://zenodo.org/record/4321921}.} 
+%in the link provided in \secref{intro}.
+%online and will be linked to throughout this
+%section.
+%
 The full query sets capture all of the information needs described in the
 papers that  we base our variation scenarios on. It is important to note that
 this makes our query sets potentially biased toward queries containing more
@@ -61,32 +60,43 @@ systems. For this role, queries that contain variation are more useful than
 plain queries, and additional plain queries can likely be more easily generated
 if needed.
 
-\TODO{fix link}
 We distribute the v-queries in two formats: (1) VRA,
 % introduced in \secref{background}, 
 encoded in the format used by
-our VDBMS tool, and (2) plain SQL queries with embedded \cpp{ifdef}
-annotations to capture variation points.\footnote{Complete sets of queries in both formats are available at: \url{https://zenodo.org/record/4321921}} 
+our VDBMS tool, and (2) plain SQL queries with embedded 
+\cpp{ifdef}-annotations to capture variation points.
 %
 The SQL format provides queries for studying variational data 
 independently of VDBMS tool and
 will be more immediately useful for other researchers
 studying variational data independently of our VDBMS tool, 
 but we use VRA in
-this paper for its brevity
+this thesis for its brevity
 because it is much more concise.
 
-\TODO{add details}
-The use case introduced in \secref{enron-vdb} illustrates variation in databases over space. 
-It illustrates generating a VDB from a SPL that produces email systems. It also demonstrates
-how variational queries can be used to address the inquiries of the email systems from the
-database. 
-On the other hand, the use case introduced in \secref{emp-vdb} illustrates variation in 
-databases over time. It illustrates generating a VDB from the schema evolution of 
-an employee database and popular queries used to extract employees information
-from the VDB.
+We first focus on variation in databases over space, 
+\secref{enron-vdb}. \secref{enron-scenario} describes the
+variation scenario from~\citet{Hall05} that is the basis of this use case including the feature set and
+feature model. Then, \secref{enron-vsch} and \secref{enron-pop} describe generating the variational schema for the described
+variation scenario and populating the email SPL VDB with Enron email data,%
+\footnote{\url{http://www.ahschulz.de/enron-email-data/}} respectively.
+Finally, \secref{enron-qs} describes how variational queries capture the information need 
+adapted from feature interactions described by~\citet{Hall05}.
+%
+We then switch focus to variation in databases over time,
+\secref{emp-vdb}. Again, \secref{emp-scenario} describes the
+evolution of an employee database as the variation scenario from~\citet{prima08Moon} 
+that is the basis of this use case.
+Then, \secref{emp-vsch} and \secref{emp-pop} describe generating the variational 
+schema for the described
+variation scenario and populating the employee VDB with a well-known employee data set,%
+\footnote{\url{https://github.com/datacharmer/test_db}} respectively.
+Finally, \secref{emp-qs } describes the adapted and adjusted queries from~\citet{prima08Moon}. 
+%
+At the end of this chapter, \secref{usecase-disc}, we discuss the trade offs of using variational databases and
+we answer the question: ``Should variation be encoded explicitly in databases?''.
 
-\NOTE{the following is from VaMoS intro regarding link.}
+
 We distribute the VDBs, SQL scripts for generating them, and queries of our
 use cases.\footnote{Available at: \url{https://zenodo.org/record/4321921}}
 %in a GitHub repository.%
@@ -110,3 +120,5 @@ managing variational relational data.
 
 \input{sections/empvdb}
 \input{sections/empqs}
+
+\input{sections/usecasedisc}

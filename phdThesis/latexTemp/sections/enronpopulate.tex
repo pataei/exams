@@ -2,7 +2,7 @@
 \label{sec:enron-pop}
 
 The final step to create the email VDB is to populate the database with data
-from the Enron email dataset, adapted to fit our v-schema~\cite{Shetty04}.
+from the Enron email dataset, adapted to fit our variational schema~\cite{Shetty04}.
 %
 For evaluation purposes, we want the data from the dataset to be distributed
 across multiple variants of the VDB. To simulate this, we identified five
@@ -105,30 +105,34 @@ of the sender and recipient.
 %repository.%
 %\footnote{\url{https://github.com/lambda-land/VDBMS/wiki/Enron-Email-Database-UseCase-Doc\#steps-take-to-build-vdb-for-enron-case-study}}
 %%
-%Additionally, we provide SQL scripts to automate the creation of views for each
-%variant%
-%%
+We provide SQL scripts to automate the creation of views for each
+variant%
+%
 %\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/space-emailSPL/database/build/step1_build_email_variants.sql}{usecases/space-emailSPL/database/build/step1\_build\_email\_variants.sql}}
 %%
-%and to automate the population of these views with tuples from the original
-%dataset,%
+and to automate the population of these views with tuples from the original
+dataset,%
 %%
 %\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/space-emailSPL/database/build/step2_build_email_vdb.sql}{usecases/space-emailSPL/database/build/step2\_build\_email\_vdb.sql}} 
 %%
-%which also sets each tuple's presence condition.
+which also sets each tuple's presence condition.
 %
 %
-%The resulting database is distributed in two forms, one with the embedded
-%variational schema as described in \secref{enron-vsch},%
-%%
+The resulting database is distributed in two forms, one with the embedded
+variational schema as described in \secref{enron-vsch},%
+%
 %\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/space-emailSPL/database/withSchema}{usecases/space-emailSPL/database/withSchema}}
-%%
-%and one without the embedded schema%
+%
+and one without the embedded schema%
 %\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/space-emailSPL/database/withoutSchema}{usecases/space-emailSPL/database/withoutSchema}}
-%%
-%for use with our VDBMS tool in which the variational schema is provided
-%separately.
-
+%
+for use with our VDBMS tool in which the variational schema is provided
+separately.%
+\footnote{Both the scripts and different encodings of the email SPL VDB are
+available at: \url{https://zenodo.org/record/4321921}.} 
+%
+We have tested the email SPL VDB for the properties described in \secref{vdbfprop} 
+and all of them hold.
 
 %\point{VDBs are a good fit to encode variation in a database of a 
 %database-backed SPL.}
@@ -148,67 +152,3 @@ of the sender and recipient.
 %- feature model\\
 %- schema\\
 %- data\\
-%\rewrite{revise tables! taken from @Q!}
-\begin{comment}
-\begin{table*}
-\caption{Schema variants for the email VDB.}
-\label{tab:enron_sch}
-\begin{center}
-\small
-\begin{tabular} {| l |l| c | l |}
-\hline
-\textbf{Product} & \textbf{Schema Variants} \\
-% \cline{2-3}
-% \textbf{Features} & \multicolumn{1}{ c ||} {$\edu \vee \neg \edu \equiv \t$} & \multicolumn{1}{ c |} {\edu} & \textbf{Features}\\
-\hline 
-\hline 
-\multirow{4}{*}{\textbf{Basic Email}} &  \employees(\eid, \fname, \lname, \emailid, \folder, \status) \\
- &  \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder\\
- & \phantom{invisible h}, \issystemnotification)  \\ 
- &  \recipientinfo(\rid, \midatt, \rtype, \rvalue)  \\
-& \referenceinfo(\rid, \midatt, \reference)  \\
-\hline
-\multirow{6}{1cm}{\textbf{Enhanced Email}} &  \employees(\eid, \fname, \lname, \emailid, \folder, \status) \\
-&  \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder \\ 
-& \phantom{invisible h}, \issystemnotification, \isforwardmsg) \\ 
-& \recipientinfo(\rid, \midatt, \rtype, \rvalue)  \\
-& \referenceinfo(\rid, \midatt, \reference)  \\
-& \forwardmsg(\eid, \forwardaddr)  \\
-& \filtermsg(\eid, \suffix)  \\
-\hline
-\multirow{5}{1cm}{\textbf{Privacy-focus Email}} &  \employees(\eid, \fname, \lname, \emailid, \folder, \status\\
-& \phantom{invisible hhh}, \verificationkey, \publickey) \\
-&  \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder  \\  
-& \phantom{invisible h}, \issystemnotification, \issigned, \isencrypted)   \\ 
-&  \recipientinfo(\rid, \midatt, \rtype, \rvalue)   \\
-& \referenceinfo(\rid, \midatt, \reference)  \\
-& \remailmsg(\eid, \pseudonym)  \\
-\hline
-\multirow{7}{1cm}{\textbf{Group Email}} &  \employees(\eid, \fname, \lname, \emailid, \folder, \status\\
- & \phantom{invisible hhh}, \verificationkey, \publickey) \\
- &  \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder   \\ 
- & \phantom{invisible h}, \issystemnotification, \isautoresponse, \issigned, \isencrypted)   \\ 
- &  \recipientinfo(\rid, \midatt, \rtype, \rvalue)   \\
-& \referenceinfo(\rid, \midatt, \reference)  \\
-& \automsg(\eid, \subject, \body)  \\
-& \alias(\eid, \emailAtt, \nickname)  \\
-& \mailhost(\eid, \username, \mailhost)  \\
-\hline
-\multirow{10}{1cm}{\textbf{Premium Email}} &  \employees(\eid, \fname, \lname, \emailid, \folder, \status\\
-& \phantom{invisible hhh}, \veirficationkey, \publickey) \\
- &  \messages(\midatt, \sender, \dateatt, \messageid, \subject, \body, \folder \\  
- &  \phantom{invisible h}, \issystemnotification,  \isencrypted, \issigned, \isautoresponse \\
- & \phantom{invisible h}, \isforwardmsg)   \\ 
- & \recipientinfo(\rid, \midatt, \rtype, \rvalue)   \\
-& \referenceinfo(\rid, \midatt, \reference)  \\
-& \forwardmsg(\eid, \forwardaddr)  \\
-& \filtermsg(\eid, \suffix)  \\
-& \remailmsg(\eid, \pseudonym)  \\
-& \automsg(\eid, \subject, \body)  \\
-& \alias(\eid, \emailAtt, \nickname)  \\
-& \mailhost(\eid, \username, \mailhost)  \\
-\hline
-\end{tabular}
-\end{center}
-\end{table*}
-\end{comment}

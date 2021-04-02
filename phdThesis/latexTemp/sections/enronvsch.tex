@@ -1,4 +1,4 @@
-\subsection{Generating V-Schema of the Email SPL VDB}
+\subsection{Generating Variational Schema of the Email SPL VDB}
 \label{sec:enron-vsch}
 
 \begin{table}
@@ -24,7 +24,7 @@
 \end{table}
 
 
-To produce a v-schema for the email VDB, we start from plain schema
+To produce a variational schema for the email VDB, we start from plain schema
 of the Enron email dataset shown in \tabref{enron}, then systematically adjust
 its schema to align with the information needs of the email SPL described by
 \citet{Hall05}. 
@@ -54,7 +54,7 @@ This table simply backs up the emails.
 
 \TODO{fix caption.}
 \begin{table}
-\caption{V-schema of the email VDB with feature model ?
+\caption{Variational schema of the email VDB with feature model ?
 %\ensuremath{\fModel_\enron}. 
 Presence conditions are colored blue for clarity.
 }
@@ -143,7 +143,7 @@ conditions to new attributes and relations corresponding to the features
 they are needed to support, which ensure they will \emph{not} be present
 in configurations that do not include the relevant features.
 %
-The resulting v-schema is given in \tabref{enron-vsch}.
+The resulting variational schema is given in \tabref{enron-vsch}.
 
 
 %As an example of this process, 
@@ -154,7 +154,7 @@ email. These new operations suggest new information needs: we need a way to
 indicate that a message has been signed, and we need access to each user's
 public key to verify those signatures (private keys used to sign a message
 would not be stored in the database). These  needs are reflected in
-the v-schema by the new attributes \verificationkey\ and \issigned,
+the variational schema by the new attributes \verificationkey\ and \issigned,
 added to the relations \employees\ and \messages, respectively. The new
 attributes are annotated by the \signature\ presence condition, indicating that
 they correspond to the \signature\ feature and are unused in configurations
@@ -218,14 +218,14 @@ such as the \referenceinfo\ relation and alternative email addresses.
 %a complete description of adaptations done in the process in her MS project report.
 % \t presence condition can be omitted.
 
-\TODO{fix distribution}
+
 We distribute the variational schema for the email VDB in two formats.
 %%
 First, we provide the schema in the encoding used by our prototype VDBMS tool.%
-\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/space-emailSPL/schema/EnronSchema.hs}{usecases/space-emailSPL/schema}}
+%\footnote{\href{https://github.com/lambda-land/VDBMS/blob/master/usecases/space-emailSPL/schema/EnronSchema.hs}{usecases/space-emailSPL/schema}}
 %
 Second, 
-we provide the v-schema in plain SQL.
+we provide the variational schema in plain SQL.
 %The SQL encoding 
 % that generates the
 % \eric{Eric, I don't like universal here! it may give the wrong idea!
@@ -236,16 +236,17 @@ we provide the v-schema in plain SQL.
 %
 The SQL encoding is given by a ``universal'' schema containing the relations and
 attributes of all variants, plus a relation
-\vdbpc\ that captures all of the relevant presence conditions.
-% : that of the v-schema itself (i.e.\ the feature model), and those of each
-% relation and attribute.
+\vdbpc\ that captures all of the relevant presence conditions:
+that of the variational schema itself (i.e.\ the feature model), and those of each
+ relation and attribute.%
+ \footnote{All encodings are available at: \url{https://zenodo.org/record/4321921}.} 
 %\footnote{\href{https://github.com/lambda-land/VDBMS/tree/master/usecases/space-emailSPL/database/withSchema}{usecases/space-emailSPL/database/withSchema}}
 %
-% The $\mathit{element\_id}$ of the feature model is
-% $\mathit{variational\_schema}$; the $\mathit{element\_id}$ of a relation \vRel\
-% is its name \vRel, and of attribute \vAtt\ in relation \vRel\ is $\vRel.\vAtt$.
+ The $\mathit{element\_id}$ of the feature model is
+ $\mathit{variational\_schema}$; the $\mathit{element\_id}$ of a relation \vRel\
+ is its name \vRel, and of attribute \vAtt\ in relation \vRel\ is $\vRel.\vAtt$.
 %
-The plain SQL encoding of the v-schema supports the use
+The plain SQL encoding of the variational schema supports the use
 of the use cases for research on the effective management of variation in
 databases independent of VDBMS.
 
