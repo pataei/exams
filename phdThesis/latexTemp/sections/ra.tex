@@ -7,15 +7,15 @@
 \TODO{add examples with tables}
 \TODO{maybe add semantics later on}
 
-We do not extend the notation of using underline for relational algebra operations.
-Instead, relational algebra operations are overloaded and they are used as
- both plain relational and variational operations. It is clear from the context when
- an operation is variational or not. 
- %
-We also extend relational algebra s.t. projection of an empty list from a query is valid
-and it returns an empty set. In fact, we denote such query by the \emph{empty} query \empPRel, thus,
-\ensuremath{
-\empPRel = \pi_{\{\}} \pQ}.
+We do not extend the notation of using underline for relational algebra
+operations. Instead, relational algebra operations are overloaded and are used
+as both plain relational and variational operations. It should be clear from
+context when an operation is variational or not. 
+%
+We also extend relational algebra such that projection of an empty list of
+attributes is a valid query that returns an empty set of tuples. We define the
+\emph{empty} query \empPRel\ as shorthand for projecting an empty list of
+attributes, that is, $\empPRel = \pi_{\{\}} \pQ$.
 
 
 \TODO{the following is from prelim. revise.}

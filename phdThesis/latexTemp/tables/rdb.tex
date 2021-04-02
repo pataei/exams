@@ -1,0 +1,63 @@
+\begin{table}
+\caption{An example of a relational database.}
+\label{tab:rdb}
+\centering
+\small
+%\footnotesize
+%\scriptsize
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{The schema of a relational database.}
+\label{tab:rdb-sch}
+\begin{tabular} {| l | }
+\hline
+\empacct\ (\empno, \name, \hiredate, \titleatt, \deptname)\\
+\job\ (\titleatt, \salary)\\
+\hline
+\end{tabular}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+%\begin{center}
+\centering
+\caption{The \empacct\ table.}
+\label{tab:rdb-empacct}
+\begin{tabular} {c | l l l l l}
+%\hline
+%\hhline{-==}
+\empacct & \empno & \name & \hiredate & \titleatt & \deptname\\
+\cline{2-6}
+& 10001 & Georgi Facello & 1986-06-26 & Senior Engineer & Development\\
+& 10002 & Bezalel Simmel & 1985-11-21 & Staff & Sales\\
+& \ldots & \ldots & \ldots & \ldots & \ldots \\
+& 499998 & Patricia Breugel & 1993-10-13 & Senior Staff & Finance\\
+& 499999 & Sachin Tsukuda & 1997-11-30 & Engineer & Production
+\end{tabular}
+%\end{center}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{The \job\ table.}
+\label{tab:rdb-job}
+\begin{tabular} {c | l l }
+%\hline
+%\hhline{-==}
+\job & \titleatt & \salary\\
+\cline{2-3}
+& Assistant Engineer & 96646\\
+& Assistant Engineer & 61594\\
+& \ldots & \ldots \\
+& Technique Leader & 58345\\
+& Technique Leader 86641
+\end{tabular}
+\end{subtable}
+
+\end{table}
+

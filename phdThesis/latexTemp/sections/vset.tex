@@ -3,14 +3,23 @@
 
 \TODO{havve to revise this}
 
+\NOTE{The sentence starting with ``Thus, \ldots'' is a bit confusing since
+it's not really obvious what \psetSet\ and \vsetSet\ are. Also, it makes it
+sound like any plain set is a variant of any variational set, which obviously
+isn't true. I recommend just introducing configuration after the
+``Conceptually, \ldots'' sentence. If we only need \psetSet\ and \vsetSet\ to
+define the type of configuration, then we should not introduce them and just
+not give this type (I think it's easy enough to explain and understand without
+it).}
+
 %\point{vset.}
-A \emph{variational set (v-set)} $\vset = \setDef {\annot [\dimMeta_1] {\elem_1},\ldots, \annot [\dimMeta_n] {\elem_n}}$ 
+A \emph{variational set} (\emph{v-set}) $\vset = \setDef {\annot [\dimMeta_1] {\elem_1},\ldots, \annot [\dimMeta_n] {\elem_n}}$ 
 is a set of annotated elements~\cite{EWC13fosd,Walk14onward,ATW17dbpl}.
 We typically omit the presence condition \t\ in a variational set,
 e.g., $\annot [\t] 4 = 4$.
 % where the presence condition of elements is satisfiable~\cite{EWC13fosd,Walk14onward,vdb17ATW}. 
 %
-Conceptually, a \emph{variational set} represents many different plain sets simultaneously.
+Conceptually, a variational set represents many different plain sets simultaneously.
 Thus, a plain set $\pset \in \psetSet$  is a \emph{variant} of the variational set $\vset \in \vsetSet$ 
 and given variant $\pset$'s configuration $\config \in \confSet$
 % which corresponds to \pset\ 
@@ -92,12 +101,11 @@ $\annot \vset = \setDef {\annot [\dimMeta_1] {\elem_1},\ldots,\annot [\dimMeta_n
 % that it is annotated itself by a \emph{feature expression} \dimMeta.
 %We denote an annotated variational set of elements $\elem \in \mathbf{\elemSet}$ with
 %\annot \elemSet.
-Annotating a v-set with the feature expression \dimMeta\ 
-restricts the condition under which its elements are present, i.e., it forces
-elements' presence conditions to be more specific. 
-%To clean up an annotated v-set or a v-set we \emph{normalize} it.
-The \emph{normalization}
-operation $\pushIn {\annot \vset}$ applies this restriction:
+Annotating a v-set with the feature expression \dimMeta\ means that all
+elements in the v-set are only present when \dimMeta\ is true.
+The \emph{normalization} operation $\pushIn {\annot \vset}$ applies this
+restriction by pushing it into the presence conditions of the individual
+elements:
 % This restriction 
 %can be applied to all elements of the set by \emph{normalizing}  the
 %annotated v-set, done by the operation
@@ -112,9 +120,9 @@ operation $\pushIn {\annot \vset}$ applies this restriction:
 \annot [\dimMeta_i] \elem_i \in \annot \vset, \sat {\dimMeta_i \wedge \dimMeta}
 }
 }.
-Note that the \emph{normalization} operation also removes the elements
-with unsatisfiable presence conditions and it can also be applied
-to a v-set \vset\ since $\annot [\t] \vset = \vset$.
+Note that the \emph{normalization} operation also removes elements
+with unsatisfiable presence conditions and may also be applied
+to an unannotated v-set \vset\ since $\annot[\t]{\vset} = \vset$.
 %\ensuremath{
 %\vset = \setDef {\annot [\dimMeta_1] \elem_1, \ldots, \annot [\dimMeta_n] \elem_n}}, 
 %which is equivalent to the annotated v-set \annot [\t] \vset. Thus,
@@ -151,17 +159,23 @@ variational structure.
 % by just referring to the element itself without its
 %annotation, i.e., \elem.
 
-We provide some operations over v-sets used mainly in the \secref{type-sys} and defined
-formally in \appref{vset-ops}. Intuitively, these operations should 
-behave such that configuring the result of applying a variational set operation
-should be equivalent to applying the plain set operation on the configured 
-input v-sets for all valid configurations. 
+In \appref{vset-ops} we define several operations, such as union and
+intersection, over v-sets; these operations are used in \secref{type-sys}. The
+semantics of a v-set operation is equivalent to applying the corresponding
+plain set operation to every corresponding variant of the argument v-sets. For
+example, the union of two v-sets $\vset_1\cup\vset_2$ should produce a new
+v-set $\vset_3$ such that
 %
-Thus, for all possible operations, \vsetOp, defined on v-sets the property 
-\ensuremath{
-\Pone: \forall \config \in \confSet. \osetSem {\pushIn {\vset_1} \vsetOp \pushIn {\vset_2}} 
-= \osetSem {\vset_1} \psetOp \osetSem {\vset_2}
-} must hold, where \psetOp\ is the counterpart operation on plain sets.
+$\forall c\in\confSet.\;
+\osetSem{\vset_3} = \osetSem{\vset_1}\,\underline{\cup}\,\osetSem{\vset_2}$,
+where $\underline{\cup}$ is the plain set union operation.
+%
+% Thus, for all possible operations, \vsetOp, defined on v-sets the property 
+% \ensuremath{
+% \Pone: \forall \config \in \confSet. \osetSem {\pushIn {\vset_1} \vsetOp \pushIn {\vset_2}} 
+% = \osetSem {\vset_1} \psetOp \osetSem {\vset_2}
+% } must hold, where \psetOp\ is the counterpart operation on plain sets.
+%
 %For example, we define the intersection of two v-sets as follow
 %\ensuremath{
 %\vset_1 \cap \vset_2 = \setDef {
@@ -173,27 +187,164 @@ Thus, for all possible operations, \vsetOp, defined on v-sets the property
 %Note that the property \Pone\ holds and \A\ and \B\ are feature names and not 
 %feature expressions. 
 
+%\revised{Remember that \fName\ and \dimMeta\ are metavariables for feature names
+%and feature expressions, respectively.}
+ 
+%These operations are vastly used
+%in \secref{type-sys}.
+
 %
+%\begin{definition}[V-set union]
+%\label{def:vset-union}
+%The \emph {union} of two v-sets is the union of their elements with the disjunction of 
+%presence conditions if an element exists in both v-sets:
+%\revised{
+%\ensuremath{
+%\vset_1 \cup \vset_2 = \setDef {\annot [\dimMeta_1] \elem \myOR \annot [\dimMeta_1] \elem \in \pushIn {\vset_1}, \exists \dimMeta_2. \annot [\dimMeta_2] \elem \not \in \pushIn{\vset_2}}
+%\cup \setDef {\annot [\dimMeta_2] \elem \myOR \annot [\dimMeta_2] \elem \in \pushIn {\vset_2}, 
+%\exists \dimMeta_1. \annot [\dimMeta_1] \elem  \not \in \pushIn {\vset_1}}
+%\cup \setDef {\annot [\dimMeta_1 \vee \dimMeta_2] \elem \myOR 
+%\annot [\dimMeta_1] \elem \in \pushIn {\vset_1}, \annot [\dimMeta_2] \elem \in \pushIn {\vset_2}}
+%}.
+%For example, the union of two normalized v-sets
+%\ensuremath{\setDef {2,\annot [\dimMeta_1] 3, \annot [\dimMeta_1] 4}} and 
+%\ensuremath{\setDef {\annot [\dimMeta_2] 3, \annot [\neg \dimMeta_1] 4}} is
+%\ensuremath{
+%%\setDef {2,\annot [\dimMeta_1] 3, \annot [\dimMeta_1] 4} \cup \setDef {\annot [\dimMeta_2] 3, \annot [\neg \dimMeta_1] 4} =
+% \setDef {2, \annot [\dimMeta_1 \vee \dimMeta_2] 3, 4}
+%}.}
+%\end{definition}
+%
+%% 
+%% is needed for the implicitly-type lang:
+%\begin{definition}[V-set intersection]
+%\label{def:vset-intersect}
+%The \emph{intersection} of two v-sets is a v-set of their shared elements
+%annotated with the conjunction of their presence conditions, i.e., 
+%\ensuremath{
+%\vset_1 \cap \vset_2 = \setDef {
+%\annot [\dimMeta_1 \wedge \dimMeta_2 ]\elem \myOR
+%\annot [\dimMeta_1] \elem \in \vset_1, \annot [\dimMeta_2] \elem \in \vset_2,
+%\sat {\dimMeta_1 \wedge \dimMeta_2}
+%}
+%}.
+%For example, \ensuremath{
+%\setDef {2, \annot [\A] 3, \annot [\neg \B] 4} \cap
+%\pushIn {\annot [\B] {\setDef{2,3,4,5}}} =
+%\setDef{\annot [\B] 2, \annot [\A \wedge \B] 3}
+%}.
+%\end{definition}
+%
+%\begin{definition} [V-set cross product]
+%\label{def:vset-cross}
+%The \emph{cross product} of two v-sets is a pair of every two elements of 
+%them annotated with the conjunction of their presence conditions.
+%\ensuremath{
+%\vset_1 \times \vset_2 = \setDef{
+%\annot [\dimMeta_1 \wedge \dimMeta_2] {(\elem_1, \elem_2)} \myOR
+%\annot [\dimMeta_1] \elem_1 \in \vset_1, \annot [\dimMeta_2] \elem_2 \in \vset_2
+%%\vset_1 \cap \vset_2 = \setDef \
+%}
+%}
+%%
+%\end{definition}
+%
+%\begin{definition} [V-set equivalence]
+%\label{def:vset-eq}
+%%\revised{Two v-sets are \emph{equivalent}, denoted by
+%%\ensuremath{\vset_1 \equiv \vset_2}, iff
+%%\ensuremath{\forall \config \in \confSet.
+%%%\forall \annot \elem \in  (\vset_1 \cup \vset_2).
+%%\elemSem {\vset_1} \equiv \elemSem {\vset_2}},
+%%where \ensuremath{\elemSem {.} : \vsetSet \to \confSet \to \psetSet}
+%%is a configuration function for variational sets. 
+%%Thus, two v-sets are equivalent iff all their configured sets are equivalent.
+%%}
+%%\TODO{Two v-sets are \emph{equivalent}, denoted by
+%%\ensuremath{\vset_1 \equiv \vset_2}, iff
+%%\ensuremath{
+%%\forall \annot  \elem \in (\vset_1 \cup \vset_2),
+%%\annot [\dimMeta_1] \elem \in \vset_1, \annot [\dimMeta_2] \elem \in \vset_2.
+%%\dimMeta_1 \equiv \dimMeta_2, \dimMeta \equiv \dimMeta_1},
+%%this fails b/c {1 fls == 2 fls}
+%%i.e., they both cover the same set of elements and the presence conditions
+%%of elements from the two v-sets are equivalent.}
+%\revised{Two v-sets are \emph{equivalent}, denoted by
+%\ensuremath{\vset_1 \equiv \vset_2}, iff
+%\ensuremath{\forall \annot  \elem \in (\filterSet \vset_1 \cup \filterSet \vset_2),
+%\annot [\dimMeta_1] \elem \in \filterSet \vset_1, \annot [\dimMeta_2] \elem \in \filterSet \vset_2.
+%\dimMeta_1 \equiv \dimMeta_2, \dimMeta \equiv \dimMeta_1},
+%i.e., they both cover the same set of elements and the presence conditions
+%of elements from the two normalized v-sets are equivalent.}
+%\end{definition}
+%
+%%
+%\begin{definition} [V-set subsumption]
+%\label{def:vset-subsumption}
+%\revised{
+%The v-set \ensuremath{\vset_1} \emph {subsumes} the v-set
+%\ensuremath{\vset_2}, $\subsume {\vset_2} {\vset_1}$, iff
+%\ensuremath{ \forall \annot [\dimMeta_2] \elem \in \pushIn {\vset_2}.
+%\annot [\dimMeta_1] \elem \in \pushIn {\vset_1}, 
+%%\neg \sat {\dimMeta_2 \wedge \neg \dimMeta_1}
+%\sat {\dimMeta_2 \wedge  \dimMeta_1}
+%},
+%}
+%i.e., all elements in $\vset_2$ also exist in $\vset_1$ 
+%s.t. the element is valid in a shared configuration between the v-sets.
+%For example, 
+%\ensuremath{
+% \subsume {\pushIn {\annot [\A] {\setDef {2,3}}}} {\setDef {2, \annot [\A \vee \B] 3, 4}}},
+%however, 
+%\ensuremath{
+% \nsubsume {\pushIn {\annot [\A] {\setDef {2,3}}}} {\setDef {2, \annot [\neg \A \wedge \B] 3}}}
+%and
+%\ensuremath{
+%\nsubsume {\setDef {\annot [\A] 2,\annot [\A] 3, 4}} {\setDef {2, \annot [\A \wedge \B] 3}}}.
+%\end{definition}
+%
+%%\begin{definition} [V-set explicit subsumption]
+%%\dropit{drop this for vldb submission. remember you need it for popl.}
+%%\label{def:vset-strict-subsumption}
+%%The v-set \ensuremath{\vset_1} \emph {explicitly subsumes} the v-set
+%%\ensuremath{\vset_2}, $\subsumeExpl {\vset_2} {\vset_1}$, iff
+%%\ensuremath{ \forall \annot [\dimMeta_2] \elem \in \vset_2.
+%%\annot [\dimMeta_1] \elem \in \vset_1, 
+%%\neg \sat {\dimMeta_2 \wedge \neg \dimMeta_1}
+%%},
+%%i.e., all elements in $\vset_2$ also exist in $\vset_1$ 
+%%s.t. its presence condition in \ensuremath{\vset_2} is more specific than 
+%%its presence condition in \ensuremath{\vset_1}, captured by 
+%%\ensuremath{\neg \sat {\dimMeta_2 \wedge \neg \dimMeta_1}}
+%%which could also be defined as 
+%%\ensuremath{
+%%\nexists \config \in \confSet . \fSem {\dimMeta_1} = \t , \fSem {\dimMeta_2} = \f.
+%%%i.e. in set theory:
+%%% \dimMeta_2 \subset \dimMeta_1
+%%%\dimMeta_2 - \dimMeta_1 = \emptyset
+%%%i.e.
+%%%\dimMeta_2 \cap \bar{\dimMeta_1} = \emptyset 
+%%}
+%%\end{definition}
+
 \begin{definition}[V-set union]
 \label{def:vset-union}
 The \emph {union} of two v-sets is the union of their elements with the disjunction of 
 presence conditions if an element exists in both v-sets:
-%\revised{
+
 \ensuremath{
 \vset_1 \cup \vset_2 = \setDef {\annot [\dimMeta_1] \elem \myOR \annot [\dimMeta_1] \elem \in \pushIn {\vset_1}, \exists \dimMeta_2. \annot [\dimMeta_2] \elem \not \in \pushIn{\vset_2}}
 \cup \setDef {\annot [\dimMeta_2] \elem \myOR \annot [\dimMeta_2] \elem \in \pushIn {\vset_2}, 
 \exists \dimMeta_1. \annot [\dimMeta_1] \elem  \not \in \pushIn {\vset_1}}
 \cup \setDef {\annot [\dimMeta_1 \vee \dimMeta_2] \elem \myOR 
-\annot [\dimMeta_1] \elem \in \pushIn {\vset_1}, \annot [\dimMeta_2] \elem \in \pushIn {\vset_2}}
-}.
+\annot [\dimMeta_1] \elem \in \pushIn {\vset_1}, \annot [\dimMeta_2] \elem \in \pushIn {\vset_2}}.
 For example, the union of two normalized v-sets
 \ensuremath{\setDef {2,\annot [\dimMeta_1] 3, \annot [\dimMeta_1] 4}} and 
 \ensuremath{\setDef {\annot [\dimMeta_2] 3, \annot [\neg \dimMeta_1] 4}} is
 \ensuremath{
 %\setDef {2,\annot [\dimMeta_1] 3, \annot [\dimMeta_1] 4} \cup \setDef {\annot [\dimMeta_2] 3, \annot [\neg \dimMeta_1] 4} =
  \setDef {2, \annot [\dimMeta_1 \vee \dimMeta_2] 3, 4}
-}.
-%}
+}.}
 \end{definition}
 
 % 
@@ -305,6 +456,10 @@ of elements from the two normalized v-sets are equivalent.
 %%\dimMeta_2 \cap \bar{\dimMeta_1} = \emptyset 
 %}
 %\end{definition}
+
+
+
+
 
 
 \input{sections/vsetconf}

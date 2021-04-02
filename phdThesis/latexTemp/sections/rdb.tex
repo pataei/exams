@@ -4,21 +4,31 @@
 \TODO{add examples of tables.}
 \TODO{add figure of all definitions}
 
+We introduce relational databases concepts that make up the bones of this thesis. 
+To ease in the reader into relational databases we first provide an example in \figref{rdb-ex}.
+
+\input{tables/rdb}
+
+
+
 %\point{database schema.}
+We now shift our focus to the formal definitions of a relational database. 
 A relational database \pDB\ stores information in a structured manner by forcing
 data to conform to a \emph{schema} \pSch\ that is a finite set 
 $\setDef {{\pRelSch}_1, \ldots, {\pRelSch}_n}$ of \emph{relation schemas}.
 A relation schema is defined as
 $\pRelSch = \vRel \paran {\vi \pAtt k}$ where each $\pAtt_i \in \pAttSet$ is an
-\emph{attribute} contained in a relation named \vRel. 
-Note that there is a
-total order $\leq_{\pAttSet}$ on \pAttSet\ and every listed set of attributes is written according
+\emph{attribute} contained in the relation named \vRel. 
+%
+We assume a total order $\leq_{\pAttSet}$ on \pAttSet, and assume for
+simplicity that sets of attributes are sorted according
 to $\leq_{\pAttSet}$.
 %unless otherwise specified. 
-For theoretical development, it suffices to use the same domain of values
-for all of the attributes. Thus, we fix a countably infinite set \emph{domain} \domSet.
-%(disjoint from \pAttSet).
-A \emph{value} and a \emph{constant} are elements of \domSet.
+%
+% For theoretical development, it suffices to use the same domain of values
+% for all of the attributes. Thus, we fix a countably infinite set \emph{domain} \domSet.
+% %(disjoint from \pAttSet).
+% A \emph{value} and a \emph{constant} are elements of \domSet.
 
 %Then, $\getRel {\pAtt}$ returns the relation that contains the 
 %attribute.
@@ -26,55 +36,34 @@ A \emph{value} and a \emph{constant} are elements of \domSet.
 %\type [\pAtt]\ returns the \emph{type} of values associated with attribute \pAtt.
 
 %\point{database content.}
-The content of database \pDB\ is stored in the form of \emph{tuples}. A tuple \pTuple\
-is a mapping between an ordered set of attributes and their values,
-%\footnote{\TODO{\*we can probably remove this if run out of space! \*Note that we only have
-%pure relational values, thus, values do not have variational counterparts. Hence,
-%we do not use our convention of underlying them to show they are variational.}}, 
-i.e.,
-$\pTuple = \paran {\vi {\underline v} k}$ for the relation schema \vRel \paran {\vi \pAtt k}.
-Hence a \emph{relation content}, \pRelCont, is a set of tuples \setDef {\vi \pTuple m}.
-$\getAtt {i}$ returns the attribute corresponding to
-index $i$ in a tuple.
-A \emph{table} \ensuremath{\pTab = \left(\pRelSch, \pRelCont\right)} is a pair of relation schema and relation content.
-A \emph{database instance}, \pInst, of the database \pDB\ with the
-schema \pSch, is a set of tables $\setDef {\pTab_1, \ldots, \pTab_n}$.
-%relation contents 
-%$\setDef  {{\pRelCont}_1, \ldots, {\pRelCont}_n}$ corresponding
-%to a set of relation schemas $\setDef {{\pRelSch}_1, \ldots, {\pRelSch}_n}$ 
-%defined in \pSch. 
-For brevity, when it is clear from the context we refer to a database instance
-by \emph{database}.
-
-
-%\point{database schema.}
-A relational database \pDB\ stores information in a structured manner by forcing
-data to conform to a \emph{schema} \pSch\ that is a finite set 
-$\setDef {{\pRelSch}_1, \ldots, {\pRelSch}_n}$ of \emph{relation schemas}.
-A relation schema is defined as
-$\pRelSch = \vRel \paran {\vi \pAtt k}$ where each $\pAtt_i$ is an
-\emph{attribute} contained in a relation named \vRel. 
-$\getRel {\pAtt}$ returns the relation that contains the attribute.
-\type [\pAtt]\ returns the \emph{type} of values associated with attribute \pAtt.
-
-%\point{database content.}
-The content of database \pDB\ is stored in the form of \emph{tuples}. A tuple \pTuple\
-is a mapping between a list of relation schema attributes and their values,
-%\footnote{\TODO{\*we can probably remove this if run out of space! \*Note that we only have
-%pure relational values, thus, values do not have variational counterparts. Hence,
-%we do not use our convention of underlying them to show they are variational.}}, 
-i.e.,
-$\pTuple = \paran {\vi {\underline v} k}$ for the relation schema \vRel \paran {\vi \pAtt k}.
-Hence a \emph{relation content}, \pRelCont, is a set of tuples \setDef {\vi \pTuple m}.
-$\getAtt {\underline v}$ returns the attribute the value corresponds to.
-A \emph{table} \pTab\ is a pair of relation content and relation schema.
-A \emph{database instance}, \pInst, of the database \pDB\ with the
-schema \pSch, is a set of tables $\setDef {\pTab_1, \ldots, \pTab_n}$.
-%relation contents 
-%$\setDef  {{\pRelCont}_1, \ldots, {\pRelCont}_n}$ corresponding
-%to a set of relation schemas $\setDef {{\pRelSch}_1, \ldots, {\pRelSch}_n}$ 
-%defined in \pSch. 
-For brevity, when it is clear from the context we refer to a database instance
-by \emph{database}.
+\eric{changed list of values to ordered set and used that to sentence explaining
+the correspondence to the order of attributes.}
+The content of database \pDB\ is stored in the form of \emph{tuples}. A tuple
+\pTuple\ is a sorted set of \emph{values}. We do not distinguish between
+different types of values within a relational database.
+%
+The order of values within a tuple correspond to the order of attributes in its corresponding
+relation schema, that is, given tuple $\pTuple = \paran {\vi {\underline v} k}$
+in the relation with relation schema \vRel \paran {\vi \pAtt k},
+$\underline{v}_i$ corresponds to attribute $\underline{a}_i$.
+%
+A \emph{relation content}, \pRelCont, is the set of all tuples \setDef {\vi
+\pTuple m} corresponding to a particular relation.
+%
+The operation $\getAtt {i}$ returns the attribute corresponding to index $i$ in
+a tuple, implicitly looking up the attribute in the corresponding relation
+schema.
+%
+A \emph{table} \ensuremath{\pTab = \left(\pRelSch, \pRelCont\right)} is a pair
+of a relation schema and relation content.
+%
+A \emph{database instance}, \pInst, of the database \pDB\ with schema \pSch, is
+a set of tables $\setDef {\pTab_1, \ldots, \pTab_n}$ for each relation in
+\pSch.
+%relation contents $\setDef  {{\pRelCont}_1, \ldots, {\pRelCont}_n}$
+%corresponding to a set of relation schemas $\setDef {{\pRelSch}_1, \ldots,
+%{\pRelSch}_n}$ defined in \pSch. 
+For brevity, when it is clear from context, we refer to a database instance as
+simply a \emph{database}.
 
 
