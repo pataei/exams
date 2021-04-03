@@ -1,10 +1,6 @@
 \chapter{Background}
 \label{ch:bg}
 
-\TODO{add refs}
-\TODO{add types.}
-\TODO{add underline notation for clarity.}
-
 The core of this thesis is injecting a new aspect to relational databases: \emph{variation}.
 Thus, the goals of this chapter are twofold: 
 %
@@ -18,23 +14,35 @@ And additionally, developed approaches of converting non-variational components 
 variational counterparts by using the introduced encoding of variation. 
 %third, to familiarize the reader with
 %main notations and design decision of the thesis. 
-
+%
+Throughout the thesis, we discuss relational concepts and their
+variational counterparts. 
+For clarity or when it is unclear from context, we use
+an $\underline{underline}$ to distinguish a non-variational entity
+from its variational counterpart,
+%when we need to emphasize 
+%an entity is not variational we underline it, 
+e.g., \pElem\ is a 
+non-variational entity while \elem\ is its variational counterpart,
+if it exists.
+\wrrite{types!!}
 %\secref{types} describes types. Types provide readers with a strong tool to understand 
 %some formalizations easier and more intuitively.
 %
 \secref{rdb} describes the database model of relational databases and the specification of
-the structured used to store the data. \secref{ra} describes SPJC relational algebra to query
-relational databases. 
+the structured used to store the data~\cite{AliceBook}. 
+\secref{ra} describes the relational algebra to query relational databases~\cite{AliceBook}.
 %
 Then, 
 \secref{varspace} defines our choice of encoding for the variation space used in the 
-variational database as propositional formulas of boolean variables.
+variational database as propositional formulas of boolean variables~\cite{ATW18poly,ATW17dbpl}.
 %
 Finally, we introduce main techniques used to incorporate variation into our variational 
 database framework.
 \secref{vset} introduces variation into sets which forms the basis of the variational database
-framework and \secref{fcc} describes the formula choice calculus used to incorporate 
-variation into relational algebra.
+framework~\cite{EWC13fosd,Walk14onward,ATW17dbpl} 
+and \secref{fcc} describes the formula choice calculus used to incorporate 
+variation into relational algebra~\cite{HW16fosd}.
 
 
 

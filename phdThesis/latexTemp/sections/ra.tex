@@ -6,7 +6,7 @@
 \maybeAdd{add type system}
 %\TODO{add examples with tables}
 \maybeAdd{maybe add semantics later on}
-
+\eric{please read this section completely.}
 Having introduced relational databases we now shift gears into querying
 these databases, that is, extracting information from tables. Importantly
 and almost across all relational query languages, the result of a query 
@@ -19,6 +19,7 @@ We introduce these operators through \exref{ra} by stating an intent and then
 building up a query to extract the information required by the intent. 
 
 \begin{example}
+\label{eg:ra}
 Consider the database instance given in \tabref{rdb}. We want to get a list
 of employees (by their names) whose salary is more than 65000 dollars. 
 As the first step we use the selection operator to get the salaries that 
@@ -73,72 +74,58 @@ A sample of the results returned by the query $\underline{Q_4}$ is given in \tab
 
 \input{tables/rares}
 
-\TODO{then syntax and we add set op and empty}
-
-\TODO{join syntactic sugar. natural join.}
-
-\TODO{rename in imple. in examples used as arrow for understandablility.}
-
-
-\fromppr{prelim}
-\input{formulas/rel-alg-def}
-\TODO{add bullet and conditions and attribute list to the definition.}
-
-\figref{rel-alg} defines the syntax of 
-relational algebra which allows users to query a relational database~\cite{AliceBook}.
+We now embark on the the syntax of SPC relational algebra extended with 
+join, set operations, and empty relation. This syntax is defined in \figref{rel-alg}.
 %
-The first five constructs are adapted from relational algebra:
-%
-A query may simply \emph{reference} a relation \pRel\ in the schema.
-\emph{Renaming} allows giving a name to an intermediate query to be referenced
- later. Note that \pRel\ is an overloaded symbol that indicates both a relation
- and a relation name. 
-%
-A \emph{projection} enables selecting a subset of attributes from the results
-of a subquery, for example, \vPrj[\pAtt_1]{\pRel} would return only attribute $\pAtt_1$
-from $\pRel$.
-%; we extend the standard project operator to work with annotated lists
-%of attributes, for example, \vPrj[a_1,a_2^e]{r} would include $a_1$ for all
-%configurations and also $a_2$ for configurations where $e$ is true.
-%
-A \emph{selection} enables filtering the tuples returned by a subquery based on a
-given condition \pCond, for example, \vSel[\pAtt_1 > 3]{\pRel} would return all tuples
-from $\pRel$ where the value for $\pAtt_1$ is greater than 3.
-%; these conditions may be
-%variational to enable returning different tuples for different configurations
-%of the VDB.
-%
-A \emph{Cartesian products} simply cross products every tuple from its
-left subquery with every tuple from its right subquery. 
-%
-The \emph{join} operation joins two subqueries based on a condition and
-omitting its condition implies it is a natural join (i.e., join on the
-shared attribute of the two subqueries).
-For example, $\pRel_1 \bowtie_{\pAtt_1 = \pAtt_2} \pRel_2$ joins tuples from $\pRel_1$ 
-and $\pRel_2$ where the attribute $\pAtt_1$ from relation $\pRel_1$ is equal to
-attribute $\pAtt_2$ from relation $\pRel_2$. However, if we have $\pRel_1(\pAtt_1, \pAtt_3)$
-and $\pRel_2 (\pAtt_1, \pAtt_2)$ then
-$\pRel_1 \bowtie \pRel_2$ joins tuples from $\pRel_1$ and $\pRel_2$ where
-attribute $\pAtt_1$ has the same value in $\pRel_1$ and $\pRel_2$. 
-%
-Also, note that join is simply a syntactic sugar for selection of cross product,
-that is $\pQ_1 \bowtie_{\pCond} \pQ_2 = \vSel [\pCond] {(\pQ_1 \times \pQ_2)}$.
-%
-The set operations, union and intersection, require two subqueries to have the same set of attributes
+The set operations, union and intersection, require two subqueries to have the same relation schema
 and simply apply the operation, either union or intersection, to the tuples returned by
 the subqueries.
-For example, if we have $\pRel_1(\pAtt_1, \pAtt_2)$ with 
-tuples $\{(1,2)(3,4)\}$
-and $\pRel_2(\pAtt_1, \pAtt_2)$ with tuples $\{(1,2),(5,6) \}$
-then $\pRel_1 \cup \pRel_2 $ returns the tuples $\{(1,2), (3,4), (5,6)\}$.
-
-\fromppr{vldb}
-We do not extend the notation of using underline for relational algebra
-operations. Instead, relational algebra operations are overloaded and are used
-as both plain relational and variational operations. It should be clear from
-context when an operation is variational or not. 
+%For example, if we have $\pRel_1(\pAtt_1, \pAtt_2)$ with 
+%tuples $\{(1,2)(3,4)\}$
+%and $\pRel_2(\pAtt_1, \pAtt_2)$ with tuples $\{(1,2),(5,6) \}$
+%then $\pRel_1 \cup \pRel_2 $ returns the tuples $\{(1,2), (3,4), (5,6)\}$.
 %
-We also extend relational algebra such that projection of an empty list of
+The \emph{join} operation is equivalent to selection applied to cross-product, that is,
+$\pQ_1 \bowtie_{\pCond} \pQ_2 = \vSel [\pCond] {(\pQ_1 \times \pQ_2)}$.
+For example, $\underline{Q_3}$ in \exref{ra} can be rewritten as\\
+\centerline{
+\ensuremath{
+\VVal {\underline{Q_3}} = \left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \bowtie_{\empacct.\titleatt=\job.\titleatt} \empacct
+}}.
+%joins two subqueries based on a condition and
+\noindent
+Throughout our examples, omitting the condition of join  implies it is a natural join,
+that is, join on the shared attribute of the two subqueries.
+For example, $\VVal {\underline{Q_3}}$ can be rewritten using the natural join\\
+\centerline{
+\ensuremath{
+\VVVal {\underline{Q_3}} =  \left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \bowtie \empacct
+}}.
+
+\input{formulas/rel-alg-def}
+
+We also extend relational algebra such that projection of an empty set of
 attributes is a valid query that returns an empty set of tuples. We define the
-\emph{empty} query \empPRel\ as shorthand for projecting an empty list of
+\emph{empty} query \empPRel\ as shorthand for projecting an empty set of
 attributes, that is, $\empPRel = \pi_{\{\}} \pQ$.
+%
+Note that we do not extend the notation of using underline for relational algebra
+operators. Instead, relational algebra operators are overloaded and are used
+as both plain relational and variational operators. It should be clear from
+context when an operation is variational or not. 
+
+
+Although we do not consider renaming of queries in the formal definition of 
+relational algebra we consider for our implementation. Furthermore, we use it
+to rename subqueries of our examples to make them easier to understand. 
+For example, query $\VVVal {\underline{Q_3}}$ can be written as:
+\begin{align*}
+\VVVal {\underline{Q_3}} &= \underline{temp} \bowtie \empacct\\
+\underline{temp} &\leftarrow  \sigma_{\salary \ge 65000} \left(\job\right)
+\end{align*}
+\noindent
+Making this renaming explicit is necessary to avoid names conflicting in some cases.
+
+
+
+
