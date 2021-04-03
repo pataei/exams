@@ -1,25 +1,86 @@
-\section{The SPJR Relational Algebra}
+\section{The SPC Relational Algebra}
 \label{sec:ra}
 
-\TODO{relational algebra}
-\TODO{add syntax definition}
-\TODO{add type system}
-\TODO{add examples with tables}
-\TODO{maybe add semantics later on}
+%\TODO{relational algebra}
+%\TODO{add syntax definition}
+\maybeAdd{add type system}
+%\TODO{add examples with tables}
+\maybeAdd{maybe add semantics later on}
 
-We do not extend the notation of using underline for relational algebra
-operations. Instead, relational algebra operations are overloaded and are used
-as both plain relational and variational operations. It should be clear from
-context when an operation is variational or not. 
+Having introduced relational databases we now shift gears into querying
+these databases, that is, extracting information from tables. Importantly
+and almost across all relational query languages, the result of a query 
+is also a table~\cite{AliceBook}. 
 %
-We also extend relational algebra such that projection of an empty list of
-attributes is a valid query that returns an empty set of tuples. We define the
-\emph{empty} query \empPRel\ as shorthand for projecting an empty list of
-attributes, that is, $\empPRel = \pi_{\{\}} \pQ$.
+We base our variational query language on the SPC relational algebra.
+Three primitive operators form the SPC algebra: \emph{selection}, \emph{projection},
+and \emph{cross-product} (or Cartesian product)~\cite{AliceBook}.
+We introduce these operators through \exref{ra} by stating an intent and then
+building up a query to extract the information required by the intent. 
+
+\begin{example}
+Consider the database instance given in \tabref{rdb}. We want to get a list
+of employees (by their names) whose salary is more than 65000 dollars. 
+As the first step we use the selection operator to get the salaries that 
+are more than 65000 dollars.\\
+%
+%\begin{equation*}
+\centerline{
+\ensuremath{
+\underline{Q_1} = \sigma_{\salary \ge 65000} (\job)
+%\end{equation*}
+}}
+%
+\noindent
+A sample of the results returned by the query $\underline{Q_1}$ is given in \tabref{ra1}.
+Next a set of wide tuples is created by taking the cross-product of $\underline{Q_1}$
+and \empacct.\\
+%
+%\begin{equation*}
+\centerline{
+\ensuremath{
+\underline{Q_2} = \underline{Q_1} \times \empacct
+%\end{equation*}
+}}
+%
+\noindent
+A sample of the results returned by the query $\underline{Q_2}$ is given in \tabref{ra2}.
+However, looking closely at these results there is no connection between an employee
+in the \empacct\ relation and their salary in the \job\ relation. Thus, we have to perform 
+another selection to connect each employee with their title. \\
+%
+%\begin{equation*}
+\centerline{
+\ensuremath{
+\underline{Q_3} = \sigma_{\empacct.\titleatt=\job.\titleatt} (\underline{Q_2})
+%\end{equation*}
+}}
+%
+\noindent
+A sample of the results returned by the query $\underline{Q_3}$ is given in \tabref{ra3}.
+At this point, we are only interested in two attributes, that is, \name\ and \salary.
+Thus, we use projection to discard the unneeded columns.\\
+%
+%\begin{equation*}
+\centerline{
+\ensuremath{
+\underline{Q_4} = \pi_{\name, \salary} (\underline{Q_3} )
+%\end{equation*}
+}}
+%
+A sample of the results returned by the query $\underline{Q_4}$ is given in \tabref{ra4}.
+\end{example}
+
+\input{tables/rares}
+
+\TODO{then syntax and we add set op and empty}
+
+\TODO{join syntactic sugar. natural join.}
+
+\TODO{rename in imple. in examples used as arrow for understandablility.}
 
 
-\TODO{the following is from prelim. revise.}
-
+\fromppr{prelim}
 \input{formulas/rel-alg-def}
 \TODO{add bullet and conditions and attribute list to the definition.}
 
@@ -71,12 +132,13 @@ tuples $\{(1,2)(3,4)\}$
 and $\pRel_2(\pAtt_1, \pAtt_2)$ with tuples $\{(1,2),(5,6) \}$
 then $\pRel_1 \cup \pRel_2 $ returns the tuples $\{(1,2), (3,4), (5,6)\}$.
 
-%, except
-%that again we allow conditions to be variational.
+\fromppr{vldb}
+We do not extend the notation of using underline for relational algebra
+operations. Instead, relational algebra operations are overloaded and are used
+as both plain relational and variational operations. It should be clear from
+context when an operation is variational or not. 
 %
-%A \emph{choice} encodes a variation point between two subquery alternatives based on a
-%given feature expression, e.g., \chc[f_1\wedge f_2]{\vQ_l,\vQ_r} yields
-%the results of $\vQ_l$ alternative for configurations where $f_1$ and $f_2$ are enabled,
-%and in other configurations yields the results of $\vQ_r$ alternative. Note that the
-%conditions $\vCond$ used by selections and joins also contain choices, and
-%these behave similarly.
+We also extend relational algebra such that projection of an empty list of
+attributes is a valid query that returns an empty set of tuples. We define the
+\emph{empty} query \empPRel\ as shorthand for projecting an empty list of
+attributes, that is, $\empPRel = \pi_{\{\}} \pQ$.

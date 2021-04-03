@@ -1,0 +1,91 @@
+\begin{table}
+\caption[shortcaption]{Results of each step of building the final query in \exref{ra}.}
+\label{tab:ra-ex}
+\centering
+\small
+%\footnotesize
+%\scriptsize
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption[shortcaption]{Result of the query \ensuremath{\sigma_{\salary \ge 65000} (\job)}.}
+\label{tab:ra1}
+\begin{tabular} {l l }
+\titleatt & \salary \\
+\hline
+Senior Staff & 77935 \\
+ Senior Engineer & 96646\\
+ \ldots & \ldots \\
+ Staff & 77935\\
+Engineer & 96646
+\end{tabular}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+%\begin{center}
+\centering
+\tiny
+\caption[shortcaption]{Result of the query \ensuremath{(\sigma_{\salary \ge 65000} (\job)) \times \empacct}.}
+\label{tab:ra2}
+\begin{tabular} {l l l l l l l}
+%\hline
+%\hhline{-==}
+ \titleatt & \salary & \empno & \name & \hiredate & \titleatt & \deptname\\
+\hline
+Senior Engineer & 96646 & 13094 & Sanjay Servieres & 1986-01-01 & Engineer & Research \\
+Staff & 77935 & 16099 & Mohan Ferretti & 1987-09-20 & Senior Staff & Human Resources\\
+\ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots\\
+Engineer & 80324 & 19162 & Chinho Fadgyas & 1986-05-19 & Technique Leader & Production \\
+Senior Staff & 88070 & 22255 & Kristian Merel & 1986-09-12 & Senior Engineer & Development
+\end{tabular}
+%\end{center}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+%\begin{center}
+\centering
+%\footnotesize
+\tiny
+\caption[shortcaption]{Result of the query \ensuremath{\sigma_{\empacct.\titleatt=\job.\titleatt}\left(\left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \times \empacct\right)}.}
+\label{tab:ra3}
+\begin{tabular} {l l l l l l l}
+%\hline
+%\hhline{-==}
+ \titleatt & \salary & \empno & \name & \hiredate & \titleatt & \deptname\\
+\hline
+Engineer & 96646 & 13094 & Sanjay Servieres & 1986-01-01 & Engineer & Research \\
+Senior Staff & 77935 & 16099 & Mohan Ferretti & 1987-09-20 & Senior Staff & Human Resources\\
+\ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots\\
+Senior Engineer & 96646 & 22255 & Kristian Merel & 1986-09-12 & Senior Engineer & Development\\
+Staff & 77935 & 43670 & JoAnna Randi & 1987-10-18 & Staff & Marketing
+\end{tabular}
+%\end{center}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption[shortcaption]{Result of the query \ensuremath{\pi_{\name, \salary} \left(\sigma_{\empacct.\titleatt=\job.\titleatt}\left(\left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \times \empacct\right)\right)}.}
+\label{tab:ra4}
+\begin{tabular} {l l }
+%\hline
+%\hhline{-==}
+\name & \salary\\
+\hline
+Sanjay Servieres & 96646\\
+Mohan Ferretti & 77935\\
+ \ldots & \ldots \\
+ Kristian Mere & 96646\\
+ JoAnna Randi & 77935
+\end{tabular}
+\end{subtable}
+
+\end{table}
+
