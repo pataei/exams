@@ -1,0 +1,117 @@
+\begin{figure}
+%\textbf{Feature expression generic object:}
+%\begin{syntax}
+%\synDef \fName \fSet &\textit{Feature Name}
+%%c \in \mathbf{C} &\textit{Configuration}
+%\end{syntax}
+%
+%\medskip
+\textbf{Configuration of an annotated element:}
+\begin{alignat*}{1}
+\xeSem [] . &: \elemSet \to \confSet \to \maybe \pelemSet\\
+\xeSem {\annot \elem} &=
+  \begin{cases}
+    \elem, & \If \fSem {\dimMeta} = \t\\
+    \bot, &\Otherwise    
+%		\vRel\left({\olSem {\pushInBold { \annot [\dimMeta_\vAttList] \vAttList}}}\right), &\If \fSem {\dimMeta_\vAttList} \\
+%%		&\If \fSem {\getPCfrom \vRel \vSch} \\
+%%		&\If \fSem {\dimMeta \wedge \fModel}) \\
+%		\bot, &\Otherwise
+  \end{cases}
+\end{alignat*}
+
+\medskip
+\textbf{Configuration of (annotated) variational sets:}
+\begin{alignat*}{1}
+%\osetSem [] . &: \vsetSet \to \confSet \to \psetSet\\
+\osetSem {\setDef{\annot [\dimMeta_1] {\elem_1}, \annot [\dimMeta_2] {\elem_2}, \ldots, \annot [\dimMeta_n] {\elem_n}}} &= \dropbot {\setDef{\xeSem {\annot [\dimMeta_1] {\elem_1}}, 
+\xeSem {\annot [\dimMeta_2] {\elem_2}}, \ldots, \xeSem {\annot [\dimMeta_n] {\elem_n}} }}\\
+\osetSem {\setDef \ } &= \setDef \ \\
+%
+\osetSem {\annot {\vset}} &= \osetSem {\pushIn {\annot \vset}}\\
+\osetSem {\annot [\t] {\setDef \ }} & = \setDef \ \\
+\osetSem {\annot [\f] {\setDef \ }} & = \setDef \ 
+\end{alignat*}
+
+\medskip
+\textbf{Dropping bots from a plain set:}
+\begin{alignat*}{1}
+\dropbot {} &: \psetSet \to \psetSet\\
+\dropbot {\setDef {\elem_1, \elem_2, \ldots, \elem_n}} &= \setDef {\elem_i \myOR \elem_i \neq \bot}
+\end{alignat*}
+
+\medskip 
+\textbf{Normalization of (annotated) variational sets:}
+\begin{alignat*}{1}
+\pushIn {\setDef {\annot [\dimMeta_1] {\elem_1}, \annot [\dimMeta_2] {\elem_2}, \ldots,
+\annot [\dimMeta_n] {\elem_n}}} &= \setDef {
+\annot [\dimMeta_i] \elem_i \myOR \annot [\dimMeta_i] \elem_i, \sat {\dimMeta_i}}\\
+\pushIn {\annot {\setDef {\annot [\dimMeta_1] {\elem_1}, \annot [\dimMeta_2] {\elem_2}, \ldots,
+\annot [\dimMeta_n] {\elem_n}}}} &= 
+\setDef {\annot [\dimMeta_i \wedge \dimMeta] {\elem_i} \myOR 
+\annot [\dimMeta_i] \elem_i \in \annot \vset, \sat {\dimMeta_i \wedge \dimMeta}}\\
+\end{alignat*}
+
+\medskip 
+\textbf{Operations over (annotated) variational sets:}
+\begin{alignat*}{1}
+\vset_1 \cup \vset_2 &= \setDef {\annot [\dimMeta_1] \elem \myOR \annot [\dimMeta_1] \elem \in \pushIn {\vset_1}, \exists \dimMeta_2. \annot [\dimMeta_2] \elem \not \in \pushIn{\vset_2}}\\
+&\hspace{15pt} \cup \setDef {\annot [\dimMeta_2] \elem \myOR \annot [\dimMeta_2] \elem \in \pushIn {\vset_2}, 
+\exists \dimMeta_1. \annot [\dimMeta_1] \elem  \not \in \pushIn {\vset_1}}\\
+&\hspace{15pt} \cup \setDef {\annot [\dimMeta_1 \vee \dimMeta_2] \elem \myOR 
+\annot [\dimMeta_1] \elem \in \pushIn {\vset_1}, \annot [\dimMeta_2] \elem \in \pushIn {\vset_2}}\\
+\vset_1 \cap \vset_2 &= \setDef {
+\annot [\dimMeta_1 \wedge \dimMeta_2 ]\elem \myOR
+\annot [\dimMeta_1] \elem \in \vset_1, \annot [\dimMeta_2] \elem \in \vset_2,
+\sat {\dimMeta_1 \wedge \dimMeta_2}}\\
+\vset_1 \times \vset_2 &= \setDef{
+\annot [\dimMeta_1 \wedge \dimMeta_2] {(\elem_1, \elem_2)} \myOR
+\annot [\dimMeta_1] \elem_1 \in \vset_1, \annot [\dimMeta_2] \elem_2 \in \vset_2}\\
+\vset_1 \equiv \vset_2 &\textit{ iff }
+\forall \annot  \elem \in (\filterSet {\vset_1} \cup \filterSet {\vset_2}),
+\annot [\dimMeta_1] \elem \in \filterSet {\vset_1}, \annot [\dimMeta_2] \elem \in \filterSet {\vset_2}.
+\dimMeta_1 \equiv \dimMeta_2, \dimMeta \equiv \dimMeta_1
+\end{alignat*}
+
+%%\begin{syntax}
+%%\synDef \fName \fSet &&&\textit{Feature Name}\\
+%%\synDef \bTag \bSet &\eqq& \t \myOR \f & \textit{Boolean Value}\\
+%%\synDef \dimMeta \ffSet &\eqq& \bTag \myOR \fName \myOR \neg \dimMeta \myOR \dimMeta \wedge \dimMeta \myOR \dimMeta \vee \dimMeta & \textit{Feature Expression}\\
+%%\synDef \config \confSet &:& \fSet \to \bSet &\textit{Configuration}
+%%\end{syntax}
+%
+%\medskip
+%\textbf{Evaluation of feature expressions:}
+%\begin{alignat*}{1}
+%%\fSem [] . &: \ffSet \to \confSet \to \bSet\\
+%%\fSem \bTag &= \bTag\\
+%%\fSem \fName &= \config \ \fName\\
+%%\fSem {\neg \fName} &= \neg \fSem \fName\\
+%%\fSem {\annd \dimMeta} &= \fSem {\dimMeta_1} \wedge \fSem {\dimMeta_2}\\
+%%\fSem {\orr \dimMeta} &= \fSem {\dimMeta_1} \vee \fSem {\dimMeta_2}\\
+%\end{alignat*}
+%
+%\medskip
+%\textbf{Relations over feature expressions:}
+%%\begin{alignat*}{1}
+%%\dimMeta_1 \equiv \dimMeta_2 \textit{ iff \ } \forall \config \in \confSet. \fSem {\dimMeta_1} = \fSem {\dimMeta_2}\\
+%%\sat {\dimMeta} \textit{ iff \ } \exists \config \in \confSet. \fSem {\dimMeta} = \t\\
+%%\unsat {\dimMeta} \textit{ iff \ } \forall \config \in \confSet. \fSem {\dimMeta} = \f
+%%%\dimMeta_1 \oplus \dimMeta_2 = (\dimMeta_1 \wedge \neg \dimMeta_2) \vee (\dimMeta_2 \wedge \neg \dimMeta_1)
+%\end{alignat*}
+%
+%\medskip
+%\textbf{Syntactic sugar for mutually exclusive features:}
+%\begin{alignat*}{1}
+%%\A \oplus \B \oplus \ldots \oplus \fName_n
+%%= (\A \wedge \neg \B \wedge \ldots \wedge \neg \fName_n)\\
+%%\vee (\neg \A \wedge \B \wedge \ldots \wedge \neg \fName_n)\\
+%%\vee (\neg \A \wedge \neg \B \wedge \ldots \wedge \fName_n)
+%\end{alignat*}
+
+
+\caption{Configuration of variational set and annotated variational set and operations over them.
+}
+\label{fig:vset}
+\end{figure}
+
