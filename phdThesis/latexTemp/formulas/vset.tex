@@ -23,7 +23,7 @@
 \medskip
 \textbf{Configuration of (annotated) variational sets:}
 \begin{alignat*}{1}
-%\osetSem [] . &: \vsetSet \to \confSet \to \psetSet\\
+\osetSem [] . &: \vsetSet \to \confSet \to \psetSet\\
 \osetSem {\setDef{\annot [\dimMeta_1] {\elem_1}, \annot [\dimMeta_2] {\elem_2}, \ldots, \annot [\dimMeta_n] {\elem_n}}} &= \dropbot {\setDef{\xeSem {\annot [\dimMeta_1] {\elem_1}}, 
 \xeSem {\annot [\dimMeta_2] {\elem_2}}, \ldots, \xeSem {\annot [\dimMeta_n] {\elem_n}} }}\\
 \osetSem {\setDef \ } &= \setDef \ \\
@@ -36,7 +36,7 @@
 \medskip
 \textbf{Dropping bots from a plain set:}
 \begin{alignat*}{1}
-\dropbot {} &: \psetSet \to \psetSet\\
+%\dropbot {} &: \psetSet \to \psetSet\\
 \dropbot {\setDef {\elem_1, \elem_2, \ldots, \elem_n}} &= \setDef {\elem_i \myOR \elem_i \neq \bot}
 \end{alignat*}
 
@@ -49,7 +49,7 @@
 \pushIn {\annot {\setDef {\annot [\dimMeta_1] {\elem_1}, \annot [\dimMeta_2] {\elem_2}, \ldots,
 \annot [\dimMeta_n] {\elem_n}}}} &= 
 \setDef {\annot [\dimMeta_i \wedge \dimMeta] {\elem_i} \myOR 
-\annot [\dimMeta_i] \elem_i \in \annot \vset, \sat {\dimMeta_i \wedge \dimMeta}}\\
+\annot [\dimMeta_i] \elem_i \in \annot \vset, \sat {\dimMeta_i \wedge \dimMeta}}
 \end{alignat*}
 
 \medskip 
