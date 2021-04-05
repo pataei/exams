@@ -45,9 +45,10 @@
 \begin{alignat*}{1}
 \pushIn {\setDef {\annot [\dimMeta_1] {\elem_1}, \annot [\dimMeta_2] {\elem_2}, \ldots,
 \annot [\dimMeta_n] {\elem_n}}} &= \setDef {
-\annot [\dimMeta_i] \elem_i \myOR \annot [\dimMeta_i] \elem_i, \sat {\dimMeta_i}}\\
-\pushIn {\annot {\setDef {\annot [\dimMeta_1] {\elem_1}, \annot [\dimMeta_2] {\elem_2}, \ldots,
-\annot [\dimMeta_n] {\elem_n}}}} &= 
+\annot [\dimMeta_i] \elem_i \myOR 1 \leq i \leq n, \sat {\dimMeta_i}}\\
+%\pushIn {\annot {\setDef {\annot [\dimMeta_1] {\elem_1}, \annot [\dimMeta_2] {\elem_2}, \ldots,
+%\annot [\dimMeta_n] {\elem_n}}}} &= 
+\pushIn {\annot \vset} &=
 \setDef {\annot [\dimMeta_i \wedge \dimMeta] {\elem_i} \myOR 
 \annot [\dimMeta_i] \elem_i \in \annot \vset, \sat {\dimMeta_i \wedge \dimMeta}}
 \end{alignat*}
@@ -110,7 +111,8 @@
 %\end{alignat*}
 
 
-\caption{Configuration of variational set and annotated variational set, normalization of variational sets and annotated variational sets, and operations over variational sets.
+\caption{Configuration of variational set and annotated variational set, normalization of variational sets and annotated variational sets, and operations over variational sets. The operations on variational sets
+are overloaded, that is, $\cup$ is used to both denote the union of variational sets and plain sets.
 }
 \label{fig:vset}
 \end{figure}
