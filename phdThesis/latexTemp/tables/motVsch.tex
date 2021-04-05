@@ -1,0 +1,129 @@
+\section{Motivating Example's V-Schema}
+\label{app:mot-vsch}
+
+\tabref{mot-vsch} provides the v-schema of our motivating example, given in \tabref{mot}.
+The feature model \fModel\ only allows one temporal feature to be true from a set of temporal features at the time: 
+\ensuremath{
+\fModel = 
+\left( 
+\neg \edu \wedge \left(
+\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
+\right) \right)
+\vee 
+\left( \edu \wedge \left(
+\tOne \oplus \tTwo \oplus \tThree \oplus \tFour \oplus \tFive
+\right) \wedge
+ \left(
+\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
+\right) \right)
+}. 
+%where \ensuremath{\fName_1 \oplus \fName_2 = (\fName_1 \wedge \neg \fName_2) \vee (\fName_2 \wedge \neg \fName_1)}.
+However, the feature model can be encoded differently. For example, we can restrict it s.t. it only allows 
+the two sets of temporal features to change together, i.e.,
+\ensuremath{
+\VVal \fModel = 
+\left( \vOne \vee \left(\vOne \wedge \edu \wedge \tOne \right) \right)
+\oplus
+\left( \vTwo \vee \left(\vTwo \wedge \edu \wedge \tTwo \right) \right)
+\oplus
+\left( \vThree \vee \left(\vThree \wedge \edu \wedge \tThree \right) \right)
+\oplus
+\left( \vFour \vee \left(\vFour \wedge \edu \wedge \tFour \right) \right)
+\oplus
+\left( \vFive \vee \left(\vFive \wedge \edu \wedge \tFive \right) \right)
+}. 
+%  to allow more than one temporal feature to be true at the time. 
+Hence, 
+\fModel\ is not the only v-schema capturing variation of the employee schema. 
+Additionally, the encoding can change by formulating presence conditions differently while representing the same v-schema, 
+e.g., the presence condition of the \job\ relation can be changed to \ensuremath{\neg \vFive}. 
+
+\begin{table*}
+\caption{V-schema of the employee motivating example given in \tabref{mot} with feature model \fModel.
+This v-schema encompasses 30 relational schemas: five schemas when \edu\ = \f\ and 25 schemas otherwise. 
+%A v-schema encoding the variation of the employee schema introduced in \tabref{mot}. The feature model \fModel\ only allows one temporal feature to be true from a set of temporal features at the time: 
+%\ensuremath{
+%\fModel = \edu \vee 
+%\left( 
+%\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
+%\right) 
+%\vee 
+%\left( 
+%\tOne \oplus \tTwo \oplus \tThree \oplus \tFour \oplus \tFive
+%\right)
+%}. 
+%%where \ensuremath{\fName_1 \oplus \fName_2 = (\fName_1 \wedge \neg \fName_2) \vee (\fName_2 \wedge \neg \fName_1)}.
+%However, the feature model can be encoded differently to allow more than one temporal feature to be true at the time. Hence, 
+%this is not the only v-schema capturing variation of the employee schema. 
+%Additionally, the encoding can change by formulating presence conditions differently while representing the same v-schema, 
+%e.g., the presence condition of the \job\ relation can be changed to \ensuremath{\neg \vFive}. 
+%This v-schema encompasses 30 relational schemas: five schemas when \edu\ = \f\ and 25 schemas otherwise. 
+%%Note that the feature model restricts the schema s.t. only one variant of a sub-schema can exists in the schema, e.g., both \vOne\ and \vTwo cannot be enabled at the same time.
+}
+\label{tab:mot-vsch}
+\begin{center}
+\small
+\begin{tabular} {| l |}
+\hline
+\ensuremath{
+\engemp \left(\empno, \name, \hiredate,\titleatt,\deptname \right)^{\vOne}
+}\\
+\ensuremath{
+\othemp \left(\empno, \name, \hiredate,\titleatt,\deptname \right)^{\vOne}
+}\\
+\ensuremath{
+\empacct \left(\empno, \optAtt [\vTwo \vee \vThree] [\name], \hiredate, \titleatt, \optAtt [\vTwo] [\deptname], \optAtt [\vThree \vee \vFour \vee \vFive] [\deptno], \optAtt [\vFive] [\salary], \optAtt [\vFour \vee \vFive] [\isstudent], \optAtt [\vFour \vee \vFive] [\isteacher] \right)^{\vTwo \vee \vThree \vee \vFour \vFive}
+}\\
+\ensuremath{
+\job \left(\titleatt, \salary  \right)^{\vOne \vee \vTwo \vee \vThree \vee \vFour}
+}\\
+\ensuremath{
+\dept \left(\deptname, \deptno, \managerno, \optAtt [\vFive] [\studentnum], \optAtt [\vFive] [\teachernum] \right)^{\vThree \vee \vFour \vee \vFive}
+}\\
+\ensuremath{
+\empbio \left(\empno, \sex, \birthdate, \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname] \right)^{\vFour \vee \vFive}
+}\\
+\hdashline
+\ensuremath{
+\course \left(\optAtt [\neg \tOne] [\cno], \cname, \optAtt [\tOne \vee \tTwo] [\tno], \optAtt [\tFour \vee \tFive] [\timeatt], \optAtt [\tFour \vee \tFive] [\class], \optAtt [\tFive] [\deptno] \right)^\edu
+}\\
+\ensuremath{
+\student \left(\sno, \optAtt [\tOne] [\cname], \optAtt [\neg \tOne] [\cno], \optAtt [\tThree \vee \tFour] [\grade] \right)^{\edu \wedge \neg \tFive}
+}\\
+\ensuremath{
+\teach \left(\tno, \cno \right)^{\edu \wedge \left(\tThree \vee \tFour \vee \tFive\right)}
+}\\
+\ensuremath{
+\ecourse \left(\cno, \cname, \optAtt [\tFive] [\deptno] \right)^{\edu \wedge \left(\tFour \vee \tFive\right)}
+}\\
+\ensuremath{
+\take \left(\sno, \cno, \grade \right)^{\edu \wedge \tFive}
+}\\
+%\multirow{3}{*}{\vOne} &  \engemp\ (\empno, \name, \hiredate,\titleatt,\deptname) & 
+%\course\ (\cname, \tno) & \multirow{3}{*}{\tOne}\\
+%& \othemp\ (\empno, \name, \hiredate, \title, \deptname)  & \student\ (\sno, \cname) &\\
+%& \job\ (\titleatt, \salary) &  &\\
+%\hline
+%\multirow{2}{*}{\vTwo} & \empacct\ (\empno, \name, \hiredate, \titleatt, \deptname) & \course\ (\cno, \cname, \tno) & \multirow{2}{*}{\tTwo}\\
+%%\cdashline{2-3}
+%& \job\ (\titleatt, \salary) & \student\ (\sno, \cno) & \\
+%\hline
+%\multirow{4}{*}{\vThree} & \empacct\ (\empno, \name, \hiredate, \titleatt, \deptno) & \course\ (\cno, \cname) & \multirow{4}{*}{\tThree}\\
+%& \job\ (\titleatt, \salary) & \teach\ (\tno, \cno) &\\
+%& \dept\ (\deptname, \deptno, \managerno) & \student\ (\sno, \cno, \grade) &\\
+%& \empbio\ (\empno, \sex, \birthdate) & &\\
+%\hline
+%\multirow{4}{*}{\vFour} & \empacct\ (\empno, \hiredate, \titleatt, \deptno, \dashuline{\isstudent}, \dashuline{\isteacher}) & \ecourse\ (\cno, \cname) & \multirow{4}{*}{\tFour}\\
+%& \job\ (\titleatt, \salary) & \course\ (\cno, \cname, \timeatt, \class) & \\
+%& \dept\ (\deptname, \deptno, \managerno) & \teach\ (\tno, \cno) & \\
+%& \empbio\ (\empno, \sex, \birthdate, \name) & \student\ (\sno, \cno, \grade) & \\
+%\hline
+%\multirow{4}{*}{\vFive} & \empacct\ (\empno, \hiredate, \titleatt, \deptno,  \dashuline{\isstudent}, \dashuline{\isteacher}, \salary) & \ecourse\ (\cno, \cname, \deptno) & \multirow{4}{*}{\tFive}\\
+%& \dept\ (\deptname, \deptno, \managerno,  \dashuline{\studentnum}, \dashuline{\teachernum}) & \course\ (\cno, \cname, \timeatt, \class, \deptno) & \\
+%& \empbio\ (\empno, \sex, \birthdate, \fname, \lname) & \teach\ (\tno, \cno) & \\
+%&& \take\ (\sno, \cno, \grade) & \\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
