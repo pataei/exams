@@ -1,6 +1,38 @@
 \section{Variational Database}
 \label{sec:vdb}
 
-\TODO{vdb}
+\rewrite{read and revise}
+\fromppr{vldb}
+\TODO{maybe add a section for satisfying requirements}
+%\point{introduce vdb and its parts.}
+%A \emph{Variational Database (VDB)} is intuitively meaningful when a set of database 
+%instances with variations in the schema and/or content exists and a user's information
+%need requires accessing some or all of them simultaneously. 
+To incorporate variability within a database, we annotate elements with feature expressions,
+as introduced in \secref{encode-var}. We use annotated elements both in the schema and content.
+Within a schema we allow attributes and relations to exist 
+conditionally based on the feature expression assigned to them (\secref{vsch}).
+At the content level, we annotate each tuple with a feature expression, indicating when the tuple 
+is present (\secref{vtab}). 
 
-\input{sections/vdbconf}
+%\point{define \vctxTxt.}
+%\eric{could you pls review this?}
+%Consequently, the existence of parts of a VDB is variational (conditional). 
+%This condition potentially changes by running queries, explicated in \secref{vrel-alg}.
+%It is captured by a feature expression, called \emph{variational context} and 
+%denoted by \vctx. 
+%In our definitions of VDB parts, we discuss the condition under which the part is
+%valid and present. The condition holds when a feature expression, \dimMeta,
+%is satisfiable.
+%Such a condition is always considered under the variational context of VDB
+%at the moment. To apply this restriction, we conjunct the variational context with
+%\dimMeta. Hence, the condition is the satisfiability of $\dimMeta \wedge \vctx$.
+%For brevity, we do not explain this over and over again. Rather,
+%we specify it in the condition for validity of an element.
+
+%\input{sections/vdbconf}
+
+\input{sections/vsch}
+\input{sections/vtab}
+%\input{sections/vdb}
+\input{sections/vdbfprop}

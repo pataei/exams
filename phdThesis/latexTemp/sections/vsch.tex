@@ -1,6 +1,164 @@
 \section{Variational Schema}
 \label{sec:vsch}
 
-\TODO{vsch}
+\TODO{change vdb conf to vsch.}
+\rewrite{read and revise}
+\fromppr{vldb}
+\TODO{remember to use definitions of config elem and vset}
+%\input{formulas/vschConf}
 
-\input{sections/vschconf}
+A variational schema captures variation in the structure of a database by indicating which attributes and relations are included or excluded in which variants.
+%
+%\point{using annotated elements to show variability in schema.}
+%Variation can exist in the structure of data, i.e., the schema.
+%As motivated in \secref{mot}, schema variations include/exclude relations/attributes. 
+To this end, we annotate attributes, relations, and the schema itself with
+feature expressions,
+which describe the conditions under which each is present.
+%
+A \emph{\vrelTxt\ schema} (\emph{v-relation schema}), \vRelSch, is a relation name
+with an annotated variational set of attributes,
+%\centerline{
+$\synDef {\vRelSch} \vRelSchSet \eqq \vRelDef$,
+%}
+where \ensuremath{\vAttList \in \vAttSet} is a variational attribute set.
+The presence condition of the v-relation schema, \dimMeta, determines in what
+variants of the database the relation itself is present in.
+%A \emph{variational attribute set}, \vAttList, is a variational set of attributes.
+%%i.e.,
+%%$\synDef \vAttList \vAttSet \eqq \optAtt, \vAttList \myOR \empAtt$,
+%%where \empAtt\ denotes an empty attribute. 
+%%\exref{vsch} illustrates creating
+%%a v-schema.
+%
+A \emph{\vschTxt} (\emph{v-schema}) is an annotated set of v-relation 
+schemas,
+%\centerline{ 
+$\synDef \vSch \vSchSet \eqq \vSchDef$.
+%} 
+The presence condition of the entire v-schema, \fModel, is the VDB's feature
+model, which provides a top-level constraint on the set of valid
+configurations, as described in \secref{encode-var}.
+%We call such configurations
+%\emph{valid} configurations. The v-schema's presence condition 
+%is the VDB feature model since it captures the relationship
+%between features of the underlying application and their constraints,
+%as explained in \secref{encode-var} and introduced as the VDB feature model. 
+Hence, the v-schema defines all valid schema variants of a VDB. 
+
+
+\begin{example}
+\label{eg:vsch}
+$\vSch_1$ is the v-schema of a VDB that only includes relations \empacct\ and \ecourse\ in the last two rows
+of \tabref{mot} and has the
+feature space 
+\ensuremath{\fSet = \setDef{ \vFour, \vFive, \edu, \tFour, \tFive}}.
+Note that attributes that exist conditionally are annotated with a feature expression
+to account for such a condition, e.g., the \salary\ attribute only exists when \vFive\ = \t.
+%
+\begin{align*}
+\vSch_1 &=
+\{ \empacct ( \empno, \hiredate, \titleatt, \deptno, \annot [\vFive] \salary, \\
+&\hspace{55pt} \annot [\edu] \isstudent,
+\annot [\edu] \isteacher )^{\vFour \vee \vFive},\\
+%
+&\hspace{17pt} \ecourse ( \cno, \cname, \annot [\tFive] \deptno )^{\tFour \vee \tFive} \}^{\fModel_1}\\
+\fModel_1 &= (\vFour\oplus\vFive) \wedge
+  ((\edu\wedge(\tFour\oplus\tFive)) \vee (\neg\edu\wedge\neg(\tFour\vee\tFive)))
+\end{align*}
+where \ensuremath{\fModel_1} allows only one temporal feature for the basic
+schema to be enabled at a time, and either one temporal feature for the education
+extension, if \edu\ is enabled, or else no temporal feature for the education
+extension.
+\end{example}
+
+\NOTE{Double-check my simplification of $\fModel_1$.}
+
+%\input{sections/motVsch}
+
+%\textbf{Hierarchal structure of feature expressions in a v-schema:}
+The presence of an attribute follows the hierarchal layout of information in a database:
+an attribute's presence depends on the presence of its parent v-relation, which in turn 
+depends on the presence of the v-schema. 
+%relation presence condition and the feature model.
+% presence of the v-schema. 
+%
+Thus, the complete presence condition of the attribute
+$\annot[\dimMeta_\vAtt]{\vAtt}$ in v-relation
+$\vRel\annot[\dimMeta_\vRel]{(\ldots)}$ defined in v-schema \vSch\ with feature
+model \fModel\ is
+$\getPCfrom{\vAtt}{\vSch}=\dimMeta_\vAtt\wedge\dimMeta_\vRel\wedge\fModel$.
+
+%and it is present iff this presence condition is satisfiable, i.e., 
+%\ensuremath{\sat {\getPCfrom \vAtt \vSch}}.
+Similarly, the presence condition of v-relation $\vRel$ is
+\ensuremath{\getPCfrom \vRel \vSch = \dimMeta_\vRel \wedge \fModel}.
+For example, in \exref{vsch} we have
+\ensuremath{\getPCfrom \empacct {\vSch_1} = (\vFour \vee \vFive) \wedge \fModel_1}.
+%the conjunction of its \revised{annotation}
+%%presence condition 
+%with its v-relation's \revised{annotation}
+%%presence condition
+%and the feature model.
+%
+%Similarly,
+%the presence condition of a v-relation is the conjunction of its
+%\revised{annotation}
+%%presence condition 
+%and the feature model.
+%%
+%\revised{
+%In other words, the annotated attribute \optAtt\ of v-relation 
+%\ensuremath{\vRel \annot [\dimMeta_\vRel] {\left(\annot \vAtt, \ldots\right)}} 
+%%with 
+%%$\dimMeta_r = \getPC \vRel$
+%defined in the v-schema \vSch\ with feature model \fModel\
+%is valid if: $\sat {\getPCfrom \vAtt \vSch} = \sat {\dimMeta_\vAtt \wedge \dimMeta_r \wedge \fModel }$.}
+Furthermore, a database element is only present in variants for
+which its presence condition satisfiable, e.g., in \exref{vsch}
+ the \isstudent\ attribute 
+%described in \exref{vsch} 
+%is present in the variants that make its presence condition 
+%\ensuremath {\edu \wedge (\vFour \vee \vFive) \wedge \fModel_1 }
+%satisfiable.
+%So \isstudent\ 
+is present in the variant 
+\ensuremath{\setDef {\edu, \vFour, \tFive}} since 
+\ensuremath{\fSem [\setDef {\edu, \vFour, \tFive}] {\getPCfrom \isstudent {\vSch_1}}
+= \fSem [\setDef {\edu, \vFour, \tFive}] {\edu \wedge (\vFour \vee \vFive) \wedge \fModel_1}
+= \t \wedge (\t \vee \f) \wedge ((\neg \t \wedge (\t \oplus \f)) \vee (\t \wedge (\t \oplus \f) \wedge (\f \oplus \t))) = \t}
+but it is not present in the variant
+\ensuremath{\setDef{\vFour, \tFive}} since in this variant \edu = \f, thus,
+\ensuremath{\fSem [\setDef {\edu, \vFour, \tFive}] {\getPCfrom \isstudent {\vSch_1}} = \f}.
+
+\NOTE{Revise the above to be consistent with the new $m_1$.}
+
+%\subsubsection{Configuring a V-Schema}
+%\label{sec:conf-vsch}
+Intuitively and similar to v-sets, a v-schema is a systematic  
+compact representation of a set of plain schemas called variants.
+%, e.g., SPL, that encodes 
+%the variation effectively inside the database schema by means of 
+%feature expressions.
+%Consequently, v-schemas relieve the
+%need to define an intermediate schema and state mappings 
+%between it and source schemas, like the approach that 
+%data integration systems employ. 
+%One can still obtain the 
+A schema variant can be obtained 
+%A specific pure relational schema for
+%a database variant can be obtained 
+by \emph{configuring} the v-schema with that variant's configuration.
+We define the configuration function for v-schemas and its elements in \figref{vdb-conf} in \appref{vdb-conf}.
+%For example, consider the v-schema in \exref{vsch}.
+%Configuring the variational attribute set of the \empacct\ v-relation for 
+%the variant \setDef {\vFive}, i.e., 
+%\ensuremath {\olSem [\setDef {\vFive}] {\empno, \hiredate, \titleatt, \deptno, \annot [\vFive] \salary,
+%\annot [\edu] \isstudent,
+%\annot [\edu] \isteacher}},
+%yields the 
+%%relational 
+%attribute set of
+%\ensuremath {\setDef {\underline \empno,\underline \hiredate,\underline \titleatt,\underline \deptno }}.
+
+
