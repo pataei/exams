@@ -1,7 +1,7 @@
 \chapter{Background}
 \label{ch:bg}
 
-\wrrite{add types and nothing added to a type.}
+\eric{please read until you get to sections and then follow the boxes!}
 The core of this thesis is injecting a new aspect to relational databases: \emph{variation}.
 Thus, the goals of this chapter are twofold: 
 %
@@ -9,12 +9,14 @@ first, to introduce how variation is encoded and represented in our variational 
 %
 second, to provide the reader with the concepts and notations
 used to build up the main contributions of this thesis, mainly relational databases and
-relational algebra.
+relational algebra
 %
-And additionally, developed approaches of converting non-variational components into
-variational counterparts by using the introduced encoding of variation. 
+and approaches used to add variation to them.
+% of converting non-variational components into
+%variational counterparts by using the introduced encoding of variation. 
 %third, to familiarize the reader with
 %main notations and design decision of the thesis. 
+
 %
 Throughout the thesis, we discuss relational concepts and their
 variational counterparts. 
@@ -26,7 +28,18 @@ from its variational counterpart,
 e.g., \pElem\ is a 
 non-variational entity while \elem\ is its variational counterpart,
 if it exists.
-\wrrite{types!!}
+%
+Additionally, throughout the thesis, we rely on types to give an intuition to the reader for
+understanding concepts. A type is a set of possible values. For example, the type ``$\mathit{Int}$''
+denotes all possible integers. In our formalization, we use the notation of $i \in \mathit{Int}$ to
+state that the variable $i$ is of type $\mathit{Int}$. However, for brevity, we usually use 
+bold capital letters for types, for example, instead of $\mathit{Int}$ we write $\mathcal{I}$ to denote the type $\mathit{Int}$.
+%
+When needed, we extend a type with a non-existing element $\bot$ and to account for this
+extension at the type level we subscript the type with $\bot$. For example, $\maybe {\mathcal{I}}$
+denotes the extension of the type $\mathcal{I}$ with a non-existing element.
+
+
 %\secref{types} describes types. Types provide readers with a strong tool to understand 
 %some formalizations easier and more intuitively.
 %
