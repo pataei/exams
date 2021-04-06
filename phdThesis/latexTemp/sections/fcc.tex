@@ -1,7 +1,17 @@
 \section{The Formula Choice Calculus}
 \label{sec:fcc}
 
-\TODO{formula choice calculus}
+\eric{please read the entire section. thx!}
+To account for variation, VRA combines relational algebra (RA) with 
+\emph{choices}~\cite{EW11tosem,HW16fosd,Walk13thesis}.
+%\point{choice.}
+A choice $\chc{\elem_1,\elem_2}$ consists of a feature expression \dimMeta, called
+the \emph{dimension} of the choice, and 
+two \emph{alternatives} $\elem_1$ and $\elem_2$. For a given configuration \config, 
+the choice $\chc{\elem_1, \elem_2}$ can be replaced by $\elem_1$ if \dimMeta\
+evaluates to \t\ under configuration \config, (i.e., \fSem{\dimMeta}),
+or $\elem_2$ otherwise. 
+
 
 The choice calculus~\cite{Walk13thesis,EW11tosem} is a metalanguage for
 describing variation in programs and its elements such as data 

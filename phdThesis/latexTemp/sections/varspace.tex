@@ -153,30 +153,7 @@ and syntactic sugar $\oplus$ for mutually exclusive features, respectively.
 %and 2) \emph{tautology}: feature expression \dimMeta\ is a \emph{tautology} if  
 %for all valid configurations we have: \fSem \dimMeta = \t.
 
-%\point{annotating elements of database with feature expressions.}
-To incorporate feature expressions into the database,
-we \emph{annotate} database elements (including attributes, relations, and tuples) 
-with feature expressions. An \emph{annotated element} \elem\ with feature expression \dimMeta\
-is denoted by \annot \elem. 
-%The feature expression \dimMeta\ represents
-%the set of configurations where their variants contain element \elem\ because
-%
-The feature expression attached to an element is called its \emph{presence
-condition} since it determines the condition (set of configurations) under
-which the element is present in the database. For example, assuming
-\eric{you had \ffSet\ instead of \fSet. was that a typo or am I making a mistake?}
-\applyppr{parisa, fix vldb if it's a typo.}
-$\fSet=\set{\A,\B}$, the annotated number $\annot [\A \vee \B] 2$ is present
-in variants \setDef{\A}, \setDef{\B}, and \setDef{\A,\B} but not in variant
-\setDef{}.
-%
-The operation $\getPC{\annot{\elem}}=e$ returns the presence condition of an
-annotated element.
-% with a configuration
-%that enables either $\A$ or $\B$ or both
-%variants that disable both $\A$ and $\B$.
-% Here, $\getPC {\annot [\A \vee \B] 2} = \A \vee \B$.
-
+\structure{move this to vdb.}
 %\point{relationship between features is captured by a propositional formula, called feature model.} 
 No matter the context, features often have a relationship with each other that
 constrains the set of possible configurations. For example, only one of the
