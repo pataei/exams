@@ -1,19 +1,21 @@
-\chapter{Variational Database}
+\chapter{Variational Database Framework}
 \label{ch:vdb}
 
-\rewrite{read and revise}
-\fromppr{vldb}
-\TODO{maybe add a section for satisfying requirements}
 %\point{introduce vdb and its parts.}
 %A \emph{Variational Database (VDB)} is intuitively meaningful when a set of database 
 %instances with variations in the schema and/or content exists and a user's information
 %need requires accessing some or all of them simultaneously. 
-To incorporate variability within a database, we annotate elements with feature expressions,
-as introduced in \secref{encode-var}. We use annotated elements both in the schema and content.
+\eric{just added the first sentence.}
+\rewrite{define framework and vdb separetly}
+In this chapter, we introduce the \emph{variational database} (VDB) framework and how it encodes
+variation directly in relational databases.
+To incorporate variation within a database, we annotate elements with feature expressions,
+as introduced in \secref{vset}. We use annotated elements both in the schema and content.
 Within a schema we allow attributes and relations to exist 
 conditionally based on the feature expression assigned to them (\secref{vsch}).
 At the content level, we annotate each tuple with a feature expression, indicating when the tuple 
 is present (\secref{vtab}). 
+
 
 %\point{define \vctxTxt.}
 %\eric{could you pls review this?}

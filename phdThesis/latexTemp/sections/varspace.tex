@@ -1,5 +1,5 @@
 \section{Variation Space and Encoding}
-\label{sec:varspace}
+\label{sec:encode-var}
 
 \input{formulas/fexpDef}
 
@@ -153,10 +153,11 @@ and syntactic sugar $\oplus$ for mutually exclusive features, respectively.
 %and 2) \emph{tautology}: feature expression \dimMeta\ is a \emph{tautology} if  
 %for all valid configurations we have: \fSem \dimMeta = \t.
 
-\structure{move this to vdb.}
+
 %\point{relationship between features is captured by a propositional formula, called feature model.} 
 No matter the context, features often have a relationship with each other that
-constrains the set of possible configurations. For example, only one of the
+constrains the set of possible configurations. For example, in our motivating example (\secref{mot})
+only one of the
 temporal features of \vOne--\vFive\ can be \t\ for a given variant. This
 relationship is captured by a feature expression, called a \emph{feature model}
 and denoted by \fModel, which restricts the set of \emph{valid configurations}.
@@ -166,21 +167,4 @@ For example, the restriction that at a given time only one of temporal features
 \vOne--\vFive\ 
 can be enabled is represented by the feature model
 $\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive$.
-%where $\A \oplus \B \oplus \ldots \oplus \fName_n$ is syntactic sugar for
-%$(\A \wedge \neg \B \wedge \ldots \wedge \neg \fName_n)
-%\vee (\neg \A \wedge \B \wedge \ldots \wedge \neg \fName_n)
-%\vee (\neg \A \wedge \neg \B \wedge \ldots \wedge \fName_n)$,
-%that is, the features are mutually exclusive.
-%multiple features cannot be enabled simultaneously.
-%$\left(\vOne \wedge \neg \left(\vTwo \vee \hdots \vee \vFive \right) \right)
-%\vee \left(\vTwo \wedge \neg \left(\vOne \vee \vThree \vee \vFour \vee \vFive \right) \right) 
-%\vee \hdots 
-%\vee \left(\vFive \wedge \neg \left(\vOne \vee \hdots \vee \vFour \right) \right)$.
-%Note that this is not the feature model for the entire motivating example.
-
-
-
-
-%\input{formulas/fexpEval}
-
 
