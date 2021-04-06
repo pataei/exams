@@ -1,255 +1,70 @@
 \section{The Formula Choice Calculus}
 \label{sec:fcc}
 
+
+%To account for variation, VRA combines relational algebra (RA) with 
+%\emph{choices}~\cite{EW11tosem,HW16fosd,Walk13thesis}.
+%%\point{choice.}
+%A choice $\chc{\elem_1,\elem_2}$ consists of a feature expression \dimMeta, called
+%the \emph{dimension} of the choice, and 
+%two \emph{alternatives} $\elem_1$ and $\elem_2$. For a given configuration \config, 
+%the choice $\chc{\elem_1, \elem_2}$ can be replaced by $\elem_1$ if \dimMeta\
+%evaluates to \t\ under configuration \config, (i.e., \fSem{\dimMeta}),
+%or $\elem_2$ otherwise. 
+
 \eric{please read the entire section. thx!}
-To account for variation, VRA combines relational algebra (RA) with 
-\emph{choices}~\cite{EW11tosem,HW16fosd,Walk13thesis}.
-%\point{choice.}
-A choice $\chc{\elem_1,\elem_2}$ consists of a feature expression \dimMeta, called
-the \emph{dimension} of the choice, and 
-two \emph{alternatives} $\elem_1$ and $\elem_2$. For a given configuration \config, 
-the choice $\chc{\elem_1, \elem_2}$ can be replaced by $\elem_1$ if \dimMeta\
-evaluates to \t\ under configuration \config, (i.e., \fSem{\dimMeta}),
-or $\elem_2$ otherwise. 
-
-
+The second approach we use to incorporate variation into queries is
+the formula choice calculus~\cite{HW16fosd} which is an extension of 
+the choice calculus~\cite{Walk13thesis,EW11tosem}. 
+%
 The choice calculus~\cite{Walk13thesis,EW11tosem} is a metalanguage for
 describing variation in programs and its elements such as data 
 structures~\cite{Walk14onward,EWC13fosd}.
 In the choice calculus, variation is represented in-place as
 choices between alternative subexpressions. For example, 
 the variational expression 
-$e = \chc [A] {1,2} + \chc [B] {3,4} + \chc [A] {5,6}$
+$\mathit{expr} = \chc [\A] {1,2} + \chc [\B] {3,4} + \chc [\A] {5,6}$
  contains three choices.
 Each choice has an associated \emph{dimension}, which is used to
 synchronize the choice with other choices in different parts
-of the expression. For example, expression $e$ contains
-two dimensions, $A$ and $B$, and the two choices in dimension
-$A$ are synchronized. Therefore, the variational expression
-$e$ represents four different plain expressions, depending
+of the expression. For example, expression $\mathit{expr}$ contains
+two dimensions, $\A$ and $\B$, and the two choices in dimension
+$\A$ are synchronized. Therefore, the variational expression
+$\mathit{expr}$ represents four different plain expressions, depending
 on whether the left or right alternatives are selected from each
 dimension. Assuming that dimensions may be set to boolean values
 where \t\ indicates the left alternative and \f\ indicates the
-right alternative, we
-have: (1) $1+3+5$, when $A$ and $B$ are \t,
-(2) $1+4+5$, when $A$ is \t\ and $B$ is \f,
-(3) $2+3+6$, when $A$ is \f\ and $B$ is \t,
-and (4) $2+4+6$, when $A$ and $B$ are \f.
-
+right alternative, we have: 
+%(1) $1+3+5$, when $A$ and $B$ are \t,
+%(2) $1+4+5$, when $A$ is \t\ and $B$ is \f,
+%(3) $2+3+6$, when $A$ is \f\ and $B$ is \t,
+%and (4) $2+4+6$, when $A$ and $B$ are \f.
+\begin{alignat*}{1}
+\chc [\A] {1,2} + \chc [\B] {3,4} + \chc [\A] {5,6} &=
+\begin{cases}
+  1+3+5,& \A =\t, \B = \t\\
+  1+4+5,& \A =\t, \B = \f\\
+  2+3+6,& \A =\f, \B = \t\\
+  2+4+6,& \A =\f, \B = \f
+\end{cases}
+\end{alignat*}
 %
+\noindent
 The formula
-choice calculus~\cite{HW16fosd} extends the choice calculus 
-by allowing dimensions to be propositional formulas. For example,
-the variational expression $e' = \chc [A \vee B] {1,2}$ represents
-two plain expressions: (1) $1$, when $A \vee B$ evaluates to \t\
-and (2) $1$, when $A \vee B$ evaluates to \f.
+choice calculus extends the choice calculus 
+by allowing dimensions to be propositional formulas~\cite{HW16fosd}. For example,
+the variational expression $\VVal {\mathit{expr}} = \chc [\A \vee \B] {1,2} + \chc [\B] {3,4} + \chc [\A] {5,6}$ represents
+four plain expressions: 
+%(1) $1$, when $\A \vee \B$ evaluates to \t\
+%and (2) $2$, when $\A \vee \B$ evaluates to \f. More explicitly, we have:
+\begin{alignat*}{1}
+\chc [\A \vee \B] {1,2} + \chc [\B] {3,4} + \chc [\A] {5,6}&=
+\begin{cases}
+  1+3+5,& \A =\t, \B = \t\\
+  1+4+5,& \A =\t, \B = \f\\
+  1+3+6,& \A =\f, \B = \t\\
+  2+4+6,& \A =\f, \B = \f
+\end{cases}
+\end{alignat*}
 
-%
-A formula $\dimMeta$ can also be used to \emph{annotate/tag} an element $\elem$
-which is denoted by $\annot \elem$.
-For example, the variational expression $\annot [A \vee B] 1$ states that 
-the expression $1$ is present when $A \vee B$ evaluates to \t\ and otherwise it is absent. 
-
-
-%%\point{vset.}
-%A \emph{variational set (v-set)} $\vset = \setDef {\annot [\dimMeta_1] {\elem_1},\ldots, \annot [\dimMeta_n] {\elem_n}}$ 
-%is a set of annotated elements~\cite{EWC13fosd,Walk14onward,vdb17ATW}.
-%% where the presence condition of elements is satisfiable~\cite{EWC13fosd,Walk14onward,vdb17ATW}. 
-%%
-%Conceptually, a \emph{variational set} represents many different plain sets
-%that can be generated by enabling or disabling features
-%and including only the elements whose feature expressions evaluate to \t.
-%We typically omit the presence condition \prog{true} in a variational set,
-%e.g., the v-set 
-%$\setDef {\annot [\A] 2, \annot [\B] 3, 4}$
-%represents four plain sets under different configurations. These plain
-%sets can be generated by \emph{configuring} the variational set with a
-%given configuration: 
-%\setDef {2,3,4}, when $\A$ and $\B$
-%are enabled; \setDef {2,4}, when $\A$ is enabled but $\B$ is disabled;
-%\setDef {3,4}, when $\B$ is enabled but $\A$ is disabled;
-%and \setDef {4}, when both $\A$ and $\B$ are disabled.
-%%
-%%We indicate variational sets of elements $\elem \in \mathbf{\elemSet}$ with \elemSet.
-%%A variational set is conceptually a function from a configuration of its
-%%features to the corresponding plain set. 
-%%We typically omit the feature
-%%expression \prog{true} in a variational set, for example, in the
-%%variational set $\{5,6^{f_1}\}$, the feature expression for the value $5$ is
-%%implicitly \prog{true}, and so the element is included in both variants:
-%%$\{5,6\}$ when feature $f_1$ is enabled and $\{5\}$ when feature $f_1$ is
-%%disabled.
-%Note that elements with presence condition \prog{false} can be omitted
-%from the v-set, e.g., the v-set \ensuremath{\setDef {\annot [\f] {1}}} is 
-%equivalent to an empty v-set.
-%For simplicity and to comply with database notational conventions
-%we drop the brackets of a variational set when used in database
-%schema definitions and queries.
-%%for defining 
-%%variational relation schemas and the variational attribute set to be projected in a query.
-%
-%%\point{annotated vset.}
-%A variational set itself can also be annotated with a feature expression.
-%%
-%%An \emph{annotated variational set} 
-%$\annot \vset = \setDef {\annot [\dimMeta_1] {\elem_1},\ldots,\annot [\dimMeta_n] {\elem_n}}^\dimMeta$ is an
-%\emph{annotated v-set}.
-%% that it is annotated itself by a \emph{feature expression} \dimMeta.
-%%We denote an annotated variational set of elements $\elem \in \mathbf{\elemSet}$ with
-%%\annot \elemSet.
-%Annotating a v-set with the feature expression \dimMeta\ 
-%restricts the condition under which its elements are present, i.e., it forces
-%elements' presence conditions to be more specific. This restriction 
-%can be applied to all elements of the set by \emph{pushing} in the
-%feature expression \dimMeta, done by the operation
-%%\NOTE{
-%\ensuremath{
-%\pushIn {\setDef {\annot [\dimMeta_1] {\elem_1},\ldots,\annot [\dimMeta_n] {\elem_n}}^\dimMeta}
-%= 
-%%\annot {\setDef{\annot [\dimMeta_i] \elem_i \myOR \sat {\dimMeta_i \wedge \dimMeta}, 1 \leq i \leq n}}}.}
-%\setDef {\annot [\dimMeta_1 \wedge \dimMeta] {\elem_1},\ldots, \annot [\dimMeta_n \wedge \dimMeta] {\elem_n}}
-%}.
-%%This restriction
-%%can be captured by the property:
-%%$\setDef {\annot [\dimMeta_1] {\elem_1} ,\ldots, \annot [\dimMeta_n] {\elem_n}}^\dimMeta
-%%\equiv 
-%%\setDef {\annot [\dimMeta_1 \wedge \dimMeta] {\elem_1},\ldots, \annot [\dimMeta_n \wedge \dimMeta] {\elem_n}}
-%%$.
-%%
-%For example, the annotated v-set
-%$\{\annot [\A] 2, \annot [\neg \B] 3, 4, \annot [\C] 5\}^{\A \wedge \B}$
-%indicates that all the elements of the set can only exist
-%when both $\A$ and $\B$ are enabled. Thus, pushing in the set's feature expression
-%results in
-%$\{\annot [\A \wedge \B] 2,\annot [\A \wedge \B] 4,\annot [\A \wedge \B \wedge \C] 5\}$. The element $3$ is dropped 
-%%from the set 
-%since 
-%\ensuremath{\neg \sat {\neg \B \wedge (\A \wedge \B)}},
-%where
-%\ensuremath{
-%\getPC 3 = \neg \B \wedge (\A \wedge \B)}.
-%%its presence condition is unsatisfiable, i.e., $\neg \sat {\neg \fName_2 \wedge (\fName_1 \wedge \fName_2)}$.
-%%%
-%
-%We provide some operations over v-sets. Intuitively, these operations should 
-%behave such that configuring the result of applying a variational set operation
-%should be equivalent to applying the plain set operation on the configured 
-%input v-sets. 
-% 
-%%These operations are vastly used
-%%in \secref{type-sys}.
-%
-%%
-%\begin{definition}[V-set union]
-%\label{def:vset-union}
-%The \emph {union} of two v-sets is the union of their elements with the disjunction of 
-%presence conditions if an element exists in both v-sets:
-%\ensuremath{
-%\vset_1 \cup \vset_2 = \setDef {\annot [\dimMeta_1] \elem \myOR \annot [\dimMeta_1] \elem \in \vset_1, \annot [\dimMeta_2] \elem \not \in \vset_2}
-%\cup \setDef {\annot [\dimMeta_2] \elem \myOR \annot [\dimMeta_2] \elem \in \vset_2, \annot [\dimMeta_1] \elem  \not \in \vset_1}
-%\cup \setDef {\annot [\dimMeta_1 \vee \dimMeta_2] \elem \myOR 
-%\annot [\dimMeta_1] \elem \in \vset_1, \annot [\dimMeta_2] \elem \in \vset_2}
-%}.
-%For example, \\
-%\ensuremath{
-%\setDef {2,\annot [\dimMeta_1] 3, \annot [\dimMeta_1] 4} \cup \setDef {\annot [\dimMeta_2] 3, \annot [\neg \dimMeta_1] 4} = \setDef {2, \annot [\dimMeta_1 \vee \dimMeta_2] 3, 4}
-%}.
-%\end{definition}
-%
-%% 
-%% is needed for the implicitly-type lang:
-%\begin{definition}[V-set intersection]
-%\label{def:vset-intersect}
-%The \emph{intersection} of two v-sets is a v-set of their shared elements
-%annotated with the conjunction of their presence conditions, i.e., 
-%\ensuremath{
-%\vset_1 \cap \vset_2 = \setDef {
-%\annot [\dimMeta_1 \wedge \dimMeta_2 ]\elem \myOR
-%\annot [\dimMeta_1] \elem \in \vset_1, \annot [\dimMeta_2] \elem \in \vset_2,
-%\sat {\dimMeta_1 \wedge \dimMeta_2}
-%}
-%}.
-%For example, \ensuremath{
-%\setDef {2, \annot [\A] 3, \annot [\neg \B] 4} \cap
-%\pushIn {\annot [\B] {\setDef{2,3,4,5}}} =
-%\setDef{\annot [\B] 2, \annot [\A \wedge \B] 3}
-%}.
-%\end{definition}
-%
-%\begin{definition} [V-set cross product]
-%\label{def:vset-cross}
-%The \emph{cross product} of two v-sets is a pair of every two elements of 
-%them annotated with the conjunction of their presence conditions.
-%\ensuremath{
-%\vset_1 \times \vset_2 = \setDef{
-%\annot [\dimMeta_1 \wedge \dimMeta_2] {(\elem_1, \elem_2)} \myOR
-%\annot [\dimMeta_1] \elem_1 \in \vset_1, \annot [\dimMeta_2] \elem_2 \in \vset_2
-%%\vset_1 \cap \vset_2 = \setDef \
-%}
-%}
-%%
-%\end{definition}
-%
-%\begin{definition} [V-set equivalence]
-%\label{def:vset-eq}
-%Two v-sets are \emph{equivalent}, denoted by
-%\ensuremath{\vset_1 \equiv \vset_2}, iff
-%\ensuremath{
-%\forall \annot  \elem \in (\vset_1 \cup \vset_2). 
-%\annot [\dimMeta_1] \elem \in \vset_1, \annot [\dimMeta_2] \elem \in \vset_2, 
-%\dimMeta_1 \equiv \dimMeta_2},
-%i.e., they both cover the same set of elements and the presence conditions
-%of elements from the two v-sets are equivalent.
-%\end{definition}
-%
-%%
-%\begin{definition} [V-set subsumption]
-%\label{def:vset-subsumption}
-%The v-set \ensuremath{\vset_1} \emph {subsumes} the v-set
-%\ensuremath{\vset_2}, $\subsume {\vset_2} {\vset_1}$, iff
-%\ensuremath{ \forall \annot [\dimMeta_2] \elem \in \vset_2.
-%\annot [\dimMeta_1] \elem \in \vset_1, 
-%%\neg \sat {\dimMeta_2 \wedge \neg \dimMeta_1}
-%\sat {\dimMeta_2 \wedge  \dimMeta_1}
-%},
-%i.e., all elements in $\vset_2$ also exist in $\vset_1$ 
-%s.t. the element is valid in a shared configuration between the v-sets.
-%For example, 
-%\ensuremath{
-% \subsume {\pushIn {\annot [\A] {\setDef {2,3}}}} {\setDef {2, \annot [\A \vee \B] 3, 4}}},
-%however, 
-%\ensuremath{
-% \nsubsume {\pushIn {\annot [\A] {\setDef {2,3}}}} {\setDef {2, \annot [\neg \A \wedge \B] 3}}}
-%and
-%\ensuremath{
-%\nsubsume {\setDef {\annot [\A] 2,\annot [\A] 3, 4}} {\setDef {2, \annot [\A \wedge \B] 3}}}.
-%\end{definition}
-%
-%%\begin{definition} [V-set explicit subsumption]
-%%\dropit{drop this for vldb submission. remember you need it for popl.}
-%%\label{def:vset-strict-subsumption}
-%%The v-set \ensuremath{\vset_1} \emph {explicitly subsumes} the v-set
-%%\ensuremath{\vset_2}, $\subsumeExpl {\vset_2} {\vset_1}$, iff
-%%\ensuremath{ \forall \annot [\dimMeta_2] \elem \in \vset_2.
-%%\annot [\dimMeta_1] \elem \in \vset_1, 
-%%\neg \sat {\dimMeta_2 \wedge \neg \dimMeta_1}
-%%},
-%%i.e., all elements in $\vset_2$ also exist in $\vset_1$ 
-%%s.t. its presence condition in \ensuremath{\vset_2} is more specific than 
-%%its presence condition in \ensuremath{\vset_1}, captured by 
-%%\ensuremath{\neg \sat {\dimMeta_2 \wedge \neg \dimMeta_1}}
-%%which could also be defined as 
-%%\ensuremath{
-%%\nexists \config \in \confSet . \fSem {\dimMeta_1} = \t , \fSem {\dimMeta_2} = \f.
-%%%i.e. in set theory:
-%%% \dimMeta_2 \subset \dimMeta_1
-%%%\dimMeta_2 - \dimMeta_1 = \emptyset
-%%%i.e.
-%%%\dimMeta_2 \cap \bar{\dimMeta_1} = \emptyset 
-%%}
-%%\end{definition}
-%
-%
-%
-%
 
