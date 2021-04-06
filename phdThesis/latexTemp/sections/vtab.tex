@@ -16,18 +16,18 @@ presence conditions.
 %
 Thus, a \emph{variational tuple} (\emph{v-tuple}) is an annotated tuple,
 $\vTuple\in\vRelCont \eqq \annot[\dimMeta_\vTuple]{(\vi v \numAtts)}$. A
-v-tuple corresponds to a v-relation,
+variational tuple corresponds to a variational relation,
 $\vRel\annot[\dimMeta_\vRel]{(\vi \vAtt \numAtts)}$,
 where each element $v_i$ is a value corresponding to attribute $\vAtt_i$
-(recall that attributes in a v-relation are ordered).
+(recall that attributes in a variational relation are ordered).
 %
-For example, $\annot[\tFive]{(38, PL, 678)}$ is a v-tuple that belongs to the
+For example, $\annot[\tFive]{(38, PL, 678)}$ is a variational tuple that belongs to the
 \ecourse\ relation from \exref{vsch} and is only present when \tFive\ is
 enabled. 
 %
-The content of a v-relation
+The content of a variational relation
 %  \emph{variational relation content} 
-is a set of v-tuples,
+is a set of variational tuples,
 $\vRelCont \in \vRelContSet \eqq \setDef {\vi \vTuple \numTuples}$
 and 
 %
@@ -35,8 +35,8 @@ a \emph{variational table} (\emph{v-table}) is the pair of its relation
 schema and content, $\vTab = (\vRelSch, \vRelCont)$.
 %
 A \emph{variational database instance}
-%of VDB \vDB\ with v-schema \vSch, 
-is a set of v-tables,
+%of VDB \vDB\ with variational schema \vSch, 
+is a set of variational tables,
 $\synDef \vdbInst  \vdbInstSet \eqq \annot [\fModel] {\setDef {\vi \vTab \numRels} }$.
 %
 A VDB instance is \emph{well-formed} if its encoded variation at
@@ -63,8 +63,8 @@ understand as-is.}
 
 
 This encoding of variational databases satisfies the requirements for a
-variational database described in \secref{mot}. Similar to a v-schema, a user
-can configure a v-table or a VDB for a specific variant, formally defined in
+variational database described in \secref{mot}. Similar to a variational schema, a user
+can configure a variational table or a VDB for a specific variant, formally defined in
 \figref{vdb-conf} in \appref{vdb-conf}. This allows users to deploy a VDB for a
 specific configuration and generate the corresponding VDB variant, satisfying
 database part of \nThree\ need.
@@ -112,7 +112,7 @@ requirement of a variational database framework.
 %Note that 
 %the VDB framework encodes both schema- and content-level
 %variation. A simpler framework could be used to encode 
-%only content-level variation (where tables consist of v-tuples but
+%only content-level variation (where tables consist of variational tuples but
 %have plain relational schema), similar to frameworks used for 
 %database versioning and experimental databases~\cite{dbVersioning}.
 %However, schema-level variation cannot be encoded without 
