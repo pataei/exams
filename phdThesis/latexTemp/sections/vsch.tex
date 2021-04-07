@@ -4,6 +4,7 @@
 %\input{formulas/vschConf}
 
 \rewrite{change intro to what you have on the whiteboard}
+\eric{read from here pls.}
 In this section, we define how variation is encoded at the schema level. We first 
 embark on an example that 
 Remember as mentioned in \secref{rdb} the schema of a database is basically
@@ -20,6 +21,14 @@ However, this relation cannot capture blah.\wrrite{complete the damn thing}
 %consider table empbio in v3 but that's different than empbio for v4 and v5. so we add varition now. 
 
 Now we switch to the formal definition of a variational schema, defined in \figref{vsch}.
+Note that our assumption for relational databases also holds for variational databases,
+that is, we assume a countably infinite set of \attNames\ of attributes is fixed; we assume
+there is a total order $\leq_\attNames$ on \attNames; for any set of attributes \vAttList,
+we assume that elements of \vAttList are written according to $\leq_\attNames$; for 
+theoretical developments we assume the same domain of values for all attributes; 
+we assume a countably infinite set \relNames\ of relation names disjoint from \attNames.
+%
+\eric{stop reading here. the rest is from the vldb paper. there's another box in this section awaiting your feedback.}
 A variational schema captures variation in the structure of a database by indicating which attributes and relations are included or excluded in which variants.
 %
 %\point{using annotated elements to show variability in schema.}
@@ -58,6 +67,7 @@ configurations, as described in \secref{encode-var}.
 %as explained in \secref{encode-var} and introduced as the VDB feature model. 
 Hence, the variational schema defines all valid schema variants of a VDB. 
 %\figref{vsch} concisely defines the formalization of variational schemas.
+\eric{added reference to figure and examples.}
 \exref{vsch} defines a variational schema for only a part of our motivating example introduced in \secref{mot} and
  \exref{vsch-mot} provides the variational schema of our motivating example in its entirety. 
 
@@ -179,6 +189,9 @@ A schema variant can be obtained
 %a database variant can be obtained 
 by \emph{configuring} the variational schema with that variant's configuration.
 We define the configuration function for variational schemas and its elements in \figref{vsch}.
+\eric{added configuration example.}
+\exref{vsch-mot} illustrates configuring the variational schema of our motivating example
+for the variant \setDef {\edu, \vTwo, \tThree}.
 %For example, consider the variational schema in \exref{vsch}.
 %Configuring the variational attribute set of the \empacct\ variational relation for 
 %the variant \setDef {\vFive}, i.e., 
@@ -192,11 +205,14 @@ We define the configuration function for variational schemas and its elements in
 
 \begin{example}
 \label{eg:vsch-mot}
+\eric{pls read this example.}
 \tabref{mot-vsch} illustrates the variational schema of the motivating example. 
 As a reminder the motivating example has the feature space $\fSet = \setDef {\edu,
 \vOne, \vTwo, \vThree, \vFour, \vFive, \tOne, \tTwo, \tThree, \tFour, \tFive}$. Additionally,
-\tabref{mot} includes all its database variants. 
+all schema variants are illustrated in\tabref{mot}. 
 \input{tables/motVsch}
-So, for example, configuring the \wrrite{mot vsch for v2 t3 edu results in the yellow highlighted cells of table mot}.
+Configuring the variational schema $\vSch_\mot$ for the variant that only enables features
+\edu, \vTwo, and \tThree\ (i.e., the variant \setDef {\edu, \vTwo, \tThree}) results in 
+relations contained in the two yellow highlighted cells of tables in \tabref{mot}.
 \end{example}
 

@@ -3,12 +3,21 @@
 
 \textbf{Variational schema objects:}
 \begin{syntax}
-\synDef \vAtt \vAttSet &&&\textit{Attribute Name}\\
-\synDef \vRel {\boldmth{R}} &&& \textit{Relation Name}\\
-\synDef \vAttList {\boldmth{A}} &\eqq& \setDef {\vAtt_1, \vAtt_2, \ldots, \vAtt_k} & \textit{Variational Set of Attributes}\\
+\synDef \vAtt \attNames &&&\textit{Attribute Name}\\
+\synDef \vRel \relNames &&& \textit{Relation Name}\\
+\synDef \vAttList {\boldmth{\mathbf{V} \mathbf{A}}} &\eqq& 
+\setDef {\annot [\dimMeta_1] \vAtt_1, \annot [\dimMeta_2] \vAtt_2, \ldots, \annot [\dimMeta_k] \vAtt_k} & \textit{Variational Set of Attributes}\\
 \synDef \vRelSch \vRelSchSet &\eqq& \vRelDef & \textit{Variational Relation Schema}\\
 \synDef \vSch \vSchSet &\eqq& \vSchDef & \textit{Variational Schema}
 \end{syntax}
+
+\medskip
+\textbf{Presence condition of attributes and relations:}
+\begin{alignat*}{1}
+\getPCfrom {\vAtt} {\vSch} &= \getPCfrom {\vAtt} {\vRel \annot [\dimMeta_\vRel] {(\ldots, \annot [\dimMeta_\vAtt] \vAtt, \ldots)}} \wedge \getPCfrom \vRel \vSch = \getPC {\annot [\dimMeta_\vAtt] \vAtt} \wedge \getPCfrom \vRel \vSch=
+\dimMeta_\vAtt \wedge \dimMeta_\vRel \wedge \fModel\\
+\getPCfrom {\vRel} \vSch &= \getPC {\vRel \annot [\dimMeta_\vRel] {(\vAttList)}} \wedge \getPC {\vSch} = \dimMeta_\vRel \wedge \fModel 
+\end{alignat*}
 
 \medskip
 \textbf{Variational set of attributes configuration:}
@@ -65,6 +74,6 @@
 \end{alignat*}
 
 
-\caption{Variational schema definition and configuration.}
+\caption{Variational schema definition, presence condition of attributes and relations, and variational schema configuration.}
 \label{fig:vsch}
 \end{figure} 
