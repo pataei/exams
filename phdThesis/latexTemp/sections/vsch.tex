@@ -1,17 +1,25 @@
 \section{Variational Schema}
 \label{sec:vsch}
 
-\TODO{change vdb conf to vsch.}
-\rewrite{read and revise}
-\fromppr{vldb}
-\TODO{remember to use definitions of config elem and vset}
-\TODO{add vsch of mot ex}
 %\input{formulas/vschConf}
 
 \rewrite{change intro to what you have on the whiteboard}
-In this section, we define how variation is encoded at the schema level. 
+In this section, we define how variation is encoded at the schema level. We first 
+embark on an example that 
+Remember as mentioned in \secref{rdb} the schema of a database is basically
+the type of it. This is also the case for variational databases, except that their 
+schema (type) contains the variation in addition to the traditional relational schemas.
+The encoded variation in the schema state the condition under which relations and
+attributes exists, that is, the set of variants that contain a relation and some of its attributes.
+%
+For example, consider the \empbio\ relation associated with variant \vThree\ in \tabref{mot-basic},
+\structure{make sure this is below in final version}
+also shown in \tabref{empbio-v3} below.
+% 
+However, this relation cannot capture blah.\wrrite{complete the damn thing}
+%consider table empbio in v3 but that's different than empbio for v4 and v5. so we add varition now. 
 
-\figref{vsch} formally defines a variational schema. 
+Now we switch to the formal definition of a variational schema, defined in \figref{vsch}.
 A variational schema captures variation in the structure of a database by indicating which attributes and relations are included or excluded in which variants.
 %
 %\point{using annotated elements to show variability in schema.}
@@ -24,9 +32,8 @@ which describe the conditions under which each is present.
 A \emph{variational relation schema} (\emph{v-relation schema}), \vRelSch, is a relation name
 with an annotated variational set of attributes,
 %\centerline{
-$\synDef {\vRelSch} \vRelSchSet \eqq \vRelDef$,
+$\synDef {\vRelSch} \vRelSchSet \eqq \vRelDef$.
 %}
-where \ensuremath{\vAttList \in \vAttSet} is a variational set of attributes.
 The presence condition of the variational relation schema, \dimMeta, determines in what
 variants of the database the relation itself is present.
 %A \emph{variational attribute set}, \vAttList, is a variational set of attributes.
@@ -51,14 +58,14 @@ configurations, as described in \secref{encode-var}.
 %as explained in \secref{encode-var} and introduced as the VDB feature model. 
 Hence, the variational schema defines all valid schema variants of a VDB. 
 %\figref{vsch} concisely defines the formalization of variational schemas.
-\exref{vsch} defines a variational schema for only a part of our motivating example (\secref{mot}) while
- \exref{vsch-mot} provides the variational schema of our motivating example. 
+\exref{vsch} defines a variational schema for only a part of our motivating example introduced in \secref{mot} and
+ \exref{vsch-mot} provides the variational schema of our motivating example in its entirety. 
 
 
 \begin{example}
 \label{eg:vsch}
 $\vSch_1$ is the variational schema of a VDB that only includes relations \empacct\ and \ecourse\ in the last two rows
-of \tabref{mot} and has the
+of both \tabref{mot-basic} and \tabref{mot-edu}. It has the
 feature space 
 \ensuremath{\fSet = \setDef{ \vFour, \vFive, \edu, \tFour, \tFive}}.
 Note that attributes that exist conditionally are annotated with a feature expression
@@ -74,11 +81,11 @@ to account for such a condition, e.g., the \salary\ attribute only exists when \
 %}
 \begin{align*}
 \vSch_1 &=
-\{ \empacct ( \empno, \hiredate, \titleatt, \deptno, \annot [\vFive] \salary, \\
-&\hspace{55pt} \annot [\edu] \isstudent,
-\annot [\edu] \isteacher )^{\vFour \vee \vFive},\\
+\{ \empacct ( \empno, \hiredate, \titleatt, \deptno, \annot [\vFive] \salary, 
+ \annot [\edu] \isstudent,
+\annot [\edu] \isteacher )^{\vFour \vee \vFive}\\
 %
-&\hspace{17pt} \ecourse ( \cno, \cname, \annot [\tFive] \deptno )^{\tFour \vee \tFive} \}^{\fModel_1}\\
+&\hspace{17pt}, \ecourse ( \cno, \cname, \annot [\tFive] \deptno )^{\tFour \vee \tFive} \}^{\fModel_1}\\
 %\fModel_1 &= (\vFour\oplus\vFive) \wedge
 %  ((\edu\wedge(\tFour\oplus\tFive)) \vee (\neg\edu\wedge\neg(\tFour\vee\tFive)))
 \fModel_1 &= 
@@ -171,7 +178,7 @@ A schema variant can be obtained
 %A specific pure relational schema for
 %a database variant can be obtained 
 by \emph{configuring} the variational schema with that variant's configuration.
-We define the configuration function for variational schemas and its elements in \figref{vdb-conf} in \appref{vdb-conf}.
+We define the configuration function for variational schemas and its elements in \figref{vsch}.
 %For example, consider the variational schema in \exref{vsch}.
 %Configuring the variational attribute set of the \empacct\ variational relation for 
 %the variant \setDef {\vFive}, i.e., 

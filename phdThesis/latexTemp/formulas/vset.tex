@@ -11,7 +11,7 @@
 \xeSem [] . &: \elemSet \to \confSet \to \maybe \pelemSet\\
 \xeSem {\annot \elem} &=
   \begin{cases}
-    \elem, & \If \fSem {\dimMeta} = \t\\
+    \pElem, & \If \fSem {\dimMeta} = \t\\
     \bot, &\Otherwise    
 %		\vRel\left({\olSem {\pushInBold { \annot [\dimMeta_\vAttList] \vAttList}}}\right), &\If \fSem {\dimMeta_\vAttList} \\
 %%		&\If \fSem {\getPCfrom \vRel \vSch} \\
@@ -37,7 +37,7 @@
 \textbf{Dropping bots from a plain set:}
 \begin{alignat*}{1}
 %\dropbot {} &: \psetSet \to \psetSet\\
-\dropbot {\setDef {\elem_1, \elem_2, \ldots, \elem_n}} &= \setDef {\elem_i \myOR \elem_i \neq \bot}
+\dropbot {\setDef {\pElem_1, \pElem_2, \ldots, \pElem_n}} &= \setDef {\pElem_i \myOR \pElem_i \neq \bot}
 \end{alignat*}
 
 \medskip 
