@@ -1,43 +1,8 @@
-\tabref{mot-vsch} provides the v-schema of our motivating example, given in \tabref{mot}.
-The feature model \fModel\ only allows one temporal feature to be true from a set of temporal features at the time: 
-\ensuremath{
-\fModel = 
-\left( 
-\neg \edu \wedge \left(
-\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
-\right) \right)
-\vee 
-\left( \edu \wedge \left(
-\tOne \oplus \tTwo \oplus \tThree \oplus \tFour \oplus \tFive
-\right) \wedge
- \left(
-\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
-\right) \right)
-}. 
-%where \ensuremath{\fName_1 \oplus \fName_2 = (\fName_1 \wedge \neg \fName_2) \vee (\fName_2 \wedge \neg \fName_1)}.
-However, the feature model can be encoded differently. For example, we can restrict it s.t. it only allows 
-the two sets of temporal features to change together, i.e.,
-\ensuremath{
-\VVal \fModel = 
-\left( \vOne \vee \left(\vOne \wedge \edu \wedge \tOne \right) \right)
-\oplus
-\left( \vTwo \vee \left(\vTwo \wedge \edu \wedge \tTwo \right) \right)
-\oplus
-\left( \vThree \vee \left(\vThree \wedge \edu \wedge \tThree \right) \right)
-\oplus
-\left( \vFour \vee \left(\vFour \wedge \edu \wedge \tFour \right) \right)
-\oplus
-\left( \vFive \vee \left(\vFive \wedge \edu \wedge \tFive \right) \right)
-}. 
-%  to allow more than one temporal feature to be true at the time. 
-Hence, 
-\fModel\ is not the only v-schema capturing variation of the employee schema. 
-Additionally, the encoding can change by formulating presence conditions differently while representing the same v-schema, 
-e.g., the presence condition of the \job\ relation can be changed to \ensuremath{\neg \vFive}. 
-
 \begin{table*}
-\caption{V-schema of the employee motivating example given in \tabref{mot} with feature model \fModel.
-This v-schema encompasses 30 relational schemas: five schemas when \edu\ = \f\ and 25 schemas otherwise. 
+\caption[shortcaption]{Variational schema $\vSch_\mot$ 
+%of the motivating example given in \secref{mot} 
+with feature model $\fModel_\mot$.
+This variational schema encompasses 30 relational schemas: five schemas when \edu\ = \f\ and 25 schemas otherwise. 
 %A v-schema encoding the variation of the employee schema introduced in \tabref{mot}. The feature model \fModel\ only allows one temporal feature to be true from a set of temporal features at the time: 
 %\ensuremath{
 %\fModel = \edu \vee 
@@ -63,13 +28,14 @@ This v-schema encompasses 30 relational schemas: five schemas when \edu\ = \f\ a
 \begin{tabular} {| l |}
 \hline
 \ensuremath{
-\engemp \left(\empno, \name, \hiredate,\titleatt,\deptname \right)^{\vOne}
+\engemp (\empno, \name, \hiredate,\titleatt,\deptname )^{\vOne}
 }\\
 \ensuremath{
-\othemp \left(\empno, \name, \hiredate,\titleatt,\deptname \right)^{\vOne}
+\othemp (\empno, \name, \hiredate,\titleatt,\deptname )^{\vOne}
 }\\
 \ensuremath{
-\empacct \left(\empno, \optAtt [\vTwo \vee \vThree] [\name], \hiredate, \titleatt, \optAtt [\vTwo] [\deptname], \optAtt [\vThree \vee \vFour \vee \vFive] [\deptno], \optAtt [\vFive] [\salary], \optAtt [\vFour \vee \vFive] [\isstudent], \optAtt [\vFour \vee \vFive] [\isteacher] \right)^{\vTwo \vee \vThree \vee \vFour \vFive}
+\empacct (\empno, \optAtt [\vTwo \vee \vThree] [\name], \hiredate, \titleatt, \optAtt [\vTwo] [\deptname], \optAtt [\vThree \vee \vFour \vee \vFive] [\deptno], \optAtt [\vFive] [\salary],} \\
+\hspace{40pt} \ensuremath{\optAtt [\vFour \vee \vFive] [\isstudent], \optAtt [\vFour \vee \vFive] [\isteacher] )^{\vTwo \vee \vThree \vee \vFour \vFive}
 }\\
 \ensuremath{
 \job \left(\titleatt, \salary  \right)^{\vOne \vee \vTwo \vee \vThree \vee \vFour}

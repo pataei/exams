@@ -206,11 +206,61 @@ for the variant \setDef {\edu, \vTwo, \tThree}.
 \begin{example}
 \label{eg:vsch-mot}
 \eric{pls read this example.}
-\tabref{mot-vsch} illustrates the variational schema of the motivating example. 
+\tabref{mot-vsch} illustrates the variational schema of the motivating example, denoted by
+$\vSch_\mot$. 
 As a reminder the motivating example has the feature space $\fSet = \setDef {\edu,
 \vOne, \vTwo, \vThree, \vFour, \vFive, \tOne, \tTwo, \tThree, \tFour, \tFive}$. Additionally,
 all schema variants are illustrated in\tabref{mot}. 
+
 \input{tables/motVsch}
+
+%\tabref{mot-vsch} provides the v-schema of our motivating example, given in \tabref{mot}.
+The feature model $\fModel_\mot$ only allows one temporal feature to be true from a set of temporal features at the time. 
+\begin{align*}
+\fModel_\mot &= 
+\left( 
+\neg \edu \wedge \left(
+\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
+\right) 
+\wedge \neg \left(\tOne \vee \tTwo \vee \tThree \vee \tFour \vee \tFive
+ \right)
+\right)\\
+&\quad\vee 
+\left( \edu \wedge \left(
+\tOne \oplus \tTwo \oplus \tThree \oplus \tFour \oplus \tFive
+\right) \wedge
+ \left(
+\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
+\right) \right)
+\end{align*}
+%where \ensuremath{\fName_1 \oplus \fName_2 = (\fName_1 \wedge \neg \fName_2) \vee (\fName_2 \wedge \neg \fName_1)}.
+\noindent
+However, the feature model can be encoded differently. For example, $\VVal {\fModel_\mot}$ restrict 
+it such that it only allows 
+the two sets of temporal features to change together.
+\begin{align*}
+\VVal {\fModel_\mot} &= 
+\left( \vOne \vee \left(\vOne \wedge \edu \wedge \tOne \right) \right)
+\oplus
+\left( \vTwo \vee \left(\vTwo \wedge \edu \wedge \tTwo \right) \right)
+\oplus
+\left( \vThree \vee \left(\vThree \wedge \edu \wedge \tThree \right) \right)\\
+&\quad\oplus
+\left( \vFour \vee \left(\vFour \wedge \edu \wedge \tFour \right) \right)
+\oplus
+\left( \vFive \vee \left(\vFive \wedge \edu \wedge \tFive \right) \right)
+\end{align*}
+%  to allow more than one temporal feature to be true at the time. 
+%Hence, 
+%\fModel\ is not the only v-schema capturing variation of the employee schema. 
+\noindent
+Hence, the feature model of a VDB can vary based on the relationship between 
+features and the restrictions that they must follow.
+Additionally, the encoding of presence condition can change since different feature 
+expressions can be indicate the same set of variants.
+For example, the presence condition of the \job\ relation can be changed to \ensuremath{\neg \vFive}. 
+
+%
 Configuring the variational schema $\vSch_\mot$ for the variant that only enables features
 \edu, \vTwo, and \tThree\ (i.e., the variant \setDef {\edu, \vTwo, \tThree}) results in 
 relations contained in the two yellow highlighted cells of tables in \tabref{mot}.
