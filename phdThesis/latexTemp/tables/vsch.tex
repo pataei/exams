@@ -1,0 +1,61 @@
+\begin{table}
+\caption[shortcaption]{The relation schema of \empbio\ for variants that enable one of the features \vThree, \vFour, or \vFive and the variational relation schema of \empbio\ encompassing 
+the three variants of the plain relation \empbio.}
+\label{tab:empbio}
+\centering
+\small
+%\footnotesize
+%\scriptsize
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{The relation schema of \empbio\ for variants that enable the feature \vThree.}
+\label{tab:empbio-v3}
+\begin{tabular} {c | l l l}
+\empbio & \empno & \sex & \birthdate\\
+\end{tabular}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{The relation schema of \empbio\ for variants that enable the feature \vFour.}
+\label{tab:empbio-v4}
+\begin{tabular} {c | l l l l}
+\empbio & \empno & \sex & \birthdate & \name\\
+\end{tabular}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{The relation schema of \empbio\ for variants that enable the feature \vFive.}
+\label{tab:empbio-v5}
+\begin{tabular} {c | l l l l l}
+\empbio & \empno & \sex & \birthdate & \fname & \lname\\
+\end{tabular}
+\end{subtable}
+
+
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{The variational relation schema of \empbio.}
+\label{tab:empbio-vsch}
+\begin{tabular} {c | l l l l l l}
+%\hline
+%\hhline{-==}
+\empbio & \empno & \sex & \birthdate & \fname & \lname\\
+%\job & \titleatt & \salary\\
+%\cline{2-3}
+%& Assistant Engineer & 61594\\
+%& Senior Engineer & 96646\\
+%& \ldots & \ldots \\
+%& Staff & 77935\\
+%& Technique Leader & 58345
+\end{tabular}
+\end{subtable}
+
+\end{table}
