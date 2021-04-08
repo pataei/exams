@@ -1,21 +1,32 @@
 \section{Variational Table}
 \label{sec:vtab}
 
-\TODO{change vdb conf to vtab.}
-\rewrite{read and revise}
-\fromppr{vldb}
-\TODO{remember to use definitions of config elem and vset}
-\TODO{give example of vtab for mot ex}
-%\input{formulas/vtabConf}
 
-Variation also exists in database content. To account 
+Thus far, 
+\eric{pls start reading here.}
+we illustrated how variation can be incorporated into the schema of a database.
+However, it does not suffice to only have variation at the schema level. Consider the 
+variants of the relation \empbio\ shown in \tabref{empbio-sch}. \tabref{empbio-tab}
+includes some of the tuples of these relation variants in addition to their schemas. 
+In order to add variation into the content of the variational relation \empbio\ we
+add a new attribute \pcatt\ that store the presence condition of tuples, as shown in
+\tabref{empbio-vtab}. Thus,
+the value of this attribute for a tuple determines the set of variants that the tuple
+belongs to. For example, the first tuple in the \tabref{empbio-vtab} is present for
+all database variants that enable the feature \vThree. 
+\input{tables/vtab}
+
+As shown thus far through an example, variation also exists in database content. 
+We embark on the formal definition of a variational table. 
+\eric{stop reading here. the rest is copied from vldb.}
+To account 
 for content variability, we tag tuples with 
 presence conditions. 
 %e.g., the tuple $(1,2)^{\A}$ only exists
 %when \A\  is enabled. 
 %
 Thus, a \emph{variational tuple} (\emph{v-tuple}) is an annotated tuple,
-$\vTuple\in\vRelCont \eqq \annot[\dimMeta_\vTuple]{(\vi v \numAtts)}$. A
+$\vTuple\in\vRelCont \eqq \annot[\dimMeta]{(\vi v \numAtts)}$. A
 variational tuple corresponds to a variational relation,
 $\vRel\annot[\dimMeta_\vRel]{(\vi \vAtt \numAtts)}$,
 where each element $v_i$ is a value corresponding to attribute $\vAtt_i$
@@ -44,34 +55,42 @@ the schema and content level are consistent and satisfiable~\cite{ALW21vamos}.
 % We define properties that must hold for a VDB to be well-formed can be 
 % found in~\cite{ALW21vamos}.
 
+\input{formulas/vtabConf}
 
-\NOTE{The explanation in the following two paragraphs is really hard to follow.
-Some ideas for improvement: (1) State the requirement that you're talking about
-first, then explain how VDB satisfies it; currently the requirement comes at
-the end, so for 1--3 sentences the reader is wondering why you're re-hashing
-this aspect of VDB. (2) The reader has forgotten by now what the requirements
-are, so a brief (few words) description is needed for each requirement as you
-discuss it. (3) It would help to follow the same order of requirements as
-\secref{mot} as closely as possible. 
+%\NOTE{The explanation in the following two paragraphs is really hard to follow.
+%Some ideas for improvement: (1) State the requirement that you're talking about
+%first, then explain how VDB satisfies it; currently the requirement comes at
+%the end, so for 1--3 sentences the reader is wondering why you're re-hashing
+%this aspect of VDB. (2) The reader has forgotten by now what the requirements
+%are, so a brief (few words) description is needed for each requirement as you
+%discuss it. (3) It would help to follow the same order of requirements as
+%\secref{mot} as closely as possible. 
 
-\medskip
-I recommend structuring this discussion more rigidly as, ``This encoding
-satisfies \nZero, which is about foo, by doing bar. It satisfies \nOne, which
-is about blah, by doing baz.'' Obviously there's plenty of room for making it
-read more nicely than that, but the lack of structure is making it hard to
-understand as-is.}
+%\medskip
+%I recommend structuring this discussion more rigidly as, ``This encoding
+%satisfies \nZero, which is about foo, by doing bar. It satisfies \nOne, which
+%is about blah, by doing baz.'' Obviously there's plenty of room for making it
+%read more nicely than that, but the lack of structure is making it hard to
+%understand as-is.}
 
 
-This encoding of variational databases satisfies the requirements for a
-variational database described in \secref{mot}. Similar to a variational schema, a user
+%This encoding of variational databases satisfies the requirements for a
+%variational database described in \secref{mot}. 
+Similar to a variational schema, a user
 can configure a variational table or a VDB for a specific variant, formally defined in
-\figref{vdb-conf} in \appref{vdb-conf}. This allows users to deploy a VDB for a
-specific configuration and generate the corresponding VDB variant, satisfying
-database part of \nThree\ need.
+\figref{vdb-conf}. This allows users to deploy a VDB for a
+specific configuration and generate the corresponding VDB variant.
+%, satisfying
+%database part of \nThree\ need.
+For example, configuring the variational table \empbio, shown in \tabref{empbio-vtab},
+for configuration \setDef{\vThree, \edu, \tOne} results in the relational table \empbio\
+in \tabref{empbio-tab-v3}, assuming the VDB has the variational schema $\vSch_\mot$
+given in \exref{vsch-mot}.
 %
 Additionally, 
 our VDB framework puts all variants of a database into
-one VDB (satisfying \nZero) 
+one VDB 
+%(satisfying \nZero) 
 and it keep tracks of which variant a tuple belongs to by 
 annotating them with presence conditions. 
 For example, consider tuples
@@ -81,8 +100,8 @@ and
 that belong to the \ecourse\ table. 
 The presence conditions \tFive\ and \tFour\ state that tuples belong to temporal
 variants four and five of this VDB, respectively.
-Hence, this framework tracks which variants a tuple belongs to 
-(first part of \nTwo).
+Hence, this framework tracks which variants a tuple belongs to.
+%(first part of \nTwo).
 
 
 %As shown, o
@@ -91,11 +110,12 @@ at two levels: schema and content.
 % We do not extend variation to 
 %the constraint level and only focus on variation at the schema 
 %and content levels. 
-In a database that is a variational artifact as defined in \secref{req},
+In a variational database,
+% that is a variational artifact as defined in \secref{req},
 while content-level variation can stand on its own, such as
 frameworks used for database versioning and 
 experimental databases~\cite{dbVersioning},
-the schema level cannot, e.g., 
+the schema level cannot. For example,
 \ensuremath{
 \ecourse \left(\cno, \cname, \optAtt [\tFive] [\deptno] \right)^{\edu \wedge \left(\tFour \vee \tFive\right)}
 } encodes variation at the schema level for relation \ecourse.
@@ -105,8 +125,9 @@ it is unclear which variant each of the tuples
 and 
 \ensuremath{(23, DB, \nul)} belongs to. We can only guess that
 they belong to variants where \tFour\ or \tFive\ are enabled, but, 
-we do not know for sure which one. Thus, it violates the \nTwo\ 
-requirement of a variational database framework.
+we do not know for sure which one. 
+%Thus, it violates the \nTwo\ 
+%requirement of a variational database framework.
 %where it is unclear which variant each tuple belongs to
 %and there is no way to recover such information.
 %Note that 
@@ -157,13 +178,17 @@ cannot be represented as a single tuple
 with variation in the third element. However, this design decision
 does not prevent us from distinguishing between a \nul\ value
 that represents a missing value and a \nul\ value that represents
-a cell that is not present. This distinction can be made by checking
+a cell that is not present. 
+\eric{I rewrote the following to make sure getting the presence conditions are correct.}
+This distinction can be made by checking
 the satisfiability of 
-the presence condition of the value $v_i$ in tuple \vTuple\ of relation \vRel\ in schema \vSch:
-If $\sat{\getPCfrom {v_i} \vTuple}$ then the \nul\ indicates a missing value
-and otherwise it indicates a non-present cell, where 
-\ensuremath{\getPCfrom {v_i} \vTuple = \dimMeta_\vTuple \wedge \getPCfrom \vRel \vSch
-\wedge \getPCfrom {\getAtt i} \vRel}.
+the presence condition of the value $v_i$ in tuple \vTuple\ with of relation \vRel\ in schema \vSch:
+If $\sat{\getPCfrom {\getAtt i} \vSch \wedge \getPCfrom \vTuple \vRel \wedge \getPCfrom \vRel \vSch}$ 
+then the \nul\ indicates a missing value
+and otherwise it indicates a non-present cell.
+%, where 
+%\ensuremath{\getPCfrom {v_i} \vTuple = \dimMeta_\vTuple \wedge \getPCfrom \vRel \vSch
+%\wedge \getPCfrom {\getAtt i} \vRel}.
 % \dimMeta_\vRel \wedge \dimMeta_\vAtt \wedge \fModel
 %\revised{
 %where \ensuremath{\chc [\fOne] {2,3}} is a \emph{choice} of values $2$ and $3$
@@ -171,4 +196,4 @@ and otherwise it indicates a non-present cell, where
 %holds the value $3$. }
 %
 
-%\input{formulas/vdbConf}
+
