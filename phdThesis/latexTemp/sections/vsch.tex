@@ -5,7 +5,7 @@
 \eric{read from here pls.}
 In this section, we define how variation is encoded at the schema level. We first 
 embark on an example that 
-Remember as mentioned in \secref{rdb} the schema of a database is basically
+Remember as mentioned in \secref{rdb}, the schema of a database is basically
 the type of it. This is also the case for variational databases, except that their 
 schema (type) contains the variation in addition to the traditional relational schemas.
 The encoded variation in the schema state the condition under which relations and
@@ -15,7 +15,18 @@ For example, consider the \empbio\ relation associated with variant \vThree\ in 
 \structure{make sure this is below in final version}
 also shown in \tabref{empbio-v3} below.
 % 
-However, this relation cannot capture blah.
+However, this relation changes in variants that enable \vFour\ or \vFive, as shown in 
+\tabref{empbio-v4} and \tabref{empbio-v5}, respectively.
+%
+The variational relation schema of \empbio\ captures these differences (variation)
+in \tabref{empbio-vsch} by assigning (annotating) a feature expression that 
+indicates the variants that \empbio\ and each of its attributes exists in. 
+This table can be interpreted as \empbio\ is present in variants that enable 
+at least one of \vThree, \vFour, and \vFive. Then, the three attributes 
+\empno, \sex, and \birthdate\ exists in the relation \empbio\ no matter what as long as
+\empbio\ exists in a variant. However, the \name\ attribute is only present in variants
+that enable \vFour\ while attributes \fname\ and \lname\ are only present in variants
+that enable \vFive.
 %consider table empbio in v3 but that's different than empbio for v4 and v5. so we add varition now. 
 
 \input{tables/vsch}
@@ -57,9 +68,9 @@ schemas,
 %\centerline{ 
 $\synDef \vSch \vSchSet \eqq \vSchDef$.
 %} 
-The presence condition of the entire variational schema, \fModel, is the VDB's feature
+The presence condition of the entire variational schema, \dimMeta, is the VDB's feature
 model, which provides a top-level constraint on the set of valid
-configurations, as described in \secref{encode-var}.
+configurations, as described in \secref{encode-var}, and can be extracted by \getPC \vSch.
 %We call such configurations
 %\emph{valid} configurations. The variational schema's presence condition 
 %is the VDB feature model since it captures the relationship
@@ -95,10 +106,10 @@ to account for such a condition, e.g., the \salary\ attribute only exists when \
  \annot [\edu] \isstudent,
 \annot [\edu] \isteacher )^{\vFour \vee \vFive}\\
 %
-&\hspace{17pt}, \ecourse ( \cno, \cname, \annot [\tFive] \deptno )^{\tFour \vee \tFive} \}^{\fModel_1}\\
+&\hspace{17pt}, \ecourse ( \cno, \cname, \annot [\tFive] \deptno )^{\tFour \vee \tFive} \}^{\dimMeta_1}\\
 %\fModel_1 &= (\vFour\oplus\vFive) \wedge
 %  ((\edu\wedge(\tFour\oplus\tFive)) \vee (\neg\edu\wedge\neg(\tFour\vee\tFive)))
-\fModel_1 &= 
+\dimMeta_1 &= 
 \paran {\neg \edu \wedge \paran {\vFour \oplus \vFive} \wedge \neg \paran {\tFour \vee \tFive}
  }
 %&\hspace{1pt}
@@ -107,7 +118,7 @@ to account for such a condition, e.g., the \salary\ attribute only exists when \
 \wedge
 \paran {\tFour \oplus \tFive}}
 \end{align*}
-where \ensuremath{\fModel_1} allows only one temporal feature for the basic
+where \ensuremath{\dimMeta_1} allows only one temporal feature for the basic
 schema to be enabled at a time, and either one temporal feature for the education
 extension, if \edu\ is enabled, or else no temporal feature for the education
 extension.
@@ -124,16 +135,18 @@ depends on the presence of the variational schema.
 %
 Thus, the complete presence condition of the attribute
 $\annot[\dimMeta_\vAtt]{\vAtt}$ in variational relation
-$\vRel\annot[\dimMeta_\vRel]{(\ldots)}$ defined in variational schema \vSch\ with feature
-model \fModel\ is
-$\getPCfrom{\vAtt}{\vSch}=\dimMeta_\vAtt\wedge\dimMeta_\vRel\wedge\fModel$.
+$\vRel\annot[\dimMeta_\vRel]{(\ldots)}$ defined in variational schema \vSch\
+% with feature
+%model \fModel\ 
+is
+$\getPCfrom{\vAtt}{\vSch}=\dimMeta_\vAtt\wedge\dimMeta_\vRel\wedge \getPC \vSch$.
 
 %and it is present iff this presence condition is satisfiable, i.e., 
 %\ensuremath{\sat {\getPCfrom \vAtt \vSch}}.
 Similarly, the presence condition of variational relation $\vRel$ is
-\ensuremath{\getPCfrom \vRel \vSch = \dimMeta_\vRel \wedge \fModel}.
+\ensuremath{\getPCfrom \vRel \vSch = \dimMeta_\vRel \wedge \getPC \vSch}.
 For example, in \exref{vsch} we have
-\ensuremath{\getPCfrom \empacct {\vSch_1} = (\vFour \vee \vFive) \wedge \fModel_1}.
+\ensuremath{\getPCfrom \empacct {\vSch_1} = (\vFour \vee \vFive) \wedge \dimMeta_1}.
 %the conjunction of its \revised{annotation}
 %%presence condition 
 %with its variational relation's \revised{annotation}
@@ -164,7 +177,7 @@ which its presence condition satisfiable, e.g., in \exref{vsch}
 is present in the variant 
 \ensuremath{\setDef {\edu, \vFour, \tFive}} since 
 \ensuremath{\fSem [\setDef {\edu, \vFour, \tFive}] {\getPCfrom \isstudent {\vSch_1}}
-= \fSem [\setDef {\edu, \vFour, \tFive}] {\edu \wedge (\vFour \vee \vFive) \wedge \fModel_1}
+= \fSem [\setDef {\edu, \vFour, \tFive}] {\edu \wedge (\vFour \vee \vFive) \wedge \dimMeta_1}
 = \t \wedge (\t \vee \f) \wedge ((\neg \t \wedge (\t \oplus \f) \wedge \neg (\f \vee \t)) \vee (\t \wedge (\t \oplus \f) \wedge (\f \oplus \t))) = \t}
 but it is not present in the variant
 \ensuremath{\setDef{\vFour, \tFive}} since in this variant \edu = \f, thus,
@@ -211,13 +224,13 @@ $\vSch_\mot$.
 As a reminder the motivating example has the feature space $\fSet = \setDef {\edu,
 \vOne, \vTwo, \vThree, \vFour, \vFive, \tOne, \tTwo, \tThree, \tFour, \tFive}$. Additionally,
 all schema variants are illustrated in\tabref{mot}. 
-
+\ensure{make sure encoding is correct in \tabref{mot-vsch}}
 \input{tables/motVsch}
 
 %\tabref{mot-vsch} provides the v-schema of our motivating example, given in \tabref{mot}.
-The feature model $\fModel_\mot$ only allows one temporal feature to be true from a set of temporal features at the time. 
+The feature model $\dimMeta_\mot$ only allows one temporal feature to be true from a set of temporal features at the time. 
 \begin{align*}
-\fModel_\mot &= 
+\dimMeta_\mot &= 
 \left( 
 \neg \edu \wedge \left(
 \vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
@@ -235,11 +248,11 @@ The feature model $\fModel_\mot$ only allows one temporal feature to be true fro
 \end{align*}
 %where \ensuremath{\fName_1 \oplus \fName_2 = (\fName_1 \wedge \neg \fName_2) \vee (\fName_2 \wedge \neg \fName_1)}.
 \noindent
-However, the feature model can be encoded differently. For example, $\VVal {\fModel_\mot}$ restrict 
+However, the feature model can be encoded differently. For example, $\VVal {\dimMeta_\mot}$ restrict 
 it such that it only allows 
 the two sets of temporal features to change together.
 \begin{align*}
-\VVal {\fModel_\mot} &= 
+\VVal {\dimMeta_\mot} &= 
 \left( \vOne \vee \left(\vOne \wedge \edu \wedge \tOne \right) \right)
 \oplus
 \left( \vTwo \vee \left(\vTwo \wedge \edu \wedge \tTwo \right) \right)

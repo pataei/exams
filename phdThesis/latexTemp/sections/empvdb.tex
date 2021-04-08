@@ -66,13 +66,13 @@ $\vOne\ldots\vFive$.
 %
 These features are mutually exclusive since only one version of the
 schema is valid at a time. This yields the  feature model
-$\fModel_\employee$.
+$\dimMeta_\employee$.
 %
  Also, note that the feature model represent a restriction on the entire
  database.
 %
 \begin{align*}
-\fModel_\employee
+\dimMeta_\employee
   &=   \left(\vOne\wedge\neg\vTwo\wedge\neg\vThree\wedge\neg\vFour\wedge\neg\vFive\right)\\
   &\quad
   \vee\left(\neg\vOne\wedge\vTwo\wedge\neg\vThree\wedge\neg\vFour\wedge\neg\vFive\right)
@@ -112,7 +112,7 @@ $\vTwo\vee\vThree\vee\vFour\vee\vFive$, while the \salary\ attribute within the
 by simply \vFive.
 %
  The overall variational schema will be annotated by the feature model
- $\fModel_\employee$, described in \secref{emp-scenario}.
+ $\dimMeta_\employee$, described in \secref{emp-scenario}.
 %
 Since the presence conditions of attributes are implicitly conjuncted with the
 presence condition of their relation

@@ -11,7 +11,12 @@ the three variants of the plain relation \empbio.}
 \caption{The relation schema of \empbio\ for variants that enable the feature \vThree.}
 \label{tab:empbio-v3}
 \begin{tabular} {c | l l l}
-\empbio & \empno & \sex & \birthdate\\
+%\hline
+\multirow{2}{*}{\empbio} & \empno & \sex & \birthdate\\
+\cline{2-4}
+%\hline
+ & & & \\
+\arrayrulecolor{white}\hline
 \end{tabular}
 \end{subtable}
 
@@ -23,7 +28,10 @@ the three variants of the plain relation \empbio.}
 \caption{The relation schema of \empbio\ for variants that enable the feature \vFour.}
 \label{tab:empbio-v4}
 \begin{tabular} {c | l l l l}
-\empbio & \empno & \sex & \birthdate & \name\\
+\multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \name\\
+\cline{2-5}
+ & & & & \\
+\arrayrulecolor{white}\hline
 \end{tabular}
 \end{subtable}
 
@@ -35,19 +43,30 @@ the three variants of the plain relation \empbio.}
 \caption{The relation schema of \empbio\ for variants that enable the feature \vFive.}
 \label{tab:empbio-v5}
 \begin{tabular} {c | l l l l l}
-\empbio & \empno & \sex & \birthdate & \fname & \lname\\
+\multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \fname & \lname\\
+\cline{2-6}
+ & & & & & \\
+\arrayrulecolor{white}\hline
 \end{tabular}
 \end{subtable}
 
-
+\medskip
+\medskip
+\medskip
 \begin{subtable}[t]{\textwidth}
 \centering
+\footnotesize
 \caption{The variational relation schema of \empbio.}
 \label{tab:empbio-vsch}
-\begin{tabular} {c | l l l l l l}
+\begin{tabular} {c | l l l l l l l}
 %\hline
 %\hhline{-==}
-\empbio & \empno & \sex & \birthdate & \fname & \lname\\
+\textcolor{blue}{$\vThree \vee \vFour \vee \vFive$} & \textcolor{blue}{\t} & \textcolor{blue}{\t} & \textcolor{blue}{\t} & \textcolor{blue}{$\vFour \wedge \neg \vThree \wedge \neg \vFive$} & \textcolor{blue}{$\vFive \wedge \neg \vThree \wedge \neg \vFive$} & \textcolor{blue}{$\vFive \wedge \neg \vThree \wedge \neg \vFive$}\\
+\arrayrulecolor{blue}\hdashline
+\multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \name & \fname & \lname\\
+\arrayrulecolor{black}\cline{2-7}
+ & & & & & &\\
+\arrayrulecolor{white}\hline
 %\job & \titleatt & \salary\\
 %\cline{2-3}
 %& Assistant Engineer & 61594\\

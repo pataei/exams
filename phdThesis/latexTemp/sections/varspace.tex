@@ -159,9 +159,10 @@ No matter the context, features often have a relationship with each other that
 constrains the set of possible configurations. For example, in our motivating example (\secref{mot})
 only one of the
 temporal features of \vOne--\vFive\ can be \t\ for a given variant. This
-relationship is captured by a feature expression, called a \emph{feature model}
-and denoted by \fModel, which restricts the set of \emph{valid configurations}.
-That is, a configuration $c$ is only valid if $\fSem{\fModel}=\t$.
+relationship is captured by a feature expression, called a \emph{feature model}, 
+which restricts the set of \emph{valid configurations}.
+That is, a configuration $\config$ is only valid if the evaluation of feature model \dimMeta\
+under configuration \config\ is \t, that is $\fSem{\dimMeta}=\t$.
 %
 For example, the restriction that at a given time only one of temporal features
 \vOne--\vFive\ 

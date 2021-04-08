@@ -1,7 +1,7 @@
 \begin{table*}
 \caption[shortcaption]{Variational schema $\vSch_\mot$ 
 %of the motivating example given in \secref{mot} 
-with feature model $\fModel_\mot$.
+with feature model $\dimMeta_\mot$.
 This variational schema encompasses 30 relational schemas: five schemas when \edu\ = \f\ and 25 schemas otherwise. 
 %A v-schema encoding the variation of the employee schema introduced in \tabref{mot}. The feature model \fModel\ only allows one temporal feature to be true from a set of temporal features at the time: 
 %\ensuremath{
@@ -28,39 +28,39 @@ This variational schema encompasses 30 relational schemas: five schemas when \ed
 \begin{tabular} {| l |}
 \hline
 \ensuremath{
-\engemp (\empno, \name, \hiredate,\titleatt,\deptname )^{\vOne}
+\engemp (\empno, \name, \hiredate,\titleatt,\deptname )^{\textcolor{blue}{\vOne}}
 }\\
 \ensuremath{
-\othemp (\empno, \name, \hiredate,\titleatt,\deptname )^{\vOne}
+\othemp (\empno, \name, \hiredate,\titleatt,\deptname )^{\textcolor{blue}{\vOne}}
 }\\
 \ensuremath{
-\empacct (\empno, \optAtt [\vTwo \vee \vThree] [\name], \hiredate, \titleatt, \optAtt [\vTwo] [\deptname], \optAtt [\vThree \vee \vFour \vee \vFive] [\deptno], \optAtt [\vFive] [\salary],} \\
-\hspace{40pt} \ensuremath{\optAtt [\vFour \vee \vFive] [\isstudent], \optAtt [\vFour \vee \vFive] [\isteacher] )^{\vTwo \vee \vThree \vee \vFour \vFive}
+\empacct (\empno, \optAtt [{\textcolor{blue}{\vTwo \vee \vThree}}] [\name], \hiredate, \titleatt, \optAtt [{\textcolor{blue}{\vTwo}}] [\deptname], \optAtt [{\textcolor{blue}{\vThree \vee \vFour \vee \vFive}}] [\deptno], \optAtt [{\textcolor{blue}{\vFive}}] [\salary],} \\
+\hspace{40pt} \ensuremath{\optAtt [{\textcolor{blue}{\vFour \vee \vFive}}] [\isstudent], \optAtt [{\textcolor{blue}{\vFour \vee \vFive}}] [\isteacher] )^{\textcolor{blue}{\vTwo \vee \vThree \vee \vFour \vFive}}
 }\\
 \ensuremath{
-\job \left(\titleatt, \salary  \right)^{\vOne \vee \vTwo \vee \vThree \vee \vFour}
+\job \left(\titleatt, \salary  \right)^{\textcolor{blue}{\vOne \vee \vTwo \vee \vThree \vee \vFour}}
 }\\
 \ensuremath{
-\dept \left(\deptname, \deptno, \managerno, \optAtt [\vFive] [\studentnum], \optAtt [\vFive] [\teachernum] \right)^{\vThree \vee \vFour \vee \vFive}
+\dept \left(\deptname, \deptno, \managerno, \optAtt [{\textcolor{blue}{\vFive}}] [\studentnum], \optAtt [{\textcolor{blue}{\vFive}}] [\teachernum] \right)^{\textcolor{blue}{\vThree \vee \vFour \vee \vFive}}
 }\\
 \ensuremath{
-\empbio \left(\empno, \sex, \birthdate, \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname] \right)^{\vFour \vee \vFive}
+\empbio \left(\empno, \sex, \birthdate, \optAtt [{\textcolor{blue}{\vFour}}] [\name], \optAtt [{\textcolor{blue}{\vFive}}] [\fname], \optAtt [{\textcolor{blue}{\vFive}}] [\lname] \right)^{\textcolor{blue}{\vThree \vee \vFour \vee \vFive}}
 }\\
-\hdashline
+%\hdashline
 \ensuremath{
-\course \left(\optAtt [\neg \tOne] [\cno], \cname, \optAtt [\tOne \vee \tTwo] [\tno], \optAtt [\tFour \vee \tFive] [\timeatt], \optAtt [\tFour \vee \tFive] [\class], \optAtt [\tFive] [\deptno] \right)^\edu
-}\\
-\ensuremath{
-\student \left(\sno, \optAtt [\tOne] [\cname], \optAtt [\neg \tOne] [\cno], \optAtt [\tThree \vee \tFour] [\grade] \right)^{\edu \wedge \neg \tFive}
+\course \left(\optAtt [{\textcolor{blue}{\neg \tOne}}] [\cno], \cname, \optAtt [{\textcolor{blue}{\tOne \vee \tTwo}}] [\tno], \optAtt [{\textcolor{blue}{\tFour \vee \tFive}}] [\timeatt], \optAtt [{\textcolor{blue}{\tFour \vee \tFive}}] [\class], \optAtt [{\textcolor{blue}{\tFive}}] [\deptno] \right)^{\textcolor{blue}{\edu}}
 }\\
 \ensuremath{
-\teach \left(\tno, \cno \right)^{\edu \wedge \left(\tThree \vee \tFour \vee \tFive\right)}
+\student \left(\sno, \optAtt [{\textcolor{blue}{\tOne}}] [\cname], \optAtt [{\textcolor{blue}{\neg \tOne}}] [\cno], \optAtt [{\textcolor{blue}{\tThree \vee \tFour}}] [\grade] \right)^{\textcolor{blue}{\edu \wedge \neg \tFive}}
 }\\
 \ensuremath{
-\ecourse \left(\cno, \cname, \optAtt [\tFive] [\deptno] \right)^{\edu \wedge \left(\tFour \vee \tFive\right)}
+\teach \left(\tno, \cno \right)^{\textcolor{blue}{\edu \wedge \left(\tThree \vee \tFour \vee \tFive\right)}}
 }\\
 \ensuremath{
-\take \left(\sno, \cno, \grade \right)^{\edu \wedge \tFive}
+\ecourse \left(\cno, \cname, \optAtt [{\textcolor{blue}{\tFive}}] [\deptno] \right)^{\textcolor{blue}{\edu \wedge \left(\tFour \vee \tFive\right)}}
+}\\
+\ensuremath{
+\take \left(\sno, \cno, \grade \right)^{\textcolor{blue}{\edu \wedge \tFive}}
 }\\
 %\multirow{3}{*}{\vOne} &  \engemp\ (\empno, \name, \hiredate,\titleatt,\deptname) & 
 %\course\ (\cname, \tno) & \multirow{3}{*}{\tOne}\\

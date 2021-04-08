@@ -15,8 +15,8 @@
 \textbf{Presence condition of attributes and relations:}
 \begin{alignat*}{1}
 \getPCfrom {\vAtt} {\vSch} &= \getPCfrom {\vAtt} {\vRel \annot [\dimMeta_\vRel] {(\ldots, \annot [\dimMeta_\vAtt] \vAtt, \ldots)}} \wedge \getPCfrom \vRel \vSch = \getPC {\annot [\dimMeta_\vAtt] \vAtt} \wedge \getPCfrom \vRel \vSch=
-\dimMeta_\vAtt \wedge \dimMeta_\vRel \wedge \fModel\\
-\getPCfrom {\vRel} \vSch &= \getPC {\vRel \annot [\dimMeta_\vRel] {(\vAttList)}} \wedge \getPC {\vSch} = \dimMeta_\vRel \wedge \fModel 
+\dimMeta_\vAtt \wedge \dimMeta_\vRel \wedge \getPC \vSch\\
+\getPCfrom {\vRel} \vSch &= \getPC {\vRel \annot [\dimMeta_\vRel] {(\vAttList)}} \wedge \getPC {\vSch} = \dimMeta_\vRel \wedge \getPC \vSch
 \end{alignat*}
 
 \medskip
@@ -62,12 +62,12 @@
 %\end{flalign*}
 %
 %\begin{flalign*}
-\osSem {\annot [\fModel] {\setDef {\vRelDefNum 1, \ldots, \vRelDefNum \numRels}}}\\
+\osSem {\annot [\dimMeta] {\setDef {\vRelDefNum 1, \ldots, \vRelDefNum \numRels}}}\\
 &\hspace{-70pt}= \begin{cases}
 %		\setDef {\orSem {\vRelDefNumF 1}, \ldots, \orSem {\vRelDefNumF n}},
-                 \setDef {\orSem {\vRel_1( \vAttList_1 )^{\dimMeta_1 {\wedge \fModel}} }, \ldots, 
-                 \orSem {\vRel_\numRels( \vAttList_\numRels)^{\dimMeta_\numRels {\wedge \fModel}} }},	
-                         & \If \fSem {\fModel } =\t \\	
+                 \setDef {\orSem {\vRel_1( \vAttList_1 )^{\dimMeta_1 {\wedge \dimMeta}} }, \ldots, 
+                 \orSem {\vRel_\numRels( \vAttList_\numRels)^{\dimMeta_\numRels {\wedge \dimMeta}} }},	
+                         & \If \fSem {\dimMeta } =\t \\	
 %        & \If \fSem \fModel \\
         \setDef{}, & \text{otherwise}
 	\end{cases}
