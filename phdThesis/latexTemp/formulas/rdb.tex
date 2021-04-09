@@ -1,0 +1,26 @@
+\begin{figure}
+%[ht]
+
+\textbf{Relational database objects:}
+\begin{syntax}
+\synDef \vAtt \attnametype &&&\textit{Attribute Name}\\
+\synDef \vRel \relnametype &&& \textit{Relation Name}\\
+\synDef {\underline{\vTuple}} { \tupletype} &\eqq& {(\vi v \numAtts)} & \textit{Tuple}\\
+\synDef {\underline{\vAttList}} {\settype \attnametype} &\eqq& 
+\setDef {\vAtt_1,  \vAtt_2, \ldots,  \vAtt_\numAtts} & \textit{Set of Attributes}\\
+\synDef \pRelSch \pRelSchSet &\eqq& \vRel\left(\underline{\vAttList}\right) & \textit{Relation Schema}\\
+\synDef \pRelCont \pRelContSet &\eqq& \setDef {\pTuple_1, \pTuple_2, \ldots, \pTuple_k} & \textit{Relation Content}\\
+\synDef \pSch \pSchSet  &\eqq& \vSchDef & \textit{Schema}\\
+\synDef \pInst \pInstSet &\eqq& \setDef {(\pRelSch_1,\pRelCont_1), (\pRelSch_2,\pRelCont_2), \ldots, (\pRelSch_n,\pRelCont_n) } & \textit{Database Instance}\\
+\end{syntax}
+
+\medskip
+\textbf{Relational database type synonyms:}
+\begin{alignat*}{1}
+\pRelContSet &= {\settype \tupletype}\\
+\pSchSet &= \settype {\underline \relschtype}\\
+{\underline \dbinsttype} &= \settype {(\pRelSchSet, {\underline \relconttype})}
+\end{alignat*}
+\caption{Relational database objects and type synonyms.}
+\label{fig:rdb-def}
+\end{figure} 
