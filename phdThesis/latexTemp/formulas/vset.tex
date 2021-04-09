@@ -28,6 +28,9 @@
 \xeSem {\annot [\dimMeta_2] {\elem_2}}, \ldots, \xeSem {\annot [\dimMeta_n] {\elem_n}} }}\\
 \osetSem {\setDef \ } &= \setDef \ \\
 %
+&\\
+%
+\osetSem [] . &: \annotvsetSet \to \confSet \to \psetSet\\
 \osetSem {\annot {\vset}} &= \osetSem {\pushIn {\annot \vset}}\\
 \osetSem {\annot [\t] {\setDef \ }} & = \setDef \ \\
 \osetSem {\annot [\f] {\setDef \ }} & = \setDef \ 
@@ -57,9 +60,9 @@
 \textbf{Operations over (annotated) variational sets:}
 \begin{alignat*}{1}
 \vset_1 \cup \vset_2 &= \setDef {\annot [\dimMeta_1] \elem \myOR \annot [\dimMeta_1] \elem \in \pushIn {\vset_1}, \exists \dimMeta_2. \annot [\dimMeta_2] \elem \not \in \pushIn{\vset_2}}\\
-&\hspace{15pt} \cup \setDef {\annot [\dimMeta_2] \elem \myOR \annot [\dimMeta_2] \elem \in \pushIn {\vset_2}, 
-\exists \dimMeta_1. \annot [\dimMeta_1] \elem  \not \in \pushIn {\vset_1}}\\
-&\hspace{15pt} \cup \setDef {\annot [\dimMeta_1 \vee \dimMeta_2] \elem \myOR 
+&\hspace{-15pt} \cup \setDef {\annot [\dimMeta_2] \elem \myOR \annot [\dimMeta_2] \elem \in \pushIn {\vset_2}, 
+\exists \dimMeta_1. \annot [\dimMeta_1] \elem  \not \in \pushIn {\vset_1}}
+ \cup \setDef {\annot [\dimMeta_1 \vee \dimMeta_2] \elem \myOR 
 \annot [\dimMeta_1] \elem \in \pushIn {\vset_1}, \annot [\dimMeta_2] \elem \in \pushIn {\vset_2}}\\
 \vset_1 \cap \vset_2 &= \setDef {
 \annot [\dimMeta_1 \wedge \dimMeta_2 ]\elem \myOR

@@ -1,15 +1,6 @@
 \section{Properties of a Variational Database Framework}
 \label{sec:vdbfprop}
 
-\TODO{well-formed vdb properties.context-specific properties.}
-
-\TODO{show that they hold for vdb.}
-
-
-\NOTE{the following is taken from VaMoS}
-% Since a single VDB can supply data for many different database variants at the
-% same time, encoding variability explicitly in a database allows the developers
-% to check for different properties over all database variants.
 
 In this section, we describe a set of basic properties that a well-formed VDB
 should satisfy.
@@ -75,11 +66,13 @@ $\forall\vTuple\in\vRel, \forall\vAtt\in\vRel, \forall\vRel\in\vSch.
 
 \noindent
 %
-We implemented these checks in our VDBMS tool and verified that both use cases
-described in this paper satisfy all of them. 
 %
-Depending on the context of the VDB, more specialized properties can be checked
-too. For example, if temporal variability in a database is accumulated over
+ Since a single VDB can supply data for many different database variants at the
+ same time, encoding variation explicitly in a database allows the developers
+ to check for different properties over all database variants.
+%
+Thus, depending on the context of the VDB, more specialized properties can be checked.
+For example, if temporal variability in a database is accumulated over
 variants (i.e.\ old data is included in more recent variants in addition to
 newly added data), it is desirable to ensure that older variants are subsets of
 newer variants.

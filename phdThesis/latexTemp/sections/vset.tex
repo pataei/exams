@@ -15,7 +15,7 @@ The feature expression attached to an element is called its \emph{presence
 condition} since it determines the condition (set of configurations) under
 which the element is present in the database. 
 \eric{added ref to fig.}
-This is done by the \emph{configuration} function $\xeSem [] . : \elemSet \to \confSet \to \maybe \pelemSet$ defined in \figref{vset}.
+This is done by the \emph{configuration} function $\xeSem [] . : \elemSet \to \confSet \to \maybe {\pelemSet}$ defined in \figref{vset}.
 For example, assuming
 \eric{you had \ffSet\ instead of \fSet. was that a typo or am I making a mistake?}
 \applyppr{parisa, remember you fixed vldb (assumed it's a typo).}
@@ -38,7 +38,10 @@ annotated element.
 
 %\point{vset.}
 A \emph{variational set} (\emph{v-set}) $\vset = \setDef {\annot [\dimMeta_1] {\elem_1},\ldots, \annot [\dimMeta_n] {\elem_n}}$ 
-is a set of annotated elements~\cite{EWC13fosd,Walk14onward,ATW17dbpl}.
+is a set of annotated elements, 
+\ericnew{added that is}
+\TODO{that is,
+$\vset \in \vsetSet$~\cite{EWC13fosd,Walk14onward,ATW17dbpl}.}
 We typically omit the presence condition \t\ in a variational set,
 e.g., $\annot [\t] 4 = 4$.
 % where the presence condition of elements is satisfiable~\cite{EWC13fosd,Walk14onward,vdb17ATW}. 
@@ -85,7 +88,9 @@ A variational set itself can also be annotated with a feature expression.
 %
 %An \emph{annotated variational set} 
 $\annot \vset = \setDef {\annot [\dimMeta_1] {\elem_1},\ldots,\annot [\dimMeta_n] {\elem_n}}^\dimMeta$ is an
-\emph{annotated variational set}.
+\emph{annotated variational set}, 
+\ericnew{added that is}
+\TODO{that is, $\annot \vset \in \annotvsetSet$.}
 % that it is annotated itself by a \emph{feature expression} \dimMeta.
 %We denote an annotated variational set of elements $\elem \in \mathbf{\elemSet}$ with
 %\annot \elemSet.
@@ -100,10 +105,14 @@ elements:
 \setDef{\annot [\dimMeta_i \wedge \dimMeta] {\elem_i} \myOR 
 \annot [\dimMeta_i] \elem_i \in \annot \vset, \sat {\dimMeta_i \wedge \dimMeta}
 }}.
-\eric{added that both v-set and annot v-set are of the same type.}
-Thus, we consider both variational sets and annotated variational sets to 
-belong to the set of variational set \vsetSet, that is, we consider them to have the same type. 
-Note that the \emph{normalization} operation also removes elements
+%\eric{added that both v-set and annot v-set are of the same type.}
+%Thus, we consider both variational sets and annotated variational sets to 
+%belong to the set of variational set \vsetSet, that is, we consider them to have the same type. 
+\ericnew{added the overloading of operations.}
+\TODO{Note that both the normalization operation and variational set configuration
+are overloaded, that is, they are defined for both variational sets and 
+annotated variational sets. }
+Also, note that the \emph{normalization} operation also removes elements
 with unsatisfiable presence conditions and may also be applied
 to an unannotated variational set \vset\ since $\annot[\t]{\vset} = \vset$.
 %\ensuremath{

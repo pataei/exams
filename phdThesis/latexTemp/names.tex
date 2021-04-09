@@ -1,3 +1,17 @@
+\newcommand{\settype}[1]{\OB{\mathbf{Set} \ {#1}}}
+\newcommand{\vartype}[1]{\OB{\mathbf{Var} \ {#1}}}
+\newcommand{\attnametype}{\OB{\mathbf{Attname}}}
+\newcommand{\relnametype}{\OB{\mathbf{Relname}}}
+\newcommand{\fnametype}{\OB{\mathbf{Fname}}}
+\newcommand{\fexprtype}{\OB{\mathbf{Fexpr}}}
+\newcommand{\relschtype}{\OB{\mathbf{Relsch}}}
+\newcommand{\relconttype}{\OB{\mathbf{Relcont}}}
+\newcommand{\schtype}{\OB{\mathbf{Sch}}}
+\newcommand{\dbinsttype}{\OB{\mathbf{Dbinst}}}
+\newcommand{\typevar}{\OB{\mathbf{a}}}
+\newcommand{\tupletype}{\OB{\mathbf{Tuple}}}
+
+
 \newcommand{\Pone}{\OB{\left(P_1\right)}}
 \newcommand{\mot}{\OB{\mathit{mot}}}
 \newcommand{\pcatt}{\OB{\mathit{prescond}}}
@@ -6,61 +20,6 @@
 \newcommand{\nbf}{NBF}
 \newcommand{\ubf}{UBF}
 \newcommand{\uav}{UAV}
-
-%shorthands
-\newcommand{\ChcExpTxt}{Choice expression}
-\newcommand{\DimTxt}{Choice dimension}
-\newcommand{\ConfigTxt}{Configuration}
-\newcommand{\vdbTxt}{variational database}
-\newcommand{\VdbTxt}{Variational database}
-\newcommand{\vdbInstTxt}{variational database instance}
-\newcommand{\VdbInstTxt}{Variational database instance}
-\newcommand{\vqTxt}{variational query}
-\newcommand{\VqTxt}{Variational query}
-\newcommand{\vqsTxt}{variational queries}
-\newcommand{\VqsTxt}{Variational queries}
-\newcommand{\vschTxt}{variational schema}
-\newcommand{\VschTxt}{Variational schema}
-\newcommand{\tenvTxt}{type}
-\newcommand{\TenvTxt}{Type}
-\newcommand{\vctxTxt}{variation context}
-\newcommand{\VctxTxt}{Variation context}
-\newcommand{\vRelSchTxt}{variational relation schema}
-\newcommand{\VrelSchTxt}{Variational relation schema}
-\newcommand{\vrelTxt}{variational relation}
-\newcommand{\VrelTxt}{Variational relation}
-\newcommand{\presCondTxt}{presence condition}
-\newcommand{\PresCondTxt}{Presence condition}
-\newcommand{\fexpTxt}{feature expression}
-\newcommand{\FexpTxt}{Feature expression}
-\newcommand{\vCondTxt}{variational condition}
-\newcommand{\VcondTxt}{Variational condition}
-\newcommand{\vAttListTxt}{variational attribute list}
-\newcommand{\VattListTxt}{Variational attribute list}
-\newcommand{\optAttTxt}{optional attribute}
-\newcommand{\OptAttTxt}{Optional attribute}
-\newcommand{\VlistTxt}{Variational list}
-\newcommand{\VsetTxt}{Variational set}
-\newcommand{\AnnotVsetTxt}{Annotated variational set}
-\newcommand{\AnnotVlistTxt}{Annotated variational list}
-\newcommand{\VobjTxt}{Variational object}
-\newcommand{\AttTxt}{Attribute}
-\newcommand{\RelSchTxt}{Relation schema}
-\newcommand{\SchTxt}{Schema}
-\newcommand{\RelTxt}{Relation}
-\newcommand{\DbInstTxt}{Database instance}
-\newcommand{\DbTxt}{Database}
-\newcommand{\CondTxt}{Condition}
-\newcommand{\vrelAlgTxt}{variational relational algebra}
-\newcommand{\VrelAlgTxt}{variational relational algebra}
-\newcommand{\typeSys}{type system}
-\newcommand{\varPres}{variation preserving}
-\newcommand{\VarPres}{Variation preserving}
-\newcommand{\FTxt}{Feature}
-\newcommand{\QTxt}{Query}
-%\newcommand{\VcondTxt}{Variational condition}
-\newcommand{\fctTxt}{true feature set}
-\newcommand{\osemTxt}{selection semantics /selection /semantics /configuration semantics/ configuring}
 
 %needs names
 \newcommand{\nZero}{\textbf{R0}}
@@ -221,14 +180,15 @@
 \newcommand*{\A}{\OB{\fName_1}}
 \newcommand*{\B}{\OB{\fName_2}}
 \newcommand*{\C}{\OB{\fName_3}}
-\newcommand*{\fSet}{\OB{\mathbf{F}}}
+\newcommand*{\fSet}{\fnametype}
 \renewcommand*{\dimMeta}{\OB{e}}
 %\newcommand*{\fModel}{\OB{m}}
-\newcommand*{\ffSet}{\OB{\mathbf{E}}}
+%\newcommand*{\ffSet}{\OB{\mathbf{E}}}
+\newcommand*{\ffSet}{\fexprtype}
 \newcommand*{\bTag}{\OB{b}}
-\newcommand*{\bSet}{\mathbf{B}}
+\newcommand*{\bSet}{\mathbf{Bool}}
 \newcommand*{\config}{\OB{c}}
-\newcommand*{\confSet}{\OB{\mathbf{C}}}
+\newcommand*{\confSet}{\OB{\mathbf{Config}}}
 \newcommand*{\fct}[1][\config]{\OB{\dimMeta_{#1}^t}}
 \newcommand*{\vctx}{\OB{\dimMeta}}
 
@@ -256,25 +216,28 @@
 %\newcommand*{\lN}{\OB{\mathit{lastName}}}
 
 %spj objects
-\newcommand*{\attNames}{\OB{\mathbf{attname}}}
-\newcommand*{\relNames}{\OB{\mathbf{relname}}}
+%\newcommand*{\attNames}{\OB{\mathbf{attname}}}
+%\newcommand*{\relNames}{\OB{\mathbf{relname}}}
 \newcommand*{\maybe}[1]{\OB{{#1}_{\mathbf{\bot}}}}
 \newcommand*{\pDB}{\OB{\underline{\db}}}
 \newcommand*{\pQ}{\OB{\underline{\q}}}
 \newcommand*{\pQSet}{\OB{\underline{\qSet}}}
-\newcommand*{\pAtt}{\OB{\underline{\att}}}
+\newcommand*{\pAtt}{\OB{\att}}
 \newcommand*{\pAttList}{\OB{\underline{\attList}}}
 \newcommand*{\pRel}{\OB{\underline{\rel}}}
 \newcommand*{\pRelSch}{\OB{\underline{\relSch}}}
 \newcommand*{\pRelCont}{\OB{\underline{\relCont}}}
-\newcommand*{\pRelContSet}{\OB{\underline{\relContSet}}}
+%\newcommand*{\pRelContSet}{\OB{\underline{\relContSet}}}
+\newcommand*{\pRelContSet}{\OB{\settype \tupletype}}
 \newcommand*{\pSch}{\OB{\underline{\sch}}}
 \newcommand*{\pInst}{\OB{\underline{\dbInst}}}
-\newcommand*{\pInstSet}{\OB{\underline{\dbInstSet}}}
-\newcommand*{\pAttSet}{\OB{\underline{\attSet}}}
+%\newcommand*{\pInstSet}{\OB{\underline{\dbInstSet}}}
+\newcommand*{\pInstSet}{\OB{\settype {\left(\pRelSchSet,\pRelContSet\right)}}}
+%\newcommand*{\pAttSet}{\OB{\underline{\attSet}}}
+\newcommand*{\pAttSet}{\settype \attnametype}
 \newcommand*{\pRelSet}{\OB{\underline{\relSet}}}
-\newcommand*{\pRelSchSet}{\OB{\underline{\relSchSet}}}
-\newcommand*{\pSchSet}{\OB{\underline{\schSet}}}
+\newcommand*{\pRelSchSet}{\OB{\underline{\relschtype}}}
+\newcommand*{\pSchSet}{\OB{\settype {\underline{\relschtype}}}}
 \newcommand*{\pAttOpCte}{\OB{\op \pAtt \cte}}
 \newcommand*{\pAttOpAtt}{\OB{\op {\pAtt_1}  {\pAtt_2}}}
 \newcommand*{\pElem}{\OB{\underline \elem}}
@@ -299,11 +262,13 @@
 \newcommand*{\vTuple}{\tuple}
 \newcommand*{\annot}[2][\dimMeta]{\OB{{#2}^{#1}}}
 \newcommand*{\elem}{\OB{x}}
-\newcommand*{\elemSet}{\OB{\mathbf{X}}}
-\newcommand*{\pelemSet}{\OB{\underline{\elemSet}}}
+\newcommand*{\elemSet}{\OB{\vartype \typevar}}
+%\newcommand*{\pelemSet}{\OB{\underline{\elemSet}}}
+\newcommand*{\pelemSet}{\OB{\typevar}}
 \newcommand*{\cond}{\OB{\theta}}
 \newcommand*{\pset}{\OB{\underline {X}}}
-\newcommand*{\psetSet}{\OB{\underline {\mathcal{\vset}}}}
+%\newcommand*{\psetSet}{\OB{\underline {\mathcal{\vset}}}}
+\newcommand*{\psetSet}{\OB{\settype \typevar}}
 \newcommand*{\numRels}{\OB{n}}
 \newcommand*{\numTuples}{\OB{k}}
 \newcommand*{\numAtts}{\OB{l}}
@@ -326,7 +291,7 @@
 \newcommand*{\vSchDef}{\OB{\setDef {{\vRelSch_1 , \ldots, \vRelSch_n}}^{\dimMeta}}}
 %{\{\widetilde{s}_{R_1}^{F_1}, \ldots, \widetilde{s}_{R_n}^{F_n}\}^\dimMeta}}
 \newcommand*{\vdbInst}{\OB{\dbInst}}
-\newcommand*{\vdbInstSet}{\OB{\dbInstSet}}
+\newcommand*{\vdbInstSet}{\OB{\vartype {\left( \settype {\left(\left(\relschtype,\relconttype\right)\right)}\right)}}}
 \newcommand*{\vObj}{\OB{o}}
 \newcommand*{\vObjSet}{\OB{\mathbf{O}}}
 \newcommand*{\vQ}{\OB{\q}}
@@ -336,7 +301,9 @@
 \newcommand*{\vSch}{\OB{\sch}}
 %\newcommand*{\vSch}{\OB{\VVSet {\mathcal{S}}}}
 \newcommand*{\vset}{\OB{X}}
-\newcommand*{\vsetSet}{\OB{\mathcal{\vset}}}
+%\newcommand*{\vsetSet}{\OB{\mathcal{\vset}}}
+\newcommand*{\vsetSet}{\OB{\settype (\vartype \typevar)}}
+\newcommand*{\annotvsetSet}{\OB{\vartype {\left(\settype {\left(\vartype \typevar\right)}\right)}}}
 \newcommand*{\vTab}{\tab}
 \newcommand*{\vRel}{\rel}
 \newcommand*{\vAtt}{\att}
@@ -423,12 +390,13 @@
 
 %\newcommand*{\vRelDef}{\OB{\left[\pRel^{\dimMeta}:\vAttList\right]}}
 \newcommand*{\vRelConf}[1][\vRel]{\OB{{#1}^\config}}
-\newcommand*{\vAttSet}{\OB{\attSet}}
+\newcommand*{\vAttSet}{\OB{{\settype {(\vartype \attnametype)}}}}
 \newcommand*{\vTabSet}{\OB{\tabSet}}
-\newcommand*{\vRelSchSet}{\OB{\relSchSet}}
-\newcommand*{\vRelContSet}{\OB{\relContSet}}
-\newcommand*{\vSchSet}{\OB{\schSet}}
-\newcommand*{\vInstSet}{\OB{\dbInstSet}}
+\newcommand*{\vRelSchSet}{\relschtype}
+%\newcommand*{\vRelContSet}{\OB{\settype {(\vartype \tupletype)}}}
+\newcommand*{\vRelContSet}{\relconttype}
+\newcommand*{\vSchSet}{\OB{\vartype {\left(\settype \relschtype\right)}}}
+%\newcommand*{\vInstSet}{\OB{\dbInstSet}}
 \newcommand*{\empSet}{\OB{\varnothing}}
 \newcommand*{\emp}{\OB{\varepsilon}}
 \newcommand*{\empAtt}{\OB{\varepsilon}}

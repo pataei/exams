@@ -51,7 +51,7 @@
 %\synDef \vRelSch \vRelSchSet &\eqq& \vRelDef & \textit{Variational Relation Schema}\\
 %\synDef \vSch \vSchSet &\eqq& \vSchDef & \textit{Variational Schema}
 %
-\synDef \vTuple \vRelCont &\eqq& \annot[\dimMeta]{(\vi v \numAtts)} & \textit{Variational Tuple}\\
+\synDef \vTuple {\vartype \tupletype} &\eqq& \annot[\dimMeta]{(\vi v \numAtts)} & \textit{Variational Tuple}\\
 %\vTuple\in\vRelCont \eqq \annot[\dimMeta_\vTuple]{(\vi v \numAtts)}
 \synDef \vRelCont \vRelContSet &\eqq& \setDef {\vi \vTuple \numTuples} & \textit{Variational Relation Content}\\
 %\vRelCont \in \vRelContSet \eqq \setDef {\vi \vTuple \numTuples}
@@ -63,7 +63,7 @@
 \textbf{Variational tuple configuration:}
 %
 \begin{alignat*}{1}%\raggedleft
-\ouSemType [] . &: \vRelCont \to \vRelSchSet \to \confSet \to \maybe \pRelCont\\
+\ouSemType [] . &: {\vartype \tupletype} \to \vRelSchSet \to \confSet \to \maybe \tupletype\\
 %\end{flalign*}
 %
 %\begin{flalign*}%\raggedleft
@@ -96,7 +96,7 @@
 \textbf{VDB instance configuration:}
 %
 \begin{alignat*}{1}%\raggedleft
-\odbSem [] . &: \vInstSet \to \confSet \to \pInstSet\\
+\odbSem [] . &: \vdbInstSet \to \confSet \to \pInstSet\\
 %\end{flalign*}
 %
 %\begin{flalign*}%\raggedleft
@@ -128,7 +128,8 @@ for its content,
 however, the variational schema does not need to be passed to configuration 
 functions of smaller parts of the variational schema such as \orSem .  or \olSem .
 since all needed information for configuring a part of a variational schema
-is propagated.
+is propagated. 
+Note that $\vRelContSet = \settype {(\vartype \tupletype)}$.
 %}
 % of variational set of attributes, v-relations, and v-schema.
 %$\varepsilon$ denotes a non-existent relation and value.
