@@ -228,16 +228,16 @@
 \newcommand*{\pRelSch}{\OB{\underline{\relSch}}}
 \newcommand*{\pRelCont}{\OB{\underline{\relCont}}}
 %\newcommand*{\pRelContSet}{\OB{\underline{\relContSet}}}
-\newcommand*{\pRelContSet}{\OB{\settype \tupletype}}
+\newcommand*{\pRelContSet}{\OB{\underline \relconttype}}
 \newcommand*{\pSch}{\OB{\underline{\sch}}}
 \newcommand*{\pInst}{\OB{\underline{\dbInst}}}
-%\newcommand*{\pInstSet}{\OB{\underline{\dbInstSet}}}
-\newcommand*{\pInstSet}{\OB{\settype {\left(\pRelSchSet,\pRelContSet\right)}}}
+\newcommand*{\pInstSet}{\OB{\underline{\dbinsttype}}}
+%\newcommand*{\pInstSet}{\OB{\settype {\left(\pRelSchSet,\pRelContSet\right)}}}
 %\newcommand*{\pAttSet}{\OB{\underline{\attSet}}}
-\newcommand*{\pAttSet}{\settype \attnametype}
+\newcommand*{\pAttSet}{\attnametype}
 \newcommand*{\pRelSet}{\OB{\underline{\relSet}}}
 \newcommand*{\pRelSchSet}{\OB{\underline{\relschtype}}}
-\newcommand*{\pSchSet}{\OB{\settype {\underline{\relschtype}}}}
+\newcommand*{\pSchSet}{\OB{\underline{\schtype}}}
 \newcommand*{\pAttOpCte}{\OB{\op \pAtt \cte}}
 \newcommand*{\pAttOpAtt}{\OB{\op {\pAtt_1}  {\pAtt_2}}}
 \newcommand*{\pElem}{\OB{\underline \elem}}
@@ -291,7 +291,7 @@
 \newcommand*{\vSchDef}{\OB{\setDef {{\vRelSch_1 , \ldots, \vRelSch_n}}^{\dimMeta}}}
 %{\{\widetilde{s}_{R_1}^{F_1}, \ldots, \widetilde{s}_{R_n}^{F_n}\}^\dimMeta}}
 \newcommand*{\vdbInst}{\OB{\dbInst}}
-\newcommand*{\vdbInstSet}{\OB{\vartype {\left( \settype {\left(\left(\relschtype,\relconttype\right)\right)}\right)}}}
+\newcommand*{\vdbInstSet}{\dbinsttype}
 \newcommand*{\vObj}{\OB{o}}
 \newcommand*{\vObjSet}{\OB{\mathbf{O}}}
 \newcommand*{\vQ}{\OB{\q}}
@@ -395,7 +395,7 @@
 \newcommand*{\vRelSchSet}{\relschtype}
 %\newcommand*{\vRelContSet}{\OB{\settype {(\vartype \tupletype)}}}
 \newcommand*{\vRelContSet}{\relconttype}
-\newcommand*{\vSchSet}{\OB{\vartype {\left(\settype \relschtype\right)}}}
+\newcommand*{\vSchSet}{\schtype}
 %\newcommand*{\vInstSet}{\OB{\dbInstSet}}
 \newcommand*{\empSet}{\OB{\varnothing}}
 \newcommand*{\emp}{\OB{\varepsilon}}

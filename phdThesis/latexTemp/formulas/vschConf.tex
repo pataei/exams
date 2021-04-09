@@ -12,6 +12,12 @@
 \end{syntax}
 
 \medskip
+\textbf{Variational schema type synonyms:}
+\begin{alignat*}{1}
+\vSchSet &= \vartype {\left(\settype \relschtype\right)}
+\end{alignat*}
+
+\medskip
 \textbf{Presence condition of attributes and relations:}
 \begin{alignat*}{1}
 \getPCfrom {\vAtt} {\vSch} &= \getPCfrom {\vAtt} {\vRel \annot [\dimMeta_\vRel] {(\ldots, \annot [\dimMeta_\vAtt] \vAtt, \ldots)}} \wedge \getPCfrom \vRel \vSch = \getPC {\annot [\dimMeta_\vAtt] \vAtt} \wedge \getPCfrom \vRel \vSch=

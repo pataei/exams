@@ -60,6 +60,13 @@
 \end{syntax}
 
 \medskip
+\textbf{Variational database type synonyms:}
+\begin{alignat*}{1}
+\vRelContSet &= \settype {(\vartype \tupletype)}\\
+\vdbInstSet &= \vartype {\left( \settype {\left(\left(\relschtype,\relconttype\right)\right)}\right)}
+\end{alignat*}
+
+\medskip
 \textbf{Variational tuple configuration:}
 %
 \begin{alignat*}{1}%\raggedleft
@@ -129,7 +136,7 @@ however, the variational schema does not need to be passed to configuration
 functions of smaller parts of the variational schema such as \orSem .  or \olSem .
 since all needed information for configuring a part of a variational schema
 is propagated. 
-Note that $\vRelContSet = \settype {(\vartype \tupletype)}$.
+%Note that $\vRelContSet = \settype {(\vartype \tupletype)}$.
 %}
 % of variational set of attributes, v-relations, and v-schema.
 %$\varepsilon$ denotes a non-existent relation and value.

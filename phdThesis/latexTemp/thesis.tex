@@ -14,116 +14,13 @@
 \submitdate{June 20, 2021}
 \commencementyear{2021}
 %
-\abstract{
-\rewrite{remember to adjust w.r.t. change of placing of requirements.}
-%In this thesis I present the variational database, a formal framework for representing variation 
-%in relational databases, the variational relational algebra, a query language for extracting
-%information from the variational database that accounts explicitly for variation in the query
-%language.
-In this thesis I present the variational database management system, a formal framework and its
-implementation for representing variation in relational databases and managing variational
-information needs. 
+\abstract{\input{sections/abstract}}
 %
-A variational database is intended to support any kind of variation in a database.
-Specific kinds of variation in databases have already been studied and are well-supported,
-for example, schema evolution systems address the variation of a database's schema
- over time and data integration systems address  variation caused by accessing data 
-from multiple data sources simultaneously. 
-%, both
-%the existing instances and more importantly newly arisen instances which could be a 
-%combination of existing instances.
-%
-However, many other kinds of variation in databases arise in practice, and different 
-kinds of variation often interact, but these scenarios are not well-supported by the existing work.
-%However, due to new business requirements new kinds of variation in databases raises and
-%they are not addressed by existing work. Even though some of the new kinds of variation
-%in databases are the result of combining well-studied kinds of variation, their solutions
-%cannot address the new kind of variation.
-%
-For example, neither the schema evolution systems nor the database integration systems
-can address variation that arises when data sources combined in one database
-evolve over time.
-%For example, existing instances of variation in databases are when a single database evolves
-%over time and when data from different sources is combined. While there are context-specific 
-%solutions to both problems neither solution can address when data sources combined in one
-%database evolves over time. 
+\acknowledgements{\input{sections/ack}}
 
-%
-This thesis collects a large amount of work: 
-%
-It defines the variational database framework and the syntax and \TODO{specific kind of} 
-semantics of the variational relational algebra, a query language for variational databases.
-% along with its type system and 
-%semantic-preserving syntax-based equivalence rules. 
-%
-It also defines
-the requirements of a generic variational database framework
-% that must be met 
-that makes the framework expressive enough to encode any kind of variation in databases.
-% in order to satisfy 
-%the variety of information needs users when variation appears in databases and 
-%variational information needs that must be satisfied in a generic variational database 
-%framework and 
-Additionally, it  \TODO{shows/proves} that the introduced framework satisfies all these
-needs. 
-%
-It presents two use cases of the variational database framework that are based on existing 
-data sets and scenarios that are partially supported by existing techniques.
-%
-It presents the variational database management system which is the implementation of 
- variational databases and variational relational algebra as an abstract layer written in Haskell
-on top of a traditional RDBMS. 
-%
-It also presents several theoretical results related to the framework and query language, such 
-as syntax-based equivalence rules that preserve the semantics of a query, 
-a type system for ensuring that a variational query is well formed with respect to the 
-underlying variational schema, and a confluence property of the variational relational
-algebra type system and semantics with respect to the relational algebra type system 
-and semantics. 
-%Variation occurs in databases in many different forms and contexts. For example, a single database schema evolves over time, data from different sources may be combined, and the various configurations of a software product line (SPL) may have different data needs. 
-%%
-%While approaches have been developed to deal with many such scenarios, particularly in the fields of database evolution and data integration, there is no solution that treats variation as a general and orthogonal concern in databases. This is a problem when various kinds of variation intersect, such as during the evolution of a SPL.
-%%
-%Databases used in the same context that are intended to satisfy the same information need
-%share commonalities while varying in some aspects as well. 
-%% 
-%For example, databases used to store information for a software system are intended to 
-%satisfy the client's information need and they share some parts of the schema, however, 
-%they still vary in some parts of the schema and most of the content.
-%%
-%That is, they are \emph{variants} of a conceptual hypothetical database that captures all 
-%the \emph{variation} among them.
-%%
-%This pattern appears repeatedly in databases. Instances of variation occurring in databases
-%are: schema evolution, database integration, database versioning, data extraction, and 
-%software development either using software product lines approaches or not. 
-%%
-%While there are specialized approaches to some instances of variation in databases
-%there are no generic solutions to manage variation in databases.
-%
-%In this thesis, we answer the question: ``can we abstract out this repeating pattern of 
-%variation appearing in databases and bring the hypothetical database that captures all
-%the variation among a number of databases to life?''
-%%
-%To this end, we formalize the database that captures all variation of a number of databases,
-%called a \emph{variational database}, and a query language that allows interaction with
-%the said database, called \emph{variational relational algebra}. 
-%\TODO{maybe two languages, another: variational SQL, depends on my timing!}
-%%
-%We implement these concepts in \emph{Variational Database Management System (VDBMS)},
-%demonstrate the feasibility of our concepts by developing two real-world use cases, and 
-%examine the performance of VDBMS over our two use cases. 
-}
-%
-\acknowledgements{
-\TODO{Eric.
-Committee.
-jeff.
-abu.
-parents.
-friends.
-}
-}
+\dedication{To my loving parents,\\
+Sedigheh Bazrafshan and Seyed Jalal Ataei.\\
+I count the days to embrace you both in my arms again\\ (after 2,109 days and still counting).}
 
 \usepackage{mathtools} 
 \usepackage{algorithm}
@@ -241,7 +138,11 @@ friends.
 \begin{document}
 \maketitle
 
+
+
 \mainmatter
+
+
 
 \input{sections/intro}
 %mot
@@ -301,7 +202,7 @@ friends.
 %\bibliographystyle{plainnat}
 \bibliography{bib/eric,bib/martin,bib/vdbms,bib/change,bib/vds,bib/fp,bib/error-reporting,bib/misc,bib/dblp2_short,bib/variational,bib/db}
 
-\appendix
+%\appendix
 %\input{apps/vdbusecase}
 %\chapter{Proof of Variation-Preserving}
 %\label{sec:proof}

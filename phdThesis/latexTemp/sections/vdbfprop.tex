@@ -17,27 +17,31 @@ A well-formed v-schema should have the following properties:
 %
 \begin{enumerate}
 %
-\item There is at least one valid configuration of the VDB feature model $\getPC \vSch$:
+\item There is at least one valid configuration of the VDB feature model $\getPC \vSch$:\\
 %
-$\sat {\getPC \vSch}$
+\centerline{
+$\sat {\getPC \vSch}$}
 %
 \item Every relation \vRel\ is present in at least one configuration of the
-variational schema \vSch:
+variational schema \vSch:\\
 %
-$\forall\vRel\in\vSch, \sat{\getPCfrom \vRel \vSch}$
+\centerline{
+$\forall\vRel\in\vSch, \sat{\getPCfrom \vRel \vSch}$}
 %
 \item Every attribute \vAtt\ in every relation \vRel\ is present in at least one
-configuration of the variational schema \vSch:
+configuration of the variational schema \vSch:\\
 %
+\centerline{
 $\forall\vAtt\in\vRel, \forall\vRel\in\vSch.
-\sat{\getPCfrom \vRel \vSch \wedge\getPCfrom \vAtt \vRel}$
+\sat{\getPCfrom \vRel \vSch \wedge\getPCfrom \vAtt \vRel}$}
 %
 \item If $\vSch_\config$ denotes the expected plain relational schema for
 configuration $c$ of the variational schema \vSch, then configuring the
 variational schema with that configuration, written $\sem[\config]{\vSch}$,
-actually yields that variant:
+actually yields that variant:\\
 %
-$\forall\config\in\confSet. \osSem {\vSch} = \vSch_\config$
+\centerline{
+$\forall\config\in\confSet. \osSem {\vSch} = \vSch_\config$}
 %
 \end{enumerate}
 
@@ -48,18 +52,19 @@ At the data level, a well-formed VDB should have these properties:
 %
 \begin{enumerate}
 %
-\item Every tuple \vTuple\ in relation \vRel\ is present in at least one variant:
+\item Every tuple \vTuple\ in relation \vRel\ is present in at least one variant:\\
 %
+\centerline{
 $\forall\vTuple\in\vRel, \forall\vRel\in\vSch.
-\sat{\getPCfrom\vRel \vSch\wedge\getPCfrom \vTuple \vRel}$ 
+\sat{\getPCfrom\vRel \vSch\wedge\getPCfrom \vTuple \vRel}$ }
 %
-\item For every tuple \vTuple\ in relation \vRel, if an attribute \vAtt\ in \vRel is
+\item For every tuple \vTuple\ in relation \vRel, if an attribute \vAtt\ in \vRel\ is
 not present in any variants of the tuple, then the value of that attribute in
-\ensure{make sure the value thing is correct}
-the tuple, written $\mathit{value}_\vTuple(\vAtt)$, should be NULL:
-$\forall\vTuple\in\vRel, \forall\vAtt\in\vRel, \forall\vRel\in\vSch.
+the tuple, written $\mathit{value}_\vTuple(\vAtt)$, should be NULL:\\
+\centerline{
+$\forall\vTuple\in\vRel, \vAtt\in\vRel, \vRel\in\vSch.
 \neg\sat{\getPCfrom \vRel \vSch \wedge\getPCfrom \vAtt \vRel\wedge\getPCfrom \vTuple \vRel}
-\Rightarrow \mathit{value}_\vTuple(\vAtt) = \text{NULL}$
+\Rightarrow \mathit{value}_\vTuple(\vAtt) = \text{NULL}$}
 %
 \end{enumerate}
 

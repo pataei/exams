@@ -212,19 +212,19 @@
   \@appendixtrue%
   \setcounter{chapter}{0}%
   \setcounter{section}{0}%
-  \gdef\@chapapp{\appendixname}%
+  %\gdef\@chapapp{\appendixname}%  
   \gdef\thechapter{\@Alph\c@chapter}%
   \renewcommand{\ext@figure}{loaf}%
   \renewcommand{\ext@table}{loat}%
   \if@seploa\def\ext@toc{loap}\fi%
-  \addcontentsline{toc}{chapter}{Appendices}%
+  \addcontentsline{toc}{chapter}{Appendix}%
   \appendixpage%
 }
 
 % T.G. : An appendix page is required before the appendices.
 \newcommand{\appendixpage}{%
   \vspace*{0.3\textheight}
-  \begin{center}{\heading APPENDICES}\end{center}%
+  \begin{center}{\heading APPENDIX}\end{center}%
   \clearpage%
 }
 
@@ -236,7 +236,7 @@
   \ifnum \c@secnumdepth >\m@ne
     \if@mainmatter
       \refstepcounter{chapter}
-      \typeout{\@chapapp\space\thechapter.}
+	 \typeout{\@chapapp\space\thechapter.}      
       \addcontentsline{\ext@toc}{\if@appendix app\else chapter\fi}{\protect\numberline{\thechapter}#1}
     \else
       \addcontentsline{\ext@toc}{chapter}{#1}
@@ -463,7 +463,7 @@
   \if \@dedcontent *
   \else
   \thispagestyle{empty}
-  \vspace*{10\baselineskip}
+  \vspace*{2\baselineskip}
   \begin{center}
   \@dedcontent
   \end{center}
@@ -525,25 +525,25 @@
   \listoftables           % J
 
 	% Algorithm listing
-	\ifthenelse{\isundefined{\listofalgorithms}}{}{
-  \expandafter\newcommand\csname ps@loaa\endcsname{
-  \renewcommand{\@oddhead}{%
-  \parbox{\textwidth}{%
-  \centering {\heading LIST OF ALGORITHMS} \\ 
-  \uline{Algorithm}\hfill\uline{Page}}}
-  \renewcommand{\@oddfoot}{}
-  \renewcommand{\@evenfoot}{}}
-  \expandafter\newcommand\csname ps@loab\endcsname{%
-  \renewcommand{\@oddhead}{%
-  \parbox{\textwidth}{%
-  \centering {\heading LIST OF ALGORITHMS\ (Continued)} \\ 
-  \uline{Algorithm}\hfill\uline{Page}}}
-  \renewcommand{\@evenhead}{\@oddhead}
-  \renewcommand{\@oddfoot}{}
-  \renewcommand{\@evenfoot}{}}
-	\renewcommand{\listalgorithmname}{\pagestyle{loab}\thispagestyle{loaa}\vspace{-1.28in}}
-  \listofalgorithms
-  }
+%	\ifthenelse{\isundefined{\listofalgorithms}}{}{
+%  \expandafter\newcommand\csname ps@loaa\endcsname{
+%  \renewcommand{\@oddhead}{%
+%  \parbox{\textwidth}{%
+%  \centering {\heading LIST OF ALGORITHMS} \\ 
+%  \uline{Algorithm}\hfill\uline{Page}}}
+%  \renewcommand{\@oddfoot}{}
+%  \renewcommand{\@evenfoot}{}}
+%  \expandafter\newcommand\csname ps@loab\endcsname{%
+%  \renewcommand{\@oddhead}{%
+%  \parbox{\textwidth}{%
+%  \centering {\heading LIST OF ALGORITHMS\ (Continued)} \\ 
+%  \uline{Algorithm}\hfill\uline{Page}}}
+%  \renewcommand{\@evenhead}{\@oddhead}
+%  \renewcommand{\@oddfoot}{}
+%  \renewcommand{\@evenfoot}{}}
+%	\renewcommand{\listalgorithmname}{\pagestyle{loab}\thispagestyle{loaa}\vspace{-1.28in}}
+%  \listofalgorithms
+%  }
 
   \listofappendices       % K.
   \listofappendixfigures  % L.
@@ -566,7 +566,8 @@
     \begin{center}
       \normalfont\heading
       \ifnum \c@secnumdepth >\m@ne
-      \if@mainmatter\heading\@chapapp\ \thechapter:\ \fi
+	 \if@mainmatter\heading\@chapapp\ \thechapter\ \hspace{5\p@} \fi
+      % TORREY J MOD % \if@mainmatter\heading\thechapter\ \fi
       \fi
       \heading #1\par\nobreak
       \vskip 20\p@
