@@ -1,0 +1,74 @@
+\begin{figure}
+\textbf{Variational condition configuration:}
+\begin{alignat*}{1}
+\ecSem [] . &: \vCondSet \to \confSet \to \pCondSet\\
+%
+\ecSem \bTag &= \bTag \\
+%
+\ecSem \vAttOpCte &= 
+    \vAttOpCte\\
+%	\begin{cases}
+%		\vAttOpCte, &\text{ if } \pAtt \in \attr [\eeSem \vRel]\\
+%		\f, &\text{ otherwise}
+%	\end{cases}\\
+%
+\ecSem \vAttOpAtt &= 
+       \vAttOpAtt\\
+%	\begin{cases}
+%		\pAttOpAtt, &\text{ if } \pAtt_1 \in \attr [\eeSem \vRel] \&\ 
+%		                                   \pAtt_2 \in \attr [\eeSem \vRel] \\
+%		\f,  &\text{ otherwise}
+%	\end{cases}\\
+%
+\ecSem {\neg \vCond} &= \neg \ecSem \vCond\\
+%
+\ecSem {\orr \vCond} &= \ecSem {\vCond_1} \vee \ecSem {\vCond_2}\\
+%
+\ecSem {\annd \vCond} &= \ecSem {\vCond_1} \wedge \ecSem {\vCond_2}\\
+%
+\ecSem {\chc {\vCond_1, \vCond_2}} &=
+	\begin{cases}
+		\ecSem {\vCond_1}, &\text{ if } \fSem \dimMeta  \\
+		\ecSem {\vCond_2}, &\text{ otherwise}
+	\end{cases}
+\end{alignat*}
+
+\medskip
+\textbf{Variational query configuration:}
+\begin{alignat*}{1}
+\eeSem [] . &: \qSet \to \confSet \to \pQSet\\
+%
+\eeSem \vRel &= \orSem \vRel = \pRel\\
+\eeSem {\vSel \vQ}  &= \vSel [\ecSem \vCond] {\eeSem \vQ}\\
+%
+\eeSem {\vPrj [\vAttList] \vQ} &= \vPrj [\olSem \vAttList] {\eeSem \vQ}\\
+%
+%\eeSem {\vPrj [\{\}] \vQ} &= \empPRel\\
+%
+\eeSem {{\vQ_1} \times {\vQ_2}} &= \eeSem {\vQ_1} \times \eeSem {\vQ_2}\\
+%
+%\eeSem {{\vQ_1} \Join_\vCond {\vQ_2}} &= \eeSem {\vQ_1} \Join_{\ecSem \vCond} \eeSem {\vQ_2}\\
+%
+\eeSem {\chc {\vQ_1, \vQ_2}} &= 
+	\begin{cases}
+		\eeSem {\vQ_1}, \text{ if } \fSem \dimMeta = \t\\
+		\eeSem {\vQ_2}, \text{ otherwise}
+	\end{cases}\\
+%
+\eeSem {{\vQ_1} \circ {\vQ_2}} &= \eeSem {\vQ_1} \circ \eeSem {\vQ_2}\\
+%
+\eeSem {\empRel} &= \empPRel
+\end{alignat*}
+\caption[Configuration of variational queries and conditions]{Configuration of variational queries and conditions. 
+The configuration function assumes that the input, either the variational query or
+the variational condition,
+is well-typed. 
+%\orSem ., \ecSem ., and \olSem . are
+%configuration of v-relation, v-condition, and variational attribute
+%set, defined in \figref{vdb-conf} of \appref{vdb-conf}.
+%set, respectively, defined in \figref{vdb-conf}, 
+%\figref{vcond-conf-sem}, \figref{vdb-conf}.
+%Note that we have extended RA with an empty relation $\underline {\empRel}$.
+}
+\label{fig:v-alg-conf-sem}
+\end{figure}

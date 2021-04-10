@@ -1,0 +1,43 @@
+\begin{figure}
+\begin{syntax}
+
+\multicolumn{4}{l}{\textbf{Operators:}} \\[1ex]
+\bullet
+  &\eqq& \multicolumn{2}{l}{< \myOR \leq \myOR = \myOR \neq \myOR > \myOR \geq} \\
+\circ
+  &\eqq& \cup \myOR \cap \\[2ex]
+
+\multicolumn{4}{l}{\textbf{Variational conditions:}} \\[1ex]
+\vCond\in\vCondSet
+  &\eqq&  \multicolumn{2}{l}{
+          \bTag
+   \myOR  \pAtt \bullet \cte
+   \myOR  \pAtt \bullet \pAtt
+   \myOR  \neg \vCond
+   \myOR  \vCond \vee \vCond} \\
+  &\myOR& \multicolumn{2}{l}{
+          \vCond \wedge \vCond
+   \myOR \chc{\vCond,\vCond}} \\[2ex]
+
+\multicolumn{4}{l}{\textbf{Variational queries:}} \\[1ex]
+\vQ\in\qSet
+  &\eqq&  \vRel     & \textit{Relation}\\
+  &\myOR& \vSel \vQ & \textit{Selection}\\
+  &\myOR& \vPrj[\vAttList]{\vQ} & \textit{Projection}\\
+  &\myOR& \chc{\vQ,\vQ} & \textit{Choice}\\
+% &\myOR& \vQ \Join_\vCond \vQ & \textit{Variational Join}\\
+  &\myOR& \vQ \times \vQ & \textit{Cartesian Product}\\
+  &\myOR& \vQ \circ \vQ  & \textit{Set Operation}\\
+% &\myOR& \vQ \backslash \vQ &\textit{Variational Set Difference}\\
+  &\myOR& \empRel & \textit{Empty Relation}
+
+\end{syntax}
+
+\caption[\TODO{shortcaption}]{Syntax of variational relational algebra.}
+%\TODO{remember that
+%you removed join (also removed it from query config def and constrain query 
+%by schema). if you want use it just say it's a syntactic sugar.}
+%$<, \leq, =, \neq, >, \geq$.
+%$\circ$ denotes set operators: union and difference.}
+\label{fig:v-alg-def}
+\end{figure}

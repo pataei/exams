@@ -1,0 +1,123 @@
+\subsection{Explicitly Annotating Queries}
+\label{sec:constrain}
+
+%\point{type system allows the ql to be flexible and usable.}
+%The type system is designed s.t. it relieves the user from necessarily incorporating
+%the v-schema variability into their queries as long as the variational queries variability
+%does not violate the v-schema, 
+Variational queries do not need to repeat information that can be inferred from the v-schema
+or the type of a query.
+%
+For example, the query \ensuremath{\vQ_1} shown in \exref{vq-specific} 
+does not contradict the schema and
+thus is type correct. However,
+ it does not include the presence conditions of attributes and the relation encoded in
+the schema while \ensuremath{\vQ_6} repeats this information:\\
+%
+\centerline{
+\ensuremath{
+\vQ_6 =
+\pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } \left(\chc [\dimMeta_2] {\empbio, \empRel} \right)}}.
+
+%\pi_{\optAtt [(\vFour \vee \vFive) \wedge \fModel_2] [\empno], \optAtt [\vFour \wedge \fModel_2] [\name], \optAtt [\vFive \wedge \fModel_2] [\fname], \optAtt [\vFive \wedge \fModel_2] [\lname]  } \empbio}}.
+%
+
+%\NOTE{
+%This is the unsimplified version:
+%\begin{align*}
+%\VVal {\vQ_5} &= 
+%\pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } \\
+%&(\chc [ \fModel_2 ] {\pi_{\empno, \sex, \birthdate, \optAtt [\vFour ] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]} \empbio, \empRel  })
+%\end{align*}
+%}
+Similarly, the projection in the query 
+\ensuremath{\vQ_7 = \pi_{\name, \fname} (\mathit{subq}_7)}
+where 
+\ensuremath{
+\mathit{subq}_7 = \chc [ \vFour] {\pi_\name (\vQ_6), \pi_\fname (\vQ_6)}
+}
+is written over 
+\ensuremath{\vSch_2} and it 
+%\centerline{
+%\ensuremath{
+%\vQ_6 =
+%\pi_{\name, \fname} \mathit{subq}_6
+%} 
+%}}
+does not repeat the presence conditions of attributes from its \ensuremath{\mathit{subq}_7}'s type.
+The query
+%\centerline{
+\ensuremath{
+\vQ_8 =
+\pi_{\optAtt [\vFour ] [\name],\optAtt [\neg \vFour] [\fname]} (\mathit{subq}_7)
+%\chc [ \vFour] {\pi_\name \vQ_5, \pi_\fname \vQ_5}
+}
+%}
+makes the annotations of projected attributes \emph{explicit} with respect to both 
+the v-schema \ensuremath{\vSch_2} and its subquery's type.
+%\TODO {give an example, schema: R(A,B), query: $\pi_{A,B} (F<\pi_A R, \pi_B R>)$
+%becomes $\pi_{A^F, B^{\neg F}} ...$}
+%The variation encoded in variational queries can
+%be more restrictive or more loose than v-schema variation without violating them.
+Although relieving the user from explicitly repeating variation makes VRA easier to use, 
+queries still have to state variation explicitly to avoid losing information when 
+decoupled from the schema.
+%We do this by defining a function, 
+%\ensuremath {\constrain \vQ}, with type \ensuremath{ \qSet \to \vSchSet \to \qSet
+%},
+%that \emph{explicitly annotates a query \vQ\ given the underlying schema \vSch}.
+We do this by defining the function 
+\ensuremath {\constrain \vQ : \qSet \to \vSchSet \to \qSet
+},
+that \emph{explicitly annotates a query \vQ\ with the  schema \vSch}.
+%Note that \ensuremath {\constrain \vQ} needs to take the underlying schema as
+%an input since it is using the type system (which relies on the schema) as a helper function.
+The explicitly annotating query function, 
+formally defined in \figref{constrain}, 
+conjoins attributes and relations
+presence conditions with the corresponding annotations in the query 
+and wraps subqueries in a choice when needed. 
+Note that, $\vQ_8$ and $\vQ_6$ are the result of $\constrain [\vSch_2] {\vQ_7}$
+and $\constrain [\vSch_2] {\vQ_1}$, respectively, after simplification~\footnote{More specifically,
+they are simpilified using rules defined in \figref{var-min}}.
+%Queries $\vQ_7$ and $\vQ_5$ are examples of applying the 
+%explicitly annotation function to queries $\vQ_6$ and $\vQ_1$, respectively,
+%after simplifying them.
+%\exref{constrain} illustrates how the constrain function transforms queries
+%and allows users to be more flexible with their queries. 
+
+\input{formulas/constrainVQbySch}
+
+\begin{theorem}
+\label{thm:expl-same-type}
+If the query \vQ\ has the type \vType\ then its explicitly annotated counterpart has the same type \vType, i.e.: \\
+%
+\centerline{
+\ensuremath{%\raggedleft
+\envWithoutVctx {\vQ} {\vType} \Rightarrow \envWithoutVctx {\constrain \vQ} {\VVal \vType} \textit{ and } \vType \equiv {\VVal \vType}
+}}
+%
+This shows that the type system applies the schema to the type of a query although it does not apply it to the query. 
+The \emph{type equivalence} is variational set equivalence, defined 
+in \figref{vset}, for normalized variational sets of attributes.
+%\footnote{We proved this theorem in the Coq proof assistant. The encoding of the theorem and the proof can be found in second author's MS thesis~\cite{FaribaThesis}.}.
+\end{theorem}
+
+We encode and prove \thmref{expl-same-type} in the Coq proof assistant~\cite{FaribaThesis}.
+We also illustrate the application of \thmref{expl-same-type} to queries
+\ensuremath{\vQ_1} and \ensuremath{\vQ_6}.
+%
+\exref{type} explained how \ensuremath{\vQ_1}'s type is generated step-by-step.
+The variation context and underlying schema are
+the same and the subquery \empbio\ has the same type. 
+The projected attribute set annotated with the variation context is:
+\ensuremath{
+\vAttList_2 =  \{\annot [\vFour \vee \vFive] \empno, }
+\ensuremath{ 
+\optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]\}^{\dimMeta_2}}, which is clearly subsumed by \ensuremath{\vAttList_\empbio}, thus, 
+%the type of \empbio, \vAttList, and
+its intersection with \ensuremath{\vAttList_\empbio} annotated
+with the presence condition of \ensuremath{\vAttList_\empbio} is itself,
+hence, \ensuremath{\vAttList_{\vQ_1} \equiv \vAttList_{\vQ_6}}.
+%which makes it obvious that \ensuremath{\vAttList_{\vQ_1} \equiv \vAttList_{\vQ_6}}.
+%\end{example}

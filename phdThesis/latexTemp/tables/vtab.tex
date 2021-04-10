@@ -1,0 +1,100 @@
+\begin{table}
+\caption[shortcaption]{The \empbio\ table for variants that enable one of the features \vThree, \vFour, or \vFive and the variational table of \empbio\ encompassing 
+the three variants of the plain relation \empbio.}
+\label{tab:empbio-tab}
+\centering
+\small
+%\footnotesize
+%\scriptsize
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{The relation  \empbio\ for variants that enable the feature \vThree.}
+\label{tab:empbio-tab-v3}
+\begin{tabular} {c | l l l}
+%\hline
+\multirow{2}{*}{\empbio} & \empno & \sex & \birthdate\\
+\cline{2-4}
+%\hline
+ &12001 & F& 1960-11-06\\
+  &12002 & M& 1961-04-15\\
+   &12003 & M& 1958-07-27\\
+   &\ldots & \ldots & \ldots \\
+\arrayrulecolor{white}\hline
+\end{tabular}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{The relation  \empbio\ for variants that enable the feature \vFour.}
+\label{tab:empbio-tab-v4}
+\begin{tabular} {c | l l l l}
+\multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \name\\
+\cline{2-5}
+ &80001 & M & 1956-09-30 & Nagui Merli \\
+ & 80002 & M & 1963-04-25 & Mayuko Meszaros\\
+ & 80003 & F & 1960-10-26 & Theirry Viele\\
+ & \ldots & \ldots & \ldots & \ldots \\
+\arrayrulecolor{white}\hline
+\end{tabular}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{The relation \empbio\ for variants that enable the feature \vFive.}
+\label{tab:empbio-tab-v5}
+\begin{tabular} {c | l l l l l}
+\multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \fname & \lname\\
+\cline{2-6}
+ & 200000 & M & 1960-01-11 & Selwyn & Koshiba \\
+ & 200001 & M & 1957-09-10 & Bedrich & Markovitch\\
+ & 200002 & F & 1961-02-07 & Pascal & Benzmuller \\
+ & \ldots & \ldots & \ldots & \ldots & \ldots\\
+\arrayrulecolor{white}\hline
+\end{tabular}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+\centering
+%\footnotesize
+\tiny
+\caption{The variational relation \empbio.}
+\label{tab:empbio-vtab}
+\arrayrulecolor{blue}
+\begin{tabular} {c !{\color{black}\vrule} l l l l l l : l}
+%\hline
+%\hhline{-==}
+\tiny {\textcolor{blue}{$\vThree \vee \vFour \vee \vFive$} }& \tiny{\textcolor{blue}{\t}} & \tiny{\textcolor{blue}{\t}} & \tiny {\textcolor{blue}{\t}} & \tiny {\textcolor{blue}{$\vFour \wedge \neg \vThree \wedge \neg \vFive$}} & \tiny {\textcolor{blue}{$\vFive \wedge \neg \vThree \wedge \neg \vFive$}} & \tiny {\textcolor{blue}{$\vFive \wedge \neg \vThree \wedge \neg \vFive$}} & \tiny {\textcolor{blue} {\t}}\\
+\arrayrulecolor{blue}\hdashline
+\multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \name & \fname & \lname & \pcatt\\
+\arrayrulecolor{black}\cline{2-8}
+ &12001 & F& 1960-11-06 & & & & \textcolor{blue}{\vThree}\\
+  &12002 & M& 1961-04-15 & & & & \textcolor{blue}{\vThree}\\
+   &12003 & M& 1958-07-27 & & & & \textcolor{blue}{\vThree}\\
+ &80001 & M & 1956-09-30 & Nagui Merli & & & \textcolor{blue}{\vFour}\\
+ & 80002 & M & 1963-04-25 & Mayuko Meszaros & & & \textcolor{blue}{\vFour}\\
+ & 80003 & F & 1960-10-26 & Theirry Viele & & & \textcolor{blue}{\vFour}\\
+ & 200000 & M & 1960-01-11 & & Selwyn & Koshiba & \textcolor{blue}{\vFive}\\
+ & 200001 & M & 1957-09-10 & & Bedrich & Markovitch & \textcolor{blue}{\vFive}\\
+ & 200002 & F & 1961-02-07 & & Pascal & Benzmuller  & \textcolor{blue}{\vFive}\\
+ & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \textcolor{blue}{\ldots} \\
+\arrayrulecolor{white}\hline
+%\job & \titleatt & \salary\\
+%\cline{2-3}
+%& Assistant Engineer & 61594\\
+%& Senior Engineer & 96646\\
+%& \ldots & \ldots \\
+%& Staff & 77935\\
+%& Technique Leader & 58345
+\end{tabular}
+\end{subtable}
+
+\end{table}
