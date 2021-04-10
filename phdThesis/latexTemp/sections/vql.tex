@@ -1,9 +1,73 @@
-\chapter{The Variational Query Language}
+\chapter{Variational Queries}
 \label{ch:vql}
 
-\TODO{vql}
+\eric{start reading here pls}
+Now that we have introduced the variational database framework 
+we need a query language to extract information from a VDB instance
+and unlike relational query languages (like SQL and relational algebra)
+it needs to account for the new aspect of our database: variation. 
+%
+\wrrite{to be written}
+we use ... that has these differences with blah
+%
+we introduce these differences through building up a query to extract info
+required by the variational intent. 
+\eric{stop reading here. the rest is from vldb.}
+
+%\point{queries need to be able to express variability encoded in vdb.}
+%The variational nature of a VDB requires a query language that
+%accounts for variation directly.
+%To express and represent variation in queries,
+%we incorporate choice calculus~\cite{Walk13thesis, EW11tosem}  into a 
+%structured query language. 
+\fromppr{vldb. have to read through and edit}
+We now embark on the formal definition of our query language. 
+We formally define 
+\emph{variational relational algebra} (VRA) in \secref{vrel-alg}
+as our algebraic query language.
+A query written in VRA is called a \emph{variational query} (\emph{v-query});
+we use query and variational query interchangeably when it is clear from context. 
+Unlike relational queries that convey an intent over a single database, 
+a variational query typically conveys the same intent over several 
+relational database variants. However, a single variational query is also capable of capturing different 
+intents over different database variants.
+%Consequently, the expressiveness of variational queries may cause them to be 
+%more complicated than relational queries, discussed in \secref{type-sys}. 
+%Hence, 
+
+Due to the expressiveness of variational queries, we define a type system for VRA that statically checks a
+variational query against the underlying v-schema in \secref{type-sys}.
+%
+To make variational queries more useable we relieve the user from repeating 
+the v-schema's variation in their variational queries. This is achieved by 
+explicitly annotating queries in \secref{constrain}.
+%In \secref{constrain}, we define an operation that explicitly annotates a
+%variational query with information contained in a v-schema. 
+%This operation is useful to
+%define the \emph{variation-preservation} property for VRA and its type system,
+%which is discussed in \secref{var-pres}, and demonstrates how our framework
+%satisfies the information need \nTwo.
+We then define the \emph{variation-preservation} property for VRA at
+the type level in \secref{var-pres}.
+% which proves that our framework
+%satisfies the requirement \nTwo.
+%
+Finally, we provide 
+%we close out this section by providing 
+a set of syntactic rules that are semantic-preserving 
+in \secref{var-min} that enable factoring and distributing
+variation points within a variational query, which enables syntactic refactorings
+including maximizing sharing within a variational query.
+%for reducing a query's variation.
+
+%\input{sections/vrelAlg}
+%%\input{sections/validVqs}
+%\input{sections/typeSys}
+
+
+%\input{sections/varMin}
 
 \input{sections/vra}
 %\input{sections/typesys}
-%\input{sections/vminrule}
 \input{sections/vqlprop}
+
