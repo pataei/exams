@@ -168,7 +168,7 @@ in the v-schema.
  portable and easy-to-use format for other researchers. Below is the query $\eq_3$
  in this format.
  
- \begin{lstlisting}[language={}]
+ \begin{lstlisting}[basicstyle=\footnotesize\ttfamily,columns=flexible,lineskip=0.5\baselineskip]
  #ifdef V3 || V4 || v5
    #ifdef V3 || V4
  SELECT name
@@ -181,7 +181,7 @@ in the v-schema.
    #else
      empbio
    #endif
- JOIN (SELECT * FROM dept WHERE deptno=``d001'')
+ JOIN (SELECT * FROM dept WHERE deptno="d001")
    ON empno=manageno  
  \end{lstlisting}
 
