@@ -3,6 +3,7 @@
 
 \input{formulas/fexpDef}
 
+\eric{what about fname and fexpr?}
 In this section, we describe how we represent variation throughout this 
 thesis. 
 %\point{using a feature set to represent variation within a context.}
@@ -28,11 +29,13 @@ our motivating example, \tabref{mot}); and
 for data integration, the features may represent different data sources.  
 %For simplicity, the set of features is assumed to be closed and features are
 %assumed to be boolean variables, however, 
-\eric{features as multivalued variables added.}
 Note that it is easy to extend features
 to multi-valued variables that have a finite set of countable values.
 Consider our motivating example, \tabref{mot}. We could choose to have a feature $V$
 as a multi-valued variable which takes one of the values in set $\{1, 2, 3, 4, 5\}$. 
+\eric{why does it have to be the case that:
+only if we also have a constraint that exactly one of these features is true!
+}
 This new multi-valued feature $V$ is equivalent to having five boolean variables 
 \vOne, \vTwo, \vThree, \vFour, and \vFive. 
 % and without loss of generality, 
@@ -134,9 +137,10 @@ $\fSem [\{\}] {\A \vee \B} = \f \vee \f = \f$.
 Furthermore, in \figref{fexp-def}, we define a binary \emph{equivalence
 relation} ($\equiv$) relation on feature expressions corresponding to logical
 equivalence, unary \emph{sat} and \emph{unsat} predicates that determine
-whether a feature expression is satisfiable or unsatisfiable, 
-\eric{added $\oplus$ as syntactic sugar}
-and syntactic sugar $\oplus$ for mutually exclusive features, respectively.
+whether a feature expression is satisfiable or unsatisfiable, respectively.
+We also define the $\mathit{n}$-ary operation \emph{oneof} for mutually exclusive features.
+For example, \ensuremath{\oneof {\vOne,\vTwo,\vThree,\vFour,\vFive}} indicates that 
+only one of the features \vOne--\vFive\ can be enabled at a time.
 %
 % some of the functions needed over feature
 %expressions:
@@ -167,5 +171,5 @@ under configuration \config\ is \t, that is $\fSem{\dimMeta}=\t$.
 For example, the restriction that at a given time only one of temporal features
 \vOne--\vFive\ 
 can be enabled is represented by the feature model
-$\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive$.
+$\oneof {\vOne, \vTwo, \vThree, \vFour, \vFive}$.
 

@@ -28,20 +28,24 @@
 \medskip
 \textbf{Relations over feature expressions:}
 \begin{alignat*}{1}
-\dimMeta_1 \equiv \dimMeta_2 \textit{ iff \ } \forall \config \in \confSet. \fSem {\dimMeta_1} = \fSem {\dimMeta_2}\\
-\sat {\dimMeta} \textit{ iff \ } \exists \config \in \confSet. \fSem {\dimMeta} = \t\\
-\unsat {\dimMeta} \textit{ iff \ } \forall \config \in \confSet. \fSem {\dimMeta} = \f
+\dimMeta_1 \equiv \dimMeta_2 &\textit{ iff \ } \forall \config \in \confSet. \fSem {\dimMeta_1} = \fSem {\dimMeta_2}\\
+\sat {\dimMeta} &\textit{ iff \ } \exists \config \in \confSet. \fSem {\dimMeta} = \t\\
+\unsat {\dimMeta} &\textit{ iff \ } \forall \config \in \confSet. \fSem {\dimMeta} = \f\\
+\oneof {\A, \B, \ldots, \fName_n}
+&= (\A \wedge \neg \B \wedge \ldots \wedge \neg \fName_n)
+\vee (\neg \A \wedge \B \wedge \ldots \wedge \neg \fName_n)\\
+&\qquad\vee (\neg \A \wedge \neg \B \wedge \ldots \wedge \fName_n)
 %\dimMeta_1 \oplus \dimMeta_2 = (\dimMeta_1 \wedge \neg \dimMeta_2) \vee (\dimMeta_2 \wedge \neg \dimMeta_1)
 \end{alignat*}
 
-\medskip
-\textbf{Syntactic sugar for mutually exclusive features:}
-\begin{alignat*}{1}
-\A \oplus \B \oplus \ldots \oplus \fName_n
-= (\A \wedge \neg \B \wedge \ldots \wedge \neg \fName_n)\\
-\vee (\neg \A \wedge \B \wedge \ldots \wedge \neg \fName_n)\\
-\vee (\neg \A \wedge \neg \B \wedge \ldots \wedge \fName_n)
-\end{alignat*}
+%\medskip
+%\textbf{Syntactic sugar for mutually exclusive features:}
+%\begin{alignat*}{1}
+%\A \oplus \B \oplus \ldots \oplus \fName_n
+%= (\A \wedge \neg \B \wedge \ldots \wedge \neg \fName_n)\\
+%\vee (\neg \A \wedge \B \wedge \ldots \wedge \neg \fName_n)\\
+%\vee (\neg \A \wedge \neg \B \wedge \ldots \wedge \fName_n)
+%\end{alignat*}
 
 
 \begin{comment}
@@ -55,7 +59,7 @@
 \end{equation*}
 \end{comment}
 
-\caption{Feature expression syntax, relations, syntactic sugar, and evaluation.
+\caption{Feature expression syntax, relations, and evaluation.
 % and functions over feature expressions. 
 %We informally define \emph{exclusive or} \ensuremath{\oplus} of \ensuremath{n} features to be \t\ 
 %only when one feature is \t.

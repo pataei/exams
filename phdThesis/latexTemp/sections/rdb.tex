@@ -1,15 +1,17 @@
 \section{Relational Databases}
 \label{sec:rdb}
 
-\eric{read up to the formal definitions.}
-We introduce relational databases concepts that make up the bones of this thesis. 
-To ease in the reader into relational databases we first provide an example in \tabref{rdb}
-which represents an database instance corresponding to \vTwo\ introduced in our motivating
+We introduce relational databases concepts, which variational databases are based on. 
+%To ease in the reader into relational databases we first provide an example in 
+\tabref{rdb} represents an example relational
+database instance corresponding to \vTwo\ introduced in our motivating
 example in \tabref{mot-basic}. 
 %
-Intuitively, the data is represented in tables where each row contains  data about a specific
-object or sets of object, then, rows with uniform structure and meaning are grouped into a
-table~\cite{AliceBook}. Each table is called a relation and has a name, for example, 
+Intuitively, the data is represented in tables with rows of uniform structure
+where each row contains  data about a specific
+object or sets of object~\cite{AliceBook}. Each table is 
+\eric{discuss called... it's how db refs define it}
+called a relation and has a name, for example, 
 the relation \job\ contains rows specifying the salary of a position in a company. 
 The columns form the structure of the table and are called attributes,
 for example, the relation \job\ has two attributes: \titleatt\ and \salary. 
@@ -35,6 +37,7 @@ and may have value $15$.
 \input{tables/rdb}
 
 
+\input{formulas/rdb}
 
 %\point{database schema.}
 We now shift our focus to the formal definitions of a relational database. 
@@ -44,7 +47,10 @@ $\setDef {{\pRelSch}_1, \ldots, {\pRelSch}_n}$ of \emph{relation schemas}.
 A relation schema is defined as
 $\pRelSch = \vRel \paran {\vi \pAtt k}$ where each $\pAtt_i \in \pAttSet$ is an
 \emph{attribute} contained in the relation named \vRel\ and \pAttSet\ is a 
-fixed countably infinite set of attributes. 
+fixed countably infinite set of 
+\eric{well the names are a symbol of attributes. also, i want to stick with attname 
+bc it shows that its just a name standing for a concept.}
+attributes. %eric comment: attributes -->  attribute names
 %
 We assume a total order $\leq_{\pAttSet}$ on \pAttSet, and assume for
 simplicity that sets of attributes are sorted according
@@ -62,8 +68,7 @@ to $\leq_{\pAttSet}$.
 %\type [\pAtt]\ returns the \emph{type} of values associated with attribute \pAtt.
 
 %\point{database content.}
-\eric{changed list of values to ordered set and used that to sentence explaining
-the correspondence to the order of attributes.}
+\figref{rdb-def} defines the relational database objects and type synonyms compactly.
 The content of database \pDB\ is stored in the form of \emph{tuples}. A tuple
 \pTuple\ is a list of \emph{values}. We do not distinguish between
 different types of values within a relational database.
@@ -91,9 +96,7 @@ a set of tables $\setDef {\pTab_1, \ldots, \pTab_n}$ for each relation in
 %{\pRelSch}_n}$ defined in \pSch. 
 For brevity, when it is clear from context, we refer to a database instance as
 simply a \emph{database}.
-\ericnew{added the new fig \figref{rdb-def}}
-\TODO{\figref{rdb-def} defines the relational database objects and type synonyms compactly.}
 
-\input{formulas/rdb}
+
 
 

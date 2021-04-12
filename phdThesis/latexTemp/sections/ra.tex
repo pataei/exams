@@ -6,11 +6,10 @@
 \maybeAdd{add type system}
 %\TODO{add examples with tables}
 \maybeAdd{maybe add semantics later on}
-\eric{please read this section completely.}
 Having introduced relational databases we now shift gears into querying
-these databases, that is, extracting information from tables. Importantly
-and almost across all relational query languages, the result of a query 
-is also a table~\cite{AliceBook}. 
+these databases, that is, extracting information from tables.
+For almost all relational query languages, the result of a query 
+is a table~\cite{AliceBook}. 
 %
 We base our variational query language on the SPC relational algebra.
 Three primitive operators form the SPC algebra: \emph{selection}, \emph{projection},
@@ -22,7 +21,7 @@ building up a query to extract the information required by the intent.
 \label{eg:ra}
 Consider the database instance given in \tabref{rdb}. We want to get a list
 of employees (by their names) whose salary is more than 65000 dollars. 
-As the first step we use the selection operator to get the salaries that 
+As the first step, we use the selection operator to get the tuples for all jobs with salaries that 
 are more than 65000 dollars.\\
 %
 %\begin{equation*}
@@ -34,7 +33,9 @@ are more than 65000 dollars.\\
 %
 \noindent
 A sample of the results returned by the query $\underline{Q_1}$ is given in \tabref{ra1}.
-Next a set of wide tuples is created by taking the cross-product of $\underline{Q_1}$
+Next a set of 
+\eric{wide: too many attributes}
+wide tuples is created by taking the cross-product of $\underline{Q_1}$
 and \empacct.\\
 %
 %\begin{equation*}
@@ -74,11 +75,11 @@ A sample of the results returned by the query $\underline{Q_4}$ is given in \tab
 
 \input{tables/rares}
 
-We now embark on the the syntax of SPC relational algebra extended with 
-join, set operations, and empty relation. This syntax is defined in \figref{rel-alg}.
+The relational algebra that we use also includes standard set operations, a join 
+operation, and an empty relation. The syntax is defined in \figref{rel-alg}.
 %
 The set operations, union and intersection, require two subqueries to have the same relation schema
-and simply apply the operation, either union or intersection, to the tuples returned by
+and simply applies the corresponding operation, either union or intersection, to the tuples returned by
 the subqueries.
 %For example, if we have $\pRel_1(\pAtt_1, \pAtt_2)$ with 
 %tuples $\{(1,2)(3,4)\}$
@@ -94,7 +95,7 @@ For example, $\underline{Q_3}$ in \exref{ra} can be rewritten as\\
 }}.
 %joins two subqueries based on a condition and
 \noindent
-Throughout our examples, omitting the condition of join  implies it is a natural join,
+Throughout our examples, omitting the condition of join  implies it is a \emph{natural join},
 that is, join on the shared attribute of the two subqueries.
 For example, $\VVal {\underline{Q_3}}$ can be rewritten using the natural join\\
 \centerline{
@@ -116,7 +117,7 @@ context when an operation is variational or not.
 
 
 Although we do not consider renaming of queries in the formal definition of 
-relational algebra we consider for our implementation. Furthermore, we use it
+relational algebra we do support this in our implementation. Furthermore, we use it
 to rename subqueries of our examples to make them easier to understand. 
 For example, query $\VVVal {\underline{Q_3}}$ can be written as:
 \begin{align*}

@@ -12,12 +12,11 @@
 %evaluates to \t\ under configuration \config, (i.e., \fSem{\dimMeta}),
 %or $\elem_2$ otherwise. 
 
-\eric{please read the entire section. thx!}
 The second approach we use to incorporate variation into queries is
 the formula choice calculus~\cite{HW16fosd} which is an extension of 
 the choice calculus~\cite{Walk13thesis,EW11tosem}. 
 %
-The choice calculus~\cite{Walk13thesis,EW11tosem} is a metalanguage for
+The choice calculus is a metalanguage for
 describing variation in programs and its elements such as data 
 structures~\cite{Walk14onward,EWC13fosd}.
 In the choice calculus, variation is represented in-place as
@@ -25,7 +24,8 @@ choices between alternative subexpressions. For example,
 the variational expression 
 $\mathit{expr} = \chc [\A] {1,2} + \chc [\B] {3,4} + \chc [\A] {5,6}$
  contains three choices.
-Each choice has an associated \emph{dimension}, which is used to
+Each choice has an associated \emph{dimension}, which is a boolean
+variable equivalent to a feature and is used to
 synchronize the choice with other choices in different parts
 of the expression. For example, expression $\mathit{expr}$ contains
 two dimensions, $\A$ and $\B$, and the two choices in dimension

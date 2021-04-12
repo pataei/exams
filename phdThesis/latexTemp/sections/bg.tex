@@ -1,7 +1,7 @@
 \chapter{Background}
 \label{ch:bg}
 
-\eric{please read until you get to sections and then follow the boxes!}
+
 The core of this thesis is injecting a new aspect to relational databases: \emph{variation}.
 Thus, the goals of this chapter are twofold: 
 %
@@ -18,38 +18,35 @@ and approaches used to add variation to them.
 %main notations and design decision of the thesis. 
 
 %
-Additionally, throughout the thesis, we rely on types to give an intuition to the reader for
-understanding concepts. A type is a set of possible values. For example, the type ``$\mathit{Int}$''
-denotes all possible integers. In our formalization, we use the notation of $i \in \mathit{Int}$ to
-state that the variable $i$ is of type $\mathit{Int}$. 
+Throughout the thesis, we use types when defining concepts. 
+A type is a set of possible values. For example, the type $\mathbf{Int}$
+denotes all possible integers. In our formalization, we use the notation of $i \in \mathbf{Int}$ to
+state that the variable $i$ is of type $\mathbf{Int}$. 
 %
-\ericnew{this is new. up to when needed...}
-\TODO{
-Types can be more general. Consider the type \settype \typevar that indicates the set of values that
-are a set of values of type \typevar. Here, \typevar\ is type variable and stands for any possible type. 
+Types can be more general. Consider the type \settype \typevar\ that indicates the set all sets
+ of values of type \typevar. Here, \typevar\ is type variable and stands for any possible type. 
 Note that concrete types start with a capital letters but type variables do not.
 For example, the type $\settype {\mathit{Int}}$ is the type of
 sets of integers and it has values such as $\setDef {1,3,4}$ and $\setDef {\ }$.
 We also use type synonyms for simplicity. For example, instead of referring to
 $\settype {\mathit{Int}}$ we can give it a new name ($\mathit{Setint}= \settype {\mathit{Int}}$) 
 and refer to it with the new name $\mathit{Setint}$.
-\eric{do i need to talk about pair types?}
-}
+\wrrite{define pair and function types}
 %However, for brevity, we usually use 
 %bold capital letters for types, for example, instead of $\mathit{Int}$ we write $\mathcal{I}$ to denote the type $\mathit{Int}$.
 %
-When needed, we extend a type with a non-existing element $\bot$ and to account for this
+Sometimes we must extend a type with an additional ``bottom'' element $\bot$ and to account for this
 extension at the type level we subscript the type with $\bot$. For example, $\maybe {\mathcal{I}}$
-denotes the extension of the type $\mathcal{I}$ with a non-existing element.
+denotes the extension of the type $\mathcal{I}$ with $\bot$.
 %
+
 %
 Throughout the thesis, we discuss relational concepts and their
 variational counterparts. 
 For clarity or when it is unclear from context, we use
 an $\underline{underline}$ to distinguish a non-variational entity
 from its variational counterpart, 
-\ericnew{added both ...}
-\TODO{both at the value level and the type level,}
+both at the value level and the type level,
 %when we need to emphasize 
 %an entity is not variational we underline it, 
 e.g., \pElem\ is a 
@@ -60,15 +57,16 @@ if it exists.
 %\secref{types} describes types. Types provide readers with a strong tool to understand 
 %some formalizations easier and more intuitively.
 %
-\secref{rdb} describes the database model of relational databases and the specification of
+\secref{rdb} describes the database model of relational databases and 
+\eric{that is the schema}
+the specification of
 the structured used to store the data~\cite{AliceBook}. 
-\secref{ra} describes the relational algebra to query relational databases~\cite{AliceBook}.
+\secref{ra} describes the relational algebra, a query language used to query relational databases~\cite{AliceBook}.
 %
-Then, 
-\secref{encode-var} defines our choice of encoding for the variation space used in the 
-variational database as propositional formulas of boolean variables~\cite{ATW18poly,ATW17dbpl}.
+\secref{encode-var} defines our encoding of the variation space used in 
+variational database and how we describe parts of that space using propositional formulas of boolean variables~\cite{ATW18poly,ATW17dbpl}.
 %
-Finally, we introduce main techniques used to incorporate variation into our variational 
+Finally, we introduce the main techniques used to incorporate variation into our variational 
 database framework.
 \secref{vset} introduces variation into sets which forms the basis of the variational database
 framework~\cite{EWC13fosd,Walk14onward,ATW17dbpl} 

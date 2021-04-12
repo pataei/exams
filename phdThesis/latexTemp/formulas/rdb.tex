@@ -10,14 +10,17 @@
 \setDef {\vAtt_1,  \vAtt_2, \ldots,  \vAtt_\numAtts} & \textit{Set of Attributes}\\
 \synDef \pRelSch \pRelSchSet &\eqq& \vRel\left(\underline{\vAttList}\right) & \textit{Relation Schema}\\
 \synDef \pRelCont \pRelContSet &\eqq& \setDef {\pTuple_1, \pTuple_2, \ldots, \pTuple_k} & \textit{Relation Content}\\
+\synDef \pTab \pTabSet &\eqq& \left(\pRelSch, \pRelCont\right) & \textit{Table}\\
 \synDef \pSch \pSchSet  &\eqq& \vSchDef & \textit{Schema}\\
-\synDef \pInst \pInstSet &\eqq& \setDef {(\pRelSch_1,\pRelCont_1), (\pRelSch_2,\pRelCont_2), \ldots, (\pRelSch_n,\pRelCont_n) } & \textit{Database Instance}\\
+%\synDef \pInst \pInstSet &\eqq& \setDef {(\pRelSch_1,\pRelCont_1), (\pRelSch_2,\pRelCont_2), \ldots, (\pRelSch_n,\pRelCont_n) } & \textit{Database Instance}\\
+\synDef \pInst \pInstSet &\eqq& \setDef {\pTab_1, \pTab_2, \ldots, \pTab_n } & \textit{Database Instance}\\
 \end{syntax}
 
 \medskip
 \textbf{Relational database type synonyms:}
 \begin{alignat*}{1}
 \pRelContSet &= {\settype \tupletype}\\
+\pTabSet &= \typepair{\pRelSchSet, \pRelContSet}\\
 \pSchSet &= \settype {\underline \relschtype}\\
 {\underline \dbinsttype} &= \settype {(\pRelSchSet, {\underline \relconttype})}
 \end{alignat*}
