@@ -3,24 +3,23 @@
 
 
 Thus far, 
-\eric{pls start reading here.}
 we illustrated how variation can be incorporated into the schema of a database.
-However, it does not suffice to only have variation at the schema level. Consider the 
+However, it does not suffice to only have variation at the schema level. Consider that the 
 variants of the relation \empbio\ shown in \tabref{empbio-sch}. \tabref{empbio-tab}
-includes some of the tuples of these relation variants in addition to their schemas. 
-In order to add variation into the content of the variational relation \empbio\ we
-add a new attribute \pcatt\ that store the presence condition of tuples, as shown in
+include some of the tuples of these relation variants in addition to their schemas. 
+To incorporate variation in the content of a variational relation we
+extend each relation with a new attribute \pcatt\ that stores 
+the presence condition of tuples, as shown in
 \tabref{empbio-vtab}. Thus,
 the value of this attribute for a tuple determines the set of variants that the tuple
 belongs to. For example, the first tuple in the \tabref{empbio-vtab} is present for
 all database variants that enable the feature \vThree. 
 \input{tables/vtab}
 
-As shown thus far through an example, variation also exists in database content. 
-We embark on the formal definition of a variational table. 
-\eric{stop reading here. the rest is copied from vldb.}
+%As shown thus far through an example, variation also exists in database content. 
+%We embark on the formal definition of a variational table. 
 To account 
-for content variability, we tag tuples with 
+for content variability in the formal definition we tag tuples with 
 presence conditions. 
 %e.g., the tuple $(1,2)^{\A}$ only exists
 %when \A\  is enabled. 
@@ -181,7 +180,6 @@ with variation in the third element. However, this design decision
 does not prevent us from distinguishing between a \nul\ value
 that represents a missing value and a \nul\ value that represents
 a cell that is not present. 
-\eric{I rewrote the following to make sure getting the presence conditions are correct.}
 This distinction can be made by checking
 the satisfiability of 
 the presence condition of the value $v_i$ in tuple \vTuple\ with of relation \vRel\ in schema \vSch:

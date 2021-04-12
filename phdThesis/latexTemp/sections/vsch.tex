@@ -1,44 +1,53 @@
 \section{Variational Schema}
 \label{sec:vsch}
 
-\eric{read from here pls.}
+
 In this section, we define how variation is encoded at the schema level. We first 
-embark on an example that 
-Remember as mentioned in \secref{rdb}, the schema of a database is basically
-the type of it. This is also the case for variational databases, except that their 
-schema (type) contains the variation in addition to the traditional relational schemas.
-The encoded variation in the schema state the condition under which relations and
-attributes exists, that is, the set of variants that contain a relation and some of its attributes.
+present an example that
+\eric{sorry about missing the rest of the sentence}
+ illustrates why relational databases fail to encode
+variation at the schema level and how we can inject variation into their schema.
+Recall from \secref{rdb} that the schema of a database is essentially its type.
+This is also the case for variational databases, except that the components 
+of the schema are variational.
+The  variation in a schema states the condition under which its relations and
+attributes exist.
 %
 For example, consider the \empbio\ relation associated with variant \vThree\ in \tabref{mot-basic},
 \structure{make sure this is below in final version}
 also shown in \tabref{empbio-v3} below.
 % 
-However, this relation changes in variants that enable \vFour\ or \vFive, as shown in 
+Note that this relation changes in variants that enable \vFour\ or \vFive, as shown in 
 \tabref{empbio-v4} and \tabref{empbio-v5}, respectively.
 %
-The variational relation schema of \empbio\ captures these differences (variation)
-in \tabref{empbio-vsch} by assigning (annotating) a feature expression that 
-indicates the variants that \empbio\ and each of its attributes exists in. 
-This table can be interpreted as \empbio\ is present in variants that enable 
-at least one of \vThree, \vFour, and \vFive. Then, the three attributes 
+The variational relation schema of \empbio\ captures this variation
+in \tabref{empbio-vsch} by annotating the relation and each of its attributes with
+ a feature expression that they exist in.
+%This table can be interpreted as \empbio\ is present in variants that enable 
+%at least one of \vThree, \vFour, and \vFive. Then, 
+The three attributes 
 \empno, \sex, and \birthdate\ exists in the relation \empbio\ no matter what as long as
-\empbio\ exists in a variant. However, the \name\ attribute is only present in variants
+\empbio\ exists in a variant, so their presence condition are \t. 
+However, the \name\ attribute is only present in variants
 that enable \vFour\ while attributes \fname\ and \lname\ are only present in variants
 that enable \vFive.
+\eric{the reason for not using relation notation here is that i don't want to use 
+formalization of the variational relation schema, which i'd have to do if i use the
+relation notation.}
 %consider table empbio in v3 but that's different than empbio for v4 and v5. so we add varition now. 
 
 \input{tables/vsch}
 
-Now we switch to the formal definition of a variational schema, defined in \figref{vsch}.
-Note that our assumption for relational databases also holds for variational databases,
-that is, we assume a countably infinite set of \attnametype\ of attributes is fixed; we assume
-there is a total order $\leq_\attnametype$ on \attnametype; for any set of attributes \vAttList,
-we assume that elements of \vAttList are written according to $\leq_\attnametype$; for 
-theoretical developments we assume the same domain of values for all attributes; 
-we assume a countably infinite set \relnametype\ of relation names disjoint from \attnametype.
+\figref{vsch} gives a formal definition of variational schemas. Variational schemas build
+on plain relational schemas defined in \secref{rdb}.
+%Now we switch to the formal definition of a variational schema, defined in \figref{vsch}.
+%Note that our assumption for relational databases also holds for variational databases,
+%that is, we assume a countably infinite set of \attnametype\ of attributes is fixed; we assume
+%there is a total order $\leq_\attnametype$ on \attnametype; for any set of attributes \vAttList,
+%we assume that elements of \vAttList are written according to $\leq_\attnametype$; for 
+%theoretical developments we assume the same domain of values for all attributes; 
+%we assume a countably infinite set \relnametype\ of relation names disjoint from \attnametype.
 %
-\eric{stop reading here. the rest is from the vldb paper. there's another box in this section awaiting your feedback.}
 A variational schema captures variation in the structure of a database by indicating which attributes and relations are included or excluded in which variants.
 %
 %\point{using annotated elements to show variability in schema.}
@@ -77,7 +86,6 @@ configurations, as described in \secref{encode-var}, and can be extracted by \ge
 %as explained in \secref{encode-var} and introduced as the VDB feature model. 
 Hence, the variational schema defines all valid schema variants of a VDB. 
 %\figref{vsch} concisely defines the formalization of variational schemas.
-\eric{added reference to figure and examples.}
 \exref{vsch} defines a variational schema for only a part of our motivating example introduced in \secref{mot} and
  \exref{vsch-mot} provides the variational schema of our motivating example in its entirety. 
 
@@ -201,7 +209,6 @@ A schema variant can be obtained
 %a database variant can be obtained 
 by \emph{configuring} the variational schema with that variant's configuration.
 We define the configuration function for variational schemas and its elements in \figref{vsch}.
-\eric{added configuration example.}
 \exref{vsch-mot} illustrates configuring the variational schema of our motivating example
 for the variant \setDef {\edu, \vTwo, \tThree}.
 %For example, consider the variational schema in \exref{vsch}.
@@ -217,7 +224,6 @@ for the variant \setDef {\edu, \vTwo, \tThree}.
 
 \begin{example}
 \label{eg:vsch-mot}
-\eric{pls read this example.}
 \tabref{mot-vsch} illustrates the variational schema of the motivating example, denoted by
 $\vSch_\mot$. 
 As a reminder the motivating example has the feature space $\fSet = \setDef {\edu,

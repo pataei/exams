@@ -55,6 +55,7 @@
 %\vTuple\in\vRelCont \eqq \annot[\dimMeta_\vTuple]{(\vi v \numAtts)}
 \synDef \vRelCont \vRelContSet &\eqq& \setDef {\vi \vTuple \numTuples} & \textit{Variational Relation Content}\\
 %\vRelCont \in \vRelContSet \eqq \setDef {\vi \vTuple \numTuples}
+\synDef \vTab \tabletype &\eqq& (\vRelSch, \vRelCont) & \textit{Variational Table}\\
 \synDef \vdbInst \vdbInstSet &\eqq& \annot [\dimMeta] {\setDef {\vi \vTab \numRels} } & \textit{Variational Database Instance}
 %\synDef \vdbInst  \vdbInstSet \eqq \annot [\dimMeta] {\setDef {\vi \vTab \numRels} }
 \end{syntax}
@@ -63,6 +64,7 @@
 \textbf{Variational database type synonyms:}
 \begin{alignat*}{1}
 \vRelContSet &= \settype {(\vartype \tupletype)}\\
+\tabletype &= \typepair{\vRelSchSet, \vRelContSet}\\
 \vdbInstSet &= \vartype {\left( \settype {\left(\left(\relschtype,\relconttype\right)\right)}\right)}
 \end{alignat*}
 
