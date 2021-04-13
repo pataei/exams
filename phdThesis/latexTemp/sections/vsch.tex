@@ -4,9 +4,8 @@
 
 In this section, we define how variation is encoded at the schema level. We first 
 present an example that
-\eric{sorry about missing the rest of the sentence}
  illustrates why relational databases fail to encode
-variation at the schema level and how we can inject variation into their schema.
+variation at the schema level and how we can inject variation into their schemas.
 Recall from \secref{rdb} that the schema of a database is essentially its type.
 This is also the case for variational databases, except that the components 
 of the schema are variational.
@@ -31,9 +30,6 @@ The three attributes
 However, the \name\ attribute is only present in variants
 that enable \vFour\ while attributes \fname\ and \lname\ are only present in variants
 that enable \vFive.
-\eric{the reason for not using relation notation here is that i don't want to use 
-formalization of the variational relation schema, which i'd have to do if i use the
-relation notation.}
 %consider table empbio in v3 but that's different than empbio for v4 and v5. so we add varition now. 
 
 \input{tables/vsch}
@@ -117,13 +113,13 @@ to account for such a condition, e.g., the \salary\ attribute only exists when \
 %\fModel_1 &= (\vFour\oplus\vFive) \wedge
 %  ((\edu\wedge(\tFour\oplus\tFive)) \vee (\neg\edu\wedge\neg(\tFour\vee\tFive)))
 \dimMeta_1 &= 
-\paran {\neg \edu \wedge \paran {\vFour \oplus \vFive} \wedge \neg \paran {\tFour \vee \tFive}
+\paran {\neg \edu \wedge \oneof {\vFour, \vFive} \wedge \neg \paran {\tFour \vee \tFive}
  }
 %&\hspace{1pt}
 \vee
-\paran {\edu \wedge \paran {\vFour \oplus \vFive}
+\paran {\edu \wedge \oneof {\vFour, \vFive}
 \wedge
-\paran {\tFour \oplus \tFive}}
+\oneof {\tFour, \tFive}}
 \end{align*}
 where \ensuremath{\dimMeta_1} allows only one temporal feature for the basic
 schema to be enabled at a time, and either one temporal feature for the education
@@ -185,7 +181,7 @@ is present in the variant
 \ensuremath{\setDef {\edu, \vFour, \tFive}} since 
 \ensuremath{\fSem [\setDef {\edu, \vFour, \tFive}] {\getPCfrom \isstudent {\vSch_1}}
 = \fSem [\setDef {\edu, \vFour, \tFive}] {\edu \wedge (\vFour \vee \vFive) \wedge \dimMeta_1}
-= \t \wedge (\t \vee \f) \wedge ((\neg \t \wedge (\t \oplus \f) \wedge \neg (\f \vee \t)) \vee (\t \wedge (\t \oplus \f) \wedge (\f \oplus \t))) = \t}
+= \t \wedge (\t \vee \f) \wedge ((\neg \t \wedge \oneof{\t, \f} \wedge \neg (\f \vee \t)) \vee (\t \wedge \oneof{\t, \f} \wedge \oneof{\f, \t})) = \t}
 but it is not present in the variant
 \ensuremath{\setDef{\vFour, \tFive}} since in this variant \edu = \f, thus,
 \ensuremath{\fSem [\setDef {\edu, \vFour, \tFive}] {\getPCfrom \isstudent {\vSch_1}} = \f}.
@@ -237,19 +233,19 @@ The feature model $\dimMeta_\mot$ only allows one temporal feature to be true fr
 \begin{align*}
 \dimMeta_\mot &= 
 \left( 
-\neg \edu \wedge \left(
-\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
-\right) 
+\neg \edu \wedge \oneof{
+\vOne, \vTwo, \vThree, \vFour, \vFive
+}
 \wedge \neg \left(\tOne \vee \tTwo \vee \tThree \vee \tFour \vee \tFive
  \right)
 \right)\\
 &\quad\vee 
-\left( \edu \wedge \left(
-\tOne \oplus \tTwo \oplus \tThree \oplus \tFour \oplus \tFive
-\right) \wedge
- \left(
-\vOne \oplus \vTwo \oplus \vThree \oplus \vFour \oplus \vFive
-\right) \right)
+\left( \edu \wedge \oneof{
+\tOne, \tTwo, \tThree, \tFour, \tFive
+} \wedge
+\oneof{
+\vOne, \vTwo, \vThree, \vFour, \vFive
+} \right)
 \end{align*}
 %where \ensuremath{\fName_1 \oplus \fName_2 = (\fName_1 \wedge \neg \fName_2) \vee (\fName_2 \wedge \neg \fName_1)}.
 \noindent
@@ -258,15 +254,17 @@ it such that it only allows
 the two sets of temporal features to change together.
 \begin{align*}
 \VVal {\dimMeta_\mot} &= 
+\mathit{oneof} (
 \left( \vOne \vee \left(\vOne \wedge \edu \wedge \tOne \right) \right)
-\oplus
+,
 \left( \vTwo \vee \left(\vTwo \wedge \edu \wedge \tTwo \right) \right)
-\oplus
+,
 \left( \vThree \vee \left(\vThree \wedge \edu \wedge \tThree \right) \right)\\
-&\quad\oplus
+&\qquad\qquad,
 \left( \vFour \vee \left(\vFour \wedge \edu \wedge \tFour \right) \right)
-\oplus
+,
 \left( \vFive \vee \left(\vFive \wedge \edu \wedge \tFive \right) \right)
+)
 \end{align*}
 %  to allow more than one temporal feature to be true at the time. 
 %Hence, 

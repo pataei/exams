@@ -1,18 +1,19 @@
 \newcommand{\settype}[1]{\OB{\mathbf{Set} \ {#1}}}
 \newcommand{\vartype}[1]{\OB{\mathbf{Var} \ {#1}}}
-\newcommand{\attnametype}{\OB{\mathbf{Attname}}}
-\newcommand{\relnametype}{\OB{\mathbf{Relname}}}
-\newcommand{\fnametype}{\OB{\mathbf{Fname}}}
-\newcommand{\fexprtype}{\OB{\mathbf{Fexpr}}}
-\newcommand{\relschtype}{\OB{\mathbf{Relsch}}}
-\newcommand{\relconttype}{\OB{\mathbf{Relcont}}}
+\newcommand{\attnametype}{\OB{\mathbf{AttrName}}}
+\newcommand{\relnametype}{\OB{\mathbf{RelName}}}
+\newcommand{\fnametype}{\OB{\mathbf{FeatName}}}
+\newcommand{\fexprtype}{\OB{\mathbf{FeatExpr}}}
+\newcommand{\relschtype}{\OB{\mathbf{RelSch}}}
+\newcommand{\relconttype}{\OB{\mathbf{RelCont}}}
 \newcommand{\schtype}{\OB{\mathbf{Sch}}}
-\newcommand{\dbinsttype}{\OB{\mathbf{Dbinst}}}
+\newcommand{\dbinsttype}{\OB{\mathbf{DBInst}}}
 \newcommand{\typevar}{\OB{\mathbf{a}}}
 \newcommand{\tupletype}{\OB{\mathbf{Tuple}}}
-\newcommand{\typepair}[1]{\OB{\mathbf{(}{#1}\mathbf{)}}}
+\newcommand{\typepair}[2]{\OB{\bm{(}{#1}\bm{,}{#2}\bm{)}}}
 \newcommand{\tabletype}{\OB{\mathbf{Table}}}
 \newcommand{\pTabSet}{\OB{\underline{\tabletype}}}
+\newcommand{\totype}{\OB{\bm{\to}}}
 
 \newcommand{\oneof}[1]{\OB{\mathit{oneof}\left({#1}\right)}}
 
@@ -222,7 +223,7 @@
 %spj objects
 %\newcommand*{\attNames}{\OB{\mathbf{attname}}}
 %\newcommand*{\relNames}{\OB{\mathbf{relname}}}
-\newcommand*{\maybe}[1]{\OB{{#1}_{\mathbf{\bot}}}}
+\newcommand*{\maybe}[1]{\OB{{#1}_{\bm{\bot}}}}
 \newcommand*{\pDB}{\OB{\underline{\db}}}
 \newcommand*{\pQ}{\OB{\underline{\q}}}
 \newcommand*{\pQSet}{\OB{\underline{\qSet}}}
@@ -306,8 +307,8 @@
 %\newcommand*{\vSch}{\OB{\VVSet {\mathcal{S}}}}
 \newcommand*{\vset}{\OB{X}}
 %\newcommand*{\vsetSet}{\OB{\mathcal{\vset}}}
-\newcommand*{\vsetSet}{\OB{\settype (\vartype \typevar)}}
-\newcommand*{\annotvsetSet}{\OB{\vartype {\left(\settype {\left(\vartype \typevar\right)}\right)}}}
+\newcommand*{\vsetSet}{\OB{\settype {\bm{(} \vartype \typevar \bm{)}}}}
+\newcommand*{\annotvsetSet}{\OB{\vartype {\bm{(}\settype {\bm{(}\vartype \typevar\bm{)}}\bm{)}}}}
 \newcommand*{\vTab}{\tab}
 \newcommand*{\vRel}{\rel}
 \newcommand*{\vAtt}{\att}
@@ -394,7 +395,7 @@
 
 %\newcommand*{\vRelDef}{\OB{\left[\pRel^{\dimMeta}:\vAttList\right]}}
 \newcommand*{\vRelConf}[1][\vRel]{\OB{{#1}^\config}}
-\newcommand*{\vAttSet}{\OB{{\settype {(\vartype \attnametype)}}}}
+\newcommand*{\vAttSet}{\OB{{\settype {\bm{(}\vartype \attnametype\bm{)}}}}}
 \newcommand*{\vTabSet}{\OB{\tabSet}}
 \newcommand*{\vRelSchSet}{\relschtype}
 %\newcommand*{\vRelContSet}{\OB{\settype {(\vartype \tupletype)}}}

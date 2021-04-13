@@ -1,5 +1,5 @@
 \begin{table}
-\caption[shortcaption]{The relation schema of \empbio\ for variants that enable one of the features \vThree, \vFour, or \vFive and the variational relation schema of \empbio\ encompassing 
+\caption[Examples of relation schemas and a variational relation schema]{The relation schema of \empbio\ for variants that enable one of the features \vThree, \vFour, or \vFive\ and the variational relation schema of \empbio\ encompassing 
 the three variants of the plain relation \empbio.}
 \label{tab:empbio-sch}
 \centering
@@ -15,7 +15,7 @@ the three variants of the plain relation \empbio.}
 \multirow{2}{*}{\empbio} & \empno & \sex & \birthdate\\
 \cline{2-4}
 %\hline
- & & & \\
+ &12001 & F& 1960-11-06\\
 \arrayrulecolor{white}\hline
 \end{tabular}
 \end{subtable}
@@ -30,7 +30,7 @@ the three variants of the plain relation \empbio.}
 \begin{tabular} {c | l l l l}
 \multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \name\\
 \cline{2-5}
- & & & & \\
+ &80001 & M & 1956-09-30 & Nagui Merli \\
 \arrayrulecolor{white}\hline
 \end{tabular}
 \end{subtable}
@@ -45,7 +45,7 @@ the three variants of the plain relation \empbio.}
 \begin{tabular} {c | l l l l l}
 \multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \fname & \lname\\
 \cline{2-6}
- & & & & & \\
+ & 200000 & M & 1960-01-11 & Selwyn & Koshiba \\
 \arrayrulecolor{white}\hline
 \end{tabular}
 \end{subtable}
@@ -65,7 +65,9 @@ the three variants of the plain relation \empbio.}
 \arrayrulecolor{blue}\hdashline
 \multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \name & \fname & \lname\\
 \arrayrulecolor{black}\cline{2-7}
- & & & & & &\\
+ &12001 & F& 1960-11-06 & & &  \\
+  &80001 & M & 1956-09-30 & Nagui Merli & & \\
+   & 200000 & M & 1960-01-11 & & Selwyn & Koshiba \\
 \arrayrulecolor{white}\hline
 %\job & \titleatt & \salary\\
 %\cline{2-3}

@@ -8,7 +8,7 @@
 %\medskip
 \textbf{Configuration of an annotated element:}
 \begin{alignat*}{1}
-\xeSem [] . &: \elemSet \to \confSet \to \maybe \pelemSet\\
+\xeSem [] . &: \elemSet \totype \confSet \totype \maybe \pelemSet\\
 \xeSem {\annot \elem} &=
   \begin{cases}
     \pElem, & \If \fSem {\dimMeta} = \t\\
@@ -23,14 +23,14 @@
 \medskip
 \textbf{Configuration of (annotated) variational sets:}
 \begin{alignat*}{1}
-\osetSem [] . &: \vsetSet \to \confSet \to \psetSet\\
+\osetSem [] . &: \vsetSet \totype \confSet \totype \psetSet\\
 \osetSem {\setDef{\annot [\dimMeta_1] {\elem_1}, \annot [\dimMeta_2] {\elem_2}, \ldots, \annot [\dimMeta_n] {\elem_n}}} &= \dropbot {\setDef{\xeSem {\annot [\dimMeta_1] {\elem_1}}, 
 \xeSem {\annot [\dimMeta_2] {\elem_2}}, \ldots, \xeSem {\annot [\dimMeta_n] {\elem_n}} }}\\
 \osetSem {\setDef \ } &= \setDef \ \\
 %
 &\\
 %
-\osetSem [] . &: \annotvsetSet \to \confSet \to \psetSet\\
+\osetSem [] . &: \annotvsetSet \totype \confSet \totype \psetSet\\
 \osetSem {\annot {\vset}} &= \osetSem {\pushIn {\annot \vset}}\\
 \osetSem {\annot [\t] {\setDef \ }} & = \setDef \ \\
 \osetSem {\annot [\f] {\setDef \ }} & = \setDef \ 
@@ -114,7 +114,7 @@
 %\end{alignat*}
 
 
-\caption{Configuration of variational set and annotated variational set, normalization of variational sets and annotated variational sets, and operations over variational sets. The operations on variational sets
+\caption[(Annotated) Variational set configuration and operations]{Configuration of variational set and annotated variational set, normalization of variational sets and annotated variational sets, and operations over variational sets. The operations on variational sets
 are overloaded, that is, $\cup$ is used to both denote the union of variational sets and plain sets.
 }
 \label{fig:vset}

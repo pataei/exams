@@ -1,7 +1,7 @@
 \begin{figure}
 \textbf{Variational condition configuration:}
 \begin{alignat*}{1}
-\ecSem [] . &: \vCondSet \to \confSet \to \pCondSet\\
+\ecSem [] . &: \vCondSet \totype \confSet \totype \pCondSet\\
 %
 \ecSem \bTag &= \bTag \\
 %
@@ -36,7 +36,7 @@
 \medskip
 \textbf{Variational query configuration:}
 \begin{alignat*}{1}
-\eeSem [] . &: \qSet \to \confSet \to \pQSet\\
+\eeSem [] . &: \qSet \totype \confSet \totype \pQSet\\
 %
 \eeSem \vRel &= \orSem \vRel = \pRel\\
 \eeSem {\vSel \vQ}  &= \vSel [\ecSem \vCond] {\eeSem \vQ}\\

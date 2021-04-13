@@ -1,5 +1,5 @@
 \begin{table}
-\caption[shortcaption]{An example of a relational database corresponding to \vTwo\ of our motivating example
+\caption[Example of a relational database]{An example of a relational database corresponding to \vTwo\ of our motivating example
 given in \tabref{mot-basic}.}
 \label{tab:rdb}
 \centering
@@ -29,7 +29,7 @@ given in \tabref{mot-basic}.}
 \begin{tabular} {c | l l l l l}
 %\hline
 %\hhline{-==}
-\empacct & \empno & \name & \hiredate & \titleatt & \deptname\\
+\multirow{2}{*}{\empacct} & \empno & \name & \hiredate & \titleatt & \deptname\\
 \cline{2-6}
 & 10001 & Georgi Facello & 1986-06-26 & Senior Engineer & Development\\
 & 10002 & Bezalel Simmel & 1985-11-21 & Staff & Sales\\
@@ -50,7 +50,7 @@ given in \tabref{mot-basic}.}
 \begin{tabular} {c | l l }
 %\hline
 %\hhline{-==}
-\job & \titleatt & \salary\\
+\multirow{2}{*}{\job} & \titleatt & \salary\\
 \cline{2-3}
 & Assistant Engineer & 61594\\
 & Senior Engineer & 96646\\

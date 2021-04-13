@@ -14,7 +14,7 @@
 \medskip
 \textbf{Variational schema type synonyms:}
 \begin{alignat*}{1}
-\vSchSet &= \vartype {\left(\settype \relschtype\right)}
+\vSchSet &= \vartype {\bm{(} \settype \relschtype\bm{)}}
 \end{alignat*}
 
 \medskip
@@ -28,7 +28,7 @@
 \medskip
 \textbf{Variational set of attributes configuration:}
 \begin{alignat*}{1}
- \olSem [] . &: \ \vAttSet \to \confSet \to \pAttSet\\
+ \olSem [] . &: \ \vAttSet \totype \confSet \totype \pAttSet\\
  \olSem \vAttList &= \elemSem \vAttList
  \end{alignat*}
 %& \olSem {\{\optAtt\} \cup \vAttList} &\spcEq &\ 
@@ -47,7 +47,7 @@
 \medskip
 \textbf{Variational relation schema configuration:}
 \begin{alignat*}{1}%\raggedleft
-\orSem [] . &: \vRelSchSet \to \confSet  \to \maybe \pRelSchSet\\
+\orSem [] . &: \vRelSchSet \totype \confSet  \totype \maybe \pRelSchSet\\
 %\end{flalign*}
 %
 %\begin{flalign*}
@@ -64,7 +64,7 @@
 \medskip
 \textbf{Variational schema configuration:}
 \begin{alignat*}{1}%\raggedleft
-\osSem [] . &: \vSchSet \to \confSet \to \pSchSet\\
+\osSem [] . &: \vSchSet \totype \confSet \totype \pSchSet\\
 %\end{flalign*}
 %
 %\begin{flalign*}
@@ -80,6 +80,6 @@
 \end{alignat*}
 
 
-\caption{Variational schema definition, presence condition of attributes and relations, and variational schema configuration.}
+\caption[Variational schema definition and configuration]{Variational schema definition, presence condition of attributes and relations, and variational schema configuration.}
 \label{fig:vsch}
 \end{figure} 

@@ -3,7 +3,7 @@
 
 \input{formulas/fexpDef}
 
-\eric{what about fname and fexpr?}
+
 In this section, we describe how we represent variation throughout this 
 thesis. 
 %\point{using a feature set to represent variation within a context.}
@@ -32,12 +32,10 @@ for data integration, the features may represent different data sources.
 Note that it is easy to extend features
 to multi-valued variables that have a finite set of countable values.
 Consider our motivating example, \tabref{mot}. We could choose to have a feature $V$
-as a multi-valued variable which takes one of the values in set $\{1, 2, 3, 4, 5\}$. 
-\eric{why does it have to be the case that:
-only if we also have a constraint that exactly one of these features is true!
-}
+as a multi-valued variable which takes one of the values in set $\{1, 2, \ldots, 32\}$. 
 This new multi-valued feature $V$ is equivalent to having five boolean variables 
-\vOne, \vTwo, \vThree, \vFour, and \vFive. 
+\vOne, \vTwo, \vThree, \vFour, and \vFive\ since it represents all $32$ possible
+combinations of \vOne--\vFive.
 % and without loss of generality, 
 %features are assumed to be boolean variables, although, it is easy to extend them
 %to multi-valued variables. 
@@ -68,7 +66,7 @@ all variation has been removed.
 %we define a function, called 
 A \emph{configuration} is a \emph{total} function
 that maps every feature in the feature set to a boolean value and is denoted
-by $\config \in \confSet : \fSet \to \bSet$.
+by $\config \in \confSet : \fSet \totype \bSet$.
 %By definition, a configuration is a \emph{total} function,
 %i.e., it is defined for \emph{all} features in the feature set. 
 %For brevity, 
@@ -114,7 +112,7 @@ We call a propositional formula of features a \emph{feature expression} and defi
 it formally in \figref{fexp-def}. 
 %\figref{fexp-def} defines the syntax of feature expressions.
 Additionally, in \figref{fexp-def}, we formally define the evaluation function of feature expressions
-$\fSem \dimMeta : \ffSet \to \confSet \to \bSet$. This function simply substitutes each
+$\fSem \dimMeta : \ffSet \totype \confSet \totype \bSet$. This function simply substitutes each
 feature \fName\ in the expression \dimMeta\ with the boolean value 
 given by configuration \config\ and then
 simplifies the propositional formula to a boolean value.

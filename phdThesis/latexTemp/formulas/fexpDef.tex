@@ -11,13 +11,13 @@
 \synDef \fName \fSet &&&\textit{Feature Name}\\
 \synDef \bTag \bSet &\eqq& \t \myOR \f & \textit{Boolean Value}\\
 \synDef \dimMeta \ffSet &\eqq& \bTag \myOR \fName \myOR \neg \dimMeta \myOR \dimMeta \wedge \dimMeta \myOR \dimMeta \vee \dimMeta & \textit{Feature Expression}\\
-\synDef \config \confSet &:& \fSet \to \bSet &\textit{Configuration}
+\synDef \config \confSet &:& \fSet \totype \bSet &\textit{Configuration}
 \end{syntax}
 
 \medskip
 \textbf{Evaluation of feature expressions:}
 \begin{alignat*}{1}
-\fSem [] . &: \ffSet \to \confSet \to \bSet\\
+\fSem [] . &: \ffSet \totype \confSet \totype \bSet\\
 \fSem \bTag &= \bTag\\
 \fSem \fName &= \config \ \fName\\
 \fSem {\neg \fName} &= \neg \fSem \fName\\
@@ -59,7 +59,7 @@
 \end{equation*}
 \end{comment}
 
-\caption{Feature expression syntax, relations, and evaluation.
+\caption[Feature expression syntax and evaluation]{Feature expression syntax, relations, and evaluation.
 % and functions over feature expressions. 
 %We informally define \emph{exclusive or} \ensuremath{\oplus} of \ensuremath{n} features to be \t\ 
 %only when one feature is \t.

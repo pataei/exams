@@ -64,15 +64,15 @@
 \textbf{Variational database type synonyms:}
 \begin{alignat*}{1}
 \vRelContSet &= \settype {(\vartype \tupletype)}\\
-\tabletype &= \typepair{\vRelSchSet, \vRelContSet}\\
-\vdbInstSet &= \vartype {\left( \settype {\left(\left(\relschtype,\relconttype\right)\right)}\right)}
+\tabletype &= \typepair{\vRelSchSet} {\vRelContSet}\\
+\vdbInstSet &= \vartype {\bm{(} \settype {\bm{(}\typepair \relschtype\relconttype\bm{)}}\bm{)}}
 \end{alignat*}
 
 \medskip
 \textbf{Variational tuple configuration:}
 %
 \begin{alignat*}{1}%\raggedleft
-\ouSemType [] . &: {\vartype \tupletype} \to \vRelSchSet \to \confSet \to \maybe \tupletype\\
+\ouSemType [] . &: {\vartype \tupletype} \totype \vRelSchSet \totype \confSet \totype \maybe \tupletype\\
 %\end{flalign*}
 %
 %\begin{flalign*}%\raggedleft
@@ -94,7 +94,7 @@
 \textbf{Variational relation content configuration:}
 %
 \begin{alignat*}{1}%\raggedleft
-\otSemType [] . &: \vRelContSet \to \vRelSchSet \to \confSet \to \pRelContSet\\
+\otSemType [] . &: \vRelContSet \totype \vRelSchSet \totype \confSet \totype \pRelContSet\\
 %\end{flalign*}
 %
 %\begin{flalign*}%\raggedleft
@@ -105,7 +105,7 @@
 \textbf{VDB instance configuration:}
 %
 \begin{alignat*}{1}%\raggedleft
-\odbSem [] . &: \vdbInstSet \to \confSet \to \pInstSet\\
+\odbSem [] . &: \vdbInstSet \totype \confSet \totype \pInstSet\\
 %\end{flalign*}
 %
 %\begin{flalign*}%\raggedleft
@@ -120,7 +120,7 @@
 %&= \setDef {(\orSem {\vRelSch_1}, \otSem {\vRelCont_1}), \hdots, (\orSem {\vRelSch_\numRels}, \otSem {\vRelCont_\numRels} )}&
 \end{alignat*}
 
-\caption{VDB instance syntax and configuration.
+\caption[Variational database syntax and configuration]{VDB instance syntax and configuration.
 %The input to all configuration functions assumes a well-formed input,
 %either a v-cond (see \secref{type-sys} or a (part of a) VDB.
 %\TODO{you need to define well-formedness for vdb and mention it 

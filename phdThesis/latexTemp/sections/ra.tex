@@ -27,26 +27,25 @@ are more than 65000 dollars.\\
 %\begin{equation*}
 \centerline{
 \ensuremath{
-\underline{Q_1} = \sigma_{\salary \ge 65000} (\job)
+{\pQ_1} = \sigma_{\salary \ge 65000} (\job)
 %\end{equation*}
 }}
 %
 \noindent
-A sample of the results returned by the query $\underline{Q_1}$ is given in \tabref{ra1}.
+A sample of the results returned by the query ${\pQ_1}$ is given in \tabref{ra1}.
 Next a set of 
-\eric{wide: too many attributes}
-wide tuples is created by taking the cross-product of $\underline{Q_1}$
+ tuples is created by taking the cross-product of ${\pQ_1}$
 and \empacct.\\
 %
 %\begin{equation*}
 \centerline{
 \ensuremath{
-\underline{Q_2} = \underline{Q_1} \times \empacct
+{\pQ_2} = {\pQ_1} \times \empacct
 %\end{equation*}
 }}
 %
 \noindent
-A sample of the results returned by the query $\underline{Q_2}$ is given in \tabref{ra2}.
+A sample of the results returned by the query ${\pQ_2}$ is given in \tabref{ra2}.
 However, looking closely at these results there is no connection between an employee
 in the \empacct\ relation and their salary in the \job\ relation. Thus, we have to perform 
 another selection to connect each employee with their title. \\
@@ -54,23 +53,23 @@ another selection to connect each employee with their title. \\
 %\begin{equation*}
 \centerline{
 \ensuremath{
-\underline{Q_3} = \sigma_{\empacct.\titleatt=\job.\titleatt} (\underline{Q_2})
+{\pQ_3} = \sigma_{\empacct.\titleatt=\job.\titleatt} ({\pQ_2})
 %\end{equation*}
 }}
 %
 \noindent
-A sample of the results returned by the query $\underline{Q_3}$ is given in \tabref{ra3}.
+A sample of the results returned by the query ${\pQ_3}$ is given in \tabref{ra3}.
 At this point, we are only interested in two attributes, that is, \name\ and \salary.
 Thus, we use projection to discard the unneeded columns.\\
 %
 %\begin{equation*}
 \centerline{
 \ensuremath{
-\underline{Q_4} = \pi_{\name, \salary} (\underline{Q_3} )
+{\pQ_4} = \pi_{\name, \salary} ({\pQ_3} )
 %\end{equation*}
 }}
 %
-A sample of the results returned by the query $\underline{Q_4}$ is given in \tabref{ra4}.
+A sample of the results returned by the query ${\pQ_4}$ is given in \tabref{ra4}.
 \end{example}
 
 \input{tables/rares}
@@ -88,19 +87,19 @@ the subqueries.
 %
 The \emph{join} operation is equivalent to selection applied to cross-product, that is,
 $\pQ_1 \bowtie_{\pCond} \pQ_2 = \vSel [\pCond] {(\pQ_1 \times \pQ_2)}$.
-For example, $\underline{Q_3}$ in \exref{ra} can be rewritten as\\
+For example, ${\pQ_3}$ in \exref{ra} can be rewritten as\\
 \centerline{
 \ensuremath{
-\VVal {\underline{Q_3}} = \left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \bowtie_{\empacct.\titleatt=\job.\titleatt} \empacct
+\VVal {{\pQ_3}} = \left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \bowtie_{\empacct.\titleatt=\job.\titleatt} \empacct
 }}.
 %joins two subqueries based on a condition and
 \noindent
 Throughout our examples, omitting the condition of join  implies it is a \emph{natural join},
 that is, join on the shared attribute of the two subqueries.
-For example, $\VVal {\underline{Q_3}}$ can be rewritten using the natural join\\
+For example, $\VVal {{\pQ_3}}$ can be rewritten using the natural join\\
 \centerline{
 \ensuremath{
-\VVVal {\underline{Q_3}} =  \left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \bowtie \empacct
+\VVVal {{\pQ_3}} =  \left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \bowtie \empacct
 }}.
 
 \input{formulas/rel-alg-def}
@@ -119,9 +118,9 @@ context when an operation is variational or not.
 Although we do not consider renaming of queries in the formal definition of 
 relational algebra we do support this in our implementation. Furthermore, we use it
 to rename subqueries of our examples to make them easier to understand. 
-For example, query $\VVVal {\underline{Q_3}}$ can be written as:
+For example, query $\VVVal {{\pQ_3}}$ can be written as:
 \begin{align*}
-\VVVal {\underline{Q_3}} &= \underline{temp} \bowtie \empacct\\
+\VVVal {{\pQ_3}} &= \underline{temp} \bowtie \empacct\\
 \underline{temp} &\leftarrow  \sigma_{\salary \ge 65000} \left(\job\right)
 \end{align*}
 \noindent

@@ -10,8 +10,7 @@ example in \tabref{mot-basic}.
 Intuitively, the data is represented in tables with rows of uniform structure
 where each row contains  data about a specific
 object or sets of object~\cite{AliceBook}. Each table is 
-\eric{discuss called... it's how db refs define it}
-called a relation and has a name, for example, 
+associated with a relation and has a name, for example, 
 the relation \job\ contains rows specifying the salary of a position in a company. 
 The columns form the structure of the table and are called attributes,
 for example, the relation \job\ has two attributes: \titleatt\ and \salary. 
@@ -48,8 +47,6 @@ A relation schema is defined as
 $\pRelSch = \vRel \paran {\vi \pAtt k}$ where each $\pAtt_i \in \pAttSet$ is an
 \emph{attribute} contained in the relation named \vRel\ and \pAttSet\ is a 
 fixed countably infinite set of 
-\eric{well the names are a symbol of attributes. also, i want to stick with attname 
-bc it shows that its just a name standing for a concept.}
 attributes. %eric comment: attributes -->  attribute names
 %
 We assume a total order $\leq_{\pAttSet}$ on \pAttSet, and assume for

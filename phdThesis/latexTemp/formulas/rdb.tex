@@ -20,10 +20,10 @@
 \textbf{Relational database type synonyms:}
 \begin{alignat*}{1}
 \pRelContSet &= {\settype \tupletype}\\
-\pTabSet &= \typepair{\pRelSchSet, \pRelContSet}\\
+\pTabSet &= \typepair{\pRelSchSet} {\pRelContSet}\\
 \pSchSet &= \settype {\underline \relschtype}\\
-{\underline \dbinsttype} &= \settype {(\pRelSchSet, {\underline \relconttype})}
+{\underline \dbinsttype} &= \settype {\typepair \pRelSchSet {\underline \relconttype}}
 \end{alignat*}
-\caption{Relational database objects and type synonyms.}
+\caption[Relational databases definition]{Relational database objects and type synonyms.}
 \label{fig:rdb-def}
 \end{figure} 
