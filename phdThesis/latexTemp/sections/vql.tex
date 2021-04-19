@@ -6,12 +6,6 @@ Now that we have introduced the variational database framework
 we need a query language to extract information from a VDB instance
 and unlike relational query languages (like SQL and relational algebra)
 it needs to account for the new aspect of our database: variation. 
-%
-\wrrite{to be written}
-we use ... that has these differences with blah
-%
-we introduce these differences through building up a query to extract info
-required by the variational intent. 
 \eric{stop reading here. the rest is from vldb.}
 
 %\point{queries need to be able to express variability encoded in vdb.}
@@ -60,14 +54,16 @@ variation points within a variational query, which enables syntactic refactoring
 including maximizing sharing within a variational query.
 %for reducing a query's variation.
 
-%\input{sections/vrelAlg}
-%%\input{sections/validVqs}
-%\input{sections/typeSys}
-
-
-%\input{sections/varMin}
 
 \input{sections/vra}
 %\input{sections/typesys}
+\input{sections/vrasem}
+\input{sections/vra2ra}
+\input{sections/accum}
+\input{sections/typesys}
+\input{sections/constrainVQbySch}
+\input{sections/vminrule}
 \input{sections/vqlprop}
+\input{sections/varPresProp}
+%if time allows have a subsection for properties of the equivalnece of dent sem and ra + accum
 
