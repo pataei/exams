@@ -1,8 +1,130 @@
 \subsection{VRA Configuration}
 \label{sec:vraconf}
 
-\TODO{vra configuration + group}
+
+\wrrite{add the example from vra and show config and tables.}
+\TODO{example following the vra example}
+
+%\NOTE{
+%Also, the following definition of the semantics contradicts with the
+%description earlier in the section about producing a \emph{result}
+%relation.
+%
+%\medskip
+%Also also, maybe we should move the discussion of the semantics before the
+%examples? It's a bit surprising to come across it here.}
+
+%The semantics of VRA can be understood as a combination of the
+%\emph{configuration semantics} of VRA, defined in \figref{v-alg-conf-sem}, the
+%configuration semantics of VDBs, defined in \figref{vdb-conf}, and the
+%semantics of plain RA.
+%%
+%%\TODO{Make the following a more precise description of how these three
+%%semantics work together, i.e.\ for every valid configuration of the feature
+%%model, we can configure the variational query and VDB in the same way to yield a plain RA
+%%query that is then executed over the corresponding plain RDB.}
+%%
+%Thus, the variational query
+%semantics is the set of semantics of its configured relational queries over
+%their corresponding configured relational database variant for every valid
+%configuration of the feature model of the VDB.
+%
+We now embark on the formal definition of variational queries configuration.
+The \emph{configuration} function maps a variational query under
+a configuration
+to a relational query, defined in \figref{v-alg-conf-sem}. Thus, a variational query 
+can be understood as a set of relational queries that their results is gathered
+in a single table and tagged with the feature expression stating their variant.
+%Configuring a variational query
+%for all valid configurations, accessible from VDB's feature model,
+%provides the complete meaning of a variational query in terms of RA semantics.
+%
+Users can deploy queries for a specific variant by configuring 
+them.
+%The configuration of a query allows users to deploy queries for a
+%specific variant when they desire, 
+%satisfying query part of \nThree\ requirement. 
+\exref{conf-vq} illustrates configuring a query.
+% stated in \secref{mot}.
+
+%To define VRA semantics we map 
+%a variational query to a pure relational query to re-use RA's semantics.
+%However, to avoid losing the variation encoded 
+%in the variational query, 
+%we need to determine the variant under which such a
+%mapping is valid. Thus, we introduce the semantic functions that 
+%relate a variational query to a relational query.
+
+%
+%\textbf{Configuring a variational query:} 
+%It maps a variational query under a 
+%given configuration to a relational query, denoted by \eeSem . 
+%and defined in \figref{v-alg-conf-sem}. Configuring a variational query
+%for all valid configurations, accessible from VDB's feature model,
+%provides the complete meaning of a variational query in terms of RA semantics.
+%Users can deploy queries for a specific variant by configuring 
+%them,
+%%The configuration of a query allows users to deploy queries for a
+%%specific variant when they desire, 
+%satisfying query part of \nThree.
+
+\begin{example}
+\label{eg:conf-vq}
+Assume the underlying VDB has the variational schema
+% \t\ feature model and the variational relation
+\ensuremath{
+\vSch_3 = \{ \vRel \left( \optAtt [\fOne] [\vAtt_1], \vAtt_2, \vAtt_3 \right)^{\fOne \vee \fTwo}
+\}} 
+and the feature space 
+\ensuremath{
+\fSet = \setDef{ \fOne, \fTwo}}.
+The variational query 
+\ensuremath{
+\vQ_5 = \vPrj [{\vAtt_1, \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)
+}
+is configured to the following relational queries:
+\ensuremath{\eeSem [\setDef \fOne] {\vQ_5} = \eeSem [\setDef \ ] {\vQ_5} = \pi_{\pAtt_1} \pRel},
+\ensuremath{\eeSem [\setDef \fTwo] {\vQ_5} =
+ \pi_{\pAtt_1, \pAtt_3} \pRel},
+\ensuremath{\eeSem [\setDef {\fOne, \fTwo}] {\vQ_5} = \pi_{\pAtt_1, \pAtt_2, \pAtt_3} \pRel}.
+\end{example}
+
+
 
 \input{formulas/vRelAlgConfSem}
+
+%\textbf{Grouping a variational query:} 
+%maps a variational query to a set of
+%relational queries annotated with feature expressions, denoted by \qGroup .
+%and defined in \figref{vq-group}. The presence condition of relational queries 
+%indicate the group of configurations where the mapping holds. In essence, 
+%grouping of variational query \vQ\ groups together all configurations with the same relational
+%query produced from configuring \vQ. 
+%Hence, the generated set
+%%\dropit{could drop this if it's confusing!}
+%of relational queries from grouping a variational query contains distinct (unique) queries.
+%For example, consider the query \ensuremath {\vQ_5} in \exref{conf-vq}.
+%Grouping \ensuremath{\vQ_5} results in the set:
+%\ensuremath{
+%\setDef{
+%\left( \pi_{\pAtt_1, \pAtt_2, \pAtt_3} \pRel \right)^{\fOne \wedge \fTwo},
+%\left(\pi_{\pAtt_1, \pAtt_3} \pRel \right)^{\neg \fOne \wedge \fTwo},
+%\left(  \pi_{\pAtt_1} \pRel \right)^{( \fOne \wedge \neg \fTwo) \vee (\neg \fOne \wedge \neg \fTwo)}
+%}
+%}.
+%
+%
+%
+
+\eric{pls read the following paragraph and the \figref{vq-group}}
+\TODO{write this + correct formulas + give an example.
+The trick is to attach the condition under which a 
+RA query is valid. This condition is a feature expression generated from
+the set of configurations that configured the v-query into the same RA query, i.e.,
+\ensuremath{
+\qGroup \vQ = \setDef {\annot \pQ \myOR \forall \config \in \confSet: \fSem \dimMeta = \t,
+\eeSem \vQ = \pQ}
+}.
+}
 
 \input{formulas/groupVqDef}

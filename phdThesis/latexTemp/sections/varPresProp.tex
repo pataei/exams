@@ -1,4 +1,4 @@
-\subsection{Variation-Preserving Property w.r.t. Schema}
+\subsection{Type Safety}
 \label{sec:var-pres}
 
 %\arashComment{ The property of variation preservation is too short and it is not clear why it is important. I also did not find the proofs in Appendix D.}
@@ -13,7 +13,7 @@ by defining the \emph{variation-preserving} property for VRA which connects VRA 
 % the variation encoded in a variational query.
 %
 The 
-\emph{variation-preserving property w.r.t. v-schema} states that
+\emph{variation-preserving property with respect to variational schema} states that
 if a query \vQ\ has type \vType\ then 
 configuring the type of a valid explicitly annotated query
 is the same as the type of its configured
@@ -27,7 +27,7 @@ corresponding query.
 %
 % the code that produces the diagram
 %\hspace{-2cm}
-\begin{wrapfigure}{r}{0.12\textwidth}
+\begin{wrapfigure}{r}{0.24\textwidth}
 \begin{center}
 \begin{tikzcd}[column sep=2.3em]
   \constrain \vQ   \rar{\mathit{type}}  \dar[swap,dashed]{\eeSem . }
@@ -49,7 +49,7 @@ and
 \ensuremath{\underline{\mathit{type}}} indicates RA's type system,
 i.e., \ensuremath{\pEnv {\pQ} {\pAttList}}.
 %Note that for simplicity, w
-We assume that corresponding v-schema and schema is
+We assume that corresponding variation schema and schema is
 passed to type systems.
 % of relational query \pQ.
 Simply put, 
@@ -63,8 +63,10 @@ then obtaining the relational type of it or
 2) obtaining the variational type of \constrain \vQ\ first and then configuring it results
 in the same set of attributes. 
 The variation-preserving property enforces the maintenance of variants that a tuple
-belongs to through running a query at the schema level, partially satisfying second part of 
-\nTwo~\footnote{
+belongs to through running a query at the schema level.%
+%, partially satisfying second part of 
+%\nTwo~
+\footnote{
 We define this property as a test at the semantics level and show that
 %We have not proved this property at the semantics level, however, 
 all our experimental
@@ -77,7 +79,7 @@ queries passed it.}.
 %
 %\appref{type-sys-prop-proof} sketches the proof of 
 %VRA's type system being variation-preserving.
-\exref{var-pres} illustrates why the query must be constrained by the v-schema
+\exref{var-pres} illustrates why the query must be constrained by the variation schema
 in the variation-preserving diagram.
 
 \begin{theorem}
@@ -119,16 +121,16 @@ variation-preserving property. A similar problem happens for the variant of
 = \olSem [\setDef \fTwo] {\vAttList}
 = \olSem [\setDef \fTwo] {\mathit{type} \left( \vQ_5 \right)}
 }. However, the variation-preserving property holds for the 
-constrained query by v-schema, i.e., 
+constrained query by variation schema, i.e., 
 \ensuremath{
 \constrain [\vSch_3] {\vQ_5} = 
 \vPrj [{\optAtt [\fOne] [\vAtt_1], \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] \vRel
 }.
 Thus, the input query to the configuration function \eeSem . \emph{must} be explicitly
-annotated by the underlying v-schema for the configured query to match the underlying 
+annotated by the underlying variation schema for the configured query to match the underlying 
 configured schema.
 %We can restrict VRA's type system to enforce users to incorporate the
-%v-schema into their queries, e.g., \ensuremath{\vQ_5} becomes
+%variation schema into their queries, e.g., \ensuremath{\vQ_5} becomes
 %\ensuremath{\VVal \vQ_5 = 
 %\vPrj [{\optAtt [\fOne] [\vAtt_1], 
 %\optAtt [\fOne \wedge \fTwo] [\vAtt_2], 
@@ -138,6 +140,8 @@ configured schema.
 %% this burdens the user to know the exact variation encoded in
 %%the database in addition to the original variation they want to encode in their query.
 %To avoid this violation without requiring users to repeat VDB's variability in their queries,
-%after type checking a query we push the v-schema onto the variational query,
+%after type checking a query we push the variation schema onto the variational query,
 %e.g., doing so for \ensuremath{\vQ_5} results in \ensuremath{\VVal \vQ_5}.
 \end{example}
+
+\eric{do i need to add theorem for preserve + progress?}

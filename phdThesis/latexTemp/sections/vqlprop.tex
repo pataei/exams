@@ -1,6 +1,60 @@
-\section{Variational Query Language Properties}
+\section{Variational Relational Algebra Properties}
 \label{sec:vqlprop}
 
-\TODO{prop. show for vra.}
+\eric{pls read the following paragraph}
+In this section, we discuss important properties of VRA. We first discuss its expressiveness
+with regards to the relational algebra in \secref{express}.
+Then, we discuss VRA's type safety in \secref{var-pres} by taking advantage of the
+relational algebra's type safety and defining a property that connect VRA's type 
+system to relational algebra's type system, called \emph{variation-preserving property}.
+
+\subsection{Expressiveness}
+\label{sec:express}
+
+VRA enables querying multiple database variants encoded as a singled VDB
+simultaneously and selectively.
+%, satisfying the query need \nOne\ stated in \secref{mot}.
+%(\textbf{N1}).
+%
+More precisely, VRA is \emph{maximally expressive} in the sense that it can
+express any set of plain RA queries over any subset of relational database
+variants encoded as a VDB. 
+We prove this claim in \thmref{max-expr}.
+%This claim is captured by the following theorem.
+
+\begin{theorem}
+\label{thm:max-expr}
+Given a set of plain RA queries $\pQ_1,\ldots,\pQ_n$ where each query $\pQ_i$
+is to be executed over a disjoint subset $\vdbInst_i$ of variants of the VDB
+instance \vdbInst, there exists a variational query $q$ such that
+$\forall \config \in \confSet.\; \odbSem{\vdbInst} = \vdbInst_i \implies \eeSem{\vQ} = \pQ_i$.
+\end{theorem}
+
+\begin{proof}
+By construction. Let $f_i$ be the feature expression that uniquely
+characterizes the variants in each $\vdbInst_i$.
+Then 
+\[
+\vQ =
+%\small{\vQ =
+%\(
+\chc[(\fName_1\wedge\neg \fName_2\wedge\ldots\wedge\neg \fName_n)]{\pQ_1,
+  \chc[(\fName_2\wedge\ldots\wedge\neg \fName_n)]{\pQ_2,\ldots
+    \chc[\fName_n]{\pQ_n,\emp}\ldots}}.
+\]
+\end{proof}
+
+\noindent
+%
+The above construction relies on the fact that every RA query is a valid VRA
+(sub)query in which every presence condition is \t.
+%
+Of course, in most realistic scenarios, we expect that variational queries can be encoded
+more efficiently by sharing commonalities and embedding relevant choices and
+presence conditions within the variational query.
+
+
+
+\input{sections/varPresProp}
 
 
