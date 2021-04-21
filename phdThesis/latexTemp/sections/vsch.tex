@@ -12,12 +12,13 @@ of the schema are variational.
 The  variation in a schema states the condition under which its relations and
 attributes exist.
 %
-For example, consider the \empbio\ relation associated with variant \vThree\ in \tabref{mot-basic},
-\structure{make sure this is below in final version}
-also shown in \tabref{empbio-v3} below.
+For example, consider the \empbio\ relation schema associated with 
+variant \vThree\ of our motivating example shown in \tabref{mot-basic}.
+\tabref{empbio-v3} shows a corresponding relational table of this relation. 
 % 
-Note that this relation changes in variants that enable \vFour\ or \vFive, as shown in 
-\tabref{empbio-v4} and \tabref{empbio-v5}, respectively.
+Note that the relation \empbio\ changes in variants that enable either \vFour\ or \vFive\
+and \tabref{empbio-v4} and \tabref{empbio-v5} show their corresponding relational tables, 
+respectively.
 %
 The variational relation schema of \empbio\ captures this variation
 in \tabref{empbio-vsch} by annotating the relation and each of its attributes with
@@ -32,9 +33,18 @@ that enable \vFour\ while attributes \fname\ and \lname\ are only present in var
 that enable \vFive.
 %consider table empbio in v3 but that's different than empbio for v4 and v5. so we add varition now. 
 %
+The \empbio\ variational table itself exists when: first, the database is present; second,  
+at least one of the \vThree--\vFive\ features are enabled.
+The database is present for variants that satisfy its presence condition. 
+We discuss this more in \exref{vsch-mot}.
+%
 Note that \tabref{empbio-vsch} focuses only on the relation schema and does not 
-include the variation at the content level. We discuss encoding variation at the 
-content level in \secref{vtab}.
+include the variation at the content level.%
+\footnote{\tabref{empbio-vtab} includes
+the variation at the content level.} 
+We discuss encoding variation at the content level in \secref{vtab}.
+%
+
 
 \input{tables/vsch}
 

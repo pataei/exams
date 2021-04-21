@@ -1,6 +1,8 @@
 \begin{table}
-\caption[Examples of relation schemas and a variational relation schema]{The relation schema of \empbio\ for variants that enable one of the features \vThree, \vFour, or \vFive\ and the variational relation schema of \empbio\ encompassing 
-the three variants of the plain relation \empbio.}
+\caption[Examples of encoding variation at the schema level]{The relational tables of \empbio\ for variants that enable one of the features \vThree, \vFour, or \vFive\ and 
+the variational relation \empbio\ that encompasses
+the three variants of the plain table \empbio\ without accounting for variation at the content level.
+}
 \label{tab:empbio-sch}
 \centering
 \small
@@ -8,7 +10,8 @@ the three variants of the plain relation \empbio.}
 %\scriptsize
 \begin{subtable}[t]{\textwidth}
 \centering
-\caption{The relation schema of \empbio\ for variants that enable the feature \vThree.}
+\caption{The relational table of \empbio\ for variants that only enable the feature \vThree\ out of
+the features \vOne--\vFive. The relation schema is captured by the name of the relation and attributes.}
 \label{tab:empbio-v3}
 \begin{tabular} {c | l l l}
 %\hline
@@ -16,6 +19,9 @@ the three variants of the plain relation \empbio.}
 \cline{2-4}
 %\hline
  &12001 & F& 1960-11-06\\
+  &12002 & M& 1961-04-15\\
+   &12003 & M& 1958-07-27\\
+   &\ldots & \ldots & \ldots \\
 \arrayrulecolor{white}\hline
 \end{tabular}
 \end{subtable}
@@ -25,12 +31,17 @@ the three variants of the plain relation \empbio.}
 \medskip
 \begin{subtable}[t]{\textwidth}
 \centering
-\caption{The relation schema of \empbio\ for variants that enable the feature \vFour.}
+\caption{The relation schema of \empbio\ for variants that only enable the feature \vFour\ out of
+the features \vOne--\vFive.
+The relation schema is captured by the name of the relation and attributes.}
 \label{tab:empbio-v4}
 \begin{tabular} {c | l l l l}
 \multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \name\\
 \cline{2-5}
  &80001 & M & 1956-09-30 & Nagui Merli \\
+ & 80002 & M & 1963-04-25 & Mayuko Meszaros\\
+ & 80003 & F & 1960-10-26 & Theirry Viele\\
+ & \ldots & \ldots & \ldots & \ldots \\
 \arrayrulecolor{white}\hline
 \end{tabular}
 \end{subtable}
@@ -40,12 +51,17 @@ the three variants of the plain relation \empbio.}
 \medskip
 \begin{subtable}[t]{\textwidth}
 \centering
-\caption{The relation schema of \empbio\ for variants that enable the feature \vFive.}
+\caption{The relation schema of \empbio\ for variants that only enable the feature \vFive\ out of
+the features \vOne--\vFive.
+The relation schema is captured by the name of the relation and attributes.}
 \label{tab:empbio-v5}
 \begin{tabular} {c | l l l l l}
 \multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \fname & \lname\\
 \cline{2-6}
  & 200000 & M & 1960-01-11 & Selwyn & Koshiba \\
+ & 200001 & M & 1957-09-10 & Bedrich & Markovitch\\
+ & 200002 & F & 1961-02-07 & Pascal & Benzmuller \\
+ & \ldots & \ldots & \ldots & \ldots & \ldots\\
 \arrayrulecolor{white}\hline
 \end{tabular}
 \end{subtable}
@@ -55,19 +71,30 @@ the three variants of the plain relation \empbio.}
 \medskip
 \begin{subtable}[t]{\textwidth}
 \centering
-\footnotesize
-\caption{The variational relation schema of \empbio.}
+%\footnotesize
+\tiny
+\caption{The variational relation schema of \empbio.
+The relation schema is captured by the name of the relation and attributes in addition to their presence
+conditions which are colored blue. This table is present under a presence condition that applies
+to the entire database $\dimMeta_{\mathit{mot}}$ which is given in \exref{vsch-mot}.}
 \label{tab:empbio-vsch}
 \begin{tabular} {c | l l l l l l l}
 %\hline
 %\hhline{-==}
-\textcolor{blue}{$\vThree \vee \vFour \vee \vFive$} & \textcolor{blue}{\t} & \textcolor{blue}{\t} & \textcolor{blue}{\t} & \textcolor{blue}{$\vFour \wedge \neg \vThree \wedge \neg \vFive$} & \textcolor{blue}{$\vFive \wedge \neg \vThree \wedge \neg \vFour$} & \textcolor{blue}{$\vFive \wedge \neg \vThree \wedge \neg \vFour$}\\
+\textcolor{blue}{$\vThree \vee \vFour \vee \vFive$} & \textcolor{blue}{\texttt{true}} & \textcolor{blue}{\texttt{true}} & \textcolor{blue}{\texttt{true}} & \textcolor{blue}{$\vFour \wedge \neg \vThree \wedge \neg \vFive$} & \textcolor{blue}{$\vFive \wedge \neg \vThree \wedge \neg \vFour$} & \textcolor{blue}{$\vFive \wedge \neg \vThree \wedge \neg \vFour$}\\
 \arrayrulecolor{blue}\hdashline
 \multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \name & \fname & \lname\\
 \arrayrulecolor{black}\cline{2-7}
- &12001 & F& 1960-11-06 & & &  \\
-  &80001 & M & 1956-09-30 & Nagui Merli & & \\
-   & 200000 & M & 1960-01-11 & & Selwyn & Koshiba \\
+ &12001 & F& 1960-11-06 & & & \\
+  &12002 & M& 1961-04-15 & & & \\
+   &12003 & M& 1958-07-27 & & & \\
+ &80001 & M & 1956-09-30 & Nagui Merli & & \\
+ & 80002 & M & 1963-04-25 & Mayuko Meszaros & & \\
+ & 80003 & F & 1960-10-26 & Theirry Viele & & \\
+ & 200001 & M & 1960-01-11 & & Selwyn & Koshiba \\
+ & 200002 & M & 1957-09-10 & & Bedrich & Markovitch \\
+ & 200003 & F & 1961-02-07 & & Pascal & Benzmuller  \\
+ & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots \\
 \arrayrulecolor{white}\hline
 %\job & \titleatt & \salary\\
 %\cline{2-3}

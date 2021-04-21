@@ -4,9 +4,14 @@
 
 Thus far, 
 we illustrated how variation can be incorporated into the schema of a database.
-However, it does not suffice to only have variation at the schema level. Consider that the 
-variants of the relation \empbio\ shown in \tabref{empbio-sch}. \tabref{empbio-tab}
-include some of the tuples of these relation variants in addition to their schemas. 
+However, it does not suffice to only have variation at the schema level. Consider the 
+variants of the relation \empbio\ shown in \tabref{empbio-v3}--\tabref{empbio-v5}.
+\tabref{empbio-vsch} illustrates the variational relation \empbio\ but it does not include
+variation at the content level.
+% the corresponding variational 
+%table  shown in \tabref{empbio-sch}. 
+%\tabref{empbio-tab}
+%include some of the tuples of these relation variants in addition to their schemas. 
 To incorporate variation in the content of a variational relation we
 extend each relation with a new attribute \pcatt\ that stores 
 the presence condition of tuples, as shown in
@@ -14,6 +19,13 @@ the presence condition of tuples, as shown in
 the value of this attribute for a tuple determines the set of variants that the tuple
 belongs to. For example, the first tuple in the \tabref{empbio-vtab} is present for
 all database variants that enable the feature \vThree. 
+%
+Note that the white spaces in \tabref{empbio-vtab} indicate the non-existing values
+for an attribute in a tuple. For example, consider the first three tuples of the variational
+table \empbio\ shown in \tabref{empbio-vtab}. Since none of the attributes \name, \fname, and \lname\
+exists for variants that enable \vThree\ they are left empty for tuples of variants that enable
+\vThree.
+
 \input{tables/vtab}
 
 %As shown thus far through an example, variation also exists in database content. 
@@ -85,7 +97,7 @@ specific configuration and generate the corresponding VDB variant.
 %database part of \nThree\ need.
 For example, configuring the variational table \empbio, shown in \tabref{empbio-vtab},
 for configuration \setDef{\vThree, \edu, \tOne} results in the relational table \empbio\
-in \tabref{empbio-tab-v3}, assuming the VDB has the variational schema $\vSch_\mot$
+in \tabref{empbio-v3}, assuming the VDB has the variational schema $\vSch_\mot$
 given in \exref{vsch-mot}.
 %
 Additionally, 
