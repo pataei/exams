@@ -82,14 +82,15 @@ variants (i.e.\ old data is included in more recent variants in addition to
 newly added data), it is desirable to ensure that older variants are subsets of
 newer variants.
 %
-This property should hold for our employee data set. To check this, 
+This property should hold for our employee data set, introduced in 
+\secref{emp-vdb}. To check this, 
 assume that configurations \ensuremath{\config_1, \config_2, \cdots}
 represent time-ordered configurations, then check
 \ensuremath{
-\forall \config_i, \config_j \in \confSet, i \le j, \sem[\config_i] {\vDB} \subseteq \sem[\config_j]{\vDB}
+\forall \config_i, \config_j \in \confSet, i \le j, \odbSem [\config_i] {\vDB} \subseteq \odbSem [\config_j]{\vDB}
 }, 
-where \ensuremath{\sem[\config]{\vDB}} denotes configuring the VDB instance
-\vDB\ for configuration \config. 
+where \ensuremath{\odbSem[\config]{\vDB}} denotes configuring the VDB instance
+\vDB\ for configuration \config, defined in \figref{vdb-conf}.
 %\parisa{note to myself, impl todo: actually check this for employee db when you got the time!}
 
 %v-table checks:
