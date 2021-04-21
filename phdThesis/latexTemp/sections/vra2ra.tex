@@ -2,9 +2,6 @@
 \label{sec:vraconf}
 
 
-\wrrite{add the example from vra and show config and tables.}
-\TODO{example following the vra example}
-
 %\NOTE{
 %Also, the following definition of the semantics contradicts with the
 %description earlier in the section about producing a \emph{result}
@@ -29,7 +26,7 @@
 %their corresponding configured relational database variant for every valid
 %configuration of the feature model of the VDB.
 %
-We now embark on the formal definition of variational queries configuration.
+%We now embark on the formal definition of variational queries configuration.
 The \emph{configuration} function maps a variational query under
 a configuration
 to a relational query, defined in \figref{v-alg-conf-sem}. Thus, a variational query 
@@ -44,8 +41,10 @@ them.
 %The configuration of a query allows users to deploy queries for a
 %specific variant when they desire, 
 %satisfying query part of \nThree\ requirement. 
-\exref{conf-vq} illustrates configuring a query.
-% stated in \secref{mot}.
+\exref{conf-vq} illustrates configuring a query
+\eric{added this example}
+and \exref{vq-sem} illustrates the configuration of query $\vQ_1$\ensure{make sure you have the right query} from \exref{vq-specific} and their corresponding results table.
+
 
 %To define VRA semantics we map 
 %a variational query to a pure relational query to re-use RA's semantics.
@@ -116,15 +115,57 @@ is configured to the following relational queries:
 %
 %
 
+\begin{example}
+\label{eg:vq-sem}
+\wrrite{show the tables for query in \exref{vq-specific} when it is configured.}
+\end{example}
+
+
 \eric{pls read the following paragraph and the \figref{vq-group}}
-\TODO{write this + correct formulas + give an example.
-The trick is to attach the condition under which a 
-RA query is valid. This condition is a feature expression generated from
-the set of configurations that configured the v-query into the same RA query, i.e.,
+%\TODO{write this + correct formulas + give an example.
+Unfortunately, the configuration of variational queries may result in
+duplicate relational queries. In practice, this is not very efficient, as discussed
+later in \secref{exp}. Thus, we define the \emph{unique configuration} function
+$\qGroup . : \qSet \totype \vartype \pQSet$ that takes a variational query 
+and returns its corresponding configured relational queries annotated with
+a presence condition. The presence condition is a feature expression generated from
+the set of configurations that configured the variational query into the same relational query.
+%
+In essence, unique configuration can be defined for all data types that encode variation.
+For example, the unique configuration function for 
+variational queries can be defined by \\
+%\ensuremath{
+%\aGroup \vAttList = \setDef {\annot \attList \myOR \forall \config \in \confSet: \fSem \dimMeta = \t,
+%\olSem \vAttList = \attList}
+%}.
+%
+\centerline{
 \ensuremath{
 \qGroup \vQ = \setDef {\annot \pQ \myOR \forall \config \in \confSet: \fSem \dimMeta = \t,
 \eeSem \vQ = \pQ}
-}.
-}
+}.}
+%\]
+Consequently, the unique configuration for variational sets of attributes (i.e.,
+\aGroup [.] : \vAttSet \totype {\vartype {\bm{(}\settype \attnametype \bm{)}}})
+and variational conditions (i.e., \cGroup [.] : \vCondSet \totype \vartype \pCondSet) are
+defined similarly.
+However, this definition is not efficient since it is still enumerating all possible 
+configurations. Thus, we define the more efficient unique configuration function
+for variational queries in \figref{vq-group}.
+%
+\exref{group-vq} and \exref{vq-group} provide the unique configuration of the queries 
+given in \exref{conf-vq} and \exref{vq-sem}, respectively.
 
 \input{formulas/groupVqDef}
+
+\begin{example}
+\label{eg:group-vq}
+\wrrite{write this.}
+\end{example}
+
+\begin{example}
+\label{eg:vq-group}
+\wrrite{write this.}
+\end{example}
+
+
