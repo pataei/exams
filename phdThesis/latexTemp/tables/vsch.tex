@@ -6,7 +6,7 @@ the three variants of the plain table \empbio\ without accounting for variation 
 \label{tab:empbio-sch}
 \centering
 \small
-%\footnotesize
+\footnotesize
 %\scriptsize
 \begin{subtable}[t]{\textwidth}
 \centering
@@ -31,7 +31,8 @@ the features \vOne--\vFive. The relation schema is captured by the name of the r
 \medskip
 \begin{subtable}[t]{\textwidth}
 \centering
-\caption{The relation schema of \empbio\ for variants that only enable the feature \vFour\ out of
+\footnotesize
+\caption{The relational table of \empbio\ for variants that only enable the feature \vFour\ out of
 the features \vOne--\vFive.
 The relation schema is captured by the name of the relation and attributes.}
 \label{tab:empbio-v4}
@@ -51,10 +52,11 @@ The relation schema is captured by the name of the relation and attributes.}
 \medskip
 \begin{subtable}[t]{\textwidth}
 \centering
-\caption{The relation schema of \empbio\ for variants that only enable the feature \vFive\ out of
+\caption{The relational table of \empbio\ for variants that only enable the feature \vFive\ out of
 the features \vOne--\vFive.
 The relation schema is captured by the name of the relation and attributes.}
 \label{tab:empbio-v5}
+\footnotesize
 \begin{tabular} {c | l l l l l}
 \multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \fname & \lname\\
 \cline{2-6}
@@ -72,11 +74,13 @@ The relation schema is captured by the name of the relation and attributes.}
 \begin{subtable}[t]{\textwidth}
 \centering
 %\footnotesize
-\tiny
-\caption{The variational relation schema of \empbio.
+\scriptsize
+%\tiny
+\caption{The variational relation of \empbio\ without accounting for variation at the content level.
 The relation schema is captured by the name of the relation and attributes in addition to their presence
-conditions which are colored blue. This table is present under a presence condition that applies
-to the entire database $\dimMeta_{\mathit{mot}}$ which is given in \exref{vsch-mot}.}
+conditions which are colored blue. }
+%This table is present under a presence condition that applies
+%to the entire database $\dimMeta_{\mathit{mot}}$ which is given in \exref{vsch-mot}.}
 \label{tab:empbio-vsch}
 \begin{tabular} {c | l l l l l l l}
 %\hline

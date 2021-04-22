@@ -1,7 +1,8 @@
 \section{Variational Schema}
 \label{sec:vsch}
 
-
+\eric{could you pls read this section again up to the paragraph that discusses the
+formal defition of vdb?}
 In this section, we define how variation is encoded at the schema level. We first 
 present an example that
  illustrates why relational databases fail to encode
@@ -25,28 +26,47 @@ in \tabref{empbio-vsch} by annotating the relation and each of its attributes wi
  a feature expression that they exist in.
 %This table can be interpreted as \empbio\ is present in variants that enable 
 %at least one of \vThree, \vFour, and \vFive. Then, 
+%
+The feature expressions written in blue above the attributes and the relation name
+are their presence conditions. 
+For example, the feature express $\vThree \vee \vFour \vee \vFive$ indicates that the
+\empbio\ table is present for variants that enable one of \vThree--\vFive. 
+%
 The three attributes 
 \empno, \sex, and \birthdate\ exists in the relation \empbio\ no matter what as long as
 \empbio\ exists in a variant, so their presence condition are \t. 
 However, the \name\ attribute is only present in variants
 that enable \vFour\ while attributes \fname\ and \lname\ are only present in variants
 that enable \vFive.
+
+\input{tables/vsch}
+
+Furthermore, the existence of the variational relation \empbio\ and its attributes 
+relies on the existence of the entire variational database which is captured by
+the feature model of the database. Remember that the feature model is the
+presence condition of the variational database. 
+%
+The hierarchy of presence condition sometimes simplifies the presence conditions.
+For example, assuming that only one of the \vThree--\vFive can be enabled for a variant at a time, 
+the \empbio\ variational table shown in \tabref{empbio-vsch} can be simplified to the 
+variational table shown in \tabref{empbio-vsch-comp}. 
 %consider table empbio in v3 but that's different than empbio for v4 and v5. so we add varition now. 
 %
-The \empbio\ variational table itself exists when: first, the database is present; second,  
-at least one of the \vThree--\vFive\ features are enabled.
-The database is present for variants that satisfy its presence condition. 
-We discuss this more in \exref{vsch-mot}.
+%The \empbio\ variational table itself exists when: first, the database is present; second,  
+%at least one of the \vThree--\vFive\ features are enabled.
+%The database is present for variants that satisfy its presence condition. 
+%We discuss this more in \exref{vsch-mot}.
 %
-Note that \tabref{empbio-vsch} focuses only on the relation schema and does not 
+Note that \tabref{empbio-vsch-comp} and \tabref{empbio-vsch} focuse 
+only on the relation schema and does not 
 include the variation at the content level.%
 \footnote{\tabref{empbio-vtab} includes
 the variation at the content level.} 
-We discuss encoding variation at the content level in \secref{vtab}.
+We discuss the encoding of variation at the content level in \secref{vtab}.
 %
 
+\input{tables/vsch-comp}
 
-\input{tables/vsch}
 
 \figref{vsch} gives a formal definition of variational schemas. Variational schemas build
 on plain relational schemas defined in \secref{rdb}.

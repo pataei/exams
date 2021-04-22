@@ -10,7 +10,7 @@
 \arrayrulecolor{blue}
 %!{\color{black}\vrule}
 \begin{tabular} {c !{\color{black}\vrule} l l l l : l }
- {\textcolor{blue}{$\oneof {\vThree, \vFour,\vFive}$} }& {\textcolor{blue}{\texttt{true}}}& \tiny {\textcolor{blue}{$\vFour$}} &  {\textcolor{blue}{$\vFive$}} &  {\textcolor{blue}{$\vFive $}} & {\textcolor{blue}{\texttt{true}}}\\
+ {\textcolor{blue}{$\oneof {\vThree, \vFour,\vFive}$} }& {\textcolor{blue}{\texttt{true}}}&  {\textcolor{blue}{$\vFour$}} &  {\textcolor{blue}{$\vFive$}} &  {\textcolor{blue}{$\vFive $}} & {\textcolor{blue}{\texttt{true}}}\\
 \arrayrulecolor{blue}\hdashline
 \multirow{2}{*}{$\mathit{result}$}  & \empno & \name & \fname & \lname & \pcatt \\
 \arrayrulecolor{black}\cline{2-6}
@@ -67,7 +67,7 @@ $.}
 \medskip
 \begin{subtable}[t]{\textwidth}
 \centering
-\caption{Result of the variational query $\chc[\vFour\vee\vFive]{\pi_{\empno,\name,\fname,\lname}(\empbio),\empRel}$.}
+\caption{Result of the variational query $\chc[\neg \vThree]{\pi_{\empno,\name,\fname,\lname}(\empbio),\empRel}$.}
 \label{tab:vq2-res}
 \footnotesize
 \arrayrulecolor{blue}
