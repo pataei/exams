@@ -1,0 +1,94 @@
+\begin{table}
+\caption[Results of some variational queries]{Results of some variational queries over the VDB instance described in \exref{vq-specific}.}
+\label{tab:vq-res}
+\centering
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{Result of the variational query $\pi_{\empno, \name, \fname, \lname} (\empbio)$.}
+\label{tab:vq0-res}
+\footnotesize
+\arrayrulecolor{blue}
+%!{\color{black}\vrule}
+\begin{tabular} {c !{\color{black}\vrule} l l l l : l }
+ {\textcolor{blue}{$\oneof {\vThree, \vFour,\vFive}$} }& {\textcolor{blue}{\texttt{true}}}& \tiny {\textcolor{blue}{$\vFour$}} &  {\textcolor{blue}{$\vFive$}} &  {\textcolor{blue}{$\vFive $}} & {\textcolor{blue}{\texttt{true}}}\\
+\arrayrulecolor{blue}\hdashline
+\multirow{2}{*}{$\mathit{result}$}  & \empno & \name & \fname & \lname & \pcatt \\
+\arrayrulecolor{black}\cline{2-6}
+& 12001 & & & & \textcolor{blue}{\vThree}\\
+& 12002 & & & & \textcolor{blue}{\vThree}\\
+& 12003 & & & & \textcolor{blue}{\vThree}\\
+ &80001  & Nagui Merli & & & \textcolor{blue}{\vFour}\\
+ & 80002 & Mayuko Meszaros & & & \textcolor{blue}{\vFour}\\
+ & 80003 & Theirry Viele & & & \textcolor{blue}{\vFour}\\
+ & 200001  & & Selwyn & Koshiba & \textcolor{blue}{\vFive}\\
+ & 200002  & & Bedrich & Markovitch & \textcolor{blue}{\vFive}\\
+ & 200003  & & Pascal & Benzmuller  & \textcolor{blue}{\vFive}\\
+ & \ldots  & \ldots & \ldots & \ldots & \textcolor{blue}{\ldots} \\
+\arrayrulecolor{white}\hline
+\end{tabular}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{Result of the variational queries $\pi_{\optAtt [\vFour \vee \vFive] [\empno], \name, \fname, \lname} (\empbio)$ and 
+$\pi_{\optAtt [(\vFour \vee \vFive) \wedge \neg \vThree] [\empno], 
+\optAtt [\vFour \wedge \neg \vThree \wedge \neg \vFive] [\name], 
+\optAtt [\vFive \wedge \neg \vThree \wedge \neg \vFour] [\fname], 
+\optAtt [\vFive \wedge \neg \vThree \wedge \neg \vFour] [\lname]} (\empbio)
+$.}
+\label{tab:vq1-res}
+\footnotesize
+\arrayrulecolor{blue}
+%!{\color{black}\vrule}
+\begin{tabular} {c !{\color{black}\vrule} l l l l : l }
+ {\textcolor{blue}{$\oneof {\vThree, \vFour,\vFive}$} }& {\textcolor{blue}{$\vFour \vee \vFive$}}&  {\textcolor{blue}{$\vFour $}} &  {\textcolor{blue}{$\vFive $}} &  {\textcolor{blue}{$\vFive$}} & {\textcolor{blue}{\texttt{true}}}\\
+\arrayrulecolor{blue}\hdashline
+\multirow{2}{*}{$\mathit{result}$}  & \empno & \name & \fname & \lname & \pcatt \\
+\arrayrulecolor{black}\cline{2-6}
+%& 12001 & & & & \textcolor{blue}{\vThree}\\
+%& 12002 & & & & \textcolor{blue}{\vThree}\\
+%& 12003 & & & & \textcolor{blue}{\vThree}\\
+ &80001  & Nagui Merli & & & \textcolor{blue}{\vFour}\\
+ & 80002 & Mayuko Meszaros & & & \textcolor{blue}{\vFour}\\
+ & 80003 & Theirry Viele & & & \textcolor{blue}{\vFour}\\
+ & 200001  & & Selwyn & Koshiba & \textcolor{blue}{\vFive}\\
+ & 200002  & & Bedrich & Markovitch & \textcolor{blue}{\vFive}\\
+ & 200003  & & Pascal & Benzmuller  & \textcolor{blue}{\vFive}\\
+ & \ldots  & \ldots & \ldots & \ldots& \textcolor{blue}{\ldots} \\
+\arrayrulecolor{white}\hline
+\end{tabular}
+\end{subtable}
+
+\medskip
+\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{Result of the variational query $\chc[\vFour\vee\vFive]{\pi_{\empno,\name,\fname,\lname}(\empbio),\empRel}$.}
+\label{tab:vq2-res}
+\footnotesize
+\arrayrulecolor{blue}
+%!{\color{black}\vrule}
+\begin{tabular} {c !{\color{black}\vrule} l l l l : l }
+ {\textcolor{blue}{$\oneof {\vThree, \vFour,\vFive} \wedge \neg \vThree$} }& {\textcolor{blue}{$\vFour \vee \vFive$}}&  {\textcolor{blue}{$\vFour $}} &  {\textcolor{blue}{$\vFive $}} &  {\textcolor{blue}{$\vFive$}} & {\textcolor{blue}{\texttt{true}}}\\
+\arrayrulecolor{blue}\hdashline
+\multirow{2}{*}{$\mathit{result}$}  & \empno & \name & \fname & \lname & \pcatt \\
+\arrayrulecolor{black}\cline{2-6}
+%& 12001 & & & & \textcolor{blue}{\vThree}\\
+%& 12002 & & & & \textcolor{blue}{\vThree}\\
+%& 12003 & & & & \textcolor{blue}{\vThree}\\
+ &80001  & Nagui Merli & & & \textcolor{blue}{\vFour}\\
+ & 80002 & Mayuko Meszaros & & & \textcolor{blue}{\vFour}\\
+ & 80003 & Theirry Viele & & & \textcolor{blue}{\vFour}\\
+ & 200001  & & Selwyn & Koshiba & \textcolor{blue}{\vFive}\\
+ & 200002  & & Bedrich & Markovitch & \textcolor{blue}{\vFive}\\
+ & 200003  & & Pascal & Benzmuller  & \textcolor{blue}{\vFive}\\
+ & \ldots  & \ldots & \ldots & \ldots& \textcolor{blue}{\ldots} \\
+\arrayrulecolor{white}\hline
+\end{tabular}
+\end{subtable}
+
+\end{table}
