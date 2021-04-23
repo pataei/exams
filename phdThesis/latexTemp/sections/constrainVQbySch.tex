@@ -1,8 +1,7 @@
 \section{Explicitly Annotating Queries}
 \label{sec:constrain}
 
-\wrrite{add that query must be explicitly annotated before being configured}
-\maybeAdd{if have time, give the exact query after explicitly annotating them instead of simplifying them.}
+\maybeAdd{if have time, give the exact query after explicitly annotating them instead of simplifying them. maybe do this for $\vQ_5$ or maybe $\vQ_1$}
 %\point{type system allows the ql to be flexible and usable.}
 %The type system is designed s.t. it relieves the user from necessarily incorporating
 %the v-schema variability into their queries as long as the variational queries variability
@@ -127,5 +126,22 @@ hence, \ensuremath{\vAttList_{\vQ_1} \equiv \vAttList_{\vQ_6}}.
 
 %
 \eric{added this paragraph. pls review it}
-\wrrite{point that query passed to config ... has to be explicitly annotated.}
+Explicitly annotating variational queries not only relieves the user from repeating the
+database's variation in their queries but it is also necessary for the functions that 
+take a query without taking the schema such as the query configuration function.
+This is as opposed to other functions that have to take both the query and the 
+schema such as the type system. 
+\exref{exp-annot-nec} illustrates why a query passed to the configuration function 
+must be explicitly annotated.
 
+\begin{example}
+\label{eg:exp-annot-nec}
+Consider the variational query $\vQ_5= \vPrj [{\vAtt_1, \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)$ given in
+\exref{conf-vq}. This query is not explicitly annotated since attribute $\vAtt_1$ does not
+carry its variational encoding from the database, that is, it does not have the presence
+condition $\A$. Explicitly annotating this query gives us query $\VVal {\vQ_5} =  \vPrj [{\optAtt [\A][\vAtt_1], \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)$.
+Configuring $\VVal {\vQ_5}$ results in the same query as configuring $\vQ_5$ except for 
+configuration \setDef {\ }, that is, $\eeSem [\setDef \ ] {\VVal {\vQ_5}} = \pi_{\setDef {\ }} \pRel = \empRel$. The reason why $\eeSem [\setDef \ ] {\vQ_5} $ is incorrect is that $\vQ_5$ is missing
+the variation attached to attribute $\vAtt_1$ and the configuration function does not consider
+the schema of a database while configuring variational queries written over that database. 
+\end{example}
