@@ -1,0 +1,71 @@
+\begin{table}[!htbp]
+\caption[Results of relational queries from configuring a variational query]{Results of relational queries from configuring the variational query $\VVal {\vQ_1}$.}
+\label{tab:vq-conf-res}
+\centering
+\small
+%\footnotesize
+%\scriptsize
+\begin{subtable}[t]{\textwidth}
+\centering
+\caption{Result of the query $\eeSem [\setDef {\vThree}] {\VVal {\vQ_1}} = \empRel$.}
+\label{tab:vq-conf1}
+\arrayrulecolor{black}
+\begin{tabular} {c | l }
+\multirow{2}{*}{$\mathit{result}$} & \textcolor{white}{blah blah}\\
+\cline{2-2}
+&  \\
+\arrayrulecolor{white}\hline
+\end{tabular}
+\end{subtable}
+
+%\medskip
+%\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+%\begin{center}
+\centering
+%\tiny
+\caption{Result of the query $\eeSem [\setDef {\vFour}] {\VVal {\vQ_1}} = \pi_{\empno, \name} (\empbio)$.}
+\label{tab:vq-conf2}
+\arrayrulecolor{black}
+\begin{tabular} {c | l l }
+%\hline
+%\hhline{-==}
+\multirow{2}{*}{$\mathit{result}$}  & \empno & \name\\
+\cline{2-3}
+ &80001 & Nagui Merli\\
+ & 80002 & Mayuko Meszaros\\
+ & 80003 & Theirry Viele\\
+&\ldots & \ldots \\
+\arrayrulecolor{white}\hline
+\end{tabular}
+%\end{center}
+\end{subtable}
+
+%\medskip
+%\medskip
+\medskip
+\begin{subtable}[t]{\textwidth}
+%\begin{center}
+\centering
+%\footnotesize
+%\tiny
+\caption{Result of the query \ensuremath{\eeSem [\setDef {\vFive}] {\VVal {\vQ_1}} = \pi_{\empno, \fname, \lname} (\empbio)}.}
+\label{tab:vq-conf3}
+\arrayrulecolor{black}
+\begin{tabular} {c | l l l}
+%\hline
+%\hhline{-==}
+\multirow{2}{*}{$\mathit{result}$}  & \empno &\fname &\lname\\
+\cline{2-4}
+ & 200001 & Selwyn & Koshiba \\
+ & 200002 & Bedrich & Markovitch \\
+ & 200003 & Pascal & Benzmuller  \\
+ & \ldots & \ldots & \ldots \\
+ \arrayrulecolor{white}\hline
+\end{tabular}
+%\end{center}
+\end{subtable}
+
+\end{table}
+
