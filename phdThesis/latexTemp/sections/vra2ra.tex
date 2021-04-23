@@ -1,6 +1,7 @@
 \subsection{VRA Configuration}
 \label{sec:vraconf}
 
+\input{formulas/vRelAlgConfSem}
 
 %\NOTE{
 %Also, the following definition of the semantics contradicts with the
@@ -38,12 +39,13 @@ in a single table and tagged with the feature expression stating their variant.
 %
 Users can deploy queries for a specific variant by configuring 
 them.
+%
 %The configuration of a query allows users to deploy queries for a
 %specific variant when they desire, 
 %satisfying query part of \nThree\ requirement. 
 \exref{conf-vq} illustrates configuring a query
-\eric{added this example}
-and \exref{vq-sem} illustrates the configuration of query $\vQ_1$\ensure{make sure you have the right query} from \exref{vq-specific} and their corresponding results table.
+\eric{added this example. pls review it.}
+and \exref{vq-sem} illustrates the configuration of query $\VVal {\vQ_1}$ from \exref{vq-specific} and their corresponding relational results table.
 
 
 %To define VRA semantics we map 
@@ -90,7 +92,7 @@ is configured to the following relational queries:
 
 
 
-\input{formulas/vRelAlgConfSem}
+
 
 %\textbf{Grouping a variational query:} 
 %maps a variational query to a set of
@@ -117,11 +119,37 @@ is configured to the following relational queries:
 
 \begin{example}
 \label{eg:vq-sem}
-\wrrite{show the tables for query in \exref{vq-specific} when it is configured.}
+Consider the query $\VVal {\vQ_1}$ given in \exref{vq-specific}: \\
+\centerline{
+$\VVal {\vQ_1} = 
+\pi_{\optAtt [(\vFour \vee \vFive) \wedge \neg \vThree] [\empno], 
+\optAtt [\vFour \wedge \neg \vThree \wedge \neg \vFive] [\name], 
+\optAtt [\vFive \wedge \neg \vThree \wedge \neg \vFour] [\fname], 
+\optAtt [\vFive \wedge \neg \vThree \wedge \neg \vFour] [\lname]} (\empbio)
+$.}  
+\structure{try to fit the result tables in the same page.}
+Configuring $\VVal {\vQ_1}$ for all valid configurations 
+(\setDef \vThree, \setDef \vFour, \setDef \vFive) of the given VDB
+results in three relational queries:
+%
+\begin{alignat*}{1}
+%
+\eeSem [\setDef {\vThree}] {\VVal {\vQ_1}} &= \empRel\\
+%
+\eeSem [\setDef {\vFour}] {\VVal {\vQ_1}} &= \pi_{\empno, \name} (\empbio)\\
+%
+\eeSem [\setDef {\vFive}] {\VVal {\vQ_1}} &= \pi_{\empno, \fname, \lname} (\empbio)
+%
+%\eeSem [\setDef {\ }] {\VVal {\vQ_1}} &= \empRel 
+\end{alignat*}
+%
+\noindent
+\tabref{vq-conf-res} shows the result of these relational queries.
 \end{example}
 
+\input{tables/vq-conf-res}
 
-\eric{pls read the following paragraph and the \figref{vq-group}}
+\eric{pls read the following paragraph, \figref{vq-group}, and \exref{group-vq} and \exref{vq-group}.}
 %\TODO{write this + correct formulas + give an example.
 Unfortunately, the configuration of variational queries may result in
 duplicate relational queries. In practice, this is not very efficient, as discussed
@@ -153,19 +181,47 @@ However, this definition is not efficient since it is still enumerating all poss
 configurations. Thus, we define the more efficient unique configuration function
 for variational queries in \figref{vq-group}.
 %
-\exref{group-vq} and \exref{vq-group} provide the unique configuration of the queries 
-given in \exref{conf-vq} and \exref{vq-sem}, respectively.
+%\exref{group-vq} and \exref{vq-group} provide the unique configuration of the queries 
+%given in \exref{conf-vq} and \exref{vq-sem}, respectively.
 
 \input{formulas/groupVqDef}
 
 \begin{example}
 \label{eg:group-vq}
-\wrrite{write this.}
+Consider the query \ensuremath{
+\vQ_5 = \vPrj [{\vAtt_1, \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)
+}
+given in \exref{conf-vq}. The unique configuration of this query results in the following set of queries:
+%
+%\ensuremath{
+\[
+\qGroup {\vQ_5} = \setDef {
+\annot [(\A \wedge \neg \B) \vee (\neg \A \wedge \neg \B)] {(\pi_{\pAtt_1} (\pRel))},
+\annot [\neg \A \wedge \B] {( \pi_{\pAtt_1, \pAtt_3} (\pRel))},
+\annot [\A \wedge \B] {(\pi_{\pAtt_1, \pAtt_2, \pAtt_3} (\pRel))}
+}.
+\]
+%}
+
 \end{example}
 
 \begin{example}
 \label{eg:vq-group}
-\wrrite{write this.}
+Consider the query $\VVal {\vQ_1}$ configured in \exref{vq-sem}:\\
+\centerline{
+$\VVal {\vQ_1} = 
+\pi_{\optAtt [(\vFour \vee \vFive) \wedge \neg \vThree] [\empno], 
+\optAtt [\vFour \wedge \neg \vThree \wedge \neg \vFive] [\name], 
+\optAtt [\vFive \wedge \neg \vThree \wedge \neg \vFour] [\fname], 
+\optAtt [\vFive \wedge \neg \vThree \wedge \neg \vFour] [\lname]} (\empbio)
+$.}  
+The unique configuration of it results in:
+\begin{alignat*}{1}
+\qGroup {\VVal {\vQ_1}} &= \{
+\annot [\vThree \wedge \neg \vFour \wedge \neg \vFive] {\empRel},
+\annot [\neg \vThree \wedge \vFour \wedge \neg \vFive] {\left(\pi_{\empno, \name} (\empbio)\right)}\\
+&\qquad ,\annot [\neg \vThree \wedge \vFour \wedge \neg \vFive] {\left(\pi_{\empno, \fname, \lname} (\empbio) \right)}.
+\end{alignat*}
 \end{example}
 
 
