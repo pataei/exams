@@ -1,7 +1,27 @@
 \subsection{VRA Denotational Semantics }
 \label{sec:vradensem}
 
+\eric{pls read this entire section. thx!}
+Now that we have all required parts we define the denotational semantics of 
+variational relational algebra using the denotational semantics of relational 
+algebra. The denotational semantics of relational queries 
+$\mathit{rqSem} : \pQSet \totype \pInstSet \totype \pTabSet$ takes a plain query and
+a plain database and returns a table named $\mathit{result}$. We do not give a formal 
+definition of $\mathit{rqSem}$, however, examples of the semantics
+of a query are given in \tabref{vq-conf-res}.
+%
+We then define the VRA denotational semantics 
+$\mathit{vqSem} : \qSet \totype \vdbInstSet \totype \tabletype$ as the 
+accumulation of relational tables resulted from the semantics of its
+configured queries over their corresponding configured databases for all 
+valid configurations of a variational database. 
+%
+The $\mathit{mapRQSem}$ takes a set of relational queries with their attached
+configurations and returns the set of their semantics over their configured database
+with their attached configurations, that is, it maps $\mathit{rqSem}$ on the 
+relational queries over their corresponding database. 
 
+\TODO{think if you want to have example or more explanation of helpers.}
 
 \input{formulas/densem}
 
