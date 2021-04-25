@@ -1,0 +1,32 @@
+\begin{figure}
+
+\textbf{Table accumulation function:}
+\begin{alignat*}{1}
+\VVal {\mathit{accum}} &:  \settype {\bm{(}\vartype \pTabSet\bm{)}} \totype \tabletype\\
+\VVal {\mathit{accum}} \  \mathit{fs} \ \mathit{ts} &= \mathit{mkTable} \ \mathit{vsch} \ \mathit{tables}\\
+&\hspace{-40pt}\textit{where }
+\mathit{vsch} = \mathit{annotTablesToVsch}  \ \mathit{ts}\\
+&\hspace{-6pt} \mathit{tables} = \mathit{addPresCondToVarTables} \ \mathit {fitted}\\
+&\hspace{-6pt} \mathit{fitted} = \mathit{fitVarTablesToVsch} \ \mathit{ts} \ \mathit{vsch}
+\end{alignat*}
+
+
+\medskip 
+\textbf{Auxiliary functions for table accumulation:}
+\footnotesize
+\begin{alignat*}{1}
+\mathit{annotSchToVsch} &:  \settype {\bm{(}\vartype \pRelSchSet\bm{)}} \totype \vRelSchSet\\
+\mathit{annotTablesToVsch} &:  \settype {\bm{(}\vartype \pTabSet\bm{)}} \totype \vRelSchSet\\
+%\mathit{fitTableToVsch} &: \pTabSet \totype \vRelSchSet \totype \pTabSet\\
+\mathit{fitVarTablesToVsch} &: \settype {\bm{(}\vartype \pTabSet\bm{)}} \totype \vRelSchSet \totype \settype {\bm{(}\vartype \pTabSet\bm{)}}\\
+\mathit{addPresCondToVarContent} &:  \vartype \pRelContSet \totype \vRelContSet\\
+\mathit{addPresCondToVarTables} &:  \settype {\bm{(}\vartype \pTabSet\bm{)}} \totype \settype \vRelContSet
+%\mathit{mkTable} &: \vRelSchSet \totype \settype \vRelContSet \totype \tabletype
+\end{alignat*}
+
+
+\caption[Accumulation function of a set of relational tables annotated with a feature expression into a variational table]{Accumulation function of a set of relational tables annotated with a feature expression into a variational table and its auxiliary functions. The definition uses spaces to pass parameters, e.g., $f \ x = f(x)$ and $f \ x \ y = f(x,y)$.
+}
+\label{fig:accum1}
+\end{figure}
+

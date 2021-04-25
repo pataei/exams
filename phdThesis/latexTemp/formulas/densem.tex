@@ -1,0 +1,29 @@
+\begin{figure}
+
+\textbf{VRA denotational semantics:}
+\begin{alignat*}{1}
+\mathit{vqSem} &: \qSet \totype \vdbInstSet \totype \tabletype\\
+\mathit{vqSem} \  \vQ \ \vdbInst &= \mathit{accum} \ \mathit{fs} \ \mathit{tabs}\\
+&\hspace{-30pt}\textit{where } \mathit{fs} =\mathit{featues} \ \vdbInst\\
+&\hspace{2pt} \mathit{rqs} = \mathit{qToConfRelQs} \ \vQ \ (\mathit{validConfigs} \ \vdbInst)\\
+&\hspace{2pt} \mathit{tabs} = \mathit{mapRQSem} \ \mathit{rqs} \ \vdbInst
+\end{alignat*}
+
+
+\medskip 
+\textbf{Auxiliary functions for VRA denotational semantics:}
+%\footnotesize
+\begin{alignat*}{1}
+\mathit{rqSem} &: \pQSet \totype \pInstSet \totype \pTabSet\\
+\mathit{mapRQSem} &: \settype {\typepair \confSet \pQSet} \totype \vdbInstSet \totype \settype {\typepair \confSet \pTabSet}\\
+\mathit{features} &: \vdbInstSet \totype \settype \fSet\\
+\mathit{validConfigs} &: \vdbInstSet \totype \settype \confSet\\
+\mathit{qToConfRelQs} &: \qSet \totype \settype \confSet \totype \settype {\typepair \confSet \pQSet}\\
+\end{alignat*}
+
+
+\caption[VRA denotational semantics]{Denotational semantics of variational relational algebra.
+}
+\label{fig:densem}
+\end{figure}
+

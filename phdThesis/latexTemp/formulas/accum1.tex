@@ -1,0 +1,35 @@
+\begin{figure}
+
+\textbf{Table accumulation function:}
+\begin{alignat*}{1}
+\mathit{accum} &: \settype \fSet \totype \settype {\typepair \confSet \pTabSet} \totype \tabletype\\
+\mathit{accum} \  \mathit{fs} \ \mathit{ts} &= \mathit{mkTable} \ \mathit{vsch} \ \mathit{tables}\\
+%&\hspace{60pt} (\mathit{addPresCondToConfTables} \ \mathit{fs} \\
+%&\hspace{140pt} (\mathit{fitConfTablesToVsch} \ \mathit{ts} \ \mathit{vsch}))\\
+&\hspace{-40pt}\textit{where }
+\mathit{vsch} = \mathit{tablesToVsch} \ \mathit{fs} \ \mathit{ts}\\
+&\hspace{-6pt} \mathit{tables} = \mathit{addPresCondToConfTables} \ \mathit{fs} \ \mathit {fitted}\\
+&\hspace{-6pt} \mathit{fitted} = \mathit{fitConfTablesToVsch} \ \mathit{ts} \ \mathit{vsch}
+\end{alignat*}
+
+
+\medskip 
+\textbf{Auxiliary functions for table accumulation:}
+\footnotesize
+\begin{alignat*}{1}
+\mathit{schToVsch} &: \settype \fSet \totype \settype {\typepair \confSet \pRelSchSet} \totype \vRelSchSet\\
+\mathit{tablesToVsch} &: \settype \fSet \totype \settype {\typepair \confSet \pTabSet} \totype \vRelSchSet\\
+\mathit{fitTableToVsch} &: \pTabSet \totype \vRelSchSet \totype \pTabSet\\
+\mathit{fitConfTablesToVsch} &: \settype {\typepair \confSet \pTabSet} \totype \vRelSchSet \totype \settype {\typepair \confSet \pTabSet}\\
+\mathit{addPresCondToConfContent} &: \settype \fSet \totype \typepair \confSet \pRelContSet \totype \vRelContSet\\
+\mathit{addPresCondToConfTables} &: \settype \fSet \totype \settype {\typepair \confSet \pTabSet} \totype \settype \vRelContSet\\
+\mathit{mkTable} &: \vRelSchSet \totype \settype \vRelContSet \totype \tabletype
+\end{alignat*}
+
+
+\caption[Accumulation function of a set of relational tables with their attached configuration into a variational table]{Accumulation function of a set of relational tables with their attached configuration into a variational table and its auxiliary functions. The definition uses spaces to pass parameters. For example, $f \ x$ states that the parameter $x$ is passed to the function $x$ and $f\ x\ y$ states that
+parameters $x$ and $y$ are passed to $f$ as the first and second arguments, respectively.
+}
+\label{fig:accum1}
+\end{figure}
+
