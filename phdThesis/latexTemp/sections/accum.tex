@@ -1,14 +1,66 @@
 \subsection{Accumulation of Relational Tables to a Variational Table}
 \label{sec:accum}
 
-\TODO{to be completed!}
+After connecting variational queries to relational queries, to define the 
+semantics of VRA we need to connect
+the results of multiple relational queries to the result of a single variational 
+query. 
+%
+Since we have two approaches to connect a variational query to relational queries 
+we define two \emph{accumulation} functions that generate a 
+variational table from a set of relational tables. 
+%
+The first accumulation function $\mathit{accum} : \settype \fSet \totype \settype {\typepair \confSet \pTabSet} \totype \tabletype$ takes the feature space of a database and a set of relational
+tables with their attached configurations and generates a variational table. \figref{accum1} 
+defines this function in terms of some auxiliary functions. 
+%
+The $\mathit{mkTable}$ function takes a variational relation schema and a set of 
+variational relation contents and generates a variational table that has the given schema
+and the variational tuples in the input tables. 
+%
+The $\mathit{addPresCondToConfTables}$ function maps the $\mathit{addPresCondToConfContent}$
+over a set of tables and their attached configuration and the  $\mathit{addPresCondToConfContent}$
+function adds the \pcatt\ attribute to a relational table and its corresponding value which is 
+a feature expression associated with the given configuration using the closed set of
+features.
+%
+The $\mathit{fitConfTablesToVsch}$ maps the function $\mathit{fitTableToVsch}$ to tables of a set of 
+relational tables and their attached configuration.
+The $\mathit{fitTableToVsch}$ function adjusts a table, both its schema and content, 
+to a variational relation schema.
+%
+The $\mathit{tablesToVsch}$ maps the function $\mathit{schToVsch}$ to a set of 
+relational tables and their attached configuration. 
+The $\mathit{schToVsch}$ generates a variational relation schema from a set of
+plain relation schema and their attached configuration given the closed set of 
+features of the database's feature space.
+%
+Note that to generate a feature expression from a configuration it is essential to
+pass the closed set of features.
+%
+\exref{acc-table-from-conf} illustrates the behavior of these auxiliary functions and the
+table accumulation function over the relational tables in \tabref{vq-conf-res}.
 
 
+\input{formulas/accum1}
 
 \begin{example}
 \label{eg:acc-table-from-conf}
 \wrrite{write this}
 \end{example}
+
+The second accumulation function
+ $\VVal {\mathit{accum}} :  \settype {\bm{(}\vartype \pTabSet\bm{)}} \totype \tabletype$ 
+ takes a set of relational tables that are annotated with
+a feature expression instead of their attached configuration. \figref{accum2} defines
+this function and its auxiliary functions. The auxiliary functions are similar to the ones
+defined in \figref{accum1} except that they do not need to generate a feature expression
+from a configuration and a set of closed features.
+%
+\exref{acc-table-from-group} illustrates the behavior of these auxiliary functions and the second accumulation
+function over the tables in \tabref{vq-conf-res}.
+
+\input{formulas/accum2}
 
 \begin{example}
 \label{eg:acc-table-from-group}

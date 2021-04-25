@@ -1,9 +1,9 @@
 \begin{figure}
 %\textbf{Configuration selection semantics of \vqsTxt:}
 \begin{alignat*}{1}
-\qGroup . &: \qSet \totype \vartype \pQSet\\
+\qGroup . &: \qSet \totype \settype {\bm{(} \vartype \pQSet \bm{)}}\\
 %
-\qGroup \vRel &= \annot [\t] \pRel\\
+\qGroup \vRel &= \setDef {\annot [\t] \pRel}\\
 \qGroup {\vSel \vQ}  &=  
 \setDef {\annot [\dimMeta \wedge \dimMeta_\vCond] {\left(\sigma_{\pCond} \pQ\right)} \myOR
 \annot \pQ \in \qGroup \vQ, \annot [\dimMeta_\vCond] \pCond \in \cGroup}

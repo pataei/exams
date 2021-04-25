@@ -155,8 +155,8 @@ results in three relational queries:
 Unfortunately, the configuration of variational queries may result in
 duplicate relational queries. In practice, this is not very efficient, as discussed
 later in \secref{exp}. Thus, we define the \emph{unique configuration} function
-$\qGroup . : \qSet \totype \vartype \pQSet$ that takes a variational query 
-and returns its corresponding configured relational queries annotated with
+$\qGroup . : \qSet \totype \settype {\bm{(} \vartype \pQSet \bm{)}}$ that takes a variational query 
+and returns a set of configured relational queries annotated with
 a presence condition. The presence condition is a feature expression generated from
 the set of configurations that configured the variational query into the same relational query.
 %
