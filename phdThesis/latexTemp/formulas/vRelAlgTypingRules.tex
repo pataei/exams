@@ -1,6 +1,6 @@
 \begin{figure}
 %\begin{minipage}[t]{0.5\textwidth}
-\textbf{V-queries typing rules:}
+\textbf{Variational queries typing rules:}
 
   \begin{mathpar}
   \small
@@ -53,7 +53,7 @@
   	{\envOne[\vctx \wedge \VVal \dimMeta] \\
     	\envTwo[\vctx \wedge \neg \VVal \dimMeta]}
     {\env{\chc[\VVal \dimMeta]{\vQ_1, \vQ_2}}{
-     \envInContext [(\vctx_1 \wedge \VVal \dimMeta) \vee (\vctx_2 \wedge \neg \VVal \dimMeta)] 
+     \envInContext [(\vctx_1) \vee (\vctx_2)] 
      {\left({\pushIn {\envInContext [\vctx_1] \vType_1}} \cup
     							{\pushIn {\envInContext [\vctx_2] \vType_2}}\right)}}}
 % older version 8/8/20:
@@ -87,12 +87,16 @@
   \end{mathpar}
   
 \medskip
-\textbf{V-condition typing rules:}
+\textbf{Variational condition typing rules:}
 % (b: boolean tag, \pAtt: plain attribute, k: constant value):}
 %(b: boolean tag, A: plain attribute, k: constant value)}
   \begin{mathpar}
   \small    
 
+  \inferrule[\boolC]
+  	{}
+    {\envCond \bTag}
+    
   \inferrule[\conjC]
   	{\envCond \vCond_1\\
     	\envCond \vCond_2}
@@ -102,8 +106,7 @@
   	{\envCond \vCond_1\\
     	\envCond \vCond_2}
     {\envCond{\vCond_1 \vee \vCond_2}}
-    
-
+   
 
   \inferrule[\choiceC]
 %  	{\defType{\relInContext{\vContext''}}\in \vSch \\
@@ -132,11 +135,6 @@
 %        \\
 %        \cte \in \dom \vAtt}
     {\envCond{\op \pAtt \cte}}
-    
-  \inferrule[\boolC]
-  	{}
-    {\envCond \bTag}
-    
 
     
   \inferrule[\attAttC]

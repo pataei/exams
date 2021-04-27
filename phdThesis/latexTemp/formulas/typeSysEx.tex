@@ -9,9 +9,9 @@
 
 \textbf{Assumption 1:}
 \begin{prooftree*}
-\hypo {\empbio \annot [\fModel_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
-\hypo {\sat {\fModel_2 \wedge \fModel_2}}
-\Infer2 [\textsc{Relation-E}] {\env [\fModel_2] [\vSch_2] {\empbio} {\annot [\fModel_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+\hypo {\empbio  {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
+\hypo {\sat {\dimMeta_2 \wedge \dimMeta_2}}
+\Infer2 [\textsc{Relation-E}] {\env [\dimMeta_2] [\vSch_2] {\empbio} {\annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
 \end{prooftree*}
 
 \medskip
@@ -21,22 +21,30 @@
 %\hypo {
 &  { \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \} }\\ 
 &\qquad \prec
-{\{\annot [\fModel_2] \empno, \annot [\fModel_2] \sex, \annot [\fModel_2] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } 
+\pushIn{\{ \empno, \sex,  \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\}^{\dimMeta_2} } 
 %}
 %\end{prooftree*}
+\end{alignat*}
+
+\medskip
+\textbf{Assumption 3:}
+\begin{alignat*}{1}
+|\pushIn { \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \}^{\dimMeta_2} }|
+= |{ \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \} }|
 \end{alignat*}
 
 \medskip
 \textbf{Final derivation tree:}
 \begin{prooftree*}
 \hypo {\textit{\bf Assumption 1}}
-%\hypo {\empbio \annot [\fModel_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
-%\hypo {\sat {\fModel_2 \wedge \fModel_2}}
-%\Infer2 [\relationE] {\env [\fModel_2] [\vSch_2] {\empbio} {\annot [\fModel_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+%\hypo {\empbio \annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
+%\hypo {\sat {\dimMeta_2 \wedge \dimMeta_2}}
+%\Infer2 [\relationE] {\env [\dimMeta_2] [\vSch_2] {\empbio} {\annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
 \hypo {\textit{\bf Assumption 2}}
 %\hypo {\subsume { \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \} } 
-%{\{\annot [\fModel_2] \empno, \annot [\fModel_2] \sex, \annot [\fModel_2] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } }
-\Infer2 [\textsc{Project-E}] {\env [\fModel_2] [\vSch_2] {\vQ_1} {\annot [\fModel_2] {( \annot [(\vFour \vee \vFive) \wedge \fModel_2] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)} }}
+%{\{\annot [\dimMeta_2] \empno, \annot [\dimMeta_2] \sex, \annot [\dimMeta_2] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } }
+\hypo {\textit{\bf Assumption 3}}
+\Infer3 [\textsc{Project-E}] {\env [\dimMeta_2] [\vSch_2] {\vQ_1} {\annot [\dimMeta_2] {( \annot [(\vFour \vee \vFive) ] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)} }}
 \end{prooftree*}
 \end{figure}
 
@@ -48,55 +56,63 @@
 \scriptsize
 \textbf{Assumption 1:}
 \begin{prooftree*}
-\hypo {\empbio \annot [\fModel_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
+\hypo {\empbio \annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
 \end{prooftree*}
 
 \medskip
 \textbf{Assumption 2:}
 \begin{prooftree*}
 \hypo {\textit{\bf Assumption 1}}
-\hypo {\sat {(\fModel_2 \wedge (\neg \vThree)) \wedge \fModel_2}}
-\Infer2 [\textsc{Relation-E}] {\env [\fModel_2 \wedge (\neg \vThree)] [\vSch_2] {\empbio} {\annot [\fModel_2 \wedge (\vFour \vee \vFive)] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+\hypo {\sat {(\dimMeta_2 \wedge (\neg \vThree)) \wedge \dimMeta_2}}
+\Infer2 [\textsc{Relation-E}] {\env [\dimMeta_2 \wedge (\neg \vThree)] [\vSch_2] {\empbio} {\annot [\dimMeta_2 \wedge (\neg \vThree)] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
 \end{prooftree*}
+
+\medskip
+\textbf{Assumption 3:}
+\begin{alignat*}{1}
+|\pushIn { \{ \empno, \name, \fname, \lname  \}^{\dimMeta_2 \wedge \neg \vThree} } |
+=|{ \{ \empno, \name, \fname, \lname  \} } |
+\end{alignat*}
 
 %\begin{prooftree*}
 \medskip
-\textbf{Assumption 3:}
+\textbf{Assumption 4:}
 \begin{alignat*}{1}
 %\hypo {
 %\subsume
 & { \{ \empno, \name, \fname, \lname  \} } \\
-&\qquad \prec {\{\annot [\fModel_2 \wedge (\neg \vThree)] \empno, \annot [\fModel_2 \wedge (\neg \vThree)] \sex, \annot [\fModel_2 \wedge (\neg \vThree)] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } 
+&\qquad \prec {\{\annot [\dimMeta_2 \wedge (\neg \vThree)] \empno, \annot [\dimMeta_2 \wedge (\neg \vThree)] \sex, \annot [\dimMeta_2 \wedge (\neg \vThree)] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } 
 %}
 %\end{prooftree*}
 \end{alignat*}
 
 \medskip
-\textbf{Assumption 4 (derivation tree for $\mathit{left} = {\pi_{\empno, \name, \fname, \lname} (\empbio)}$):}
+\textbf{Assumption 5 (derivation tree for $\mathit{left} = {\pi_{\empno, \name, \fname, \lname} (\empbio)}$):}
 \begin{prooftree*}
 \hypo {\textit{\bf Assumption 2}}
 \hypo {\textit{\bf Assumption 3}}
-\Infer2 [\textsc{Project-E}] {\env [\fModel_2 \wedge (\neg \vThree)] [\vSch_2] {\mathit{left}} {\annot [\fModel_2 \wedge (\neg \vThree)] {(\annot [\fModel_2 \wedge (\neg \vThree)] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFour] \lname)}}}
+\hypo {\textit{\bf Assumption 4}}
+\Infer3 [\textsc{Project-E}] {\env [\dimMeta_2 \wedge (\neg \vThree)] [\vSch_2] {\mathit{left}} {\annot [\dimMeta_2 \wedge (\neg \vThree)] {( \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFour] \lname)}}}
 \end{prooftree*}
 
 \medskip
 \textbf{Final derivation tree for $\vQ_2$:}
 \begin{prooftree*}
 %\hypo {Assumption 2}
-\hypo {\textit{\bf Assumption 4}}
-\Infer0 [\textsc{EmptyRelation-E}] {\env [\fModel_2 \wedge \neg (\neg \vThree)] [\vSch_2] {\empRel} {\annot [\texttt{false}] {\setDef \ }}}
-\Infer2 [\textsc{Choice-E}] {\env [\fModel_2] [\vSch_2] {\vQ_2} {\annot [(\fModel_2 \wedge (\neg \vThree)) \vee (\texttt{false} \wedge \neg (\neg \vThree))] {(\annot [(\neg \vThree) \wedge \fModel_2] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+\hypo {\textit{\bf Assumption 5}}
+\Infer0 [\textsc{EmptyRelation-E}] {\env [\dimMeta_2 \wedge \neg (\neg \vThree)] [\vSch_2] {\empRel} {\annot [\texttt{false}] {\setDef \ }}}
+\Infer2 [\textsc{Choice-E}] {\env [\dimMeta_2] [\vSch_2] {\vQ_2} {\annot [(\dimMeta_2 \wedge (\neg \vThree)) \vee \texttt{false}] {( \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
 \end{prooftree*}
 
 
 %\begin{prooftree*}
-%\hypo {\empbio \annot [\fModel_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
-%\hypo {\sat {(\fModel_2 \wedge (\vFour \vee \vFive)) \wedge \fModel_2}}
-%\Infer2 [\relationE] {\env [\fModel_2 \wedge (\vFour \vee \vFive)] [\vSch_2] {\empbio} {\annot [\fModel_2 \wedge (\vFour \vee \vFive)] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
-%\hypo {\subsume { \{ \empno, \name, \fname, \lname  \} } {\{\annot [\fModel_2 \wedge (\vFour \vee \vFive)] \empno, \annot [\fModel_2 \wedge (\vFour \vee \vFive)] \sex, \annot [\fModel_2 \wedge (\vFour \vee \vFive)] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } }
-%\Infer2 [\prjE] {\env [\fModel_2 \wedge (\vFour \vee \vFive)] [\vSch_2] {\prj {\empno, \name, \fname, \lname} \empbio} {\annot [\fModel_2 \wedge (\vFour \vee \vFive)] {(\annot [\fModel_2 \wedge (\vFour \vee \vFive)] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFour] \lname)}}}
-%\Infer0 [\empRelE] {\env [\fModel_2 \wedge \neg (\vFour \vee \vFive)] [\vSch_2] {\empRel} {\annot [\f] {\setDef \ }}}
-%\Infer2 [\choiceE] {\env [\fModel_2] [\vSch_2] {\vQ_2} {\annot [(\fModel_2 \wedge (\vFour \vee \vFive)) \vee (\f \wedge \neg (\vFour \vee \vFive))] {(\annot [(\vFour \vee \vFive) \wedge \fModel_2] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+%\hypo {\empbio \annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
+%\hypo {\sat {(\dimMeta_2 \wedge (\vFour \vee \vFive)) \wedge \dimMeta_2}}
+%\Infer2 [\relationE] {\env [\dimMeta_2 \wedge (\vFour \vee \vFive)] [\vSch_2] {\empbio} {\annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+%\hypo {\subsume { \{ \empno, \name, \fname, \lname  \} } {\{\annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] \empno, \annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] \sex, \annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } }
+%\Infer2 [\prjE] {\env [\dimMeta_2 \wedge (\vFour \vee \vFive)] [\vSch_2] {\prj {\empno, \name, \fname, \lname} \empbio} {\annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] {(\annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFour] \lname)}}}
+%\Infer0 [\empRelE] {\env [\dimMeta_2 \wedge \neg (\vFour \vee \vFive)] [\vSch_2] {\empRel} {\annot [\f] {\setDef \ }}}
+%\Infer2 [\choiceE] {\env [\dimMeta_2] [\vSch_2] {\vQ_2} {\annot [(\dimMeta_2 \wedge (\vFour \vee \vFive)) \vee (\f \wedge \neg (\vFour \vee \vFive))] {(\annot [(\vFour \vee \vFive) \wedge \dimMeta_2] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
 %\end{prooftree*}
 
 %  \begin{mathpar}
@@ -105,11 +121,11 @@
 %  \inferrule[\prjE]
 %  {\inferrule [\relationE] 
 %  {blah}
-%  {\env [\fModel_2] [\vSch_2] {\empbio} {\annot [\fModel_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}\\
+%  {\env [\dimMeta_2] [\vSch_2] {\empbio} {\annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}\\
 %\subsume { \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \} } 
-%{\{\annot [\fModel_2] \empno, \annot [\fModel_2] \sex, \annot [\fModel_2] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\}}}
+%{\{\annot [\dimMeta_2] \empno, \annot [\dimMeta_2] \sex, \annot [\dimMeta_2] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\}}}
 %  %
-%  {\env [\fModel_2] [\vSch_2] {\vQ_1} {\annot [\fModel_2] {\setDef {\annot [(\vFour \vee \vFive) \wedge \fModel_2] {(\empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)} }}}}
+%  {\env [\dimMeta_2] [\vSch_2] {\vQ_1} {\annot [\dimMeta_2] {\setDef {\annot [(\vFour \vee \vFive) \wedge \dimMeta_2] {(\empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)} }}}}
 %
 %%implicitly-typed lang:
 %    \inferrule[\relationE]
