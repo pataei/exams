@@ -17,15 +17,21 @@ configured queries over their corresponding configured databases for all
 valid configurations of a variational database. 
 %
 The $\mathit{mapRQSem}$ takes a set of relational queries with their attached
-configurations and returns the set of their semantics over their configured database
+configurations and a variational database instance and returns the set of query 
+semantics over their configured database
 with their attached configurations, that is, it maps $\mathit{rqSem}$ on the 
-relational queries over their corresponding database. 
+relational queries over their corresponding relational database.%
+\footnote{In implementation, the closed set of features and valid configurations
+of a VDB are contained within, instead of extracting them from the database. However,
+we keep the formalization simple and assume that they can also be retrieved from
+the VDB.}
 
-\TODO{think if you want to have example or more explanation of helpers.}
+%\TODO{think if you want to have example or more explanation of helpers.}
 
 \input{formulas/densem}
 
-\begin{example}
-\label{eg:sem}
-\wrrite{write the damn thing}
-\end{example}
+%\begin{example}
+%\label{eg:sem}
+%\wrrite{write the damn thing}
+%\end{example}
+
