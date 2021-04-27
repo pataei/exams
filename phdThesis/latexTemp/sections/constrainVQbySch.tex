@@ -1,7 +1,6 @@
 \section{Explicitly Annotating Queries}
 \label{sec:constrain}
 
-\maybeAdd{if have time, give the exact query after explicitly annotating them instead of simplifying them. do this for $\vQ_6$ or maybe $\vQ_1$}
 %\point{type system allows the ql to be flexible and usable.}
 %The type system is designed s.t. it relieves the user from necessarily incorporating
 %the v-schema variability into their queries as long as the variational queries variability
@@ -18,7 +17,13 @@ the schema while \ensuremath{\vQ_6} repeats this information:\\
 \centerline{
 \ensuremath{
 \vQ_6 =
-\pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } \left(\chc [\dimMeta_2] {\empbio, \empRel} \right)}}.
+\pi_{\optAtt [(\vFour \vee \vFive) \wedge \neg \vThree] [\empno], \optAtt [\neg \vThree \wedge \vFour \wedge \neg \vFive] [\name], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\fname], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\lname]  } \left(\chc [\dimMeta_2] {\empbio, \empRel} \right)}}.%
+\eric{I added the footnote to be more explicit about the example.}
+\footnote{
+The query $\vQ_6$ is the simplified version of\\
+$\constrain [\vSch_2] {\vQ_1} = 
+\pi_{\optAtt [(\vFour \vee \vFive) \wedge \neg \vThree] [\empno], \optAtt [\neg \vThree \wedge \vFour \wedge \neg \vFive] [\name], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\fname], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\lname]  } \left(\constrain [\vSch_2] {\empbio}\right)$ where $\constrain [\vSch_2] {\empbio} = \chc [\dimMeta_2] {\pi_{\empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname} (\empbio),\empRel} $.
+}
 
 %\pi_{\optAtt [(\vFour \vee \vFive) \wedge \fModel_2] [\empno], \optAtt [\vFour \wedge \fModel_2] [\name], \optAtt [\vFive \wedge \fModel_2] [\fname], \optAtt [\vFive \wedge \fModel_2] [\lname]  } \empbio}}.
 %
@@ -111,11 +116,11 @@ We also illustrate the application of \thmref{expl-same-type} to queries
 \exref{type} explained how \ensuremath{\vQ_1}'s type is generated step-by-step.
 The variation context and underlying schema are
 the same and the subquery \empbio\ has the same type. 
-The projected attribute set annotated with the variation context is:
+The projected attribute set annotated with the variation context is:\\
 \ensuremath{
-\vAttList_2 =  \{\annot [\vFour \vee \vFive] \empno, }
-\ensuremath{ 
-\optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]\}^{\dimMeta_2}}, which is clearly subsumed by \ensuremath{\vAttList_\empbio}, thus, 
+\vAttList_2 =  \{\annot [(\vFour \vee \vFive) \wedge \neg \vThree] \empno, 
+%\ensuremath{ 
+\optAtt [\neg \vThree \wedge \vFour \wedge \neg \vFive] [\name], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\fname], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\lname]\}^{\dimMeta_2}}, which is clearly subsumed by \ensuremath{\vAttList_\empbio}, thus, 
 %the type of \empbio, \vAttList, and
 its intersection with \ensuremath{\vAttList_\empbio} annotated
 with the presence condition of \ensuremath{\vAttList_\empbio} is itself,
