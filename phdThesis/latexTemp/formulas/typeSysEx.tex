@@ -19,7 +19,7 @@
 \textbf{Assumption 2:}
 \begin{alignat*}{1}
 %\hypo {
-&  { \{\annot [\neg \vThree] \empno, \name, \fname, \lname  \} }\\ 
+&  { \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \} }\\ 
 &\qquad \prec
 {\{\annot [\fModel_2] \empno, \annot [\fModel_2] \sex, \annot [\fModel_2] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } 
 %}
@@ -36,7 +36,7 @@
 \hypo {\textit{\bf Assumption 2}}
 %\hypo {\subsume { \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \} } 
 %{\{\annot [\fModel_2] \empno, \annot [\fModel_2] \sex, \annot [\fModel_2] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } }
-\Infer2 [\textsc{Project-E}] {\env [\fModel_2] [\vSch_2] {\vQ_1} {\annot [\fModel_2] {( \annot [(\neg \vThree) \wedge \fModel_2] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)} }}
+\Infer2 [\textsc{Project-E}] {\env [\fModel_2] [\vSch_2] {\vQ_1} {\annot [\fModel_2] {( \annot [(\vFour \vee \vFive) \wedge \fModel_2] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)} }}
 \end{prooftree*}
 \end{figure}
 

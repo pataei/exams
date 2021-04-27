@@ -47,7 +47,18 @@ table accumulation function over the relational tables in \tabref{vq-conf-res}.
 
 \begin{example}
 \label{eg:acc-table-from-conf}
-\wrrite{write this}
+Consider the query $\VVal {\vQ_1}$ written over the VDB with variational schema $\vSch_2$ and 
+feature space $\fSet = \setDef {\vThree, \vFour, \vFive}$, all given in \exref{vq-specific}. 
+%
+All configured relational queries of $\VVal {\vQ_1}$ for VDDB's valid configurations and their
+corresponding results in form of a relational table are given
+in \exref{vq-sem} and \tabref{vq-conf-res}, respectively. 
+%
+Now we show how the relational tables of the configured queries, shown in \tabref{}vq-conf-res, are accumulated 
+to the variational table, shown in \tabref{vq1-res}, as the result of the variational query $\VVal \vQ_1$ by 
+using the table accumulation function $\mathit{accum}$.
+%
+%\tabref{}
 \end{example}
 
 The second accumulation function
@@ -55,7 +66,7 @@ The second accumulation function
  takes a set of relational tables that are annotated with
 a feature expression instead of their attached configuration. \figref{accum2} defines
 this function and its auxiliary functions. The auxiliary functions are similar to the ones
-defined in \figref{accum1} except that they do not need to generate a feature expression
+defined in \figref{accum2} except that they do not need to generate a feature expression
 from a configuration and a set of closed features.
 %
 \exref{acc-table-from-group} illustrates the behavior of these auxiliary functions and the second accumulation
