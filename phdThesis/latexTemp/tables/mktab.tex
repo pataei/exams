@@ -1,0 +1,31 @@
+\begin{table}
+\caption[Example of the final step of table accumulation]{Final step of table accumulation passes the
+variational relation schema $\vRelSch_{\mathit{accum}}$ and relation contents in \tabref{pcadded} to the $\mathit{mkTable}$ function.}
+\label{tab:mktab}
+\centering
+%\footnotesize
+%\scriptsize
+\tiny
+\arrayrulecolor{blue}
+%!{\color{black}\vrule}
+\begin{tabular} {c !{\color{black}\vrule} l l l l : l }
+& {\textcolor{blue}{$(\neg \vThree \wedge \vFour \wedge \neg \vFive)$}}&   &  &  & \\
+ {\textcolor{blue}{$\oneof {\vThree, \vFour,\vFive}$} }& {\textcolor{blue}{$(\vee(\neg \vThree \wedge \neg \vFour \wedge \vFive)$}}&  {\textcolor{blue}{$\neg \vThree \wedge \vFour \wedge \neg \vFive $}} &  {\textcolor{blue}{$\neg \vThree \wedge \neg \vFour \wedge \vFive $}} &  {\textcolor{blue}{$\neg \vThree \wedge \neg \vFour \wedge \vFive$}} & {\textcolor{blue}{\texttt{true}}}\\
+\arrayrulecolor{blue}\hdashline
+\multirow{2}{*}{$\mathit{result}$}  & \empno & \name & \fname & \lname & \pcatt \\
+\arrayrulecolor{black}\cline{2-6}
+& & & & &  \textcolor{blue}{$\vThree \wedge \neg \vFour \wedge \neg \vFive$}\\
+%& 12001 & & & & \textcolor{blue}{\vThree}\\
+%& 12002 & & & & \textcolor{blue}{\vThree}\\
+%& 12003 & & & & \textcolor{blue}{\vThree}\\
+ &80001  & Nagui Merli & & & \textcolor{blue}{$\neg \vThree \wedge \vFour \wedge \neg \vFive$}\\
+ & 80002 & Mayuko Meszaros & & & \textcolor{blue}{$\neg \vThree \wedge \vFour \wedge \neg \vFive$}\\
+ & 80003 & Theirry Viele & & & \textcolor{blue}{$\neg \vThree \wedge \vFour \wedge \neg \vFive$}\\
+ & 200001  & & Selwyn & Koshiba & \textcolor{blue}{$\neg \vThree \wedge \neg \vFour \wedge \vFive$} \\
+ & 200002  & & Bedrich & Markovitch & \textcolor{blue}{$\neg \vThree \wedge \neg \vFour \wedge \vFive$} \\
+ & 200003  & & Pascal & Benzmuller  & \textcolor{blue}{$\neg \vThree \wedge \neg \vFour \wedge \vFive$} \\
+ & \ldots  & \ldots & \ldots & \ldots& \textcolor{blue}{\ldots} \\
+\arrayrulecolor{white}\hline
+\end{tabular}
+
+\end{table}

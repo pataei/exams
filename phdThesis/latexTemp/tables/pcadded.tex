@@ -1,0 +1,31 @@
+\begin{table}[!htbp]
+\caption[Example of step three of table accumulation]{Step three of table accumulation adds the 
+presence condition values to relation contents. The table illustrates a set of relation contents that 
+are separated by the red bold line between them. The tuples follow the order of attributes in the
+relation schema.}
+\label{tab:pcadded}
+\centering
+\small
+%\footnotesize
+%\scriptsize
+\arrayrulecolor{blue}
+\begin{tabular} {c !{\color{black}\vrule} l l l l : l }
+%\multirow{2}{*}{$\mathit{result}$}  & \empno & \name & \fname & \lname & \pcatt \\
+\multirow{2}{*}{\textcolor{white}{result}} & & & & &  \\
+\arrayrulecolor{black}\cline{2-6}
+& & & & &  \textcolor{blue}{$\vThree \wedge \neg \vFour \wedge \neg \vFive$}\\
+\arrayrulecolor{red}\specialrule{.2em}{.1em}{.1em}
+ &80001 & Nagui Merli & & & \textcolor{blue}{$\neg \vThree \wedge \vFour \wedge \neg \vFive$}\\
+ & 80002 & Mayuko Meszaros & & & \textcolor{blue}{$\neg \vThree \wedge \vFour \wedge \neg \vFive$}\\
+ & 80003 & Theirry Viele & & & \textcolor{blue}{$\neg \vThree \wedge \vFour \wedge \neg \vFive$}\\
+&\ldots & \ldots  & \ldots & \ldots & \textcolor{blue}{\ldots}\\
+\arrayrulecolor{red}\specialrule{.2em}{.1em}{.1em}
+ & 200001 & & Selwyn & Koshiba & \textcolor{blue}{$\neg \vThree \wedge \neg \vFour \wedge \vFive$}\\
+ & 200002 & & Bedrich & Markovitch &\textcolor{blue}{$\neg \vThree \wedge \neg \vFour \wedge \vFive$} \\
+ & 200003 & & Pascal & Benzmuller &\textcolor{blue}{$\neg \vThree \wedge \neg \vFour \wedge \vFive$} \\
+ & \ldots & \ldots & \ldots & \ldots & \textcolor{blue}{\ldots}\\
+\arrayrulecolor{white}\hline
+\end{tabular}
+
+\end{table}
+
