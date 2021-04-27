@@ -17,14 +17,37 @@ databases with assumptions that are held throughout the thesis and relational al
 It also describes various ways of incorporating variation
 into elements of a database. 
 
-\rewrite{write more details}
-\chref{vdb} (\emph{Variational Database Framework}) describes a variational
-database framework and an approach to encode variation both at the schema
-level (\secref{vsch}) and content level (\secref{vtab}), resulting in a variational database
-(VDB). Then, \secref{vdbfprop} defines properties of a well-formed VDB.
+\chref{vdb} (\emph{Variational Database Framework}) describes a formal model of
+\emph{variational databases} (VDBs), whose
+structure are given by a \emph{variational schema} (\secref{vsch}) and whose content are given
+by \emph{variational tables} (\secref{vtab}).
+%framework and an approach to encode variation both at the schema
+%level (\secref{vsch}) and content level (\secref{vtab}), resulting in a variational database
+%(VDB). 
+In essence, a variational database gathers multiple relational databases in one place.
+\secref{vsch} and \secref{vtab} also describe how a relational database can be generated
+from a VDB.
+Finally, \secref{vdbfprop} defines properties of a well-formed VDB.
 
-\wrrite{write this after you finish the chapter.}
-\TODO{\chref{vql}}
+\chref{vql} (\emph{Variational Queries}) describes the need for a query language 
+to extract information from a VDB. It formally defines 
+\emph{variational relational algebra} (VRA) as a query language for
+VDB in \secref{vrel-alg}.
+%
+It also defines the denotational semantics of VRA through the semantics of
+relational algebra in \secref{vrasem}.
+%
+Additionally, it describes a \emph{static type system} for ensuring that all variants of a query are
+compatible with the corresponding variants of the VDB in \secref{type-sys}.
+% 
+Then, it describes an \emph{explicitly annotating} queries function to releave the 
+user from repeating the VDB's variation in their queries in \secref{constrain}.
+%
+It also defines a set of syntactic-based rules to \emph{minimize variation} in 
+variational queries in \secref{var-min}.
+%
+Finally, it discusses the properties of the VRA in \secref{vqlprop} including its expressiveness and 
+type safety. 
 
 \chref{vdbusecase} (\emph{Variational Database Use Cases}) 
 aims at guiding an expert through generating a VDB and writing
