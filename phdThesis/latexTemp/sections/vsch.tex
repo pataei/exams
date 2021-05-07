@@ -1,16 +1,14 @@
 \section{Variational Schema}
 \label{sec:vsch}
 
-\eric{could you pls read this section again up to the paragraph that discusses the
-formal defition of vdb?}
 In this section, we define how variation is encoded at the schema level. We first 
 present an example that
- illustrates why relational databases fail to encode
-variation at the schema level and how we can inject variation into their schemas.
+ illustrates how relational databases fail to encode
+variation at the schema level and how we can express variation in their schemas.
 Recall from \secref{rdb} that the schema of a database is essentially its type.
 This is also the case for variational databases, except that the components 
 of the schema are variational.
-The  variation in a schema states the condition under which its relations and
+The  variation in a variational schema states the condition under which its relations and
 attributes exist.
 %
 For example, consider the \empbio\ relation schema associated with 
@@ -23,18 +21,20 @@ respectively.
 %
 The variational relation schema of \empbio\ captures this variation
 in \tabref{empbio-vsch} by annotating the relation and each of its attributes with
- a feature expression that they exist in.
+ a feature expression indicating which configurations they exist in.
 %This table can be interpreted as \empbio\ is present in variants that enable 
 %at least one of \vThree, \vFour, and \vFive. Then, 
 %
 The feature expressions written in blue above the attributes and the relation name
 are their presence conditions. 
-For example, the feature express $\vThree \vee \vFour \vee \vFive$ indicates that the
+For example, the feature expression $\vThree \vee \vFour \vee \vFive$ indicates that the
 \empbio\ table is present for variants that enable one of \vThree--\vFive. 
 %
 The three attributes 
-\empno, \sex, and \birthdate\ exists in the relation \empbio\ no matter what as long as
-\empbio\ exists in a variant, so their presence condition are \t. 
+\empno, \sex, and \birthdate\ are present in all variants where the \empbio\ relation exists,
+%exists in the relation \empbio\ no matter what as long as
+%\empbio\ exists in a variant, 
+so their presence conditions are \t. 
 However, the \name\ attribute is only present in variants
 that enable \vFour\ while attributes \fname\ and \lname\ are only present in variants
 that enable \vFive.
@@ -44,10 +44,10 @@ that enable \vFive.
 Furthermore, the existence of the variational relation \empbio\ and its attributes 
 relies on the existence of the entire variational database which is captured by
 the feature model of the database. Remember that the feature model is the
-presence condition of the variational database. 
+presence condition of the variational database as a whole. 
 %
 The hierarchy of presence condition sometimes simplifies the presence conditions.
-For example, assuming that only one of the \vThree--\vFive can be enabled for a variant at a time, 
+For example, assuming that only one of the \vThree--\vFive\ can be enabled for a variant at a time, 
 the \empbio\ variational table shown in \tabref{empbio-vsch} can be simplified to the 
 variational table shown in \tabref{empbio-vsch-comp}. 
 %consider table empbio in v3 but that's different than empbio for v4 and v5. so we add varition now. 
@@ -64,6 +64,11 @@ include the variation at the content level.%
 the variation at the content level.} 
 We discuss the encoding of variation at the content level in \secref{vtab}.
 %
+\wrrite{add an example that shows reuse of tuples.
+eric's comment:
+there's no reason that each row must be in eactly one of v3--v5. you could have rows where the name is represented both in the name column and fname lname. the rows could be in any v1--v5.
+
+in fact, this might make the utility of VDBs more obvious since the same data is available structured in different ways}
 
 \input{tables/vsch-comp}
 

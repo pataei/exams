@@ -1,14 +1,14 @@
 \chapter{Variational Queries}
 \label{ch:vql}
 
-\rewrite{change all $\vFour \vee \vFive$ to $\neg \vThree$ in all sections and
-update the derivation tree examples to the final type system. }
+\rewrite{remember to adjust the example from type systme according to the derivation trees.}
+%change all $\vFour \vee \vFive$ to $\neg \vThree$ in all sections and
+%update the derivation tree examples to the final type system. }
 
-\eric{pls read the following paragraph}
 Now that we have introduced the variational database framework 
-we need a query language to extract information from a VDB instance
-and unlike relational query languages (like SQL and relational algebra)
-it needs to account for the new aspect of our database: variation. 
+we need a query language to extract information from a VDB instance.
+Our approach will build on existing relational query languages (like SQL and relational algebra)
+but must also account for the new aspect of our database: variation. 
 
 
 %\point{queries need to be able to express variability encoded in vdb.}
@@ -30,11 +30,10 @@ intents over different database variants.
 %more complicated than relational queries, discussed in \secref{type-sys}. 
 %Hence, 
 
-\eric{pls read the following paragraph}
 To understand the meaning of variational queries
 we define the semantics of variational queries via the
 semantics of relational queries in \secref{vrasem}. We define
-approaches to configure a variational query to a relational query
+how to configure a variational query to a relational query
 in \secref{vraconf}. Then, we use the results of multiple relational
 queries to accumulate the result of the original variational query 
 in \secref{accum}.

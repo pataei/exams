@@ -44,7 +44,6 @@ them.
 %specific variant when they desire, 
 %satisfying query part of \nThree\ requirement. 
 \exref{conf-vq} illustrates configuring a query
-\eric{added this example. pls review it.}
 and \exref{vq-sem} illustrates the configuration of query $\VVal {\vQ_1}$ from \exref{vq-specific} and their corresponding relational results table.
 
 
@@ -120,7 +119,6 @@ is configured to the following relational queries:
 
 \begin{example}
 \label{eg:vq-sem}
-\eric{pls read this example.}
 Consider the query $\VVal {\vQ_1}$ given in \exref{vq-specific}: \\
 \centerline{
 $\VVal {\vQ_1} = 
@@ -151,11 +149,14 @@ results in three relational queries:
 
 \input{tables/vq-conf-res}
 
-\eric{pls read the following paragraph, \figref{vq-group}, and \exref{group-vq} and \exref{vq-group}.}
+
 %\TODO{write this + correct formulas + give an example.
-Unfortunately, the configuration of variational queries may result in
-duplicate relational queries. In practice, this is not very efficient, as discussed
-later in \secref{exp}. Thus, we define the \emph{unique configuration} function
+Often a variational query will yield the same plain query for multiple configurations.
+For our semantics, it is useful to get the set of unique variants of a variational query.
+%Unfortunately, the configuration of variational queries may result in
+%duplicate relational queries. In practice, this is not very efficient, as discussed
+%later in \secref{exp}. 
+Thus, we define the \emph{unique variants} function
 $\qGroup . : \qSet \totype \settype {\bm{(} \vartype \pQSet \bm{)}}$ that takes a variational query 
 and returns a set of configured relational queries annotated with
 a presence condition. The presence condition is a feature expression generated from
@@ -169,6 +170,7 @@ variational queries can be defined by \\
 %\olSem \vAttList = \attList}
 %}.
 %
+\wrrite{correct the definition}
 \centerline{
 \ensuremath{
 \qGroup \vQ = \setDef {\annot \pQ \myOR \forall \config \in \confSet: \fSem \dimMeta = \t,
