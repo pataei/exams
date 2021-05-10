@@ -7,7 +7,7 @@
 %\scriptsize
 \begin{subtable}[t]{\textwidth}
 \centering
-\caption{Result of the query \ensuremath{\sigma_{\salary \ge 65000} (\job)}.}
+\caption{Result of the query \ensuremath{\pQ_1 = \sigma_{\salary \ge 65000} (\job)}.}
 \label{tab:ra1}
 \begin{tabular} {c | l l }
 \multirow{2}{*}{$\mathit{result}$} & \titleatt & \salary \\
@@ -27,7 +27,7 @@
 %\begin{center}
 \centering
 \tiny
-\caption{Result of the query \ensuremath{(\sigma_{\salary \ge 65000} (\job)) \times \empacct}.}
+\caption{Result of the query \ensuremath{\pQ_2 = (\sigma_{\salary \ge 65000} (\job)) \times \empacct}.}
 \label{tab:ra2}
 \begin{tabular} {c | l l l l l l l}
 %\hline
@@ -51,7 +51,7 @@
 \centering
 %\footnotesize
 \tiny
-\caption{Result of the query \ensuremath{\sigma_{\empacct.\titleatt=\job.\titleatt}\left(\left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \times \empacct\right)}.}
+\caption{Result of the query \ensuremath{\pQ_3 = \sigma_{\empacct.\titleatt=\job.\titleatt}\left(\left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \times \empacct\right)}.}
 \label{tab:ra3}
 \begin{tabular} {c | l l l l l l l}
 %\hline
@@ -72,7 +72,7 @@
 \medskip
 \begin{subtable}[t]{\textwidth}
 \centering
-\caption{Result of the query \ensuremath{\pi_{\name, \salary} \left(\sigma_{\empacct.\titleatt=\job.\titleatt}\left(\left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \times \empacct\right)\right)}.}
+\caption{Result of the query \ensuremath{\pQ_4 = \pi_{\name, \salary} \left(\sigma_{\empacct.\titleatt=\job.\titleatt}\left(\left(\sigma_{\salary \ge 65000} \left(\job\right)\right) \times \empacct\right)\right)}.}
 \label{tab:ra4}
 \begin{tabular} {c | l l }
 %\hline

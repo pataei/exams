@@ -4,7 +4,7 @@
 \centering
 \begin{subtable}[t]{\textwidth}
 \centering
-\caption{Result of the variational query $\pi_{\empno, \name, \fname, \lname} (\empbio)$.}
+\caption{Result of the variational query $\vQ_0 = \pi_{\empno, \name, \fname, \lname} (\empbio)$.}
 \label{tab:vq0-res}
 \footnotesize
 \arrayrulecolor{blue}
@@ -33,8 +33,8 @@
 \medskip
 \begin{subtable}[t]{\textwidth}
 \centering
-\caption{Result of the variational queries $\pi_{\optAtt [\vFour \vee \vFive] [\empno], \name, \fname, \lname} (\empbio)$ and 
-$\pi_{\optAtt [(\vFour \vee \vFive) \wedge \neg \vThree] [\empno], 
+\caption{Result of the variational queries $\vQ_1 = \pi_{\optAtt [\vFour \vee \vFive] [\empno], \name, \fname, \lname} (\empbio)$ and 
+$\VVal {\vQ_1} = \pi_{\optAtt [(\vFour \vee \vFive) \wedge \neg \vThree] [\empno], 
 \optAtt [\vFour \wedge \neg \vThree \wedge \neg \vFive] [\name], 
 \optAtt [\vFive \wedge \neg \vThree \wedge \neg \vFour] [\fname], 
 \optAtt [\vFive \wedge \neg \vThree \wedge \neg \vFour] [\lname]} (\empbio)
@@ -67,7 +67,7 @@ $.}
 \medskip
 \begin{subtable}[t]{\textwidth}
 \centering
-\caption{Result of the variational query $\chc[\neg \vThree]{\pi_{\empno,\name,\fname,\lname}(\empbio),\empRel}$.}
+\caption{Result of the variational query $\vQ_2 = \chc[\neg \vThree]{\pi_{\empno,\name,\fname,\lname}(\empbio),\empRel}$.}
 \label{tab:vq2-res}
 \footnotesize
 \arrayrulecolor{blue}
