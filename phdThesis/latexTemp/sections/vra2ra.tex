@@ -78,7 +78,7 @@ Assume the underlying VDB has the variational schema
 and the feature space 
 \ensuremath{
 \fSet = \setDef{ \fOne, \fTwo}}.
-For valid configurations of this VDB (\setDef {\A, \B}, \setDef \A, \setDef \B, and \setDef {\ }), 
+For valid configurations of this VDB (i.e., \setDef {\A, \B}, \setDef \A, \setDef \B, and \setDef {\ }), 
 the variational query 
 \ensuremath{
 \vQ_5 = \vPrj [{\vAtt_1, \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)
@@ -151,35 +151,50 @@ results in three relational queries:
 
 
 %\TODO{write this + correct formulas + give an example.
+\eric{Eric, pls re-read the following up to section 4.2.2}
 Often a variational query will yield the same plain query for multiple configurations.
 For our semantics, it is useful to get the set of unique variants of a variational query.
 %Unfortunately, the configuration of variational queries may result in
 %duplicate relational queries. In practice, this is not very efficient, as discussed
 %later in \secref{exp}. 
 Thus, we define the \emph{unique variants} function
-$\qGroup . : \qSet \totype \settype {\bm{(} \vartype \pQSet \bm{)}}$ that takes a variational query 
+$\qGroup[.] . : \qSet \totype \settype \fSet \totype \settype {\bm{(} \vartype \pQSet \bm{)}}$ 
+that takes a variational query and VDB's set of features
 and returns a set of configured relational queries annotated with
 a presence condition. The presence condition is a feature expression generated from
 the set of configurations that configured the variational query into the same relational query.
+To generate this presence condition from configurations we need to know the closed 
+set of VDB's features.
 %
-In essence, unique configuration can be defined for all data types that encode variation.
+This is done by the $\mathit{genFexp} (\config,\fs)$ that takes a configuration and a closed set of 
+features and generates the feature expression \dimMeta\ that is only satisfiable by the configuration
+\config. For example, $\mathit{genFexp} (\setDef {\A},\setDef {\A, \B}) = \A \wedge \neg \B$ and
+$\mathit{genFexp} (\setDef {\A, \B},\setDef {\A, \B}) = \A \wedge \B$.
+%
+Remember that the set of enabled features of a configuration denote the said configuration,
+for example, $\setDef {\A}$ denotes the configuration in which only feature \A\ has been 
+enabled.
+
+%
+In essence, the unique variants function can be defined for all data types that encode variation.
 For example, the unique configuration function for 
-variational queries can be defined by \\
+variational queries can be defined by 
+\begin{alignat*}{1}
+\qGroup \vQ &= \{ \annot \pQ \myOR \dimMeta = \bigvee_{\dimMeta_i \in \mathit{es}} \dimMeta_i,
+\mathit{es} = \{\dimMeta_i \myOR \forall \config \in \confSet. \eeSem \vQ = \pQ, 
+\dimMeta_i = \mathit{genFexp} (c,\fs) \}\\
+&\hspace{50pt}, \exists \config \in \confSet. \fSem \dimMeta = \t, \eeSem \vQ = \pQ
+\}
+\end{alignat*}.
+%\centerline{
 %\ensuremath{
-%\aGroup \vAttList = \setDef {\annot \attList \myOR \forall \config \in \confSet: \fSem \dimMeta = \t,
-%\olSem \vAttList = \attList}
-%}.
-%
-\wrrite{correct the definition}
-\centerline{
-\ensuremath{
-\qGroup \vQ = \setDef {\annot \pQ \myOR \forall \config \in \confSet: \fSem \dimMeta = \t,
-\eeSem \vQ = \pQ}
-}.}
+%\qGroup \vQ = \setDef {\annot \pQ \myOR \forall \config \in \confSet: \fSem \dimMeta = \t,
+%\eeSem \vQ = \pQ}
+%}.}
 %\]
 Consequently, the unique configuration for variational sets of attributes (i.e.,
-\aGroup [.] : \vAttSet \totype {\vartype {\bm{(}\settype \attnametype \bm{)}}})
-and variational conditions (i.e., \cGroup [.] : \vCondSet \totype \vartype \pCondSet) are
+\aG (.,.) : \vAttSet \totype \settype \fSet \totype {\vartype {\bm{(}\settype \attnametype \bm{)}}})
+and variational conditions (i.e., \cG (.,.) : \vCondSet \totype \settype \fSet \totype \vartype \pCondSet) are
 defined similarly.
 However, this definition is not efficient since it is still enumerating all possible 
 configurations. Thus, we define the more efficient unique configuration function
@@ -197,16 +212,13 @@ Consider the query \ensuremath{
 }
 given in \exref{conf-vq}. The unique configuration of this query results in the following set of queries:
 %
-%\ensuremath{
 \[
-\qGroup {\vQ_5} = \setDef {
+\qGroup [\{\A,\B\}] {\vQ_5} = \setDef {
 \annot [(\A \wedge \neg \B) \vee (\neg \A \wedge \neg \B)] {(\pi_{\pAtt_1} (\pRel))},
 \annot [\neg \A \wedge \B] {( \pi_{\pAtt_1, \pAtt_3} (\pRel))},
 \annot [\A \wedge \B] {(\pi_{\pAtt_1, \pAtt_2, \pAtt_3} (\pRel))}
 }.
 \]
-%}
-
 \end{example}
 
 \begin{example}
@@ -221,7 +233,7 @@ $\VVal {\vQ_1} =
 $.}  
 The unique configuration of it results in:
 \begin{alignat*}{1}
-\qGroup {\VVal {\vQ_1}} &= \{
+\qGroup [\{\vThree, \vFour, \vFive \}] {\VVal {\vQ_1}} &= \{
 \annot [\vThree \wedge \neg \vFour \wedge \neg \vFive] {\empRel},
 \annot [\neg \vThree \wedge \vFour \wedge \neg \vFive] {\left(\pi_{\empno, \name} (\empbio)\right)}\\
 &\qquad ,\annot [\neg \vThree \wedge \vFour \wedge \neg \vFive] {\left(\pi_{\empno, \fname, \lname} (\empbio) \right)}\}.

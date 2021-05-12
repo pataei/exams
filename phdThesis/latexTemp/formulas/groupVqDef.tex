@@ -1,7 +1,7 @@
 \begin{figure}
 %\textbf{Configuration selection semantics of \vqsTxt:}
 \begin{alignat*}{1}
-\qGroup . &: \qSet \totype \settype {\bm{(} \vartype \pQSet \bm{)}}\\
+\qGroup [.] . &: \qSet \totype  \settype \fSet \totype \settype {\bm{(} \vartype \pQSet \bm{)}}\\
 %
 \qGroup \vRel &= \setDef {\annot [\t] \pRel}\\
 \qGroup {\vSel \vQ}  &=  
@@ -38,7 +38,7 @@
 \qGroup {\empRel} &= \annot [\t] { \empRel}
 \end{alignat*}
 \caption[Unique configuration of variational queries]{Unique configuration of variational queries. 
-The unique configuration function assumes that the input is well-typed.
+The unique configuration function assumes that the input variational query is well-typed.
 }
 \label{fig:vq-group}
 \end{figure}

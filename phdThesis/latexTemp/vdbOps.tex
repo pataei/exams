@@ -35,13 +35,13 @@
 \newcommand*{\elemGroup}[1][\elem]{\OB{\elemG{\left({#1}\right)}}}
 
 \newcommand*{\qG}{\OB{\mathcal{Q}}}
-\newcommand*{\qGroup}[1]{\OB{\qG{\left({#1}\right)}}}
+\newcommand*{\qGroup}[2][\fs]{\OB{\qG{\left({#2},{#1}\right)}}}
 
 \newcommand*{\cG}{\OB{\mathcal{C}}}
-\newcommand*{\cGroup}[1][\vCond]{\OB{\cG{\left({#1}\right)}}}
+\newcommand*{\cGroup}[1][\vCond]{\OB{\cG{\left({#1},\fs\right)}}}
 
 \newcommand*{\aG}{\OB{\mathcal{A}}}
-\newcommand*{\aGroup}[1][\vAttList]{\OB{\aG{\left({#1}\right)}}}
+\newcommand*{\aGroup}[1][\vAttList]{\OB{\aG{\left({#1},\fs\right)}}}
 
 \newcommand*{\oS}{\OB{\mathbb{O}}}
 \newcommand*{\oSem}[2][\config]{\OB{\oS\sem[#1]{#2}}}
