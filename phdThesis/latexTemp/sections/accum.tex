@@ -93,12 +93,16 @@ mapping the  $\mathit{fitTableToVsch}$ to all the tables in
 $\mathit{fitTableToVsch}$ to \tabref{vq-conf1}--\tabref{vq-conf3} and variational relation 
 schema $\vRelSch_{\mathit{accum}}$.
 %
-\input{tables/fitting}
+\input{tables/fitting1}
+\input{tables/fitting2}
+\input{tables/fitting3}
 %
 Then, the $\mathit{addPresCondToConfContent}$ 
 function adds the presence condition attribute and its values 
-to relation contents of tables in \tabref{fitting}, resulting in \tabref{pcadded} which illustrates a set of 
-relation contents that are separated by the red bold line. 
+to relation contents of \tabref{fitting1}--\tabref{fitting3}, resulting in \tabref{pcadded} which illustrates a set of 
+relation contents that are separated by the red bold line. Note that since \tabref{fitting1}
+does not have any tuples \tabref{pcadded} does not have any tuples associated with
+the variant \setDef \vThree.
 %
 \input{tables/pcadded}
 %
@@ -106,6 +110,7 @@ Finally, the $\mathit{mkTable}$ function takes the variational relation schema $
 and \tabref{pcadded}. Note that the values in tuples of \tabref{pcadded} follow the order of the
 attributes in the variational relation schema. This results in \tabref{mktab} which is equivalent to
 the result of $\VVal \vQ_1$ given in \tabref{vq1-res}.
+%
 \input{tables/mktab}
 \end{example}
 
