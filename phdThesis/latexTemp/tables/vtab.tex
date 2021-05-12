@@ -77,21 +77,41 @@ feature model $\dimMeta_{\mathit{mot}}$ of the entire VDB applies to it.}
 \begin{tabular} {c !{\color{black}\vrule} l l l l l l : l}
 %\hline
 %\hhline{-==}
- {\textcolor{blue}{$\vThree \vee \vFour \vee \vFive$} }& {\textcolor{blue}{\texttt{true}}} & {\textcolor{blue}{\texttt{true}}} & \tiny{\textcolor{blue}{\texttt{true}}} &  {\textcolor{blue}{$\vFour $}} &  {\textcolor{blue}{$\vFive$}} &  {\textcolor{blue}{$\vFive$}} & {\textcolor{blue}{\texttt{true}}}\\
+\textcolor{blue}{$\vThree \vee \vFour \vee \vFive$} & \textcolor{blue}{\texttt{true}} & \textcolor{blue}{\texttt{true}} & \textcolor{blue}{\texttt{true}} & \textcolor{blue}{$\vFour$} & \textcolor{blue}{$\vFive $} & \textcolor{blue}{$\vFive $} &
+\tiny{\textcolor{blue}{\texttt{true}}}\\
 \arrayrulecolor{blue}\hdashline
 \multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \name & \fname & \lname & \pcatt\\
 \arrayrulecolor{black}\cline{2-8}
- &12001 & F& 1960-11-06 & & & & \textcolor{blue}{\vThree}\\
-  &12002 & M& 1961-04-15 & & & & \textcolor{blue}{\vThree}\\
-   &12003 & M& 1958-07-27 & & & & \textcolor{blue}{\vThree}\\
- &80001 & M & 1956-09-30 & Nagui Merli & & & \textcolor{blue}{\vFour}\\
- & 80002 & M & 1963-04-25 & Mayuko Meszaros & & & \textcolor{blue}{\vFour}\\
- & 80003 & F & 1960-10-26 & Theirry Viele & & & \textcolor{blue}{\vFour}\\
- & 200001 & M & 1960-01-11 & & Selwyn & Koshiba & \textcolor{blue}{\vFive}\\
- & 200002 & M & 1957-09-10 & & Bedrich & Markovitch & \textcolor{blue}{\vFive}\\
- & 200003 & F & 1961-02-07 & & Pascal & Benzmuller  & \textcolor{blue}{\vFive}\\
+ &12001 & F& 1960-11-06 & Ulf Hofstetter & Ulf & Hofstetter & $\textcolor{blue}{\vThree \vee \vFour \vee \vFive}$\\
+  &12002 & M& 1961-04-15 & Luise McFarlan & Luise & McFarlan & $\textcolor{blue}{\vThree \vee \vFour \vee \vFive}$\\
+   &12003 & M& 1958-07-27 & Shir DuCasse & Shir & DuCasse & $\textcolor{blue}{\vThree \vee \vFour \vee \vFive}$\\
+ &80001 & M & 1956-09-30 & Nagui Merli & Nagui & Merli & $\textcolor{blue}{\vFour \vee \vFive}$\\
+ & 80002 & M & 1963-04-25 & Mayuko Meszaros & Mayuko & Meszaros& $\textcolor{blue}{\vFour \vee \vFive}$\\
+ & 80003 & F & 1960-10-26 & Theirry Viele & Theirry & Viele & $\textcolor{blue}{\vFour \vee \vFive}$\\
+ & 200001 & M & 1960-01-11 & Selwyn Koshiba & Selwyn & Koshiba & $\textcolor{blue}{\vFive}$\\
+ & 200002 & M & 1957-09-10 & Bedrich Markovitch & Bedrich & Markovitch & $\textcolor{blue}{\vFive}$\\
+ & 200003 & F & 1961-02-07 & Pascal Benzmuller & Pascal & Benzmuller  & $\textcolor{blue}{\vFive}$\\
  & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \textcolor{blue}{\ldots} \\
 \arrayrulecolor{white}\hline
+%%\arrayrulecolor{blue}
+%%\begin{tabular} {c !{\color{black}\vrule} l l l l l l : l}
+%%%\hline
+%%%\hhline{-==}
+%% {\textcolor{blue}{$\vThree \vee \vFour \vee \vFive$} }& {\textcolor{blue}{\texttt{true}}} & {\textcolor{blue}{\texttt{true}}} & \tiny{\textcolor{blue}{\texttt{true}}} &  {\textcolor{blue}{$\vFour $}} &  {\textcolor{blue}{$\vFive$}} &  {\textcolor{blue}{$\vFive$}} & {\textcolor{blue}{\texttt{true}}}\\
+%%\arrayrulecolor{blue}\hdashline
+%%\multirow{2}{*}{\empbio}  & \empno & \sex & \birthdate & \name & \fname & \lname & \pcatt\\
+%%\arrayrulecolor{black}\cline{2-8}
+%% &12001 & F& 1960-11-06 & & & & \textcolor{blue}{\vThree}\\
+%%  &12002 & M& 1961-04-15 & & & & \textcolor{blue}{\vThree}\\
+%%   &12003 & M& 1958-07-27 & & & & \textcolor{blue}{\vThree}\\
+%% &80001 & M & 1956-09-30 & Nagui Merli & & & \textcolor{blue}{\vFour}\\
+%% & 80002 & M & 1963-04-25 & Mayuko Meszaros & & & \textcolor{blue}{\vFour}\\
+%% & 80003 & F & 1960-10-26 & Theirry Viele & & & \textcolor{blue}{\vFour}\\
+%% & 200001 & M & 1960-01-11 & & Selwyn & Koshiba & \textcolor{blue}{\vFive}\\
+%% & 200002 & M & 1957-09-10 & & Bedrich & Markovitch & \textcolor{blue}{\vFive}\\
+%% & 200003 & F & 1961-02-07 & & Pascal & Benzmuller  & \textcolor{blue}{\vFive}\\
+%% & \ldots & \ldots & \ldots & \ldots & \ldots & \ldots & \textcolor{blue}{\ldots} \\
+%%\arrayrulecolor{white}\hline
 %\job & \titleatt & \salary\\
 %\cline{2-3}
 %& Assistant Engineer & 61594\\

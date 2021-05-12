@@ -46,6 +46,7 @@ them.
 \exref{conf-vq} illustrates configuring a query
 and \exref{vq-sem} illustrates the configuration of query $\VVal {\vQ_1}$ from \exref{vq-specific} and their corresponding relational results table.
 
+%\input{formulas/vCondConfSem}
 
 %To define VRA semantics we map 
 %a variational query to a pure relational query to re-use RA's semantics.
@@ -84,10 +85,12 @@ the variational query
 \vQ_5 = \vPrj [{\vAtt_1, \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)
 }
 is configured to the following relational queries:
-\ensuremath{\eeSem [\setDef \fOne] {\vQ_5} = \eeSem [\setDef \ ] {\vQ_5} = \pi_{\pAtt_1} \pRel},
-\ensuremath{\eeSem [\setDef \fTwo] {\vQ_5} =
- \pi_{\pAtt_1, \pAtt_3} \pRel},
-\ensuremath{\eeSem [\setDef {\fOne, \fTwo}] {\vQ_5} = \pi_{\pAtt_1, \pAtt_2, \pAtt_3} \pRel}.
+\begin{alignat*}{1}
+\eeSem [\setDef \fOne] {\vQ_5} &=  \pi_{\pAtt_1} \pRel\\
+\eeSem [\setDef \ ] {\vQ_5} &= \pi_{\pAtt_1} \pRel\\
+\eeSem [\setDef \fTwo] {\vQ_5} &= \pi_{\pAtt_1, \pAtt_3} \pRel\\
+\eeSem [\setDef {\fOne, \fTwo}] {\vQ_5} &= \pi_{\pAtt_1, \pAtt_2, \pAtt_3} \pRel
+\end{alignat*}
 \end{example}
 
 
@@ -127,7 +130,6 @@ $\VVal {\vQ_1} =
 \optAtt [\vFive \wedge \neg \vThree \wedge \neg \vFour] [\fname], 
 \optAtt [\vFive \wedge \neg \vThree \wedge \neg \vFour] [\lname]} (\empbio)
 $.}  
-\structure{try to fit the result tables in the same page.}
 Configuring $\VVal {\vQ_1}$ for all valid configurations 
 (\setDef \vThree, \setDef \vFour, \setDef \vFive) of the given VDB
 results in three relational queries:
@@ -151,7 +153,7 @@ results in three relational queries:
 
 
 %\TODO{write this + correct formulas + give an example.
-\eric{Eric, pls re-read the following up to section 4.2.2}
+\eric{Eric, pls re-read the following up to Figure 4.3}
 Often a variational query will yield the same plain query for multiple configurations.
 For our semantics, it is useful to get the set of unique variants of a variational query.
 %Unfortunately, the configuration of variational queries may result in
