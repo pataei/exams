@@ -19,7 +19,7 @@ condition} since it determines the condition (set of configurations) under
 which the element is present in the database. 
 This is done by the \emph{configuration} function $\xeSem [] . : \elemSet \totype \confSet \totype \maybe {\pelemSet}$ defined in \figref{vset}.
 For example, assuming
-$\fSet=\set{\A,\B}$, the annotated number $\annot [\A \vee \B] 2$ is present
+$\features=\set{\A,\B}$, the annotated number $\annot [\A \vee \B] 2$ is present
 in variants \setDef{\A} (i.e., $\xeSem [\setDef{\A}] {\annot [\A \vee \B] 2}$ = 2), 
 \setDef{\B} (i.e., $\xeSem [\setDef{\A}] {\annot [\A \vee \B] 2}$ = 2), 
 and \setDef{\A,\B} (i.e.,$\xeSem [\setDef{\A, \B}] {\annot [\A \vee \B] 2} = 2$) 
@@ -57,7 +57,7 @@ possible configurations.
 
 \begin{example}
 \label{eg:vset-conf}
-Assume we have the feature space $\fSet = \setDef {\A, \B}$ 
+Assume we have the feature space $\features = \setDef {\A, \B}$ 
 and the variational set $\vset_1 = \setDef {\annot [\A] 2, \annot [\B] 3, 4}$.
 $\vset_1$ represents four plain sets:
 \begin{alignat*}{1}

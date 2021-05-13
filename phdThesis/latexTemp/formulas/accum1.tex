@@ -3,12 +3,12 @@
 \textbf{Table accumulation function:}
 \begin{alignat*}{1}
 \mathit{accum} &: \settype \fSet \totype \settype {\typepair \confSet \pTabSet} \totype \tabletype\\
-\mathit{accum} \  \mathit{fs} \ \mathit{ts} &= \mathit{mkTable} \ \mathit{vsch} \ \mathit{tables}\\
+\mathit{accum} \  \features \ \mathit{ts} &= \mathit{mkTable} \ \mathit{vsch} \ \mathit{tables}\\
 %&\hspace{60pt} (\mathit{addPresCondToConfTables} \ \mathit{fs} \\
 %&\hspace{140pt} (\mathit{fitConfTablesToVsch} \ \mathit{ts} \ \mathit{vsch}))\\
 &\hspace{-40pt}\textit{where }
-\mathit{vsch} = \mathit{tablesToVsch} \ \mathit{fs} \ \mathit{ts}\\
-&\hspace{-6pt} \mathit{tables} = \mathit{addPresCondToConfTables} \ \mathit{fs} \ \mathit {fitted}\\
+\mathit{vsch} = \mathit{tablesToVsch} \ \features \ \mathit{ts}\\
+&\hspace{-6pt} \mathit{tables} = \mathit{addPresCondToConfTables} \ \features \ \mathit {fitted}\\
 &\hspace{-6pt} \mathit{fitted} = \mathit{fitConfTablesToVsch} \ \mathit{ts} \ \mathit{vsch}
 \end{alignat*}
 

@@ -9,6 +9,7 @@
 \textbf{Feature expression syntax:}
 \begin{syntax}
 \synDef \fName \fSet &&&\textit{Feature Name}\\
+\synDef \features {\settype \fSet} &&& \textit{Closed Set of Features}\\
 \synDef \bTag \bSet &\eqq& \t \myOR \f & \textit{Boolean Value}\\
 \synDef \dimMeta \ffSet &\eqq& \bTag \myOR \fName \myOR \neg \dimMeta \myOR \dimMeta \wedge \dimMeta \myOR \dimMeta \vee \dimMeta & \textit{Feature Expression}\\
 \synDef \config \confSet &:& \fSet \totype \bSet &\textit{Configuration}

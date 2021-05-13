@@ -78,7 +78,7 @@ Assume the underlying VDB has the variational schema
 \}} 
 and the feature space 
 \ensuremath{
-\fSet = \setDef{ \fOne, \fTwo}}.
+\features = \setDef{ \fOne, \fTwo}}.
 For valid configurations of this VDB (i.e., \setDef {\A, \B}, \setDef \A, \setDef \B, and \setDef {\ }), 
 the variational query 
 \ensuremath{
@@ -168,7 +168,7 @@ the set of configurations that configured the variational query into the same re
 To generate this presence condition from configurations we need to know the closed 
 set of VDB's features.
 %
-This is done by the $\mathit{genFexp} (\config,\fs)$ that takes a configuration and a closed set of 
+This is done by the $\mathit{genFexp} (\config,\features)$ that takes a configuration and a closed set of 
 features and generates the feature expression \dimMeta\ that is only satisfiable by the configuration
 \config. For example, $\mathit{genFexp} (\setDef {\A},\setDef {\A, \B}) = \A \wedge \neg \B$ and
 $\mathit{genFexp} (\setDef {\A, \B},\setDef {\A, \B}) = \A \wedge \B$.
@@ -184,7 +184,7 @@ variational queries can be defined by
 \begin{alignat*}{1}
 \qGroup \vQ &= \{ \annot \pQ \myOR \dimMeta = \bigvee_{\dimMeta_i \in \mathit{es}} \dimMeta_i,
 \mathit{es} = \{\dimMeta_i \myOR \forall \config \in \confSet. \eeSem \vQ = \pQ, 
-\dimMeta_i = \mathit{genFexp} (c,\fs) \}\\
+\dimMeta_i = \mathit{genFexp} (\config,\features) \}\\
 &\hspace{50pt}, \exists \config \in \confSet. \fSem \dimMeta = \t, \eeSem \vQ = \pQ
 \}
 \end{alignat*}.

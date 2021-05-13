@@ -1,11 +1,39 @@
 \chapter{Variational Database Management System (VDBMS)}
 \label{ch:vdbms}
 
-\TODO{vdbms}
-\TODO{include example of vq, rqs, sqls}
-\TODO{include sanity checks of approach equivalence}
-add this somewhere: -> check that you have this in use cases
-We implemented these checks in our VDBMS tool and verified that both use cases
-described in this paper satisfy all of them. 
+%
+We implement a prototype using the VDB and VRA frameworks as
+%\revised{We implement our VDB and VRA framework as}
+\emph{Variational Database Management System (VDBMS)}.
+VDBMS is implemented in Haskell. VDBMS sits on 
+top of any DBMS that the user used to store their data 
+%\arashComment{I did not find any explanation on how variational tables are stored in an RDBMS.} 
+%\resp{it is exactly implemented as formalized in variational table section.}
+%\responded
+in form of variational tables, explained in \secref{vtab}, with one exception:
+%However, 
+we encode variation at the content level by storing tuples presence condition 
+as a presence condition attribute to all tables
+since relational databases cannot represent annotations. 
+Note that the rest of the presence conditions are stored in the Haskell side of the system.
+%To acquire an extensible system we implement 
+To support running VDBMS with multiple different plain relational DBMS backends,
+we provide
+a shared interface
+for communicating with the backend DBMS and
+%connecting to and inquiring information from a DBMS and
+instantiate it for different database engines such as PostgreSQL and
+MySQL. 
+%\rewrite{any dbms that has a library in haskell that has a function
+%that returns the result to the user. eg that doesn't satisfy this is 
+%database.sqlite3. } --> The following addresses this:
+An expert can extend VDBMS to another database engine by
+writing methods for connecting to and querying from the database.
+
+%\input{sections/implVar}
+\input{sections/arch}
+%\input{sections/sqlGen}
+
+
 \input{sections/apps}
 \input{sections/exp}
