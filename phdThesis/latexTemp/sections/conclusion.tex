@@ -1,7 +1,8 @@
 \chapter{Conclusion}
 \label{ch:conclusion}
 
-\TODO{conclusion}
+This thesis has presented the variational database framework as a generic
+
 
 \fromppr{from vamos}
 We provide two use cases that illustrate how software variation leads to
@@ -64,3 +65,128 @@ community.
 % variational databases and 2) how database systems that account for different
 % kinds of variation can be improved to manage more specific kinds of
 % variation.
+
+\fromppr{vldb}
+%\point{briefly iterate contributions and how they solve needs.}
+%\revised{
+We argued that there is need to consider variation as an 
+orthogonal concern to databases for two reasons:
+1) Context-specific solutions do not provide their users with all 
+variational information needs they may have, e.g., in \secref{intro}
+we analyzed the lack of variational need support for database-back SPL.
+As another example, imagine a user wants to know the data provenance of some
+data they got from an integrated database 
+ (i.e., what data source does the data belong to). This is a variational need that 
+data integration systems cannot satisfy.
+2) New variational scenarios could appear, often from combination of other data variation instances 
+such as our motivating example in \secref{mot}.
+%}
+
+
+%We argued that variation is an orthogonal concern to databases
+%and while there are approaches that address it in specific contexts
+%there is no fundamental technique to address it in every contexts, especially in 
+%intersection of contexts. Hence, we incorporated variation as 
+%propositional formulas into database and its schema while keeping
+%track of it while querying. 
+%\revised{
+We studied variational information needs, i.e., needs that appear in a 
+variational context independent from the specific use case and 
+we defined a generic framework that incorporates variation into all
+parts of a database and we showed how our framework satisfies 
+all variational information needs throughout the paper.
+%}
+%illustrated how we satisfy them throughout the paper. We also
+%demonstrated how VDBMS can be applied to instances of 
+%variation in databases.
+%\revised{
+Finally, we illustrated VDBMS: the implementation of our framework
+and compared its performance against simulated approaches that
+could be used to extract information from a database in a variational
+scenario.
+The most important contribution of this paper is the expressiveness of
+our framework (VDB and VRA) and our system (VDBMS).
+%}
+
+%\point{current limitations and future work.}
+%\revised{
+Now we discuss limitations of our work in terms of possible improvements 
+as future work.
+%}
+It is important to note that we consider closed-world variation where
+all the database variants are known.
+%
+%We implemented basic SQL generators. They can be improved by 
+%1) running SQL queries generated from a v-query in parallel and
+%2) using common table expressions (CTEs) to store temporary
+%results. We are planning to apply these optimizations.
+%
+Currently, we represent presence conditions as strings, which is
+inefficient because we need to manipulate every tuple's 
+presence condition while running a 
+query. In future work, we plan to implement presence conditions as a 
+user-defined data type inside the underlying DBMS engine, which
+limits the engines that VDBMS can sit on top of them, as well as
+defining user-defined functions over them that allow VDBMS to
+manipulate them. 
+%
+Another future work is to generalize feature 
+expression so that it can be tailored toward a specific instance (e.g., schema evolution)
+of variation in databases by experts to make VDBMS more
+efficient for that instance.
+%
+Additionally, designing an error-tolerant type system that pinpoints
+where the user made a mistake in their query and allows the part of
+query that is well-typed to be run is beneficial when a query has lots of 
+encoded variation within it. 
+%\revised{
+Having such a type system also helps implementing a visual 
+assistance for writing queries gradually and with holes. Thus, a user
+can start writing part of their query and leave some parts blank and 
+see what tables and attributes they have at their disposal for each 
+left-out part. 
+%}
+%
+%Allowing DBAs to use VDBMS easily requires a system that can 
+%generate a VDB given plain relational database variants with their configurations
+%attached to them and the v-schema encoding. We partially implemented
+%this to generate the two use case VDBs. 
+%\revised{
+Although we have not implemented a system to generate a VDB for 
+a variational scenario it is trivial to do so if we have the variant databases.
+The problem is that in most cases the variant databases do not exists
+since current variational scenarios only simulate the effect of variation
+and do not incorporate it directly into the database or queries.
+Thus, an expert needs to manually generate the variant databases.
+%}
+
+
+%limitation: when applied in a specific context it may not be as efficient as
+%the specific solutions but it's offering a new feature/property in dbs.
+%e.g.:temporal changes, vq is more complicated and harder for user
+%to write however it can be encoded differently! based on what the user
+%needs. (all variants exists at a given time or only one variant is valid
+%at a given time). 
+%
+%
+%limitation: closed-world and not open world! i.e., all variants are already
+%defined and encoded in the VDB.
+%
+%Extending feature expressions to a type class to allow for users
+%to represent variability however they please. 
+%
+%An error-tolerant type system to forgive the variations of a v-query that 
+%are type-ill but run the well-typed ones, instead of rejecting the whole
+%v-query.
+%
+%As a result of our experiments we felt the pressing need of a 
+%tool to generate VDBs from real world DBs and synthesized VDBs.
+%
+%future work:
+%provenance.
+%user defined type for feature expression instead of strings. and having
+%user defined functions on them. and having sat solver inside DBMS.
+
+
+\input{sections/fw}
+\input{sections/sumcontr}
