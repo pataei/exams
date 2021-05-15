@@ -6,8 +6,11 @@
 %
 Since VDBMS sits on top of a plain relational DBMS, in order to run
 variational queries we must translate them into (sets of) plain relational queries,
-that is, \emph{SQL generator} module's task,
-and then synthesize the result into a variational table, that is, 
+that is, \emph{SQL generator} module's task.
+These generators also inject the qualifiers of attributes in addition to 
+adding the projection of presence condition attributes. We demonstrate this
+in \exref{nbf}--\exref{uav}.
+Then, VDBMS synthesizes the result into a variational table, that is, 
 \emph{variational table builder} module's task.
 %
 Given an explicitly annotated well-typed variational query \vQ,
