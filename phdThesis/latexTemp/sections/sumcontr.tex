@@ -43,7 +43,25 @@ in databases to variation in other parts interacting with the database such as s
 
 
 %vq
-
+We also defined a variational query language (VRA) to extract information from VDBs
+(\secref{vra}) along with its denotational semantics in terms of the relational algebra 
+semantics (\secref{vradensem}). 
+%
+VRA uses variational sets and formula choice calculus to incorporate
+variation into the relational algebra. Although explicitly accounting for variation
+in queries introduces more complexity in the language it provides a systematic
+mechanism to ensure that the query follows the variation encoded in the database
+as well as possibly imposing new variation (\secref{type-sys}). Still, this complexity
+is alleviated in two ways: 1) the queries are not enforced to repeat the variation encoded in the 
+database since queries can be explicitly annotated by schemas (\secref{constrain})
+and 2) the variation in queries are confluent, that is, the variation can move from one 
+part of the query to another without changing its semantics due to syntactic equivalence
+rules (\secref{var-min}). 
+%
+Importantly, VRA is variation-preserving both at the type and semantics level
+(\secref{var-pres} and \secref{var-pres-sem}). 
+That is, the corresponding variants of data is tracked throughout the executing 
+the query.
 
 %usecase
 We provided two use cases that illustrate how software variation leads to
