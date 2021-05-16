@@ -81,14 +81,19 @@ encoded variation within it.
 %generate a VDB given plain relational database variants with their configurations
 %attached to them and the v-schema encoding. We partially implemented
 %this to generate the two use case VDBs. 
-%\revised{
 Finally, although we have not implemented a system to generate a VDB for 
 a variational scenario it is trivial to do so if we have the variant databases.
 The problem is that in most cases the variant databases do not exists
 since current variational scenarios only simulate the effect of variation
 and do not incorporate it directly into the database or queries.
 Thus, an expert needs to manually generate the variant databases.
-%}
+%
+We plan to explore the possibilities of generating a VDB without 
+having all database variants. This intertwines with moving from closed-world
+variation and configuration space to open-world. 
+%
+Another way to go about this would be to extend the query language VRA 
+to not only extract data from a VDB but also to define and manipulate data. 
 
 
 %limitation: when applied in a specific context it may not be as efficient as
