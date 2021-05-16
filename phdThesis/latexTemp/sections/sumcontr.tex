@@ -1,3 +1,107 @@
 \section{Summary of Contributions}
 \label{sec:sum-contr}
 
+\fromppr{from vamos}
+We provide two use cases that illustrate how software variation leads to
+corresponding variation in relational databases. These use cases demonstrate
+the feasibility of VDBs and v-queries to capture the data needs of variational
+software systems.
+%
+We argue that effectively managing such variation is an open problem, and we
+believe that these use cases will form a useful basis for evaluating
+research that addresses it, such as our own VDBMS framework.
+%
+% VDB
+%and VRA.
+%
+%The case studies were developed by systematically combining existing data
+%sources with software variation scenarios described in the literature. They
+%each consist of a variational schema describing the structural variation of
+%the database, the variational database itself containing the variational
+%content, and a set of variational queries that satisfy realistic information
+%needs over multiple variants of each database.
+
+
+VDBs encode variation explicitly in the structure and content of databases.
+%
+This is a source of complexity that may impact understandability, as can be
+observed in our use cases. However, it also has several advantages: it
+is general in the sense that any set of variant databases and queries can be
+encoded as a VDB and v-queries, and it enables directly associating variation
+in databases to variation in software.
+%
+By applying variational typing to variational queries, this generality does not
+come at the cost of safety. Future work can explore how tooling can mitigate
+the usability concerns using techniques that have been developed in the SPL
+community.
+
+% We discussed that explicitly encoding variation in databases
+% allows  tracing variation between the program and data. It also empowers
+% developer to check properties over their database and queries to ensure that
+% constraints over a database holds and queries are well-behaved.
+
+%p: taken from rel work
+% Although we have focused on variational databases to support SPL development,
+% the broader motivation of \emph{effectively computing with variability} is at
+% the heart of our work. This is why VDBs support not only structural variation
+% but also content-level variation. Also, while variational queries can be
+% statically configured in the same way that SPLs typically are, our prototype
+
+%%VDBMS implementation also supports directly executing variational queries on
+%%variational databases to yield variational results.
+
+
+% These case studies can be used to 1) evaluate approaches and systems
+% attempting to manage any kind of variation in database, 2) learn how a
+% variational database can be generated from a scenario that describes such
+% variation, and 3) design a system that automatically generates a variational
+% database from non-variational databases and their corresponding variant. In
+% particular, we use these use cases to evaluate our Variational Database
+% Management System~\cite{vldbArXiv}. It would be interesting to investigate 1)
+% how database systems that manage a specific kind of variation deal with
+% variational databases and 2) how database systems that account for different
+% kinds of variation can be improved to manage more specific kinds of
+% variation.
+
+\fromppr{vldb}
+%\point{briefly iterate contributions and how they solve needs.}
+%\revised{
+We argued that there is need to consider variation as an 
+orthogonal concern to databases for two reasons:
+1) Context-specific solutions do not provide their users with all 
+variational information needs they may have, e.g., in \secref{intro}
+we analyzed the lack of variational need support for database-back SPL.
+As another example, imagine a user wants to know the data provenance of some
+data they got from an integrated database 
+ (i.e., what data source does the data belong to). This is a variational need that 
+data integration systems cannot satisfy.
+2) New variational scenarios could appear, often from combination of other data variation instances 
+such as our motivating example in \secref{mot}.
+%}
+
+
+%We argued that variation is an orthogonal concern to databases
+%and while there are approaches that address it in specific contexts
+%there is no fundamental technique to address it in every contexts, especially in 
+%intersection of contexts. Hence, we incorporated variation as 
+%propositional formulas into database and its schema while keeping
+%track of it while querying. 
+%\revised{
+We studied variational information needs, i.e., needs that appear in a 
+variational context independent from the specific use case and 
+we defined a generic framework that incorporates variation into all
+parts of a database and we showed how our framework satisfies 
+all variational information needs throughout the paper.
+%}
+%illustrated how we satisfy them throughout the paper. We also
+%demonstrated how VDBMS can be applied to instances of 
+%variation in databases.
+%\revised{
+Finally, we illustrated VDBMS: the implementation of our framework
+and compared its performance against simulated approaches that
+could be used to extract information from a database in a variational
+scenario.
+The most important contribution of this paper is the expressiveness of
+our framework (VDB and VRA) and our system (VDBMS).
+%}
+
