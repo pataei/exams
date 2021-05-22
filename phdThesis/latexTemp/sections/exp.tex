@@ -1,149 +1,40 @@
 \section{Experiments and Discussion}
 \label{sec:exp}
 
-what are the approaches.
-what machine we used and version of postgres. 
-future work compare different db engines. 
+%what are the approaches.
+%what machine we used and version of postgres. 
+%future work compare different db engines. 
 
-
-\begin{figure}
-\includegraphics[width = \linewidth] {figs/plots/enron1-5.png}
-\caption[blah]{blah}
-\label{fig:enron1-5}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[scale=0.12] {figs/plots/emp1-5.png}
-\caption[blah]{blah}
-\label{fig:emp1-5}
-\end{figure}
-
-
-%\begin{figure}[H]
-%\centering
+In this section, we compare the performance of VDBMS with regards
+to the approaches used to generate SQL query(ies) introduced in \secref{apps}.
+For our experiments, approaches introduced in \secref{apps} do not filter out 
+tuples with unsatisfiable presence condition unless specifically mentioned otherwise.
+Accounting for filtering such tuples explicitly is indicated by adding \emph{(f)} to
+the approach name. For example, \nbff\ is the Naive Brute Force approach that 
+filters out tuples with unsatisfiable presence conditions. 
 %
-%\subfloat[blah]{
-%	\label{subfig:correct}
-%	\includegraphics[width=0.3\textwidth]{figs/plots/enron-nbfi-comp-f.png}}
+The variational queries used for our experiments are available online
 %
-%\subfloat[mlah]{
-%	\label{subfig:notwhitelight}
-%	\includegraphics[width=0.3\textwidth]{figs/plots/enron-nbfi-f-comp-scatter.png}} 
+\footnote{All queries are available at: \url{https://zenodo.org/record/4321921}.}
+% in \appref{queries}
+and they are described in \chref{vdbusecase}.
 %
-%\caption{blah mlah}
-%\label{kohler}
+The runtime of queries contains all elements of an approach including the query
+passing the type system, being explicitly annotated by the variational schema, 
+being optimized by the variation minimization rules, passed to the SQL generator, 
+run on the VDB, and finally, the final variational table is generated. 
+%
+We run the experiments on a MacBook Pro with a 2.4 GHz Core i7 processor and 
+8 GB 1600 MHz DDR3. All experiments are also run with the PostgreSQL 13.3 as 
+the database engine. 
 
-%\end{figure}
+We conduct three main 
+comparison of the approaches over our two use cases. The first one 
+compares the five approaches with each other (\secref{exp-gen}). The second one
+investigates the effect of number of (unique) variants on the approaches (\secref{exp-vars}). 
+The last one investigates the effect filtering out
+tuples with unsatisfiable presence conditions (\secref{exp-tuples}). 
 
-\begin{figure*}[t!]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figs/plots/enron-nbfi-comp-f.png}
-        \caption{Lorem ipsum}
-    \end{subfigure}%
-    ~ 
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[scale=0.09]{figs/plots/enron-nbfi-f-comp-scatter.png}
-        \caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
-    \end{subfigure}
-    \caption{Caption place holder}
-\end{figure*}
-
-\begin{figure*}[t!]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figs/plots/enron-nbf-f.png}
-        \caption{Lorem ipsum}
-    \end{subfigure}%
-    ~ 
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[scale=0.09]{figs/plots/enron-nbf-f-scatter.png}
-        \caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
-    \end{subfigure}
-    \caption{Caption place holder}
-\end{figure*}
-
-\begin{figure*}[t!]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{figs/plots/enron-nbf-comp-f.png}
-        \caption{Lorem ipsum}
-    \end{subfigure}%
-    ~ 
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[scale=0.09]{figs/plots/enron-nbf-f-comp-scatter.png}
-        \caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
-    \end{subfigure}
-    \caption{Caption place holder}
-\end{figure*}
-
-\begin{figure*}[t!]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[scale=0.09]{figs/plots/emp-ubf-f.png}
-        \caption{Lorem ipsum}
-    \end{subfigure}%
-    ~ 
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[scale=0.09]{figs/plots/emp-ubf-f-scatter.png}
-        \caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
-    \end{subfigure}
-    \caption{Caption place holder}
-\end{figure*}
-
-\begin{figure*}[t!]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[scale=0.09]{figs/plots/emp-nbfi-comp-f.png}
-        \caption{Lorem ipsum}
-    \end{subfigure}%
-    ~ 
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[scale=0.09]{figs/plots/emp-nbfi-f-comp-scatter.png}
-        \caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
-    \end{subfigure}
-    \caption{Caption place holder}
-\end{figure*}
-
-\begin{figure*}[t!]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[scale=0.09]{figs/plots/emp-nbf-f.png}
-        \caption{Lorem ipsum}
-    \end{subfigure}%
-    ~ 
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[scale=0.09]{figs/plots/emp-nbf-f-scatter.png}
-        \caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
-    \end{subfigure}
-    \caption{Caption place holder}
-\end{figure*}
-
-\begin{figure*}[t!]
-    \centering
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[scale=0.09]{figs/plots/emp-nbf-comp-f.png}
-        \caption{Lorem ipsum}
-    \end{subfigure}%
-    ~ 
-    \begin{subfigure}[t]{0.5\textwidth}
-        \centering
-        \includegraphics[scale=0.09]{figs/plots/emp-nbf-f-comp-scatter.png}
-        \caption{Lorem ipsum, lorem ipsum,Lorem ipsum, lorem ipsum,Lorem ipsum}
-    \end{subfigure}
-    \caption{Caption place holder}
-\end{figure*}
+\input{sections/exp-gen}
+\input{sections/exp-var}
+\input{sections/exp-tuples}
