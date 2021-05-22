@@ -10,7 +10,7 @@
 %\end{wrapfigure}
 %\blindtext
 
-\begin{figure}
+\begin{figure}[!t]
 \centering
 \includegraphics[scale=0.12] {figs/plots/emp1-5.png}
 \caption[Comparison of SQL generators \nbf, \nbfi, \uav, \ubf, and \ubfi\ over the employee VDB]{Comparison of SQL generators \nbf, \nbfi, \uav, \ubf, and \ubfi\ over the employee VDB}
@@ -22,9 +22,10 @@
 \figref{emp1-5} and \figref{enron1-5} show the runtime for each query which is shown on top the plot
 for the five approaches introduced in \secref{apps} over the employee and email VDBs, respectively.
 %
-\figref{emp1-5} implies that  \nbf\ mostly has a better
-runtime than \nbfi\ and similarly \ubf\ mostly has a better runtime than \ubfi\ for this data set. However, 
-\nbf, \uav, and \ubf\ have a close performance to each other but neither consistently performs 
+\figref{emp1-5} implies that  \nbfi\ mostly has a better
+runtime than \nbf, however, the \ubf\ and \ubfi\ approaches do not follow such a trend for this data set. 
+Furthermore, 
+\nbfi, \uav, and \ubf\ have a close performance to each other but neither consistently performs 
 better than the others. 
 %
 %Since the most of the variational queries of the employee VDB return a small table, showed in \figref{},
@@ -32,11 +33,11 @@ better than the others.
 %runtime than \nbfi\ and similarly \ubf\ mostly has a better runtime than \ubfi. This insight is confirmed 
 %by \figref{enron1-5} which shows the runtime of the email VDB's queries. 
 %
-\figref{enron1-5} also implies that \nbf\ consistently has a better
-runtime than \nbfi\ and \ubf\ mostly has a better runtime than \ubfi\ for this data set. And while
-\uav\ mostly performs better than \nbf\ it is mainly comparable to \ubf\ for this data set. Yet, \uav\
+\figref{enron1-5} also implies that \nbfi\ consistently has a better
+runtime than \nbf\ and \ubfi\ mostly has a better runtime than \ubf\ for this data set. And while
+\uav\ mostly performs better than \nbfi\ it is mainly comparable to \ubfi\ for this data set. Yet, \uav\
 sometimes generates a non-runnable SQL query, showed by the striped bars in \figref{enron1-5}.
-\exref{uav-fail} explains this in detail. 
+\exref{uav-fail} explains this shortcoming in detail. 
 
 
 \begin{figure}[!t]
@@ -63,7 +64,7 @@ the correct presence condition to the tuples.
 %
 Finally, the main difference between the performance of  \nbf\ and \nbfi\ (and similarly, \ubf\ and \ubfi)
 is where they apply the correct presence condition to the tuples. While \nbfi\ and \ubfi\ pass this
-task to the underlying database engine the \nbf\ and \ubf\ approaches load this to the Haskell 
+task to the underlying database engine (which seems to perform better) the \nbf\ and \ubf\ approaches load this to the Haskell 
 backend. Note that all four of these approaches still have to fix the schema of the returned
 tables to the variational table schema of the variational query. 
 
