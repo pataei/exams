@@ -1,0 +1,261 @@
+%%\begin{landscape}
+%\begin{figure}
+%%\begin{minipage}[t]{0.5\textwidth}
+%\caption[Example of derivation tree to determine the type of a query]{Derivation tree for \ensuremath{\vQ_1} in \exref{type}.}
+%%\textbf{Derivation tree for \ensuremath{\vQ_1} in \exref{type}:}
+%
+%%\footnotesize
+%\scriptsize
+%
+%\textbf{Assumption 1:}
+%\begin{prooftree*}
+%\hypo {\empbio  {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
+%\hypo {\sat {\dimMeta_2 \wedge \dimMeta_2}}
+%\Infer2 [\textsc{Relation-E}] {\env [\dimMeta_2] [\vSch_2] {\empbio} {\annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+%\end{prooftree*}
+%
+%\medskip
+%%\begin{prooftree*}
+%\textbf{Assumption 2:}
+%\begin{alignat*}{1}
+%%\hypo {
+%&  { \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \} }\\ 
+%&\qquad \prec
+%\pushIn{\{ \empno, \sex,  \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\}^{\dimMeta_2} } 
+%%}
+%%\end{prooftree*}
+%\end{alignat*}
+%
+%\medskip
+%\textbf{Assumption 3:}
+%\begin{alignat*}{1}
+%|\pushIn { \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \}^{\dimMeta_2} }|
+%= |{ \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \} }|
+%\end{alignat*}
+%
+%\medskip
+%\textbf{Final derivation tree:}
+%\begin{prooftree*}
+%\hypo {\textit{\bf Assumption 1}}
+%%\hypo {\empbio \annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
+%%\hypo {\sat {\dimMeta_2 \wedge \dimMeta_2}}
+%%\Infer2 [\relationE] {\env [\dimMeta_2] [\vSch_2] {\empbio} {\annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+%\hypo {\textit{\bf Assumption 2}}
+%%\hypo {\subsume { \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \} } 
+%%{\{\annot [\dimMeta_2] \empno, \annot [\dimMeta_2] \sex, \annot [\dimMeta_2] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } }
+%\hypo {\textit{\bf Assumption 3}}
+%\Infer3 [\textsc{Project-E}] {\env [\dimMeta_2] [\vSch_2] {\vQ_1} {\annot [\dimMeta_2] {( \annot [(\vFour \vee \vFive) ] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)} }}
+%\end{prooftree*}
+%\label{fig:vq1-type}
+%\end{figure}
+
+\begin{figure}
+\caption[Example of derivation tree to determine the type of a query]{Derivation tree for \ensuremath{\vQ_2} in \exref{type}.}
+%\medskip
+%\textbf{Derivation tree for \ensuremath{\vQ_2} in \exref{type}:}
+
+\scriptsize
+\textbf{Assumption 1:}
+\begin{prooftree*}
+\hypo {\empbio \annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
+\end{prooftree*}
+
+\medskip
+\textbf{Assumption 2:}
+\begin{prooftree*}
+\hypo {\textit{\bf Assumption 1}}
+\hypo {\sat {(\dimMeta_2 \wedge (\neg \vThree)) \wedge \dimMeta_2}}
+\Infer2 [\textsc{Relation-E}] {\env [\dimMeta_2 \wedge (\neg \vThree)] [\vSch_2] {\empbio} {\annot [\dimMeta_2 \wedge (\neg \vThree)] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+\end{prooftree*}
+
+\medskip
+\textbf{Assumption 3:}
+\begin{alignat*}{1}
+|\pushIn { \{ \empno, \name, \fname, \lname  \}^{\dimMeta_2 \wedge \neg \vThree} } |
+=|{ \{ \empno, \name, \fname, \lname  \} } |
+\end{alignat*}
+
+%\begin{prooftree*}
+\medskip
+\textbf{Assumption 4:}
+\begin{alignat*}{1}
+%\hypo {
+%\subsume
+& { \{ \empno, \name, \fname, \lname  \} } \\
+&\qquad \prec {\{\annot [\dimMeta_2 \wedge (\neg \vThree)] \empno, \annot [\dimMeta_2 \wedge (\neg \vThree)] \sex, \annot [\dimMeta_2 \wedge (\neg \vThree)] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } 
+%}
+%\end{prooftree*}
+\end{alignat*}
+
+\medskip
+\textbf{Assumption 5 (derivation tree for $\mathit{left} = {\pi_{\empno, \name, \fname, \lname} (\empbio)}$):}
+\begin{prooftree*}
+\hypo {\textit{\bf Assumption 2}}
+\hypo {\textit{\bf Assumption 3}}
+\hypo {\textit{\bf Assumption 4}}
+\Infer3 [\textsc{Project-E}] {\env [\dimMeta_2 \wedge (\neg \vThree)] [\vSch_2] {\mathit{left}} {\annot [\dimMeta_2 \wedge (\neg \vThree)] {( \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFour] \lname)}}}
+\end{prooftree*}
+
+\medskip
+\textbf{Final derivation tree for $\vQ_2$:}
+\begin{prooftree*}
+%\hypo {Assumption 2}
+\hypo {\textit{\bf Assumption 5}}
+\Infer0 [\textsc{EmptyRelation-E}] {\env [\dimMeta_2 \wedge \neg (\neg \vThree)] [\vSch_2] {\empRel} {\annot [\texttt{false}] {\setDef \ }}}
+\Infer2 [\textsc{Choice-E}] {\env [\dimMeta_2] [\vSch_2] {\vQ_2} {\annot [(\dimMeta_2 \wedge (\neg \vThree)) \vee \texttt{false}] {( \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+\end{prooftree*}
+
+
+%\begin{prooftree*}
+%\hypo {\empbio \annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname) }\in \vSch_2}
+%\hypo {\sat {(\dimMeta_2 \wedge (\vFour \vee \vFive)) \wedge \dimMeta_2}}
+%\Infer2 [\relationE] {\env [\dimMeta_2 \wedge (\vFour \vee \vFive)] [\vSch_2] {\empbio} {\annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+%\hypo {\subsume { \{ \empno, \name, \fname, \lname  \} } {\{\annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] \empno, \annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] \sex, \annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\} } }
+%\Infer2 [\prjE] {\env [\dimMeta_2 \wedge (\vFour \vee \vFive)] [\vSch_2] {\prj {\empno, \name, \fname, \lname} \empbio} {\annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] {(\annot [\dimMeta_2 \wedge (\vFour \vee \vFive)] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFour] \lname)}}}
+%\Infer0 [\empRelE] {\env [\dimMeta_2 \wedge \neg (\vFour \vee \vFive)] [\vSch_2] {\empRel} {\annot [\f] {\setDef \ }}}
+%\Infer2 [\choiceE] {\env [\dimMeta_2] [\vSch_2] {\vQ_2} {\annot [(\dimMeta_2 \wedge (\vFour \vee \vFive)) \vee (\f \wedge \neg (\vFour \vee \vFive))] {(\annot [(\vFour \vee \vFive) \wedge \dimMeta_2] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}
+%\end{prooftree*}
+
+%  \begin{mathpar}
+%  \small
+%  
+%  \inferrule[\prjE]
+%  {\inferrule [\relationE] 
+%  {blah}
+%  {\env [\dimMeta_2] [\vSch_2] {\empbio} {\annot [\dimMeta_2] {(\empno, \sex, \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}}}\\
+%\subsume { \{\annot [\vFour \vee \vFive] \empno, \name, \fname, \lname  \} } 
+%{\{\annot [\dimMeta_2] \empno, \annot [\dimMeta_2] \sex, \annot [\dimMeta_2] \birthdate, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname\}}}
+%  %
+%  {\env [\dimMeta_2] [\vSch_2] {\vQ_1} {\annot [\dimMeta_2] {\setDef {\annot [(\vFour \vee \vFive) \wedge \dimMeta_2] {(\empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)} }}}}
+%
+%%implicitly-typed lang:
+%    \inferrule[\relationE]
+%  	{\vRel (\vType)^{\VVal \dimMeta} \in \vSch \\
+%	\sat{\vctx \wedge \VVal \dimMeta} }
+%     {\envWithSchema{\envInContext [\vctx \wedge \VVal \dimMeta] {\vType}}}
+%
+%% explicitly-typed vra:  
+%%  \inferrule[\prjE]
+%%  	{\envPrime \\
+%%    	\subsume {\annot \vType}  {\annot [\VVal \vctx] {\VVal \vType}}}
+%%    {\env{\vPrj[\vType] \vQ} {\envInContext [\vctx] \vType}}
+%
+%%implicitly-typed lang:
+%  \inferrule[\prjE]
+%  	{\envPrime \\
+%    	\subsume {\pushIn {\annot \vType}}  {\pushIn {\annot [\VVal \vctx] {\VVal \vType}}}}
+%    {\env{\vPrj[\vType] \vQ} {\envInContext [\VVal \vctx] {\left(\pushIn{\annot {\vType}} \cap {\VVal \vType} \right)}}}
+%
+%
+%  \inferrule[\selE]
+%  	{\env \vQ {\envInContext [\VVal \vctx] \vType} \\
+%    	\envCondAnnot \vCond}
+%    {\env{\vSel \vQ}{\envInContext [\VVal \vctx] \vType}}
+%    
+%  \inferrule[\choiceE]
+%  	{\envOne[\vctx \wedge \VVal \dimMeta] \\
+%    	\envTwo[\vctx \wedge \neg \VVal \dimMeta]}
+%    {\env{\chc[\VVal \dimMeta]{\vQ_1, \vQ_2}}{
+%     \envInContext [(\vctx_1 \wedge \VVal \dimMeta) \vee (\vctx_2 \wedge \neg \VVal \dimMeta)] 
+%     {\left({\pushIn {\envInContext [\vctx_1 \wedge \VVal \dimMeta] \vType_1}} \cup
+%    							{\pushIn {\envInContext [\vctx_2 \wedge \neg \VVal \dimMeta] \vType_2}}\right)}}}
+%    
+%  \inferrule[\productE]
+%  	{\envOne \\
+%    	\envTwo\\
+%	\pushIn {\annot [\vctx_1] \vType_1} \cap \pushIn {\annot [\vctx_2] \vType_2} = \{\}}
+%    {\env{\vQ_1 \times \vQ_2}{\envInContext [\vctx_1 \wedge \vctx_2] 
+%      {\left(\pushIn {\annot [\vctx_1] \vType_1} \cup \pushIn {\annot [\vctx_2] \vType_2} \right)}}}
+%
+%
+%  \inferrule[\setopE]
+%  	{\envOne \\
+%    	\envTwo \\
+%	\envEval {\pushIn {\annot [\vctx_1] \vType_1}} {\pushIn {\annot [\vctx_2] \vType_2}}}
+%%        \envEval{\envInContext{\vType_1}} \vType \\
+%%        \envEval{\envInContext{\vType_2}} \vType}
+%    {\env{\vQ_1 \circ \vQ_2} {\envInContext [\vctx_1] \vType_1} }
+%
+%%  \inferrule[\diffE]
+%%  	{\envOne \\
+%%    	\envTwo \\
+%%        \envEval{\envInContext{\vType_1}} \vType \\
+%%        \envEval{\envInContext{\vType_2}} \vType}
+%%    {\env{\vQ_1 \setminus \vQ_2} \vType}
+%  \end{mathpar}
+%  
+%\medskip
+%\textbf{V-condition typing rules (b: boolean tag, \pAtt: plain attribute, k: constant value):}
+%%(b: boolean tag, A: plain attribute, k: constant value)}
+%  \begin{mathpar}
+%  \small    
+%
+%  \inferrule[\conjC]
+%  	{\envCond \vCond_1\\
+%    	\envCond \vCond_2}
+%    {\envCond{\vCond_1 \wedge \vCond_2}}
+%    
+%  \inferrule[\disjC]
+%  	{\envCond \vCond_1\\
+%    	\envCond \vCond_2}
+%    {\envCond{\vCond_1 \vee \vCond_2}}
+%    
+%
+%
+%  \inferrule[\choiceC]
+%%  	{\defType{\relInContext{\vContext''}}\in \vSch \\
+%    	{\envCond[\vctx \wedge \VVal \dimMeta, \vType]{\vCond_1} \\
+%        \envCond[\vctx \wedge \neg \VVal \dimMeta, \vType]{\vCond_2}}
+%    {\envCond{\chc[\VVal \dimMeta]{\vCond_1, \vCond_2}}}
+%    
+%
+%  \inferrule[\notC]
+%  	{\envCond \vCond}
+%    {\envCond \neg \vCond}
+%        
+%%  \inferrule[]
+%%  	{\envCond[\vContext \wedge \dimMeta]{\vCond_1} \\
+%%    	\envCond[\vContext \wedge \neg\dimMeta]{\vCond_2}}
+%%    {\envCond{\chc{\vCond_1, \vCond_2}}}
+%    
+%
+%    
+%  \inferrule[\attValC]
+%  	{
+%	%\defType{\relInContext{\vContext'}}\in \vSch \\
+%    	\optAtt [\VVal \dimMeta] \in \vType \\
+%%	\taut{{\VVal \dimMeta} \imply \vctx} \\
+%        \sat {\VVal \dimMeta \wedge \vctx}\\
+%        \cte \in \dom \vAtt}
+%    {\envCond{\op \pAtt \cte}}
+%    
+%  \inferrule[\boolC]
+%  	{}
+%    {\envCond \bTag}
+%    
+%
+%    
+%  \inferrule[\attAttC]
+%  	{
+%	%\defType{\relInContext{\vContext'}}\in \vSch \\
+%    	\optAtt [\dimMeta_1] [\vAtt_1]\in \vType \\
+%         {\optAtt [\dimMeta_2] [\vAtt_2]} \in \vType \\
+%%         \taut{\dimMeta_1 \imply \vctx} \\
+%%         \taut{\dimMeta_2 \imply \vctx} \\
+%        \sat { \dimMeta_1 \wedge \dimMeta_2 \wedge \vctx}\\
+%        \type[\vAtt_1] = \type[ \vAtt_2]}
+%    {\envCond{\op{\pAtt_1}{\pAtt_2}}}
+%    
+%  \end{mathpar}
+%
+%%\caption{V-condition typing relation. A v-condition \vCond\ is well-typed if 
+%%it is valid in the variational context \vctx\ and type environment \vType, i.e., 
+%%\envCond \vCond. Note that the type rules for v-conditions return a boolean, if
+%%the v-condition is type-correct the rules return \t, otherwise they return \f.}
+%\caption{VRA and v-condition typing relation. The typing rule of a join query is the combination
+%of rules \selE\ and \productE.}
+%\label{fig:vq-stat-sem}
+%\end{minipage}
+\label{fig:vq2-type}
+\end{figure}
+%\end{landscape}
