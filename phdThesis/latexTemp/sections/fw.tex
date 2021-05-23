@@ -41,10 +41,14 @@ user-defined data type inside the underlying DBMS engine, which
 limits the engines that VDBMS can sit on top of them, as well as
 defining user-defined functions over them that allow VDBMS to
 manipulate them. 
+%
+Additionally, the performance of VDBMS can be improved different optimizations
+such as clustering returned tuples based on their presence condition to reduce the
+time it takes to filter out the tuples with unsatisfiable presence conditions. 
 
 %
 Furthermore, to make VDBMS more accessible and configurable to each 
-kind of variation in databases we can generalize parts of it. For instancce, 
+kind of variation in databases we can generalize parts of it. For instance, 
 we plan to generalize the feature expression such that its encoding and functions
 can be defined by an expert of the specific kind of variation. This would allow
 for context-specific optimizations with regards to the application domain 

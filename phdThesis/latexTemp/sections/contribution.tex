@@ -48,6 +48,8 @@ variational queries in \secref{var-min}.
 %
 Finally, it discusses the properties of the VRA in \secref{vqlprop} including its expressiveness and 
 type safety. 
+%
+This chapter, \chref{vdb}, and \chref{bg} heavily borrow from our papers~\cite{ATW17dbpl, ATW18poly, vldbArXiv}.
 
 \chref{vdbusecase} (\emph{Variational Database Use Cases}) 
 aims at guiding an expert through generating a VDB and writing
@@ -67,18 +69,28 @@ were adapted and adjusted from papers describing the variation scenario.
 %
 The last section of this chapter, \secref{usecase-disc}, discusses the question 
 ``should variation be encoded explicitly in databases?'' through the lessons learned 
-while generating these use cases. 
+while generating these use cases. This chapter heavily borrows from our previous paper~\cite{ALW21vamos} and Qiaoran Li's Masters project report~\cite{Li19}. 
+Although the databases and queries were originally taken from Qiaoran's work they 
+have been modified significantly so that the VDBs pass the properties of well-defined VDB and 
+the queries justify the information need better. 
 
-\wrrite{write this after you finish the chapter.}
-\TODO{\chref{vdbms}}
+
+\chref{vdbms} discusses how we implement 
+the variational database framework and the variational relational
+algebra into a Variational Database Management System (VDBMS) on top of
+a traditional RDBMS. This chapter 
+includes the architecture of VDBMS and approaches used to generate SQL
+queries to run variational queries on a backend RDBMS. It also compares the
+performance of VDBMS using different SQL generator approaches. 
 
 
 \wrrite{write this after you finish the chapter and do your research.}
 \chref{rw} (\emph{Related Work}) collects research related to different kinds of variation 
 in databases and other related variational research. 
 
-\wrrite{write this after you finish the chapter.}
-Finally, \chref{conclusion} (\emph{Conclusion}) briefly presents ...
+Finally, \chref{conclusion} (\emph{Conclusion}) briefly presents the main contributions 
+of this thesis and immediate future works. 
+
 %\begin{itemize}
 %%[leftmargin=*]
 %%\itemsep0em
