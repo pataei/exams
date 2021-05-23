@@ -7,10 +7,10 @@
 
 %\input{formulas/vRelAlgTypingRulesExplicitAnnotation}
 
-\rewrite{adjust after Eric reviews it in VLDB}
-%\point{aspects we need to type check v-queries.}
+
+%\point{aspects we need to type check variationalqueries.}
 In this section, we introduce a static type system for VRA. The type system
-ensures that queries are consistent with the underlying v-schema. That is, that
+ensures that queries are consistent with the underlying variationalschema. That is, that
 all referenced relations and attributes are present in the variation contexts
 in which they are used.
 %
@@ -21,33 +21,17 @@ $\vRel$. Similarly, the queries $\vPrj[{\optAtt[\neg\fOne][\vAtt_1]}]{\vRel}$
 and $\chc[\fOne]{\vPrj[\vAtt_2]{\vRel},\vPrj[\vAtt_1]{\vRel}}$ are both
 ill-typed since $\vAtt_1$ is not present in \vRel\ when \fOne\ is disabled.
 
-%is ill-typed because the variation encoded in the query is violating the 
-%corresponding variation in v-schema, i.e., the feature expression
-%\ensuremath{\neg \fOne \wedge \getPC{\vAtt_1}} is not satisfiable.
-%For example, while projecting an annotated attribute \optAtt\ from a 
-%v-relation \vRel\ not only the attribute must belong to the v-relation, i.e., 
-%$\vRel \annot [\dimMeta_\vRel] {\paran {\optAtt [\dimMeta_1], \vAttList}}$, but 
-%the feature expression $\dimMeta \wedge \dimMeta_\vRel \wedge \dimMeta_1$ 
-%must also be satisfiable, i.e., 
-%%a database variant in the intersection of variability
-%%encoded in the v-schema and the query exists s.t. attribute \vAtt\ is present in 
-%%relation \vRel.
-%the attribute \vAtt\ must be present in the relation \vRel\
-%under the condition imposed by the query and the v-schema. 
-%
-%
-%A v-query that is not well-typed is \emph{ill-typed}.
 
-The type of a VRA query is a v-relation schema
+The type of a VRA query is a variational relation schema
 $\mathit{result}\annot{(\vAttList)}$. However, since the
 relation name is the same for all queries, we shorten this to
-$\annot{\vAttList}$, that is, an annotated v-set of attributes.
+$\annot{\vAttList}$, that is, an annotated variational set of attributes.
 %
 The annotation $e$ corresponds to the presence condition of the 
 returned table.
 %
 The presence conditions of attributes within $A$ may differ from the
-corresponding presence conditions in the original v-schema due to variation
+corresponding presence conditions in the original variational schema due to variation
 constraints imposed by the query.
 %
 For example, continuing with relation
@@ -57,128 +41,225 @@ $\{\annot[\fOne]{\vAtt_2}\}^{\fOne\vee\fTwo}$.
 %
 In the original schema, $\vAtt_2$ is present when $\A\vee\B$, while in the
 query it is present only when $\A$ is enabled.
-%
-% while 
-%according to \vRel's schema 
-%\ensuremath{\getPC {\vAtt_2} = \fOne \vee \fTwo}, 
-% i.e., the presence
-% condition of attribute \ensuremath{{\vAtt_2}} changes through the query.
-%
-% The presence condition of the entire set determines the condition under
-% which the entire table (i.e., attributes and tuples) are present. 
-%
-%Note that it is essential to consider the type of a query an \emph{annotated}
-%v-set to account for the presence condition of the entire table including the tuples. 
-%similar to how we encode v-relation schemas. 
-%If we
-%consider the type of a query a variational attribute set we lose information (i.e.,
-%the condition under which tuples are valid).
-%The final variation context, after running a v-query, is the
-%presence condition of the returned v-table. That is why we 
-%consider the type environment as a variational set of attributes instead of 
-%a relation schema. 
-
-%\begin{example}
-%\label{eg:vq-affect-vctx}
-%Assume we have the VDB defined in \exref{vsch}. 
-%Consider the query $\pi_{\name} \empbio$. The returned 
-%table has the type: $(\optAtt [\vFour] [\name])^\fModel$. 
-%However, if we change the query to: 
-%$\pi_{\optAtt [\edu] [\name]} \empbio$, the returned table has the
-%type: $(\optAtt [\vFour \wedge \edu] [\name])^\fModel$. 
-%\end{example}
-
-%
-%\eric{Eric, feel free to summarize rule explanations. I basically
-%explained them how I'd read them.}
 
 \input{formulas/vRelAlgTypingRules}
 
 \figref{vq-stat-sem} defines a typing relation that relates VRA queries to
 their types.
 %
-The judgement form \env{\vQ}{\envInContext[\VVal{\vctx}]{\vType}} states that
-in variation context \vctx\ within v-schema \vSch, v-query \vQ\ has type
+The judgment form \env{\vQ}{\envInContext[\VVal{\vctx}]{\vType}} states that
+in variation context \vctx\ within variational schema \vSch, variational query \vQ\ has type
 \envInContext[\VVal{\vctx}]{\vType}. 
 %
 If a query does not have a type, it is \emph{ill-typed}.
 %
 A \emph{variation context} is a feature expression that tracks which variants
-the current subquery is present in. The variation context is initiated to be
-the schema's feature model and extended when entering the alternative of a choice.
+the current subquery is present in.
 %
 We sometimes use the judgment form \envWithoutVctx{\vQ}{\envInContext[\VVal{\vctx}]{\vType}}
-when the variation context is the unextended feature model, i.e., 
+when the variation context is the unextended feature model, that is,
 \env[\getPC{\vSch}]{\vQ}{\envInContext[\VVal{\vctx}]{\vType}}.
 %
-We assume that the v-set of attributes $A$ is normalized to remove elements
+We assume that the variational set of attributes $A$ is normalized to remove elements
 with unsatisfiable presence conditions, but this normalization is only shown
 explicitly in the rules where strictly necessary.
 
-%Note that attributes with an
-%unsatisfiable presence condition are not present in any 
-%database variant, i.e., they are not present for any configuration.
-%Thus, the existence of such attribute in a type does not change
-%the type semantically, based on the defined equivalence rule for 
-%v-sets, given in \defref{vset-eq}. Hence, we do not filter out such attributes
-%explicitly in \figref{vq-stat-sem}, however, for simplicity, 
-%the implemented type system
-%drops the attributes with an unsatisfiable presence condition.
- 
 
-The rule \relationE\ looks up the relation \vRel\ in the 
-v-schema \vSch\ and returns its v-set of attributes \vAttList\ annotated
-with the variation context and its presence condition $\vctx \wedge \VVal \dimMeta \wedge \getPC \vSch$. 
+The rule \relationE\ looks up relation \vRel\ in the variational schema \vSch\ and
+returns its variational set of attributes $A$. The presence condition of $A$ is the
+conjunction of the relation's presence condition in the variational schema, $e'$, the
+current variation context, $e$, and the feature model, $\getPC{\vSch}$. In this
+way, the type is constrained to reflect both the constraints present in the
+variational schema and the context of the relation reference in the query.
 %
-That is, it states that, in variation context \vctx\ with
-underlying variational schema \vSch, assuming that
-1) \vSch\ contains
-the relation \vRel\ with presence condition $\VVal \dimMeta$
-and v-set of attributes \vType\ 
-and
-2) there exists a valid variant in the intersection of variation context \vctx\
-and \vRel's presence condition \ensuremath{\dimMeta \wedge \VVal \dimMeta \wedge \getPC \vSch},
-then query \vRel\ has type \ensuremath {\annot [\vctx \wedge \VVal \dimMeta \wedge \getPC \vSch] \vType}.
+The last premise ensures that the relation exists in at least one variant by
+checking that the type's presence condition is satisfiable. This means that
+referencing a relation in a context where it is never present is a type error.
+%The rule \relationE\ looks up the relation \vRel\ in the 
+%variational schema \vSch\ and returns its variational set of attributes \vAttList\ annotated
+%with the variation context and its presence condition $\vctx \wedge \VVal \dimMeta \wedge \getPC \vSch$. 
+%%
+%That is, it states that, in variation context \vctx\ with
+%underlying variational schema \vSch, assuming that
+%1) \vSch\ contains
+%the relation \vRel\ with presence condition $\VVal \dimMeta$
+%and variational set of attributes \vType\ 
+%and
+%2) there exists a valid variant in the intersection of variation context \vctx\
+%and \vRel's presence condition \ensuremath{\dimMeta \wedge \VVal \dimMeta \wedge \getPC \vSch},
+%then query \vRel\ has type \ensuremath {\annot [\vctx \wedge \VVal \dimMeta \wedge \getPC \vSch] \vType}.
 % \ensuremath{\annot [\vctx \wedge \getPCfrom \vRelSch \vSch] \vType}.
 
 % 
-The rule \prjE\ 
-checks that first, the subquery is well-typed (i.e., $\envPrime$);
-second, all projected attributes are present under the variation context 
-(i.e., $|\pushIn {\annot \vType}| = | \vType |$);
-third, projected attributes are subsumed by the type of the subquery
-(i.e., $\subsume { \vType}  {\pushIn {\annot [\VVal \vctx] {\VVal \vType}}}$).
-If all the premises hold, it returns the intersection of the projected attributes
-and the subquery attributes annotated with the presence condition of the
-subquery type (i.e., ${\envInContext [\VVal \vctx] {\left(\vType \cap {\VVal \vType} \right)}}$).
+%The rule \prjE\ 
+%checks that first, the subquery is well-typed (i.e., $\envPrime$);
+%second, all projected attributes are present under the variation context 
+%(i.e., $|\pushIn {\annot \vType}| = | \vType |$);
+%third, projected attributes are subsumed by the type of the subquery
+%(i.e., $\subsume { \vType}  {\pushIn {\annot [\VVal \vctx] {\VVal \vType}}}$).
+%If all the premises hold, it returns the intersection of the projected attributes
+%and the subquery attributes annotated with the presence condition of the
+%subquery type (i.e., ${\envInContext [\VVal \vctx] {\left(\vType \cap {\VVal \vType} \right)}}$).
+%%
+%That is, it states that, in variation context \vctx\ within variational schema \vSch, assuming 
+%that the subquery \vQ\ has type $\envInContext [\VVal \vctx] {\VVal \vType}$,
+%variational query $\pi_\vType \vQ$
+%has type \ensuremath {\envInContext [\VVal \vctx] {\left( \vType \cap \VVal \vType\right)}}, 
+%if all attributes in \vType\ are present in \vctx\
+%and
+% \ensuremath {\pushIn {\envInContext [\VVal \vctx] {\VVal \vType}}} subsumes \vType.
+%%
+%Note that the variation context \dimMeta\ is applied in the presence condition of
+%the subquery (\VVal \dimMeta), thus, there is no need to repeat it in the returned 
+%type of the query $\pi_\vAttList \vQ$.
+%%
+%Assuming that $\VVVal \vType = \annot [\VVal \dimMeta] {\VVal \vType}$,
+%the subsumption of $\subsume \vType { \VVVal \vType}$ is defined as
+%\ensuremath{ \forall \annot [\dimMeta_1] \vAtt \in \pushIn {\vType}.
+%\exists \dimMeta_2. \annot [\dimMeta_2] \vAtt \in \pushIn {\VVVal \vType}, 
+%\sat {\dimMeta_2 \wedge  \dimMeta_1}} and it 
+%ensures that the subquery \vQ\ does not have an empty type
+%and it includes all attributes in 
+%the projected attribute set and attributes' presence conditions do not 
+%contradict each other. 
+%Returning the intersection of types, defined in 
+%\defref{vset-intersect}, filters both 
+%attributes and their presence conditions.
+%\exref{type} illustrates how the type system generates a type for a query
+%and how this type helps enforcing the variation encoded in the query to its result.
+For a projection $\vPrj[A]{q}$, the rule \prjE\ checks that all projected
+attributes $A$ are present in at least one variant of the variation context
+(second premise) and that these attributes are \emph{subsumed} by type of the
+subquery $q$ (third premise).
 %
-That is, it states that, in variation context \vctx\ within v-schema \vSch, assuming 
-that the subquery \vQ\ has type $\envInContext [\VVal \vctx] {\VVal \vType}$,
-v-query $\pi_\vType \vQ$
-has type \ensuremath {\envInContext [\VVal \vctx] {\left( \vType \cap \VVal \vType\right)}}, 
-if all attributes in \vType\ are present in \vctx\
-and
- \ensuremath {\pushIn {\envInContext [\VVal \vctx] {\VVal \vType}}} subsumes \vType.
+The subsumption relation \subsume{A}{A'} used in the third premise is defined
+as
 %
-Note that the variation context \dimMeta\ is applied in the presence condition of
-the subquery (\VVal \dimMeta), thus, there is no need to repeat it in the returned 
-type of the query $\pi_\vAttList \vQ$.
+$\forall \annot[e_1]{a} \in \pushIn{A}.
+ \exists e_2.
+ \annot[e_2]{a}\in\pushIn{A'}, \sat{e_1 \wedge e_2}$,
 %
-Assuming that $\VVVal \vType = \annot [\VVal \dimMeta] {\VVal \vType}$,
-the subsumption of $\subsume \vType { \VVVal \vType}$ is defined as
-\ensuremath{ \forall \annot [\dimMeta_1] \vAtt \in \pushIn {\vType}.
-\exists \dimMeta_2. \annot [\dimMeta_2] \vAtt \in \pushIn {\VVVal \vType}, 
-\sat {\dimMeta_2 \wedge  \dimMeta_1}} and it 
-ensures that the subquery \vQ\ does not have an empty type
-and it includes all attributes in 
-the projected attribute set and attributes' presence conditions do not 
-contradict each other. 
-Returning the intersection of types, defined in 
-\defref{vset-intersect}, filters both 
-attributes and their presence conditions.
-\exref{type} illustrates how the type system generates a type for a query
-and how this type helps enforcing the variation encoded in the query to its result.
+which ensures that all of the projected attributes are present in the type of
+the subquery $q$, and that the presence conditions of the variational set of projected
+attributes do not contradict the presence conditions in the type of $q$.
+%
+The result type is the variational set intersection (\figref{vset}) of the
+projected attributes and the attributes of the subquery ensuring that the
+variation constraints of both are captured.
+%
+\exref{type} illustrates how the type system infers a type for a variational query.
 
+
+%
+The rule \selE\ checks if its subquery and variational condition are well-typed
+and if so it returns the subquery's type. 
+%
+% That is, it states that, in \vctxTxt\ \vctx\ within variational schema \vSch, assuming 
+% that the subquery \vQ\ has type {\envInContext [\VVal \vctx] \vType}, 
+% the variational query $\sigma_{\vCond} \vQ$
+% has type {\envInContext [\VVal \vctx] \vType},
+% if the \vCondTxt\ \vCond\ is \emph{well-formed} w.r.t.
+%  \vctxTxt\ \vctx\ and  normalized type {\pushIn {\envInContext [\VVal \vctx] \vType}}, 
+% denoted by variational condition's typing relation 
+% \envCondAnnot \vCond.
+%
+The variational condition typing relation is defined in \figref{vq-stat-sem} and has the 
+judgment form \envCond \vCond, which states that the variational condition \vCond\
+is well-formed in variation context \vctx\ within attribute variational set \vType.
+% Remember that  {\pushIn {\envInContext [\VVal \vctx] \vType}} normalizes 
+% {\envInContext [\VVal \vctx] \vType} to be a variationalset.
+The variational condition typing rules ensure that each attribute used in a
+variational condition is present in \vType\ and that the presence condition associate with
+that attribute does not contradict the current variation context.
+%The rule \selE\ checks if its subquery and variational condition are well-typed
+%and if so it returns the subquery's type. 
+%%
+%That is, it states that, in variation context \vctx\ within variational schema \vSch, assuming 
+%that the subquery \vQ\ has type {\envInContext [\VVal \vctx] \vType}, 
+%the variational query $\sigma_{\vCond} \vQ$
+%has type {\envInContext [\VVal \vctx] \vType},
+%if the variational condition \vCond\ is \emph{well-formed} w.r.t.
+% variation context \vctx\ and  normalized type {\pushIn {\envInContext [\VVal \vctx] \vType}}, 
+%denoted by variational condition's typing relation 
+%\envCondAnnot \vCond.
+%%
+%The variational condition typing relation, as defined in \figref{vq-stat-sem}, has the 
+%judgement form \envCond \vCond, which states that the variational condition \vCond\
+%is well-formed in variation context \vctx\ within attribute variational set \vType.
+%Remember that  {\pushIn {\envInContext [\VVal \vctx] \vType}} normalizes 
+%{\envInContext [\VVal \vctx] \vType} to be a variational set.
+%The variational condition typing rules state that attributes used in a
+%variational condition must be present in \vType\ and 
+%attribute's presence condition \ensuremath {\VVal \dimMeta} 
+%in type \vType\ must exists within variation context \vctx,
+%denoted by \ensuremath{\sat {\VVal \dimMeta \wedge \vctx}}.
+
+
+For a choice of queries $\chc[e']{q_1,q_2}$, the rule \choiceE\ recursively
+infers the type of each alternative subquery in a variation context extended to
+reflect which branch of the choice the subquery is contained in, that is, $e'$
+for $q_1$ and $\neg e'$ for $q_2$.
+%
+The result type of a choice is the variational set union (\figref{vset}) of the
+types of the subqueries annotated by the disjunction of their presence
+conditions, reflecting that either one alternative will be chosen or the other.
+%
+Note that \choiceE\ is the only rule that refines the variation context.
+
+
+The \empRelE\ rule states that an empty relation has the type of an empty set
+annotated by \f, which is the required base case to ensure that the type system
+is variation preserving (see \secref{var-pres}).
+%
+The remaining rules are straightforward extensions of the standard relational
+algebra typing rules for product and set operations to account for variation
+contexts and variational sets.
+%
+%%
+%The rule \choiceE\ adjusts the variation contexts of its alternative 
+%subqueries, checks if they are both well-typed, and if so it returns
+%the union of their types annotated with the disjunction of their presence conditions. 
+%%
+%That is, it states that, in variation context \vctx\ within variational schema \vSch, the type of 
+%a choice of two subqueries is the \emph{union of types}, defined in 
+%\defref{vset-union}, of its subqueries annotated with the disjunction of their presence
+%conditions conjuncted with the corresponding condition of the choice's dimension.
+%%A choice query is well-typed iff both of 
+%%its subqueries $\vQ_1$ and $\vQ_2$ are well-typed.
+%%
+%Note that \choiceE\ is the only rule that refines the variation context and that 
+%mainly uses the \empRelE\ rule which states that an empty relation has the 
+%type of an empty set annotated with \f.
+%%
+%The rest of the rules are congruence rules for product and set operations over queries. 
+
+% 
+%The rule \productE\ states that the type of a product query in variation context
+%\vctx\ is the union of the type of its subqueries annotated with the 
+%disjunction of their presence conditions, assuming that 
+%they are disjoint. 
+%%Note that 
+%%\ensuremath{
+%%\annot [\vctx_1 \wedge \vctx_2] {\left(\envInContext [\vctx_1] \vType_1 \cup \envInContext [\vctx_2] \vType_2\right)}
+%%\equiv 
+%%\envInContext [\vctx_1 \wedge \vctx_2] \vType_1 \cup \envInContext [\vctx_1 \wedge \vctx_2] \vType_2
+%%\equiv
+%%\annot [\vctx_1 \wedge \vctx_2] {\left(\vType_1 \cup \vType_2\right)}
+%%}.
+%
+%% 
+%The rule \setopE\ denotes the typing rule for set operation queries such as 
+%union and difference. It states that, if the subqueries $\vQ_1$ and $\vQ_2$
+%have \emph{equivalent} types $\envInContext [\vctx_1] \vType_1$ and 
+%$\envInContext [\vctx_2] \vType_2$
+%%, respectively, 
+%in variation context \vctx,
+%then the variational query of their set operation has type $\envInContext [\vctx_1] \vType_1$.
+%%, iff 
+%%$\pushIn {\envInContext [\vctx_1] \vType_1}$ and $\pushIn {\envInContext [\vctx_2] \vType_2}$ are \emph{equivalent}.
+%The \emph{type equivalence} is variational set equivalence, defined in \defref{vset-eq}, for normalized variational set of attributes.
+%%,
+%%for variational sets of attributes.
 
 \begin{example}
 \label{eg:type}
@@ -197,7 +278,7 @@ resulting in the type
 \ensuremath{ 
 \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]\}^{\fModel_2}}.
 Now that the type system has the type of the subquery \empbio\ 
-it verifies that the projected attribute v-set
+it verifies that the projected attribute variational set
 \ensuremath{
 \vAttList_{\mathit{prj}} =
  \{\optAtt [\vFour \vee \vFive] [\empno],
@@ -217,6 +298,8 @@ annotated with \ensuremath{\vAttList_\empbio}'s presence condition, resulting in
 This type proves that $\vQ_1$ is well-typed and dictates the structure of its result.
 \ensure{don't forget to inlcude this}
 \figref{vq1-type} illustrates the tree derivation of $\vQ_1$'s type.
+
+\input{formulas/typeSysEx1}
 %
 Now consider \ensuremath{\vQ_2} introduced in \exref{vq-specific}.
 The \choiceE\ rule is applied
@@ -242,89 +325,10 @@ final type of \\
  of its attributes presence condition.
  \ensure{don't forget to inlcude this}
  \figref{vq2-type} illustrates the tree derivation of $\vQ_2$'s type.
+ \input{formulas/typeSysEx2}
 \end{example}
 
-\input{formulas/typeSysEx}
 
-%
-The rule \selE\ checks if its subquery and v-condition are well-typed
-and if so it returns the subquery's type. 
-%
-That is, it states that, in variation context \vctx\ within v-schema \vSch, assuming 
-that the subquery \vQ\ has type {\envInContext [\VVal \vctx] \vType}, 
-the v-query $\sigma_{\vCond} \vQ$
-has type {\envInContext [\VVal \vctx] \vType},
-if the variational condition \vCond\ is \emph{well-formed} w.r.t.
- variation context \vctx\ and  normalized type {\pushIn {\envInContext [\VVal \vctx] \vType}}, 
-denoted by v-condition's typing relation 
-\envCondAnnot \vCond.
-%
-The v-condition typing relation, as defined in \figref{vq-stat-sem}, has the 
-judgement form \envCond \vCond, which states that the v-condition \vCond\
-is well-formed in variation context \vctx\ within attribute v-set \vType.
-Remember that  {\pushIn {\envInContext [\VVal \vctx] \vType}} normalizes 
-{\envInContext [\VVal \vctx] \vType} to be a v-set.
-The v-condition typing rules state that attributes used in a
-variational condition must be present in \vType\ and 
-attribute's presence condition \ensuremath {\VVal \dimMeta} 
-in type \vType\ must exists within variation context \vctx,
-denoted by \ensuremath{\sat {\VVal \dimMeta \wedge \vctx}}.
-%be more specific than the variation context \vctx,
-%denoted by \ensuremath{\taut {\VVal \dimMeta \to \vctx}}, 
-%since \vType\ is the exact type and specification of the subquery within
-%a selection query which is at least as specific as the variation context under which
-%the selection query is written. 
-%the \fexpTxt\ attached to an attribute in a 
-%variational condition must be more specific than its presence condition in type \vType. 
-%They also
-%check the constraints of traditional relational databases, such as the type of two 
-%compared attributes must be the same.
-
-%
-The rule \choiceE\ adjusts the variation contexts of its alternative 
-subqueries, checks if they are both well-typed, and if so it returns
-the union of their types annotated with the disjunction of their presence conditions. 
-%
-That is, it states that, in variation context \vctx\ within v-schema \vSch, the type of 
-a choice of two subqueries is the \emph{union of types}, defined in 
-\defref{vset-union}, of its subqueries annotated with the disjunction of their presence
-conditions conjuncted with the corresponding condition of the choice's dimension.
-%A choice query is well-typed iff both of 
-%its subqueries $\vQ_1$ and $\vQ_2$ are well-typed.
-%
-Note that \choiceE\ is the only rule that refines the variation context and that 
-mainly uses the \empRelE\ rule which states that an empty relation has the 
-type of an empty set annotated with \f.
-%
-The rest of the rules are congruence rules for product and set operations over queries. 
-
-% 
-%The rule \productE\ states that the type of a product query in variation context
-%\vctx\ is the union of the type of its subqueries annotated with the 
-%disjunction of their presence conditions, assuming that 
-%they are disjoint. 
-%%Note that 
-%%\ensuremath{
-%%\annot [\vctx_1 \wedge \vctx_2] {\left(\envInContext [\vctx_1] \vType_1 \cup \envInContext [\vctx_2] \vType_2\right)}
-%%\equiv 
-%%\envInContext [\vctx_1 \wedge \vctx_2] \vType_1 \cup \envInContext [\vctx_1 \wedge \vctx_2] \vType_2
-%%\equiv
-%%\annot [\vctx_1 \wedge \vctx_2] {\left(\vType_1 \cup \vType_2\right)}
-%%}.
-%
-%% 
-%The rule \setopE\ denotes the typing rule for set operation queries such as 
-%union and difference. It states that, if the subqueries $\vQ_1$ and $\vQ_2$
-%have \emph{equivalent} types $\envInContext [\vctx_1] \vType_1$ and 
-%$\envInContext [\vctx_2] \vType_2$
-%%, respectively, 
-%in variation context \vctx,
-%then the v-query of their set operation has type $\envInContext [\vctx_1] \vType_1$.
-%%, iff 
-%%$\pushIn {\envInContext [\vctx_1] \vType_1}$ and $\pushIn {\envInContext [\vctx_2] \vType_2}$ are \emph{equivalent}.
-%The \emph{type equivalence} is v-set equivalence, defined in \defref{vset-eq}, for normalized v-set of attributes.
-%%,
-%%for v-sets of attributes.
 
 
 %9-19-18 notes:

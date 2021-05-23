@@ -82,60 +82,82 @@
 
 \input{tables/motex-tables}
 
-%\point{Overall scenario.}
+In this section, we motivate VDBMS by illustrating the scenario described in
+\secref{intro} where two kinds of database variation interact, producing a
+scenario that is not well supported by any existing tools. The scenario
+involves the evolution over time of a database-backed SPL.
 
-%In practice, new instances of variation in databases arises. We discuss such a scenario that 
-%we discussed with an industry contact in \appref{industry-ex}.
-In this section, we motivate the interaction of two kinds of variation in databases 
-resulting in a new kind:
-database-backed software produced by an SPL and schema evolution.
+% the interaction of two kinds of variation in databases 
+% resulting in a new kind:
+% database-backed software produced by an SPL and schema evolution.
+
 An SPL uses a set of boolean variables called \emph{features} 
-to indicate the functionalities that each software variant requires.
+to indicate functionality that may be included or not in each software
+variant.
 Consider an SPL that generates management software for companies. 
 It has a feature \edu\ that 
 indicates whether a company
-provides educational means such as courses for its 
+provides educational resources, such as courses for its 
 employees.
 %\footnote{In practice, such a SPL would have two features: \base\ and \edu,
 %where \base\ is an arbitrary feature, i.e., for all variants it must be enabled, and it 
 %indicates software variants that provide just basic functionalities. For simplicity
 %and without loss of generality, we drop this feature.}. 
 %NOTE: YOU CAN OMIT THE FOOTNOTE IF YOU'RE RUNNING OUT OF SPACE!!!!!!!
-Software variants in which \edu\ is disabled (i.e., \edu\ = \f) only provide basic 
-functionalities while ones in which \edu\ is enabled provide educational functionalities
-in addition to the basic ones. Thus, this SPL yields two types of variants:
-\basic\ and \educational.
+Software variants in which \edu\ is enabled (i.e., $\edu=\t$) provide this
+additional functionality while variants where it is disabled provide only the
+basic functionality.
+
+
+If \edu\ is the only optional feature, then at any point in time, this SPL has
+two variants: \basic\ and \educational. However, each variant will also evolve
+as the SPL evolves, leading to several different \basic\ and \educational\
+variants over time.
+
 
 %\point{Database of this SPL.}
-Each variant of this SPL needs a database to store information
-about employees, but SPL features impact the database: While
-\basic\ variants do not need to store any education-related records 
+Each variant of the SPL needs a database to store information
+about employees, and the selection of features impacts the database: While
+\basic\ variants do not need to store any education-related records,
 \educational\ variants do. 
 % In practice, SPL developers use 
 %only one database for both variant categories~\cite{ATW18poly}, 
 %which can easily be separated
 %by using the \edu\ feature.
-\NOTE{refs here have changed.}
-We visualize the impact of features on the schema variants in \tabref{mot}:
-It has two
-schema types: \basic, shown in \tabref{mot-basic}, and \educational, shown in \tabref{mot-edu}.
-A \basic\ schema variant contains only the schema in one of the cells in \tabref{mot-basic}
-while an \educational\ schema variant consists of two sub-schemas: one from the \basic\ 
-and another from \tabref{mot-edu}. For example,
-the yellow highlighted cells include relation schemas for an \educational\ schema variant. 
+We visualize the impact of both features and evolution on the schema in
+\tabref{mot}, where feature variation is captured in the columns and variation
+over time is captured in the rows.
+%
+% It has two schema types: \basic\ and \educational.
+%
+Each \basic\ schema variant contains only the schema in a cell in column \basic\
+while an \educational\ schema variant consists of two sub-schemas: one from the \basic\
+column and another from the \educational\ column.
+%
+The \basic\ sub-schema and the \educational\ sub-schema may vary over time
+independently. For example, an extension to the \educational\ sub-schema may
+use an older version of the \basic\ schema. This is reflected by the
+highlighted cells in \tabref{mot}, which describes a complete schema for a
+particular \educational\ variant.
+%
+To describe variation over time of each sub-schema, we introduce two disjoint
+sets of temporal features (boolean variables, like any other feature), shown in
+the leftmost and rightmost columns.
+
+
 %Note that these sub-schemas do not 
 %have to be adjunct cells.
 
+% Rows of \tabref{mot} indicate the evolution of schema variants over time.
+% To capture the evolution of the software and its database we add 
+% two disjoint sets of features which again are boolean variables.
+% % and call them
+% %\emph{temporal features}. 
+% The temporal feature sets are disjoint to allow 
+% individual paces for the evolution of each type of schema, e.g.
+% yellow cells of \tabref{mot} show a valid schema variant even though
+% the \basic\ and \educational\ sub-schemas are not in the same row. 
 %
-Rows of \tabref{mot} indicate the evolution of schema variants in time.
-To capture the evolution of the software and its database we add 
-two disjoint sets of features which again are boolean variables.
-% and call them
-%\emph{temporal features}. 
-The temporal feature sets are disjoint to allow 
-individual paces for the evolution of each type of schema. For example,
-yellow cells of \tabref{mot} show a valid schema variant even though
-the \basic\ and \educational\ sub-schemas are not in the same row. 
 %For example, a valid software variant 
 %can have the \basic\ schema associated with \vThree\ in addition
 %to the \educational\ schema associated with \tFour. 
@@ -168,55 +190,56 @@ the \basic\ and \educational\ sub-schemas are not in the same row.
 %opposed to databases created for SPL in practice.
 
 %\point{Component evolution.}
-\NOTE{refs here have changed. mot to mot-basic}
 Now, consider the following scenario:
-In the initial design of the \basic\ database, SPL  DBAs
-settle on three tables \engemp, \othemp, and \job; shown in \tabref{mot-basic} and associated
+In the initial design of the \basic\ database, the DBA
+settles on three tables \engemp, \othemp, and \job, shown in \tabref{mot-basic} and associated
 with feature \vOne. 
 After some time, they decide
 to refactor the schema to remove redundant tables,
-thus, they combine the two
-relations \engemp\ and \othemp\ into one, \empacct; associated with  feature \vTwo. 
+combining the two
+relations \engemp\ and \othemp\ into one, \empacct, associated with feature \vTwo. 
 Since some clients' 
-software relies on a previous design the two schemas have to coexist in parallel.
+software relies on a previous design, the two schemas have to coexist in parallel.
 %However, to capture what schema a software variant is using we introduce
 %temporal features, e.g., \vOne\ and \vTwo, and tag corresponding schemas 
 %with these features. 
 Therefore, the existence (presence) of \engemp\ and \othemp\
-relations is \emph{variational}, i.e., they only exist in the \basic\
-schema when \vOne\ = \t.
-This scenario describes \emph{component evolution}:
+relations is \emph{variational}, they only exist in the \basic\
+schema when $\vOne=\t$.
+This scenario is an example of \emph{component evolution} in SPLs, where
 %database evolution in SPL resulted from 
 developers
-update, refactor, and improve components including the database~\cite{dbSPLevolve}.
+update, refactor, and improve components of the SPL, including the database~\cite{dbSPLevolve}.
 % is called 
 %\emph{component evolution}~\cite{dbSPLevolve}.
 
 %\point{Product evolution.}
 Now, consider the case where a client that previously requested a \basic\ variant of the
-management software has recently added courses to educate its
-employees in specific subjects. Hence, an SPL developer needs to enable
-the \edu\ feature for this client, forcing the adjustment of the schema variant to \educational. 
-This case describes \emph{product evolution}:
-database evolution in SPL resulted
+software has added courses to educate its
+employees in specific subjects. The SPL developer needs to enable
+the \edu\ feature for this client, forcing the adjustment of the schema variant
+to include the \educational\ sub-schema.
+This case describes \emph{product evolution}, where
+database evolution in an SPL results
 from clients adding/removing features/components~\cite{dbSPLevolve}. 
 %is called 
 %\emph{product evolution}~\cite{dbSPLevolve}. 
 
 %\point{\edu\ affects basic too.}
-The situation is further complicated since the \basic\ and \educational\ schemas are interdependent:
+The situation is further complicated since the \basic\ and \educational\
+schemas are interdependent.
 %not independent of each other: 
 Consider
 %enabling the \edu\ feature not only adds the relations in the \educational\
 %schema but it also affects the \basic\ schema. 
 the \basic\ schema 
-variant for feature \vFour. Attributes \isstudent\ and \isteacher\ only exists
-in the \empacct\ relation when \edu\ = \t, represented by a \dashuline{dash-underline},
+variant for feature \vFour. Attributes \isstudent\ and \isteacher\ only exist
+in the \empacct\ relation when $\edu=\t$, represented by a \dashuline{dash-underline},
 otherwise the \empacct\
-relation has only four attributes: \empno, \hiredate, \titleatt, and \deptno.
-Hence, the presence of attributes \isstudent\ and \isteacher\ in \empacct\ relation is
-\emph{variational}, i.e., they only exist in \empacct\ relation
-when \edu\ = \t.
+relation has only the attributes \empno, \hiredate, \titleatt, and \deptno.
+Hence, the attributes \isstudent\ and \isteacher\ in \empacct\ relation are
+\emph{variational}, that is, they only exist in \empacct\ relation
+when $\edu=\t$.
 %similar to the presence of \engemp\ which
 %is variational depending on whether \vOne is enabled or not. 
 
@@ -230,13 +253,9 @@ when \edu\ = \t.
 %can have the \basic\ schema associated with \vThree\ in addition
 %to the \educational\ schema associated with \tFour. 
 
-\ensure{DO NOT ERASE THIS!!!}
 Our example demonstrates how different kinds of variation
 % in time and space
-interact with each other, an indispensable consequence of modern software
+interact with each other, an inevitable consequence of modern software
 development.
 The described interaction is similar to a recent scenario we discussed with an
 industry contact in \secref{industryex}.
-%In practice, new instances of variation in databases arises. We discuss such a scenario that 
-%we discussed with an industry contact in \appref{industry-ex}.
-
