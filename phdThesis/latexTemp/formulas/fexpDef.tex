@@ -21,9 +21,24 @@
 \fSem [] . &: \ffSet \totype \confSet \totype \bSet\\
 \fSem \bTag &= \bTag\\
 \fSem \fName &= \config \ \fName\\
-\fSem {\neg \fName} &= \neg \fSem \fName\\
-\fSem {\annd \dimMeta} &= \fSem {\dimMeta_1} \wedge \fSem {\dimMeta_2}\\
-\fSem {\orr \dimMeta} &= \fSem {\dimMeta_1} \vee \fSem {\dimMeta_2}\\
+\fSem {\neg \fName} &= 
+	\begin{cases}
+	  \t, &\If \fSem \dimMeta = \t\\
+	  \f, &\Otherwise
+	\end{cases}\\
+%\neg \fSem \fName\\
+\fSem {\annd \dimMeta} &= 
+	\begin{cases}
+	  \t, &\If \fSem {\dimMeta_1} = \t \textit{ and } \fSem {\dimMeta_2} = \t\\
+	  \f, &\Otherwise
+	\end{cases}\\
+%\fSem {\dimMeta_1} \wedge \fSem {\dimMeta_2}\\
+\fSem {\orr \dimMeta} &= 
+	\begin{cases}
+	  \t, &\If \fSem {\dimMeta_1} = \t \textit{ or } \fSem {\dimMeta_2} = \t\\
+	  \f, &\Otherwise
+	\end{cases}
+%\fSem {\dimMeta_1} \vee \fSem {\dimMeta_2}\\
 \end{alignat*}
 
 \medskip
