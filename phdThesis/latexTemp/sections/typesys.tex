@@ -265,70 +265,93 @@ contexts and variational sets.
 \label{eg:type}
 Consider the query \ensuremath{\vQ_1} given in \exref{vq-specific}.
 Through this example, we simplify feature expressions when possible.
-The \prjE\ rule is applied under
-the variation context initiated to 
-\ensuremath{\fModel_2 = \vThree \oplus \vFour \oplus \vFive}
-and schema \ensuremath{\vSch_2}.
-Now the
-\relationE\ rule applies to the subquery \ensuremath {(\empbio)} 
-under the same variation context and schema,
-resulting in the type
-\ensuremath{
-\vAttList_\empbio =  \{\empno, \sex, \birthdate,}
-\ensuremath{ 
-\optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]\}^{\fModel_2}}.
-Now that the type system has the type of the subquery \empbio\ 
-it verifies that the projected attribute variational set
-\ensuremath{
-\vAttList_{\mathit{prj}} =
- \{\optAtt [\vFour \vee \vFive] [\empno],
-\name,}
-\ensuremath{ \fname, \lname\}^{\fModel_2}},
-is subsumed by \ensuremath{\vAttList_\empbio}. 
-Thus, it generates the type of \ensuremath{\vQ_1} by
-intersecting \ensuremath{\vAttList_{\mathit{prj}}} and \ensuremath{\vAttList_\empbio}
-annotated with \ensuremath{\vAttList_\empbio}'s presence condition, resulting in the type
-\ensuremath{
-\vAttList_{\vQ_1} = 
-\{\optAtt [\vFour \vee \vFive] [\empno],
-\optAtt [\vFour] [\name], }
-\ensuremath{
-\optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]\}^{\fModel_2}}.
-%
-This type proves that $\vQ_1$ is well-typed and dictates the structure of its result.
-\ensure{don't forget to inlcude this}
-\figref{vq1-type} illustrates the tree derivation of $\vQ_1$'s type.
+First, the \prjE\ rule is applied which requires the three premises to 
+hold:
+The first one looks up the type of \empbio\ relation from the underlying
+variational schema (Assumption 1 in \figref{vq1-type}). The second one 
+checks for the subsumption of the projected attributes from the type of 
+the subquery (Assumption 2 in \figref{vq1-type}). The last one ensures
+all projected attributes are valid under the current variation context
+(Assumption 3 in \figref{vq1-type}). Since all premises hold the type of
+the query is generated as shown in \figref{vq1-type}:
+\[
+\annot [\dimMeta_2] {( \annot [(\vFour \vee \vFive) ] \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)} 
+\]
+% under
+%the variation context initiated to 
+%\ensuremath{\fModel_2 = \vThree \oplus \vFour \oplus \vFive}
+%and schema \ensuremath{\vSch_2}.
+%Now the
+%\relationE\ rule applies to the subquery \ensuremath {(\empbio)} 
+%under the same variation context and schema,
+%resulting in the type
+%\ensuremath{
+%\vAttList_\empbio =  \{\empno, \sex, \birthdate,}
+%\ensuremath{ 
+%\optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]\}^{\fModel_2}}.
+%Now that the type system has the type of the subquery \empbio\ 
+%it verifies that the projected attribute variational set
+%\ensuremath{
+%\vAttList_{\mathit{prj}} =
+% \{\optAtt [\vFour \vee \vFive] [\empno],
+%\name,}
+%\ensuremath{ \fname, \lname\}^{\fModel_2}},
+%is subsumed by \ensuremath{\vAttList_\empbio}. 
+%Thus, it generates the type of \ensuremath{\vQ_1} by
+%intersecting \ensuremath{\vAttList_{\mathit{prj}}} and \ensuremath{\vAttList_\empbio}
+%annotated with \ensuremath{\vAttList_\empbio}'s presence condition, resulting in the type
+%\ensuremath{
+%\vAttList_{\vQ_1} = 
+%\{\optAtt [\vFour \vee \vFive] [\empno],
+%\optAtt [\vFour] [\name], }
+%\ensuremath{
+%\optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]\}^{\fModel_2}}.
+%%
+%This type proves that $\vQ_1$ is well-typed and dictates the structure of its result.
+%\ensure{don't forget to inlcude this}
+%\figref{vq1-type} illustrates the tree derivation of $\vQ_1$'s type.
 
 \input{formulas/typeSysEx1}
 %
 Now consider \ensuremath{\vQ_2} introduced in \exref{vq-specific}.
-The \choiceE\ rule is applied
-under the variation 
-context initiated to \ensuremath{\fModel_2} and schema \ensuremath{\vSch_2}.
-It then applies the \prjE\ and \empRelE\ rules to the left and right
-alternatives of the choice, respectively, which generates the types
-\ensuremath{
-\vType_\mathit{left} = \annot [\fModel_2 \wedge (\vFour \vee \vFive)] {(\empno, \annot [\vFour] \name,
- \annot [\vFive] \fname,\annot [\vFive] \lname)}}
-and \ensuremath{\vType_\mathit{right} = \annot [\f] {\setDef \ }}, respectively.
-Finally, it generates the type of \ensuremath{\vQ_2} by 
-annotating the union of \ensuremath{\vType_\mathit{left}} and \ensuremath{\vType_\mathit{right}}
-with \ensuremath{\fModel_2 \wedge (\vFour \vee \vFive)}, resulting in the 
-final type of \\
-\ensuremath{\vType_{\vQ_2} = 
-\annot [\fModel_2 \wedge (\vFour \vee \vFive)] {(\empno, \annot [\vFour] \name,
- \annot [\vFive] \fname,\annot [\vFive] \lname)}}.
- Note that \ensuremath{\vType_{\vQ_2}}'s presence condition 
- explicitly accounts for only two variants
- while \ensuremath{\vType_1} does not do so even though \ensuremath{\vQ_1}
- does not return any tuple that belongs to variant \ensuremath{\setDef \vThree} because
- of its attributes presence condition.
- \ensure{don't forget to inlcude this}
- \figref{vq2-type} illustrates the tree derivation of $\vQ_2$'s type.
+First, the \choiceE\ rule is applied which requires two premises to hold:
+The first one checks that the left alternative (which then applies the \prjE\ rule) 
+of the choice is type-correct, in which 
+case it also generates its type (Assumption 5 in \figref{vq2-type}).
+The second one does the same for the right alternative which is an empty relation 
+query and is always type-correct. Since both alternative are type-correct the type 
+of the query is generated as shown in \figref{vq2-type}:
+\[
+\annot [(\dimMeta_2 \wedge (\neg \vThree)) \vee \texttt{false}] {( \empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname)}
+\]
+%under the variation 
+%context initiated to \ensuremath{\fModel_2} and schema \ensuremath{\vSch_2}.
+%It then applies the \prjE\ and \empRelE\ rules to the left and right
+%alternatives of the choice, respectively, which generates the types
+%\ensuremath{
+%\vType_\mathit{left} = \annot [\fModel_2 \wedge (\vFour \vee \vFive)] {(\empno, \annot [\vFour] \name,
+% \annot [\vFive] \fname,\annot [\vFive] \lname)}}
+%and \ensuremath{\vType_\mathit{right} = \annot [\f] {\setDef \ }}, respectively.
+%Finally, it generates the type of \ensuremath{\vQ_2} by 
+%annotating the union of \ensuremath{\vType_\mathit{left}} and \ensuremath{\vType_\mathit{right}}
+%with \ensuremath{\fModel_2 \wedge (\vFour \vee \vFive)}, resulting in the 
+%final type of \\
+%\ensuremath{\vType_{\vQ_2} = 
+%\annot [\fModel_2 \wedge (\vFour \vee \vFive)] {(\empno, \annot [\vFour] \name,
+% \annot [\vFive] \fname,\annot [\vFive] \lname)}}.
+% Note that \ensuremath{\vType_{\vQ_2}}'s presence condition 
+% explicitly accounts for only two variants
+% while \ensuremath{\vType_1} does not do so even though \ensuremath{\vQ_1}
+% does not return any tuple that belongs to variant \ensuremath{\setDef \vThree} because
+% of its attributes presence condition.
+% \ensure{don't forget to inlcude this}
+% \figref{vq2-type} illustrates the tree derivation of $\vQ_2$'s type.
+%
  \input{formulas/typeSysEx2}
+%
 \end{example}
 
-
+\newpage
 
 
 %9-19-18 notes:
