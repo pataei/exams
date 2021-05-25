@@ -159,9 +159,11 @@ For our semantics, it is useful to get the set of unique variants of a variation
 %Unfortunately, the configuration of variational queries may result in
 %duplicate relational queries. In practice, this is not very efficient, as discussed
 %later in \secref{exp}. 
-Thus, we define the \emph{unique variants} function
-$\qGroup[.] . : \qSet \totype \settype \fSet \totype \settype {\bm{(} \vartype \pQSet \bm{)}}$ 
-that takes a variational query and VDB's set of features
+Thus, we define the \emph{unique variants} function, whose type is given below.
+\[
+\qGroup[\cdot]{\cdot} : \qSet \totype \settype \fSet \totype \settype {\bm{(} \vartype \pQSet \bm{)}}
+\]
+This function takes a variational query and VDB's set of features
 and returns a set of configured relational queries annotated with
 a presence condition. The presence condition is a feature expression generated from
 the set of configurations that configured the variational query into the same relational query.
@@ -180,25 +182,37 @@ enabled.
 %
 In essence, the unique variants function can be defined for all data types that encode variation.
 For example, the unique configuration function for 
-variational queries can be defined by 
+variational queries can be defined as follows.
 \begin{alignat*}{1}
-\qGroup \vQ &= \{ \annot \pQ \myOR \dimMeta = \bigvee_{\dimMeta_i \in \mathit{es}} \dimMeta_i,
-\mathit{es} = \{\dimMeta_i \myOR \forall \config \in \confSet. \eeSem \vQ = \pQ, 
-\dimMeta_i = \mathit{genFexp} (\config,\features) \}\\
-&\hspace{50pt}, \exists \config \in \confSet. \fSem \dimMeta = \t, \eeSem \vQ = \pQ
-\}
-\end{alignat*}.
+\qGroup{\vQ} &=
+  \{ \pQ^{e_1 \vee\ldots\vee e_n}
+     \myOR \pQ^{e_1}, \ldots, \pQ^{e_n}
+       \in \{ (\eeSem{\vQ})^{\mathit{genFexp}(\config,\features)}
+         \myOR \config\in\confSet \} \}
+% \qGroup \vQ &= \{ \annot \pQ \myOR \dimMeta = \bigvee_{\dimMeta_i \in \mathit{es}} \dimMeta_i,
+% \mathit{es} = \{\dimMeta_i \myOR \forall \config \in \confSet. \eeSem \vQ = \pQ, 
+% \dimMeta_i = \mathit{genFexp} (\config,\features) \}\\
+% &\hspace{50pt}, \exists \config \in \confSet. \fSem \dimMeta = \t, \eeSem \vQ = \pQ
+% \}
+\end{alignat*}
 %\centerline{
 %\ensuremath{
 %\qGroup \vQ = \setDef {\annot \pQ \myOR \forall \config \in \confSet: \fSem \dimMeta = \t,
 %\eeSem \vQ = \pQ}
 %}.}
 %\]
-Consequently, the unique configuration for variational sets of attributes (i.e.,
-\aG (.,.) : \vAttSet \totype \settype \fSet \totype {\vartype {\bm{(}\settype \attnametype \bm{)}}})
-and variational conditions (i.e., \cG (.,.) : \vCondSet \totype \settype \fSet \totype \vartype \pCondSet) are
-defined similarly.
-However, this definition is not efficient since it is still enumerating all possible 
+The unique configuration for variational sets of attributes
+($\aG(\cdot,\cdot)$) and variational conditions ($\cG(\cdot,\cdot)$) are
+defined similarly; their types are given below.
+\begin{alignat*}{1}
+\aG(\cdot,\cdot) &:
+  \vAttSet \totype \settype \fSet \totype {\vartype {\bm{(}\settype \attnametype \bm{)}}} \\
+\cG(\cdot,\cdot) &:
+  \vCondSet \totype \settype \fSet \totype \vartype \pCondSet
+\end{alignat*}
+%
+However, the definition of $\qGroup[\cdot]{\cdot}$ is not efficient since it
+still enumerates all possible 
 configurations. Thus, we define the more efficient unique configuration function
 for variational queries in \figref{vq-group}.
 %
