@@ -1,8 +1,7 @@
 \chapter{Related Work}
 \label{ch:rw}
 
-\TODO{related work! have to work on this!}
-
+In this chapter
 
 \input{sections/vardbinstance}
 \input{sections/varsoftinstance}
@@ -320,3 +319,312 @@ relational databases.
 % database (similar to approaches described briefly above) and variational
 % queries for a specific variant (while mentioned approaches are unable to
 % achieve this).
+
+\fromppr{vldb}
+%\TODO{add the following some how:
+%
+%%\point{Current solutions shortage.}
+%Current solutions to database variation not only cannot adapt to a new
+%kind of variation but also cannot satisfy all these needs.
+%Current SPLs generate and use messy 
+%databases by employing a universal schema.
+%However, this burdens DBAs heavily because they need to write specific
+%queries for each variant in order to avoid getting messy data, thus,
+%current SPLs cannot satisfy \nOne\ and \nTwo.
+%%
+%As stated in \secref{intro}, schema evolution systems only consider evolution
+%in time and do not provide any means for \nOne-\nThree.
+%%
+%Also, the current solution to the problem of schema evolution within a SPL is addressed by
+%designing
+%a new domain-specific language so that SPL developers 
+%can write scripts of the schema changes~\cite{dbSPLevolve},
+%which still requires a great effort by DBAs and SPL developers
+%and it does not address \nZero-\nTwo\ sufficiently.
+%%This amount of work grows exponentially 
+%%as the number of potential variants grow, which in our example depends on the temporal
+%%changes and SPL features. As a reminder, a SPL usually has hundreds of 
+%%features~\cite{cppSpl}. As the SPL and its database evolve,
+%%manually managing the variants becomes impossible. 
+%}
+
+%\textbf{Variational research:}
+%maybe on variational data structure and variational programming and their applications.
+The representation of v-schemas and variational tables is based on
+previous work on variational sets~\cite{EWC13fosd}, which is part of a larger
+effort toward developing safe and efficient variational data
+structures~\cite{Walk14onward,MMWWK17vamos}. The central motivation of work on
+variational data structures is that many applications can benefit from
+maintaining and computing with variation at runtime. Implementing SPL analyses
+are an example of such an application, but there are many
+more~\cite{Walk14onward}.
+
+%database side
+Database researchers have studied several kinds of database variation in
+both time and space. There is a substantial body of work on \emph{schema
+evolution} and \emph{database
+migration}~\cite{Prism08Curino,prima08Moon,schEvolUnifyApp,schEvolIssues03Ram},
+which corresponds to variation in time. Typically the goal of such work is to
+safely migrate existing databases forward to new versions of the schema as it
+evolves. 
+
+Current solutions addressing schema evolution rely on
+temporal nature of schema evolution. They use timestamps as a 
+means to keep track of historical changes either in an external document~\cite{prima08Moon}
+or as versions attached to 
+databases~\cite{SchEvolRA90McKenzie, schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass}, 
+i.e., either approach fails to incorporate
+the timestamps into the database. 
+Then, they take one of these approaches:
+1) they require the DBA to design a unified schema, map all schema variants
+to the unified one, migrate the database variants to the unified schema, and
+write queries only on the unified schema~\cite{schEvolUnifyApp},
+2) they require the DBA to specify the version for their query and then migrating
+all database variants to the queried 
+version~\cite{SchEvolRA90McKenzie, schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass},
+or 3) they require the user to specify the timestamps for their query and
+then reformulate the query for other database variants~\cite{prima08Moon}.
+
+
+These approaches usually do not
+grant users access to old variants of data even if they desire so and it
+is messy to keep both different copies of a variant, one with the old schema
+and one with the unified schema, since every data addition/update now requires to 
+be applied to all copies of the database variant. A better solution
+is maintaining a history of the changes applied to the database and the unified schema
+as an XML document and providing a language that allows users/developers to choose
+the variant they desire~\cite{prima08Moon}. Unfortunately, this is achieved by limiting
+the schema evolution to temporal changes, offering a beautifully tailored approach for 
+temporal changes, however, resulting in a non-extensible approach for non-temporal changes.
+
+Temporal evolution is tracked by requiring the database to always have a time-related 
+attribute in tables. Thus, queries have to specify the time frame for which they are inquiring 
+information~\cite{prima08Moon}. 
+Now the user can choose a wide enough time frame in their queries to access 
+to their desired variant(s). Aside from the detailed mapping of time frames and variants, this
+approach requires a query to have one and only one information need, no matter how many
+variants it is aiming. That is, if a time frame includes assumingely two variants a user cannot 
+write a query that extract two separate information needs for each of them accumulatively 
+in one query. Even worse, if this query does not conform to one of the variant's schema
+but it conforms to the other one, the query still fails since there is no systematic way to 
+identify that the query is ill (does not conform to the schema) for one of the variants. 
+These limitations and constraint are the result of ignoring that temporal changes to a 
+database is a form of variability.
+
+%
+Work on \emph{database versioning}~\cite{datasetVersioning,dbVersioning}
+shifts this idea to content level. In a versioned database, 
+%schema
+%and 
+content changes can be sent between different instances of a database,
+similar to a distributed revision control system.
+%
+All of this work is different from variational databases because it typically
+does not require maintaining or querying multiple versions of the database at
+once.
+%
+Work on \emph{data integration} and \emph{database versioning} can be viewed as
+managing database variation in space~\cite{dataIntegBook}. In data integration,
+the goal is typically to combine data variation from disparate sources and
+provide a unified interface for querying that data. This is different from
+VDBs, which make differences between variants explicit, which is needed to
+manage data variation in SPLs.
+
+ The definition of variation is very limited in these problems. Such
+ limitation allows for an efficient intelligent solutions, however, it tailors
+ their solutions to a specific context and prevents one from using the same
+ solution/system in a similar context when variation in time or space appears
+ in a database~\cite{schVersioningSurvey95Roddick}. For example, one cannot
+ use a data integration system to manage variation in a database used in
+ software produced by a SPL.
+
+
+%spl side
+%The SPL community has a tradition of developing and distributing case studies
+%to support research on software variation. For example, SPL2go~\cite{SPL2go}
+%catalogs the source code and variability models of a large number of SPLs.
+%Additionally, specific projects, such as Apel
+%et~al.'s~\cite{apel2013strategies} work on SPL verification, often distribute
+%case studies along with study results.
+%%
+%However, there are no existing datasets or case studies that include
+%corresponding relational databases and queries, despite their ubiquity in modern software.
+
+
+Many researchers have recognized the need to manage structural variation in the
+databases that SPLs rely on.
+%
+%\citet{ad11varDataModel} argue for modeling data variability as part of a
+\cite{ad11varDataModel} argue for modeling data variability as part of a
+model-oriented SPL process. Their \emph{variable data models}
+% marking some features as ``persistent'' and linking those to 
+link features to concepts in a data model so that specialized data models can
+be generated for different products.
+%
+%\citet{dbSchVarSPL} address data model variability in the context of
+\cite{dbSchVarSPL} address data model variability in the context of
+delta-oriented programming. They define delta modules that can incrementally
+generate a relational database schema, and so
+% in SQL's Data Definition Language. By combining these deltas in various ways
+% using delta-oriented programming, they
+can be used to generate different database schemas for each variant of a SPL.
+%
+%\citet{varMngDBapp} present a tool to manage variation in the schema
+\cite{varMngDBapp} present a tool to manage variation in the schema
+of a relational database used by a SPL. Their tool enables
+% defining feature models and 
+linking features to elements of a schema, then generating different variants of
+the schema for different products.
+%
+%\citet{slrs12CAiSE} generates variable database schema from a given global schema and
+\cite{slrs12CAiSE} generates variable database schema from a given global schema and
+software variants configurations by mapping schema elements to features.
+%
+%\citet{skrhas09DBIS} emphasizes the need for a variable database schema in SPL and
+\cite{skrhas09DBIS} emphasizes the need for a variable database schema in SPL and
+proposes two decomposition approaches: (1) physical where database sub-schemas
+associated with a feature are stored in physical files
+and (2) virtual where a global Entity-Relation model of a schema is annotated
+with features.
+%
+All of these approach address the issue of \emph{structural} database variation
+in SPLs and provide a technique to derive a database schema per variant, 
+which is also achievable by configuring a VDB. 
+%
+%The work of \citet{varMngDBapp} is most similar to our notion of a
+The work of \cite{varMngDBapp} is most similar to our notion of a
+variational schema since it is an annotative approach~\cite{KAK08} that enables
+%directly associating schema elements with features. \citet{ad11varDataModel}
+directly associating schema elements with features. \cite{ad11varDataModel}
+is also annotative, but operates at the higher level of a data model that may
+%only later be realized as a relational database. \citet{dbSchVarSPL} is a
+only later be realized as a relational database. \cite{dbSchVarSPL} is a
+compositional approach~\cite{KAK08} to generating database schemas.
+%
+None of these approaches consider \emph{content-level} variation, which is
+captured by VDBs and observable in our case studies, nor do they consider how
+to express queries over databases with structural variation, which is addressed
+by our \emph{variational queries}.
+
+
+While the previous approaches all address data variation in space, 
+%\citet{dbSPLevolve} emphasizes that as a SPL evolves over time, so does its
+\cite{dbSPLevolve} emphasizes that as a SPL evolves over time, so does its
+database. Their approach adapts work on database evolution to the
+domain of software product lines, enabling the safe evolution of all of the
+various products that have been deployed.
+%
+ They present the DAVE toolkit to address database evolution in SPL. Their
+ approach generates a global evolution script from the local evolution scripts
+ by grouping them into a single database operations and executing them
+ sequentially. This approach requires having the old and new schema of a
+ variant to generate the delta scripts. However, it uses these scripts to
+ ensure correct evolution of both data and schema at the deployment step. 
+
+ Variational databases, originally designed to represent the intrinsic
+ variability of databases used in SPL~\cite{ATW18poly}, explicitly account for
+ variation in databases by considering a set of features for a database that
+ encodes its variability. Unlike other approaches taken in SPL introduced at
+ the beginning of this section, it collapses all the database variants into
+ one variational database while tracing the variation by annotating elements
+ with feature expressions~\cite{ATW17dbpl}. The variational database
+ management system allows users to query all database variants, i.e., the
+ overall variational database, simultaneously and
+ selectively~\cite{vldbArXiv}. It also allows users to deploy the variational
+ database (similar to approaches described briefly above) and variational
+ queries for a specific variant (while mentioned approaches are unable to
+ achieve this).
+
+%\textbf{Schema evolution:}
+%%
+%Current solutions addressing schema evolution rely on
+%temporal nature of schema evolution. They use timestamps as a 
+%means to keep track of historical changes either in an external document~\cite{prima08Moon}
+%or as versions attached to 
+%databases~\cite{SchEvolRA90McKenzie, schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass}, 
+%i.e., either approach fails to incorporate
+%the timestamps into the database. 
+%Then, they take one of these approaches:
+%1) they require the DBA to design a unified schema, map all schema variants
+%to the unified one, migrate the database variants to the unified schema, and
+%write queries only on the unified schema~\cite{schEvolUnifyApp},
+%2) they require the DBA to specify the version for their query and then migrating
+%all database variants to the queried 
+%version~\cite{SchEvolRA90McKenzie, schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass},
+%or 3) they require the user to specify the timestamps for their query and
+%then reformulate the query for other database variants~\cite{prima08Moon}.
+%%
+%These approaches satisfy \nZero\ by migration techniques.
+%However, they cannot satisfy \nOne\ and \nTwo\ because they
+%only consider variation w.r.t. time and dismiss variation in space,
+%resulting in querying all variants, i.e., variants cannot be queried
+%selectively, and missing which variants data belongs to.
+%Although these approaches do not provide a direct way to satisfy \nThree\
+%one can satisfy \nThree\ for them by manipulating the database with the schema evolution history file.
+%%They are also able to satisfy \nThree\ by keeping a history of schema changes.
+%
+%%~\cite{SchEvolRA90McKenzie} introduces a new lang for schema evolution
+%%in relational algebra.
+%
+%%comprehensive surveys of schema evolution~\cite{schEvolIssues03Ram,schVersioningSurvey95Roddick}.
+%%
+%%automatic schema mapping~\cite{mappingSchEvol03Velegrakis,semanticAdaptationSchEvol05Yu}.
+%
+%%Furthermore, current approaches usually do not
+%%grant users access to old variants of data even if they desire so and it
+%%is messy to keep both different copies of a variant, one with the old schema
+%%and one with the unified schema, since every data addition/update now requires to 
+%%be applied to all copies of the database variant. A better solution
+%%is maintaining a history of the changes applied to the database and the unified schema
+%%as an XML document and providing a language that allows users/developers to choose
+%%the variant they desire~\cite{prima08Moon}. Unfortunately, this is achieved by limiting
+%%the schema evolution to temporal changes, offering a beautifully tailored approach for 
+%%temporal changes, however, resulting in a non-extensible approach for non-temporal changes.
+%%
+%%Temporal evolution is tracked by requiring the database to always have a time-related 
+%%attribute in tables. Thus, queries have to specify the time frame for which they are inquiring 
+%%information~\cite{prima08Moon}. 
+%%Now the user can choose a wide enough time frame in their queries to access 
+%%to their desired variant(s). Aside from the detailed mapping of time frames and variants, this
+%%approach requires a query to have one and only one information need, no matter how many
+%%variants it is aiming. That is, if a time frame includes assumingely two variants a user cannot 
+%%write a query that extract two separate information needs for each of them accumulatively 
+%%in one query. Even worse, if this query does not conform to one of the variant's schema
+%%but it conforms to the other one, the query still fails since there is no systematic way to 
+%%identify that the query is ill (does not conform to the schema) for one of the variants. 
+%%These limitations and constraint are the result of ignoring that temporal changes to a 
+%%database is a form of variability.
+%
+%\textbf{SPL and its evolution including its artifacts evolution:}
+%%
+%As mentioned in \secref{intro}, SPLs use a database with universal schema
+%for all variants of database, which is burdensome and time-consuming for
+%SPL developers and DBAs~\cite{vdbSpl18ATW}. While SPLs have techniques
+%to satisfy \nZero\ and \nThree\ they do not have sufficient techniques to satisfy
+%\nOne\ and \nTwo.
+%%
+%%\textbf{Database evolution in SPL:}
+%The problem of schema evolution when a SPL evolves is currently addressed by
+%designing
+%a new domain-specific language so that SPL developers 
+%can write scripts of the schema changes~\cite{dbSPLevolve},
+%which requires a great effort by DBAs and SPL developers.
+%This approach only provides mechanisms for \nZero\ and \nThree.
+%Note that the amount of work grows exponentially 
+%as the number of potential variants grows,
+%a concerning behavior because
+%%, which in our example depends on the temporal
+%%changes and SPL features. 
+%%As a reminder, 
+%a SPL usually has hundreds of 
+%features~\cite{cppSpl}. As the SPL and its database evolve,
+%manually managing the variants becomes virtually impossible. 
+%
+%
+%\textbf{Database versioning:}
+%As mentioned in \secref{vtab}, database versioning approaches only consider
+%content-level variation~\cite{dbVersioning} which is usually used for experimental and
+%scientific databases.
+%
+%
+%
