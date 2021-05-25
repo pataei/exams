@@ -2,8 +2,7 @@
 \label{sec:var-pres-sem}
 
 Since VDB contains multiple database variants
-\eric{Eric, pls read this section.}
-it is important running a variational query over a  VDB  does not lose the variation 
+it is important that running a variational query over a  VDB  does not lose the variation 
 encoded in a variational query and the VDB, that is, VRA's semantics
 must also be variation-preserving. This is visualized in the diagram below,
 where the vertical arrows indicate corresponding
@@ -29,14 +28,14 @@ $\underline{\mathit{sem}}$ runs a relational query variant over its correspondin
 configured relational database variant. 
 %
 Simply put, the configured variational table
-resulted from running the variational query \vQ\ over the
-VDB \vdbInst\ and variational schema \vSch\ with the configuration \config, that is, 
-$\otSem {\mathit{type} (\vQ, \vSch)} {\mathit{sem} (\vQ, \vdbInst)}$ , 
+resulting from running the variational query \vQ\ over the
+VDB \vdbInst\ and variational schema \vSch\ with the configuration \config,  
+$\otSem {\mathit{type} (\vQ, \vSch)} {\mathit{sem} (\vQ, \vdbInst)}$, 
 must be the same as the relational table resulting from running the configured
 relational query with configuration \config\ over its corresponding relational 
-database, that is, $\mathit{\underline{sem}} (\eeSem \vQ, \odbSem \vdbInst)$.
+database, $\mathit{\underline{sem}} (\eeSem \vQ, \odbSem \vdbInst)$.
 %
-\emph{Clearly the diagram commutes:} taking either path of 1) obtaining the 
+Clearly the diagram commutes: taking either path of 1) obtaining the 
 semantics of the variational query \constrain \vQ\ first and then configuring it 
 or 2)  configuring \constrain \vQ\ first and then getting its semantics
 results in the same plain relational table. 
@@ -44,7 +43,7 @@ results in the same plain relational table.
 The variation-preserving property enforces the maintenance of variants that a 
 tuple belongs to through running a query at the semantics level. 
 %
-This property inherently follows from the denotational semantics of VRA since
+This property follows from the denotational semantics of VRA since
 we define VRA's denotational semantics in terms of RA's denotational semantics
 by attaching either configurations of variants or feature expressions that denote
 multiple configurations of variants to the relational queries. 

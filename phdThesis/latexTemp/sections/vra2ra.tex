@@ -31,20 +31,20 @@
 The \emph{configuration} function maps a variational query under
 a configuration
 to a relational query, defined in \figref{v-alg-conf-sem}. Thus, a variational query 
-can be understood as a set of relational queries that their results is gathered
-in a single table and tagged with the feature expression stating their variant.
+can be understood as a set of relational queries, the results of which are gathered
+in a single table and tagged with the feature expression stating their variants.
 %Configuring a variational query
 %for all valid configurations, accessible from VDB's feature model,
 %provides the complete meaning of a variational query in terms of RA semantics.
 %
 Users can deploy queries for a specific variant by configuring 
-them.
+the variational query.
 %
 %The configuration of a query allows users to deploy queries for a
 %specific variant when they desire, 
 %satisfying query part of \nThree\ requirement. 
 \exref{conf-vq} illustrates configuring a query
-and \exref{vq-sem} illustrates the configuration of query $\VVal {\vQ_1}$ from \exref{vq-specific} and their corresponding relational results table.
+and \exref{vq-sem} illustrates the configuration of query $\VVal {\vQ_1}$ from \exref{vq-specific} and the corresponding relational results table.
 
 %\input{formulas/vCondConfSem}
 
@@ -79,15 +79,15 @@ Assume the underlying VDB has the variational schema
 and the feature space 
 \ensuremath{
 \features = \setDef{ \fOne, \fTwo}}.
-For valid configurations of this VDB (i.e., \setDef {\A, \B}, \setDef \A, \setDef \B, and \setDef {\ }), 
+For valid configurations of this VDB (that is, \setDef {\ }, \setDef \A, \setDef \B, and \setDef {\A, \B}), 
 the variational query 
 \ensuremath{
 \vQ_5 = \vPrj [{\vAtt_1, \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)
 }
 is configured to the following relational queries:
 \begin{alignat*}{1}
-\eeSem [\setDef \fOne] {\vQ_5} &=  \pi_{\pAtt_1} \pRel\\
 \eeSem [\setDef \ ] {\vQ_5} &= \pi_{\pAtt_1} \pRel\\
+\eeSem [\setDef \fOne] {\vQ_5} &=  \pi_{\pAtt_1} \pRel\\
 \eeSem [\setDef \fTwo] {\vQ_5} &= \pi_{\pAtt_1, \pAtt_3} \pRel\\
 \eeSem [\setDef {\fOne, \fTwo}] {\vQ_5} &= \pi_{\pAtt_1, \pAtt_2, \pAtt_3} \pRel
 \end{alignat*}
@@ -152,14 +152,12 @@ results in three relational queries:
 \input{tables/vq-conf-res}
 
 
-%\TODO{write this + correct formulas + give an example.
-\eric{Eric, pls re-read the following up to Figure 4.3}
 Often a variational query will yield the same plain query for multiple configurations.
 For our semantics, it is useful to get the set of unique variants of a variational query.
 %Unfortunately, the configuration of variational queries may result in
 %duplicate relational queries. In practice, this is not very efficient, as discussed
 %later in \secref{exp}. 
-Thus, we define the \emph{unique variants} function, whose type is given below.
+Thus, we define the \emph{unique variants} (unique configuration) function, whose type is given below.
 \[
 \qGroup[\cdot]{\cdot} : \qSet \totype \settype \fSet \totype \settype {\bm{(} \vartype \pQSet \bm{)}}
 \]

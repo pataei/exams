@@ -18,11 +18,12 @@ the schema while \ensuremath{\vQ_6} repeats this information:\\
 \ensuremath{
 \vQ_6 =
 \pi_{\optAtt [(\vFour \vee \vFive) \wedge \neg \vThree] [\empno], \optAtt [\neg \vThree \wedge \vFour \wedge \neg \vFive] [\name], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\fname], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\lname]  } \left(\chc [\dimMeta_2] {\empbio, \empRel} \right)}}.%
-\eric{I added the footnote to be more explicit about the example.}
+%
 \footnote{
-The query $\vQ_6$ is the simplified version of\\
-$\constrain [\vSch_2] {\vQ_1} = 
-\pi_{\optAtt [(\vFour \vee \vFive) \wedge \neg \vThree] [\empno], \optAtt [\neg \vThree \wedge \vFour \wedge \neg \vFive] [\name], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\fname], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\lname]  } \left(\constrain [\vSch_2] {\empbio}\right)$ where $\constrain [\vSch_2] {\empbio} = \chc [\dimMeta_2] {\pi_{\empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname} (\empbio),\empRel} $.
+The query $\vQ_6$ is the simplified version of
+\[\constrain [\vSch_2] {\vQ_1} = 
+\pi_{\optAtt [(\vFour \vee \vFive) \wedge \neg \vThree] [\empno], \optAtt [\neg \vThree \wedge \vFour \wedge \neg \vFive] [\name], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\fname], \optAtt [\neg \vThree \wedge \neg \vFour \wedge \vFive] [\lname]  } \left(\constrain [\vSch_2] {\empbio}\right)\]
+where $\constrain [\vSch_2] {\empbio} = \chc [\dimMeta_2] {\pi_{\empno, \annot [\vFour] \name, \annot [\vFive] \fname, \annot [\vFive] \lname} (\empbio),\empRel} $.
 }
 
 %\pi_{\optAtt [(\vFour \vee \vFive) \wedge \fModel_2] [\empno], \optAtt [\vFour \wedge \fModel_2] [\name], \optAtt [\vFive \wedge \fModel_2] [\fname], \optAtt [\vFive \wedge \fModel_2] [\lname]  } \empbio}}.
@@ -130,12 +131,11 @@ hence, \ensuremath{\vAttList_{\vQ_1} \equiv \vAttList_{\vQ_6}}.
 
 
 %
-\eric{added this paragraph. pls review it}
 Explicitly annotating variational queries not only relieves the user from repeating the
 database's variation in their queries but it is also necessary for the functions that 
-take a query without taking the schema such as the query configuration function.
-This is as opposed to other functions that have to take both the query and the 
-schema such as the type system. 
+take a query without taking the schema, such as the query configuration function.
+This is contra to other functions that have to take both the query and the 
+schema, such as the type system. 
 \exref{exp-annot-nec} illustrates why a query passed to the configuration function 
 must be explicitly annotated.
 

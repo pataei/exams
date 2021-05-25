@@ -1,19 +1,19 @@
 \chapter{Variational Database Use Cases}
 \label{ch:vdbusecase}
 
-\eric{pls read from here}
+
 Thus far we introduced the variational database framework and variational
-queries. However, the question becomes: ``How useable is the variational
-database framework?'', ``How hard is it to generate a VDB and write 
+queries. However, some natural questions are: ``How feasible is the variational
+database framework?'', ``How would an expert generate a VDB and write 
 variational queries?'', ``Can a VDB be generated automatically? And if so,
 what is required to make this process automated?''. 
 %
-In this chapter, we aim at answering these questions.
+In this chapter, we describe preliminary work aimed at answering these questions.
 Thus, the goal of this chapter is twofold: 
-first, how generating a VDB can be made automatic;
-second, to guid an expert through both generating a VDB
+first, to describe how generating a VDB can be made automatic;
+second, to guide an expert through both generating a VDB
 from a variation scenario when it cannot be done automatically and
-writing variational queries that express expert's information need over
+writing variational queries that express an expert's information need over
 multiple database variants in the variation scenario.
 %
 
@@ -22,7 +22,8 @@ A VDB can be generated automatically when the main variational information and
 database variants are available, that is, when the closed set of features, the
 feature model, and closed set of database variants are provided.
 %
-Unfortunately, in practice, these information and encodings are not available 
+Unfortunately, this information and these encodings are not available 
+for us to use in order to evaluate variational databases.
 since existing work only focuses on studying a specific 
 kind of variation in databases and does not encode variation inside the database,
 instead, it addresses the problem with tools that simulate the effect of the
@@ -37,7 +38,6 @@ specific kind of variation.
 %in databases.}\\
 %- explain one comes from schema evlution and another from spl.
 %Then, we switch gears to cases that a VDB cannot automatically be generated.
-\eric{to here.}
 Consequently, we describe how we systematically generated two 
 variational databases from real world scenarios where variation appears
 in databases. We take a scenario where variation over either time or space
@@ -93,7 +93,7 @@ systems. For this role, queries that contain variation are more useful than
 plain queries, and additional plain queries can likely be more easily generated
 if needed.
 
-We distribute the v-queries in two formats: (1) VRA,
+We distribute the variational queries in two formats: (1) VRA,
 % introduced in \secref{background}, 
 encoded in the format used by
 our VDBMS tool, and (2) plain SQL queries with embedded 
@@ -107,29 +107,28 @@ but we use VRA in
 this thesis for its brevity
 because it is much more concise.
 
-\eric{also, pls read from here}
+
 We first focus on variation in databases over space, 
 \secref{enron-vdb}. \secref{enron-scenario} describes the
 variation scenario from \citet{Hall05} that is the basis of this use case including the feature set and
 feature model. Then, \secref{enron-vsch} and \secref{enron-pop} describe generating the variational schema for the described
-variation scenario and populating the email SPL VDB with Enron email data,%
-\footnote{\url{http://www.ahschulz.de/enron-email-data/}} respectively.
+variation scenario and populating the email SPL VDB with Enron email data.
+%\footnote{\url{http://www.ahschulz.de/enron-email-data/}} respectively.
 Finally, \secref{enron-qs} describes how variational queries capture the information need 
 adapted from feature interactions described by \citet{Hall05}.
 %
 We then switch focus to variation in databases over time,
-\secref{emp-vdb}. Again, \secref{emp-scenario} describes the
+in \secref{emp-vdb}. Again, \secref{emp-scenario} describes the
 evolution of an employee database as the variation scenario from \citet{prima08Moon} 
 that is the basis of this use case.
 Then, \secref{emp-vsch} and \secref{emp-pop} describe generating the variational 
 schema for the described
-variation scenario and populating the employee VDB with a well-known employee data set,%
-\footnote{\url{https://github.com/datacharmer/test_db}} respectively.
+variation scenario and populating the employee VDB with a well-known employee data set.%
+\footnote{\url{https://github.com/datacharmer/test_db}}
 Finally, \secref{emp-qs} describes the adapted and adjusted queries from \citet{prima08Moon}. 
 %
 At the end of this chapter, \secref{usecase-disc}, we discuss the trade offs of using variational databases and
-we answer the question: ``Should variation be encoded explicitly in databases?''.
-\eric{to here.}
+attempt to answer the question: ``Should variation be encoded explicitly in databases?''.
 
 We distribute the VDBs, SQL scripts for generating them, and queries of our
 use cases.\footnote{Available at: \url{https://zenodo.org/record/4321921}}
