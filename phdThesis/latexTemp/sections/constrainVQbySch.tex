@@ -110,7 +110,7 @@ in \figref{vset}, for normalized variational sets of attributes.
 %\footnote{We proved this theorem in the Coq proof assistant. The encoding of the theorem and the proof can be found in second author's MS thesis~\cite{FaribaThesis}.}.
 \end{theorem}
 
-We encode and prove \thmref{expl-same-type} in the Coq proof assistant~\cite{FaribaThesis}.
+We encode and prove \thmref{expl-same-type} in the Coq proof assistant~\cite{Khan21}.
 We also illustrate the application of \thmref{expl-same-type} to queries
 \ensuremath{\vQ_1} and \ensuremath{\vQ_6}.
 %
@@ -133,20 +133,22 @@ hence, \ensuremath{\vAttList_{\vQ_1} \equiv \vAttList_{\vQ_6}}.
 %
 Explicitly annotating variational queries not only relieves the user from repeating the
 database's variation in their queries but it is also necessary for the functions that 
-take a query without taking the schema, such as the query configuration function.
+take a query without taking the schema, such as the query configuration function 
+which is explained in \secref{vraconf}.
 This is contra to other functions that have to take both the query and the 
 schema, such as the type system. 
-\exref{exp-annot-nec} illustrates why a query passed to the configuration function 
-must be explicitly annotated.
-
-\begin{example}
-\label{eg:exp-annot-nec}
-Consider the variational query $\vQ_5= \vPrj [{\vAtt_1, \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)$ given in
-\exref{conf-vq}. This query is not explicitly annotated since attribute $\vAtt_1$ does not
-carry its variational encoding from the database, that is, it does not have the presence
-condition $\A$. Explicitly annotating this query gives us query $\VVal {\vQ_5} =  \vPrj [{\optAtt [\A][\vAtt_1], \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)$.
-Configuring $\VVal {\vQ_5}$ results in the same query as configuring $\vQ_5$ except for 
-configuration \setDef {\ }, that is, $\eeSem [\setDef \ ] {\VVal {\vQ_5}} = \pi_{\setDef {\ }} \pRel = \empRel$. The reason why $\eeSem [\setDef \ ] {\vQ_5} $ is incorrect is that $\vQ_5$ is missing
-the variation attached to attribute $\vAtt_1$ and the configuration function does not consider
-the schema of a database while configuring variational queries written over that database. 
-\end{example}
+We explain this in more details in \secref{vraconf}.
+%\exref{exp-annot-nec} illustrates why a query passed to the configuration function 
+%must be explicitly annotated.
+%
+%\begin{example}
+%\label{eg:exp-annot-nec}
+%Consider the variational query $\vQ_5= \vPrj [{\vAtt_1, \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)$ given in
+%\exref{conf-vq}. This query is not explicitly annotated since attribute $\vAtt_1$ does not
+%carry its variational encoding from the database, that is, it does not have the presence
+%condition $\A$. Explicitly annotating this query gives us query $\VVal {\vQ_5} =  \vPrj [{\optAtt [\A][\vAtt_1], \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)$.
+%Configuring $\VVal {\vQ_5}$ results in the same query as configuring $\vQ_5$ except for 
+%configuration \setDef {\ }, that is, $\eeSem [\setDef \ ] {\VVal {\vQ_5}} = \pi_{\setDef {\ }} \pRel = \empRel$. The reason why $\eeSem [\setDef \ ] {\vQ_5} $ is incorrect is that $\vQ_5$ is missing
+%the variation attached to attribute $\vAtt_1$ and the configuration function does not consider
+%the schema of a database while configuring variational queries written over that database. 
+%\end{example}

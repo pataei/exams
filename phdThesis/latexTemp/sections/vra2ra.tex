@@ -1,8 +1,6 @@
 \subsection{VRA Configuration}
 \label{sec:vraconf}
 
-\input{formulas/vRelAlgConfSem}
-
 %\NOTE{
 %Also, the following definition of the semantics contradicts with the
 %description earlier in the section about producing a \emph{result}
@@ -28,7 +26,7 @@
 %configuration of the feature model of the VDB.
 %
 %We now embark on the formal definition of variational queries configuration.
-The \emph{configuration} function maps a variational query under
+The \emph{configuration} function maps an explicitly annotated variational query under
 a configuration
 to a relational query, defined in \figref{v-alg-conf-sem}. Thus, a variational query 
 can be understood as a set of relational queries, the results of which are gathered
@@ -40,12 +38,16 @@ in a single table and tagged with the feature expression stating their variants.
 Users can deploy queries for a specific variant by configuring 
 the variational query.
 %
+Note that the configuration function takes well-typed explicitly annotated queries.
 %The configuration of a query allows users to deploy queries for a
 %specific variant when they desire, 
 %satisfying query part of \nThree\ requirement. 
-\exref{conf-vq} illustrates configuring a query
-and \exref{vq-sem} illustrates the configuration of query $\VVal {\vQ_1}$ from \exref{vq-specific} and the corresponding relational results table.
+\exref{conf-vq} illustrates configuring a query and explains 
+why a query passed to the configuration function must be explicitly annotated.
+\exref{vq-sem} illustrates the configuration of query $\VVal {\vQ_1}$ from \exref{vq-specific} and the corresponding relational results table.
+%
 
+\input{formulas/vRelAlgConfSem}
 %\input{formulas/vCondConfSem}
 
 %To define VRA semantics we map 
@@ -86,43 +88,51 @@ the variational query
 }
 is configured to the following relational queries:
 \begin{alignat*}{1}
-\eeSem [\setDef \ ] {\vQ_5} &= \pi_{\pAtt_1} \pRel\\
-\eeSem [\setDef \fOne] {\vQ_5} &=  \pi_{\pAtt_1} \pRel\\
-\eeSem [\setDef \fTwo] {\vQ_5} &= \pi_{\pAtt_1, \pAtt_3} \pRel\\
-\eeSem [\setDef {\fOne, \fTwo}] {\vQ_5} &= \pi_{\pAtt_1, \pAtt_2, \pAtt_3} \pRel
+\eeSem [\setDef \ ] {\vQ_5} &= \pi_{\pAtt_1} (\pRel)\\
+\eeSem [\setDef \fOne] {\vQ_5} &=  \pi_{\pAtt_1} (\pRel)\\
+\eeSem [\setDef \fTwo] {\vQ_5} &= \pi_{\pAtt_1, \pAtt_3} (\pRel)\\
+\eeSem [\setDef {\fOne, \fTwo}] {\vQ_5} &= \pi_{\pAtt_1, \pAtt_2, \pAtt_3} (\pRel)
 \end{alignat*}
+%
+However, the query $\vQ_5$ is not explicitly annotated 
+since attribute $\vAtt_1$ does not
+carry its variational encoding from the database, that is, it does not have the presence
+condition $\A$. Explicitly annotating this query gives us query $\VVal {\vQ_5} = \constrain [\vSch_3] {\vQ_5} =  \vPrj [{\optAtt [\A][\vAtt_1], \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)$.
+Configuring $\VVal {\vQ_5}$ results in the same query as configuring $\vQ_5$ except for 
+configurations \setDef {\ } and \setDef \A. Thus, the correct configuration of $\vQ_5$ is:
+\begin{alignat*}{2}
+\eeSem [\setDef \ ] {\constrain [\vSch_3] {\vQ_5}}  &=\empRel\\
+\eeSem [\setDef \fOne] {\constrain [\vSch_3] {\vQ_5}}  &=  \pi_{\pAtt_1} (\pRel)\\
+\eeSem [\setDef \fTwo] {\constrain [\vSch_3] {\vQ_5}}  &= \pi_{\pAtt_3} (\pRel)\\
+\eeSem [\setDef {\fOne, \fTwo}] {\constrain [\vSch_3] {\vQ_5}}  &= \pi_{\pAtt_1, \pAtt_2, \pAtt_3} (\pRel)
+\end{alignat*}
+%
+%, that is, $\eeSem [\setDef \ ] {\VVal {\vQ_5}} = \pi_{\setDef {\ }} \pRel = \empRel$. 
+The reason why $\eeSem [\setDef \ ] {\vQ_5} $ and 
+$\eeSem [\setDef \A ] {\vQ_5} $ are incorrect is that $\vQ_5$ is missing
+the variation attached to attribute $\vAtt_1$ and the configuration function does not consider
+the schema of a database while configuring variational queries written over that database. 
 \end{example}
 
+%\exref{exp-annot-nec} illustrates why a query passed to the configuration function 
+%must be explicitly annotated.
 
+%\begin{example}
+%\label{eg:exp-annot-nec}
+%Consider the variational query $\vQ_5= \vPrj [{\vAtt_1, \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)$ given in
+%\exref{conf-vq}. This query is not explicitly annotated since attribute $\vAtt_1$ does not
+%carry its variational encoding from the database, that is, it does not have the presence
+%condition $\A$. Explicitly annotating this query gives us query $\VVal {\vQ_5} =  \vPrj [{\optAtt [\A][\vAtt_1], \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)$.
+%Configuring $\VVal {\vQ_5}$ results in the same query as configuring $\vQ_5$ except for 
+%configuration \setDef {\ }, that is, $\eeSem [\setDef \ ] {\VVal {\vQ_5}} = \pi_{\setDef {\ }} \pRel = \empRel$. The reason why $\eeSem [\setDef \ ] {\vQ_5} $ is incorrect is that $\vQ_5$ is missing
+%the variation attached to attribute $\vAtt_1$ and the configuration function does not consider
+%the schema of a database while configuring variational queries written over that database. 
+%\end{example}
 
-
-
-%\textbf{Grouping a variational query:} 
-%maps a variational query to a set of
-%relational queries annotated with feature expressions, denoted by \qGroup .
-%and defined in \figref{vq-group}. The presence condition of relational queries 
-%indicate the group of configurations where the mapping holds. In essence, 
-%grouping of variational query \vQ\ groups together all configurations with the same relational
-%query produced from configuring \vQ. 
-%Hence, the generated set
-%%\dropit{could drop this if it's confusing!}
-%of relational queries from grouping a variational query contains distinct (unique) queries.
-%For example, consider the query \ensuremath {\vQ_5} in \exref{conf-vq}.
-%Grouping \ensuremath{\vQ_5} results in the set:
-%\ensuremath{
-%\setDef{
-%\left( \pi_{\pAtt_1, \pAtt_2, \pAtt_3} \pRel \right)^{\fOne \wedge \fTwo},
-%\left(\pi_{\pAtt_1, \pAtt_3} \pRel \right)^{\neg \fOne \wedge \fTwo},
-%\left(  \pi_{\pAtt_1} \pRel \right)^{( \fOne \wedge \neg \fTwo) \vee (\neg \fOne \wedge \neg \fTwo)}
-%}
-%}.
-%
-%
-%
 
 \begin{example}
 \label{eg:vq-sem}
-Consider the query $\VVal {\vQ_1}$ given in \exref{vq-specific}: \\
+Consider the query $\VVal {\vQ_1}$ given in \exref{vq-specific} which is already explicitly annotated: \\
 \centerline{
 $\VVal {\vQ_1} = 
 \pi_{\optAtt [(\vFour \vee \vFive) \wedge \neg \vThree] [\empno], 
@@ -161,7 +171,7 @@ Thus, we define the \emph{unique variants} (unique configuration) function, whos
 \[
 \qGroup[\cdot]{\cdot} : \qSet \totype \settype \fSet \totype \settype {\bm{(} \vartype \pQSet \bm{)}}
 \]
-This function takes a variational query and VDB's set of features
+This function takes a well-typed explicitly annotated variational query and VDB's set of features
 and returns a set of configured relational queries annotated with
 a presence condition. The presence condition is a feature expression generated from
 the set of configurations that configured the variational query into the same relational query.
@@ -221,15 +231,17 @@ for variational queries in \figref{vq-group}.
 
 \begin{example}
 \label{eg:group-vq}
-Consider the query \ensuremath{
-\vQ_5 = \vPrj [{\vAtt_1, \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)
+Consider the variational query \ensuremath{
+\VVal {\vQ_5} = \vPrj [{\optAtt [\A][\vAtt_1], \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)
+%\vPrj [{\vAtt_1, \optAtt [\fOne \wedge \fTwo] [\vAtt_2], \optAtt [\fTwo] [\vAtt_3]}] (\vRel)
 }
-given in \exref{conf-vq}. The unique configuration of this query results in the following set of queries:
+given in \exref{conf-vq} which is well-typed and explicitly annotated. The unique configuration of this query results in the following set of queries:
 %
 \[
-\qGroup [\{\A,\B\}] {\vQ_5} = \setDef {
-\annot [(\A \wedge \neg \B) \vee (\neg \A \wedge \neg \B)] {(\pi_{\pAtt_1} (\pRel))},
-\annot [\neg \A \wedge \B] {( \pi_{\pAtt_1, \pAtt_3} (\pRel))},
+\qGroup [\{\A,\B\}] {\VVal {\vQ_5}} = \setDef {
+\annot [\neg \A \wedge \neg \B] {\empRel},
+\annot [\A \wedge \neg \B] {( \pi_{\pAtt_1} (\pRel))},
+\annot [\neg \A \wedge \B] {( \pi_{\pAtt_3} (\pRel))},
 \annot [\A \wedge \B] {(\pi_{\pAtt_1, \pAtt_2, \pAtt_3} (\pRel))}
 }.
 \]

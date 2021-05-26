@@ -29,15 +29,9 @@ intents over different database variants.
 %more complicated than relational queries, discussed in \secref{type-sys}. 
 %Hence, 
 
-To understand the meaning of variational queries
-we define the semantics of variational queries via the
-semantics of relational queries in \secref{vrasem}. We define
-how to configure a variational query to a relational query
-in \secref{vraconf}. Then, we use the results of multiple relational
-queries to accumulate the result of the original variational query 
-in \secref{accum}.
-%\maybeAdd{add direct sem of VRA if time allows and equiv in vql prop.}
 
+
+%
 Due to the expressiveness of variational queries, 
 we define a type system for VRA that statically checks a
 variational query against the underlying variational schema in \secref{type-sys}.
@@ -51,28 +45,42 @@ explicitly annotating queries in \secref{constrain}.
 %define the \emph{variation-preservation} property for VRA and its type system,
 %which is discussed in \secref{var-pres}, and demonstrates how our framework
 %satisfies the information need \nTwo.
-We then define the \emph{variation-preservation} property for VRA at
-the type level in \secref{var-pres}.
-% which proves that our framework
-%satisfies the requirement \nTwo.
+
+To understand the meaning of variational queries
+we define the semantics of variational queries via the
+semantics of relational queries in \secref{vrasem}. We define
+how to configure a variational query to a relational query
+in \secref{vraconf}. Then, we use the results of multiple relational
+queries to accumulate the result of the original variational query 
+in \secref{accum}.
+%\maybeAdd{add direct sem of VRA if time allows and equiv in vql prop.}
+
+
 %
-Finally, we provide 
+We also provide 
 %we close out this section by providing 
 a set of syntactic rules that are semantic-preserving 
 in \secref{var-min} that enable factoring and distributing
-variation points within a variational query, which enables syntactic refactorings
+variation points within a variational query, which enables syntactic refactoring
 including maximizing sharing within a variational query.
 %for reducing a query's variation.
+%
+Finally, in \secref{vqlprop}, we present some properties of the VRA including
+the expressiveness and type safety of VRA in \secref{express} and \secref{var-pres}, respectively,
+in addition to the \emph{variation-preservation} property of VRA at the
+semantics level in \secref{var-pres-sem}.
+%also define the \emph{variation-preservation} property for VRA at
+%the type level in \secref{var-pres}.
 
 
 \input{sections/vra}
 %\input{sections/typesys}
+\input{sections/typesys}
+\input{sections/constrainVQbySch}
 \input{sections/vrasem}
 \input{sections/vra2ra}
 \input{sections/accum}
 \input{sections/vradensem}
-\input{sections/typesys}
-\input{sections/constrainVQbySch}
 \input{sections/vminrule}
 \input{sections/vqlprop}
 %if time allows have a subsection for properties of the equivalnece of dent sem and ra + accum

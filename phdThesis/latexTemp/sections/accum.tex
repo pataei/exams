@@ -11,7 +11,11 @@ we define two \emph{accumulation} functions that generate a
 variational table from a set of relational tables. 
 
 %
-The first accumulation function $\mathit{accum} : \settype \fSet \totype \settype {\typepair \confSet \pTabSet} \totype \tabletype$ takes the feature space of a database and a set of relational
+The first accumulation function 
+%\centerline{
+$\mathit{accum} : \settype \fSet \totype \settype {\typepair \confSet \pTabSet}$ $\totype \tabletype$
+%}
+ takes the feature space of a database and a set of relational
 tables with their attached configurations and generates a variational table. \figref{accum1} 
 defines this function in terms of some auxiliary functions. 
 %
@@ -19,7 +23,7 @@ The $\mathit{mkTable}$ function takes a variational relation schema and a set of
 variational relation contents and generates a variational table that has the given schema
 and the variational tuples in the input tables. 
 %
-The $\mathit{addPresCondToConfTables}$ function maps the $\mathit{addPresCondToConfContent}$
+The $\mathit{addPresCondToConfTables}$ function adjusts the content of tables by mapping the $\mathit{addPresCondToConfContent}$
 over a set of tables and their attached configuration and the  $\mathit{addPresCondToConfContent}$
 function adds the \pcatt\ attribute to a relational table and its corresponding value which is 
 a feature expression associated with the given configuration using the closed set of

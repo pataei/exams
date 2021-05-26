@@ -25,12 +25,16 @@ configurations and a variational database instance and returns the set of query
 semantics over their configured database
 with their attached configurations, that is, it maps $\mathit{rqSem}$ on the 
 relational queries over their corresponding relational database.%
-\footnote{In implementation, the closed set of features and valid configurations
+\footnote{In the implementation, the closed set of features and valid configurations
 of a VDB are contained within, instead of extracting them from the database. However,
 we keep the formalization simple and assume that they can also be retrieved from
 the VDB.}
+%
+Finally, the $\mathit{qToConfRelQs}$ takes a well-typed explicitly annotated 
+variational query and the set of valid configurations and configures the variational
+query for the given configurations and returns the set of configured queries paired 
+with their corresponding configuration.
 
-%\TODO{think if you want to have example or more explanation of helpers.}
 
 \input{formulas/densem}
 

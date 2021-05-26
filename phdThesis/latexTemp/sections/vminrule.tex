@@ -1,20 +1,23 @@
 \section{Variation-Minimization Rules}
 \label{sec:var-min}
 
-
-\maybeAdd{add $\vQ_6$ is simplified of  $\VVal \vQ_6$ because of rule application blah blah.}
-\maybeAdd{add example + more rules + point out interesting ones}
-
+%
+%\maybeAdd{add $\vQ_6$ is simplified of  $\VVal \vQ_6$ because of rule application blah blah.}
+%\maybeAdd{add example + more rules + point out interesting ones}
+%
 VRA is flexible since an information need can be represented via multiple
-v-queries as demonstrated in \exref{vq-specific} and \exref{vq-same-intent-mult-vars}.
+variational queries as demonstrated in \exref{vq-specific} and \exref{vq-same-intent-mult-vars}.
 It allows users to incorporate their personal taste and task requirements
-into v-queries they write by 
+into variational queries they write by 
 having different levels of variation. For example, consider the explicitly annotated query
 \ensuremath{\vQ_6} 
-in \secref{constrain}:\\
-\ensuremath {
+in \secref{constrain}.
+%\ensuremath {
+\[
 \vQ_6 =
-\pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } \left( \chc [\fModel_2] {\empbio, \empRel}\right)}.
+\pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } \left( \chc [\fModel_2] {\empbio, \empRel}\right)
+\]
+%}.
 %\vQ_5 =  \pi_{\optAtt [\vFour \vee \vFive] [\empno], \optAtt [\vFour] [\name], \optAtt [\vFive] [\fname], \optAtt [\vFive] [\lname]  } \empbio}.
 %from \exref{vq-specific}. 
 To be explicit about the exact query that will be run for 
@@ -23,12 +26,14 @@ each variant
 %\ensuremath{
 %\getPC \empbio = \vThree \vee \vFour \vee \vFive
 %},
-the query $\vQ_6$'s variation can be \emph{lifted up} by using choices, resulting in the query $\VVVal \vQ_6$\\
-\ensuremath{
-\small
+the query $\vQ_6$'s variation can be \emph{lifted up} by using choices, resulting in the query $\VVVal \vQ_6$.
+%\ensuremath{
+%\small
+\[
 \VVVal \vQ_6 = \chc [\vFour] {\pi_{\empno, \name} \empbio, 
 \chc [\vFive] {\pi_{\empno, \fname, \lname} \empbio, \emp}} 
-}.
+\]
+%}.
 While \ensuremath{\vQ_6} contains less redundancy \ensuremath{\VVVal \vQ_6}
 is more comprehensible since the variants are explicitly stated in the dimension of the choice. 
 Thus, \emph{supporting multiple levels of variation 
