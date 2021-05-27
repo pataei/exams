@@ -1,31 +1,15 @@
-\section{Instances of Database Variation Resulted from Software Development}
+\section{Database Variation Resulted from Software Development}
 \label{sec:varsoft}
 
-% \NOTE{Snipped from intro, need to integrate: code and data
-% structures~\cite{Walk14onward,MMWWK17vamos,alkubaish20}, tools used by the
-% software~\cite{ywt20splc}}
-We proposed encoding variation explicitly in database schemas and queries
-in~\cite{ATW17dbpl} and proposed applying this idea to database-backed SPLs
-in~\cite{ATW18poly}. Our previous work uses slightly different encodings; the
-one presented here is the basis of our VDBMS implementation.
-% and follows~\cite{vldbArXiv} closely.
-This is the first work that provides use cases for VDBs.
+A database may contain variation due to business requirements of software
+and its evolution~\cite{dbDecay16Stonebraker, dbSPLevolve}. 
+While some of schema evolution and database migration can be used to 
+address this kind of database variation, other workarounds have been
+proposed as well.
 %
-The SPL community has a tradition of developing and distributing use cases
-to support research on software variation. For example, SPL2go~\cite{SPL2go}
-catalogs the source code and variability models of a large number of SPLs.
-Additionally, specific projects, such as Apel
-et~al.'s~\cite{apel2013strategies} work on SPL verification, often distribute
-use cases along with study results.
-%
-However, there are no existing datasets or use cases that include
-corresponding relational databases and queries, despite their ubiquity in
-modern software.
-
-
-In a database-supported SPL, 
-typically a number of strategies are employed to
-accommodate the different information needs of different variants.
+%In a database-supported software development, 
+%typically a number of strategies are employed to
+%accommodate the different information needs of different variants.
 %
 The first is that a different relational database may be \emph{specified and
 created per-variant}, according to the information needs of each
@@ -51,20 +35,119 @@ The third strategy is to define a \emph{variable data model}~\cite{skrhas09DBIS,
 slrs12CAiSE, ad11varDataModel} which models a database schema 
 (usually as an Entity-Relation model) with
 annotations of features from SPL to indicate their variable existence. 
-This approach addresses problems of the previous approach, however,
-it does not address the variation that appears in queries and data. 
-Thus, developers have to write the required information need as a
-query encoded as a string per variant. Not only this is labor-some but
-also due to the nature of queries being encoded as strings there is no
-static check to ensure that queries are type correct. 
+\secref{spl} explains these approaches in more details. 
+%This approach addresses problems of the previous approach, however,
+%it does not address the variation that appears in queries and data. 
+%Thus, developers have to write their information need as a
+%query which usually is encoded as a string per variant. Not only this approach 
+%is labor-some but it also lacks
+%static check to ensure that queries are type correct  
+%due to queries being encoded as strings.
 
 
 
 \subsection{Data Model Variability in Software Product Line}
 \label{sec:spl}
 
+In this section, we focus on managing database variation in software product lines.
+%
+The SPL community has a tradition of developing and distributing use cases
+to support research on software variation. For example, SPL2go~\cite{SPL2go}
+catalogs the source code and variability models of a large number of SPLs.
+Additionally, specific projects, such as Apel
+et~al.'s~\cite{apel2013strategies} work on SPL verification, often distribute
+use cases along with study results.
+%
+However, there are no existing datasets or use cases that include
+corresponding relational databases and queries, despite their ubiquity in
+modern software. Our use cases are the first resource that provide such
+datasets. 
 
-\begin{comment}
+
+Many researchers have recognized the need to manage structural variation in the
+databases that SPLs rely on.
+%
+\citet{ad11varDataModel} argue for modeling data variability as part of a
+model-oriented SPL process. Their \emph{variable data models}
+% marking some features as ``persistent'' and linking those to 
+link features to concepts in a data model so that specialized data models can
+be generated for different products.
+%
+\citet{dbSchVarSPL} address data model variability in the context of
+delta-oriented programming. They define delta modules that can incrementally
+generate a relational database schema, and so
+% in SQL's Data Definition Language. By combining these deltas in various ways
+% using delta-oriented programming, they
+can be used to generate different schemas for each variant of a SPL.
+%
+\citet{varMngDBapp} present a tool to manage variation in the schema of a
+relational database used by a SPL. Their tool enables
+% defining feature models and 
+linking features to elements of a schema, then generating different variants of
+the schema for different products.
+%
+% \eric{Eric, to save you time only the following three sentences have been
+% added. also, it'd be great if we could limit the related work to one column.}
+\citet{slrs12CAiSE} generate a variable database schema from a given global schema and
+software configurations by mapping schema element to features.
+%
+\citet{skrhas09DBIS} emphasize the need for variable database schema in SPLs and
+propose two decomposition approaches: (1) \emph{physical} where database sub-schemas
+associated with a feature are stored in physical files
+and (2) \emph{virtual} where a global entity-relation model of a schema is annotated
+with features.
+%
+All of these approaches address the issue of \emph{structural} database variation
+in SPLs and provide a way to derive a schema per variant, 
+which is also achievable by configuring a VDB.
+%
+The work of \citet{varMngDBapp} is most similar to our notion of a
+variational schema since it is an annotative approach~\cite{KAK08} that
+directly associates schema elements with features. \citet{ad11varDataModel}
+is also annotative, but operates at the higher level of a data model that may
+only later be realized as a relational database. \citet{dbSchVarSPL} is a
+compositional approach~\cite{KAK08} to generating database schemas.
+%
+None of these approaches consider \emph{content-level} variation, which is
+captured by VDBs and observable in our use cases, nor do they consider how
+to express queries over databases with structural variation, which is addressed
+by our \emph{variational queries}.
+
+
+While the previous approaches all address data variation in space,
+\citet{dbSPLevolve} emphasize that as an SPL evolves over time, so does its
+database. Their approach adapts work on database evolution to SPLs, enabling
+the safe evolution of all deployed products.
+%
+% They present a toolkit to address database evolution in SPLs. Their
+% approach generates a global evolution script from the local evolution scripts
+% by grouping them into a single database operations and executing them
+% sequentially. This requires having the old and new schema of a variant to
+% generate the delta scripts, which it uses to ensure correct evolution of both
+% data and schema at the deployment step. 
+ They present the DAVE toolkit to address database evolution in SPL. Their
+ approach generates a global evolution script from the local evolution scripts
+ by grouping them into a single database operations and executing them
+ sequentially. This approach requires having the old and new schema of a
+ variant to generate the delta scripts. However, it uses these scripts to
+ ensure correct evolution of both data and schema at the deployment step. 
+
+ Variational databases, originally designed to represent the intrinsic
+ variability of databases used in SPL~\cite{ATW18poly}, explicitly account for
+ variation in databases by considering a set of features for a database that
+ encodes its variability. Unlike other approaches taken in SPL introduced at
+ the beginning of this section, it collapses all the database variants into
+ one variational database while tracing the variation by annotating elements
+ with feature expressions~\cite{ATW17dbpl}. The variational database
+ management system allows users to query all database variants, that is, the
+ overall variational database, simultaneously and
+ selectively~\cite{vldbArXiv}. It also allows users to deploy the variational
+ database (similar to approaches described briefly above) and variational
+ queries for a specific variant (while mentioned approaches are unable to
+ achieve this).
+ 
+ 
+ \begin{comment}
 --------------------------------------------------------------------------------------
 bridging the gap between variability in client application and 
 database schema~\cite{skrhas09DBIS}:
@@ -180,88 +263,3 @@ tailor the data of an underlying database schema for a given context.
 
 
 \end{comment}
-
-
-
-
-Many researchers have recognized the need to manage structural variation in the
-databases that SPLs rely on.
-%
-\citet{ad11varDataModel} argue for modeling data variability as part of a
-model-oriented SPL process. Their \emph{variable data models}
-% marking some features as ``persistent'' and linking those to 
-link features to concepts in a data model so that specialized data models can
-be generated for different products.
-%
-\citet{dbSchVarSPL} address data model variability in the context of
-delta-oriented programming. They define delta modules that can incrementally
-generate a relational database schema, and so
-% in SQL's Data Definition Language. By combining these deltas in various ways
-% using delta-oriented programming, they
-can be used to generate different schemas for each variant of a SPL.
-%
-\citet{varMngDBapp} present a tool to manage variation in the schema of a
-relational database used by a SPL. Their tool enables
-% defining feature models and 
-linking features to elements of a schema, then generating different variants of
-the schema for different products.
-%
-% \eric{Eric, to save you time only the following three sentences have been
-% added. also, it'd be great if we could limit the related work to one column.}
-\citet{slrs12CAiSE} generate a variable database schema from a given global schema and
-software configurations by mapping schema element to features.
-%
-\citet{skrhas09DBIS} emphasize the need for variable database schema in SPLs and
-propose two decomposition approaches: (1) \emph{physical} where database sub-schemas
-associated with a feature are stored in physical files
-and (2) \emph{virtual} where a global entity-relation model of a schema is annotated
-with features.
-%
-All of these approaches address the issue of \emph{structural} database variation
-in SPLs and provide a way to derive a schema per variant, 
-which is also achievable by configuring a VDB.
-%
-The work of \citet{varMngDBapp} is most similar to our notion of a
-variational schema since it is an annotative approach~\cite{KAK08} that
-directly associates schema elements with features. \citet{ad11varDataModel}
-is also annotative, but operates at the higher level of a data model that may
-only later be realized as a relational database. \citet{dbSchVarSPL} is a
-compositional approach~\cite{KAK08} to generating database schemas.
-%
-None of these approaches consider \emph{content-level} variation, which is
-captured by VDBs and observable in our use cases, nor do they consider how
-to express queries over databases with structural variation, which is addressed
-by our \emph{v-queries}.
-
-
-While the previous approaches all address data variation in space,
-\citet{dbSPLevolve} emphasize that as an SPL evolves over time, so does its
-database. Their approach adapts work on database evolution to SPLs, enabling
-the safe evolution of all deployed products.
-%
-% They present a toolkit to address database evolution in SPLs. Their
-% approach generates a global evolution script from the local evolution scripts
-% by grouping them into a single database operations and executing them
-% sequentially. This requires having the old and new schema of a variant to
-% generate the delta scripts, which it uses to ensure correct evolution of both
-% data and schema at the deployment step. 
- They present the DAVE toolkit to address database evolution in SPL. Their
- approach generates a global evolution script from the local evolution scripts
- by grouping them into a single database operations and executing them
- sequentially. This approach requires having the old and new schema of a
- variant to generate the delta scripts. However, it uses these scripts to
- ensure correct evolution of both data and schema at the deployment step. 
-
- Variational databases, originally designed to represent the intrinsic
- variability of databases used in SPL~\cite{ATW18poly}, explicitly account for
- variation in databases by considering a set of features for a database that
- encodes its variability. Unlike other approaches taken in SPL introduced at
- the beginning of this section, it collapses all the database variants into
- one variational database while tracing the variation by annotating elements
- with feature expressions~\cite{ATW17dbpl}. The variational database
- management system allows users to query all database variants, i.e., the
- overall variational database, simultaneously and
- selectively~\cite{vldbArXiv}. It also allows users to deploy the variational
- database (similar to approaches described briefly above) and variational
- queries for a specific variant (while mentioned approaches are unable to
- achieve this).

@@ -37,12 +37,13 @@ explicit. % , which is needed to manage data variation in SPLs.
 
 \subsection{Schema Evolution}
 \label{sec:sch-evo}
+
 Current solutions addressing schema evolution rely on
 temporal nature of schema evolution. They use timestamps as a 
 means to keep track of historical changes either in an external document~\cite{prima08Moon}
 or as versions attached to 
 databases~\cite{SchEvolRA90McKenzie, schVersioning97Castro, tempSchEvol91Ariav, tsql95Snodgrass}, 
-i.e., either approach fails to incorporate
+i.e., either approaches fail to incorporate
 the timestamps into the database. 
 Then, they take one of these approaches:
 1) they require the DBA to design a unified schema, map all schema variants
@@ -83,6 +84,58 @@ database is a form of variability.
 \subsection{Database Integration}
 \label{sec:db-intg}
 
+The need for \emph{data integration} system was raised by the invention of the Internet and 
+the World Wide Web which require quick access to lots of data stored online as well
+as the ability to query all of them. These systems need to query disparate data sources
+which often have different formats (e.g., some are completely structured data while others are 
+either semi-structured or unstructured) and have been developed independently of each 
+other~\cite{dataIntegBook}.
+%Furthermore, there is no gurantee that they have access to 
+%
+Thus, work on \emph{data integration} can be viewed as managing database variation in
+space at the content, schema, and format level.
+%Work on \emph{data integration} and \emph{database versioning} can be viewed as
+%managing database variation in space~\cite{dataIntegBook}. In data integration,
+%the goal is typically to combine data variation from disparate sources and
+%provide a unified interface for querying that data. This is different from
+%VDBs, which make differences between variants explicit, which is needed to
+%manage data variation in SPLs.
+%
+Most of these systems fall somewhere on the spectrum of warehousing and 
+virtual integration. In the warehousing model, data from each source are loaded
+and materialized in a physical database called a warehouse whereas
+in the virtual integration model, the data remain in each data source and are 
+accessed as needed at query time. The VDB framework falls in the middle of 
+the spectrum since all database variants (data sources) are stored in a physical database 
+without materialization. 
+
+Then, a \emph{mediated schema} is defined for the integrated data and each 
+data source has a wrapper/extractor that adjusts the schema and data of the
+source to the mediated schema. This is done by using schema matching and 
+mapping approaches~\cite{Rahm01Survey,Doan05, schMapBook}. 
+Our variational database framework skips this
+step since the variational schema contains within itself the variational encoding
+of the variants which is similar to the role of  wrapper/extractor in database integration
+systems. 
+
+Finally, queries are posed in terms of relations in the mediated schema. Then, they 
+are reformulated and optimized to grab part of the data requested by the query from 
+the corresponding data source since all data sources do not necessarily contain 
+the requested information in the query. Similarly, our SQL generators reformulate a 
+variational query to extract data from corresponding variants. However, variational 
+queries allow one to select the database variants (or parts of it) that they want to query
+whereas queries in a database integration system do not provide such an option. 
+Furthermore, unlike VDBs, database integration systems are not variation-preserving, that is, the 
+result has no indication as to the belonging of part of data to a specific variant (data source).
+
+
+
+\subsection{Database Versioning}
+\label{sec:db-ver}
+As mentioned in \secref{vtab}, database versioning approaches only consider
+content-level variation~\cite{dbVersioning} which is usually used for experimental and
+scientific databases.
+
 Work on \emph{database versioning}~\cite{datasetVersioning,dbVersioning}
 shifts this idea to content level. In a versioned database, 
 %schema
@@ -94,19 +147,6 @@ All of this work is different from variational databases because it typically
 does not require maintaining or querying multiple versions of the database at
 once.
 %
-Work on \emph{data integration} and \emph{database versioning} can be viewed as
-managing database variation in space~\cite{dataIntegBook}. In data integration,
-the goal is typically to combine data variation from disparate sources and
-provide a unified interface for querying that data. This is different from
-VDBs, which make differences between variants explicit, which is needed to
-manage data variation in SPLs.
-
-\subsection{Database Versioning}
-\label{sec:db-ver}
-As mentioned in \secref{vtab}, database versioning approaches only consider
-content-level variation~\cite{dbVersioning} which is usually used for experimental and
-scientific databases.
-
-\subsection{Data Provenance}
-\label{sec:db-prov}
+%\subsection{Data Provenance}
+%\label{sec:db-prov}
 
