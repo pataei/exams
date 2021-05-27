@@ -313,6 +313,123 @@ keywords = "Evolution, Database conversion, Schema transformation, History, Reve
 abstract = "While recent data management technologies, such as object oriented techniques, address the problem of database schema evolution, standard information systems currently in use raise challenging evolution problems. This paper examines database evolution from the developer point of view. It shows how requirements changes are propagated to database schemas, to data and to programs through a general strategy. This strategy requires the documentation of database design. When absent, such documentation has to be rebuilt through reverse engineering techniques. Our approach, called DB-MAIN, relies on a generic database model and on transformational paradigm that states that database engineering processes can be modeled by schema transformations. Indeed, a transformation provides both structural and instance mappings that formally define how to modify database structures and contents. We describe both the complete and a simplified approaches, and compare their merits and drawbacks. We then analyze the problem of program modification and describe a CASE tool that can assist developers in their task of system evolution. We illustrate our approach with Biomaze, a biochemical knowledge-based the database of which is rapidly evolving."
 }
 
+@book{tempDBbook,
+author = {Tansel, Abdullah Uz and Clifford, James and Gadia, Shashi and Jajodia, Sushil and Segev, Arie and Snodgrass, Richard},
+title = {Temporal Databases: Theory, Design, and Implementation},
+year = {1993},
+isbn = {0805324135},
+publisher = {Benjamin-Cummings Publishing Co., Inc.},
+address = {USA}
+}
+
+
+@ARTICLE{tempDBSurv,
+  author={Ozsoyoglu, G. and Snodgrass, R.T.},
+  journal={IEEE Transactions on Knowledge and Data Engineering}, 
+  title={Temporal and real-time databases: a survey}, 
+  year={1995},
+  volume={7},
+  number={4},
+  pages={513-532},
+  doi={10.1109/69.404027}}
+
+@article{tempDataMng,
+author = {Jensen, Christian S. and Snodgrass, Richard Thomas},
+title = {Temporal Data Management},
+year = {1999},
+issue_date = {January 1999},
+publisher = {IEEE Educational Activities Department},
+address = {USA},
+volume = {11},
+number = {1},
+issn = {1041-4347},
+url = {https://doi.org/10.1109/69.755613},
+doi = {10.1109/69.755613},
+abstract = {A wide range of database applications manage time-varying information. Existing database technology currently provides little support for managing such data. The research area of temporal databases has made important contributions in characterizing the semantics of such information and in providing expressive and efficient means to model, store, and query temporal data. This paper introduces the reader to temporal data management, surveys state-of-the-art solutions to challenging aspects of temporal data management, and points to research directions.},
+journal = {IEEE Trans. on Knowl. and Data Eng.},
+month = jan,
+pages = {36–44},
+numpages = {9},
+keywords = {valid time., TSQL2, temporal data model, temporal database, time-constrained database, Query language, transaction time, SQL, user-defined time}
+}
+
+@inproceedings{KaufmannMVFKFM13sigmod,
+  author    = {Martin Kaufmann and
+               Amin Amiri Manjili and
+               Panagiotis Vagenas and
+               Peter M. Fischer and
+               Donald Kossmann and
+               Franz F{\"{a}}rber and
+               Norman May},
+  editor    = {Kenneth A. Ross and
+               Divesh Srivastava and
+               Dimitris Papadias},
+  title     = {Timeline index: a unified data structure for processing queries on
+               temporal data in {SAP} {HANA}},
+  booktitle = {Proceedings of the {ACM} {SIGMOD} International Conference on Management
+               of Data, {SIGMOD} 2013, New York, NY, USA, June 22-27, 2013},
+  pages     = {1173--1184},
+  publisher = {{ACM}},
+  year      = {2013},
+  url       = {https://doi.org/10.1145/2463676.2465293},
+  doi       = {10.1145/2463676.2465293},
+  timestamp = {Tue, 06 Nov 2018 11:07:39 +0100},
+  biburl    = {https://dblp.org/rec/conf/sigmod/KaufmannMVFKFM13.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+@inproceedings{stratum,
+  author    = {Kristian Torp and
+               Christian S. Jensen and
+               Richard T. Snodgrass},
+  editor    = {Barry Eaglestone and
+               Bipin C. Desai and
+               Jianhua Shao},
+  title     = {Stratum Approaches to Temporal {DBMS} Implementation},
+  booktitle = {Proceedings of the 1998 International Database Engineering and Applications
+               Symposium, {IDEAS} 1998, Cardiff, Wales, UK, July 8-10, 1998},
+  pages     = {4--13},
+  publisher = {{IEEE} Computer Society},
+  year      = {1998},
+  url       = {https://doi.org/10.1109/IDEAS.1998.694346},
+  doi       = {10.1109/IDEAS.1998.694346},
+  timestamp = {Wed, 16 Oct 2019 14:14:56 +0200},
+  biburl    = {https://dblp.org/rec/conf/ideas/TorpJS98.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
+@article{db2,
+  author = {Cynthia M. Saracco and
+           Matthias Nicola and
+           Lenisha Gandhi},
+  title = {A matter of time: Temporal data
+management in db2 for z},
+  publisher = {IBM Corporation},
+  year = {2010},
+  address = {New York}
+  }
+
+
+@inproceedings{Teradata,
+author = {Al-Kateb, Mohammed and Ghazal, Ahmad and Crolotte, Alain and Bhashyam, Ramesh and Chimanchode, Jaiprakash and Pakala, Sai Pavan},
+title = {Temporal Query Processing in Teradata},
+year = {2013},
+isbn = {9781450315975},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/2452376.2452443},
+doi = {10.1145/2452376.2452443},
+abstract = {The importance of temporal data management is evident by the temporal features recently released in major commercial database systems. In Teradata, the temporal feature is based on the TSQL2 specification. In this paper, we present Teradata's implementation approach for temporal query processing. There are two common approaches to support temporal query processing in a database engine. One is through functional query rewrites to convert a temporal query to a semantically-equivalent non-temporal counterpart, mostly by adding time-based constraints. The other is a native support that implements temporal database operations such as scans and joins directly in the DBMS internals. These approaches have competing pros and cons. The rewrite approach is generally simpler to implement. But it adds a structural complexity to original query, which can pose a potential challenge to query optimizer and cause it to generate sub-optimal plans. A native support is expected to perform better. But it usually involves a higher cost of implementation, maintenance, and extension. We discuss why and describe how Teradata adopted the rewrite approach. In addition, we present an evaluation of our approach through a performance study conducted on a variation of the TPC-H benchmark with temporal tables and queries.},
+booktitle = {Proceedings of the 16th International Conference on Extending Database Technology},
+pages = {573–578},
+numpages = {6},
+keywords = {temporal},
+location = {Genoa, Italy},
+series = {EDBT '13}
+}
+
+
 @article{dbVersioning,
  author = {Huang, Silu and Xu, Liqi and Liu, Jialin and Elmore, Aaron J. and Parameswaran, Aditya},
  title = {OrpheusDB: Bolt-on Versioning for Relational Databases},
@@ -643,6 +760,33 @@ isbn="978-0-387-39940-9",
 doi="10.1007/978-0-387-39940-9_407",
 url="https://doi.org/10.1007/978-0-387-39940-9_407"
 }
+
+@MISC{chomicki95,
+    author = {Jan Chomicki},
+    title = {Temporal Query Languages: a Survey},
+    year = {1995}
+}
+
+@article{evalTempLang,
+author = {McKenzie, L. Edwin and Snodgrass, Richard Thomas},
+title = {Evaluation of Relational Algebras Incorporating the Time Dimension in Databases},
+year = {1991},
+issue_date = {Dec. 1991},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+volume = {23},
+number = {4},
+issn = {0360-0300},
+url = {https://doi.org/10.1145/125137.125166},
+doi = {10.1145/125137.125166},
+journal = {ACM Comput. Surv.},
+month = dec,
+pages = {501–543},
+numpages = {43},
+keywords = {homogeneity, chronon, snapshot relation, valid time, historical relation, transaction time, aggregate, query optimization}
+}
+
+
 
 @book{tsql95Snodgrass,
 author = {Snodgrass, Richard Thomas},

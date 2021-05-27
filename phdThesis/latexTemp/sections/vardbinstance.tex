@@ -130,24 +130,49 @@ result has no indication as to the belonging of part of data to a specific varia
 
 
 
-\subsection{Database Versioning}
+\subsection{Temporal Databases and Database Versioning}
 \label{sec:db-ver}
-As mentioned in \secref{vtab}, database versioning approaches only consider
-content-level variation~\cite{dbVersioning} which is usually used for experimental and
-scientific databases.
 
-Work on \emph{database versioning}~\cite{datasetVersioning,dbVersioning}
-shifts this idea to content level. In a versioned database, 
-%schema
-%and 
-content changes can be sent between different instances of a database,
-similar to a distributed revision control system.
+There is a rich body of work on temporal databases which consider both the data model and the query language~\cite{tempDataMng, tempDBSurv, tempDBbook}.
+These databases manage data that are temporal in nature, that is, the state of the data at a specific
+time is important, such as financial and medical data or record-keeping applications. 
 %
-All of this work is different from variational databases because it typically
-does not require maintaining or querying multiple versions of the database at
-once.
+Some of these databases use traditional database and extend them to meet their 
+needs~\cite{stratum,Teradata, db2}, while others adopt an in-database 
+approach~\cite{KaufmannMVFKFM13sigmod}.
+%
+These databases contain attributes indicating the start and end time of either 
+the transaction time or the valid time. Temporal query languages usually extend 
+traditional query languages by adding timestamps and conditions over 
+timestamps ~\cite{chomicki95,Jensen2009,evalTempLang}.
+%
+Temporal databases only have variation at their content level. Thus, their model is simpler 
+than the VDB framework. And similar to VRA, their query languages can express
+the desired time frame for extracting data. 
+
+
+Temporal databases support a linear timeline for a database, however, the rise of collaborative data 
+science has led to non-linear time-based changes in a database~\cite{datahub15cidr}. 
+This resulted in work on database versioning that aims at 
+
+%As mentioned in \secref{vtab}, database versioning approaches only consider
+%content-level variation~\cite{dbVersioning} which is usually used for experimental and
+%scientific databases.
+%
+%Work on \emph{database versioning}~\cite{datasetVersioning,dbVersioning}
+%shifts this idea to content level. In a versioned database, 
+%%schema
+%%and 
+%content changes can be sent between different instances of a database,
+%similar to a distributed revision control system.
+%%
+%All of this work is different from variational databases because it typically
+%does not require maintaining or querying multiple versions of the database at
+%once.
 %
 
 \subsection{Integrity of Databases}
 \label{sec:integ}
+
+
 
