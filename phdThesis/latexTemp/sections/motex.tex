@@ -83,7 +83,7 @@
 \input{tables/motex-tables}
 
 In this section, we motivate VDBMS by illustrating the scenario described in
-\secref{intro} where two kinds of database variation interact, producing a
+\secref{mot}, where two kinds of database variation interact, producing a
 scenario that is not well supported by any existing tools. The scenario
 involves the evolution over time of a database-backed SPL.
 
@@ -131,8 +131,8 @@ over time is captured in the rows.
 % It has two schema types: \basic\ and \educational.
 %
 Each \basic\ schema variant contains only the schema in a cell in column \basic\
-while an \educational\ schema variant consists of two sub-schemas: one from the \basic\
-column and another from the \educational\ column.
+of \tabref{mot-basic} while an \educational\ schema variant consists of two sub-schemas: one from the \basic\
+column of \tabref{mot-basic} and another from the \educational\ column of \tabref{mot-edu}.
 %
 The \basic\ sub-schema and the \educational\ sub-schema may vary over time
 independently. For example, an extension to the \educational\ sub-schema may
@@ -142,7 +142,8 @@ particular \educational\ variant.
 %
 To describe variation over time of each sub-schema, we introduce two disjoint
 sets of temporal features (boolean variables, like any other feature), shown in
-the leftmost and rightmost columns.
+the left columns of \tabref{mot-basic} and \tabref{mot-edu}.
+%the leftmost and rightmost columns.
 
 
 %Note that these sub-schemas do not 

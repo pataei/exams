@@ -6,7 +6,7 @@ framework and to present one such framework. Therefore, in addition to the forma
 definition of the framework and query language, it also provides variational data sets 
 (including both the variational database and a set of queries) to illustrate the feasibility
 of the proposed framework. Furthermore, it illustrates various approaches to implement
-such a framework and compares their performance.
+such a framework and compares their performances.
 
 The rest of this section describes the structure of this thesis, enumerating the specific 
 contribution that each chapter makes. 
@@ -18,64 +18,65 @@ It also describes various ways of incorporating variation
 into elements of a database. 
 
 \chref{vdb} (\emph{Variational Database Framework}) describes a formal model of
-\emph{variational databases} (VDBs), whose
-structure are given by a \emph{variational schema} (\secref{vsch}) and whose content are given
+\emph{variational databases} (VDBs), where the structure of data
+is defined by a \emph{variational schema} (\secref{vsch}) and the content is defined
 by \emph{variational tables} (\secref{vtab}).
 %framework and an approach to encode variation both at the schema
 %level (\secref{vsch}) and content level (\secref{vtab}), resulting in a variational database
 %(VDB). 
 In essence, a variational database gathers multiple relational databases in one place.
 \secref{vsch} and \secref{vtab} also describe how a relational database can be generated
-from a VDB.
+from a VDB, that is, how a variational database can be deployed to a relational database for a variant.
 Finally, \secref{vdbfprop} defines properties of a well-formed VDB.
 
 \chref{vql} (\emph{Variational Queries}) describes the need for a query language 
 to extract information from a VDB. It formally defines 
 \emph{variational relational algebra} (VRA) as a query language for
-VDB in \secref{vrel-alg}.
+VDB (\secref{vrel-alg}).
 %
-It also defines the denotational semantics of VRA through the semantics of
-relational algebra in \secref{vrasem}.
-%
-Additionally, it describes a \emph{static type system} for ensuring that all variants of a query are
-compatible with the corresponding variants of the VDB in \secref{type-sys}.
-% 
-Then, it describes an \emph{explicitly annotating} queries function to releave the 
+It also describes an \emph{explicitly annotating}  function for queries to relieve the 
 user from repeating the VDB's variation in their queries in \secref{constrain}.
 %
+Additionally, it describes a \emph{static type system} for ensuring that all variants of a query are
+compatible with the corresponding variants of the VDB (\secref{type-sys}).
+% 
+Furthermore, it defines the denotational semantics of VRA through the semantics of
+relational algebra (\secref{vrasem}).
+%
 It also defines a set of syntactic-based rules to \emph{minimize variation} in 
-variational queries in \secref{var-min}.
+variational queries (\secref{var-min}).
 %
 Finally, it discusses the properties of the VRA in \secref{vqlprop} including its expressiveness and 
 type safety. 
 %
-This chapter, \chref{vdb}, and \chref{bg} heavily borrow from our papers~\cite{ATW17dbpl, ATW18poly, vldbArXiv}.
+This chapter heavily borrows from our papers~\cite{ATW17dbpl, ATW18poly, vldbArXiv}.
 
 \chref{vdbusecase} (\emph{Variational Database Use Cases}) 
 aims at guiding an expert through generating a VDB and writing
-variational queries for a variation scenario where unfortunately the database variants
-do not exist and thus, generating the VDB requires the expert knowledge and cannot
+variational queries for a variation scenario where unfortunately,  database variants
+do not exist, thus, generating the VDB requires the expert knowledge and cannot
 be automated. 
 %
 It details two such variation scenario and introduces two use cases of VDB, one over space
 (adopts the email SPL described by \citet{Hall05} and explained in \secref{enron-vdb})
  and another over time (adopts the evolution 
-of an employee schema described by \citet{prima08Moon} and explained in \secref{emp-vdb}), 
-in addition to how a VDB can store all database variants in a single database and
+of an employee schema described by \citet{prima08Moon} and explained in \secref{emp-vdb}).
+Additionally, it describes how a VDB can store all database variants in a single database and
  how variational queries can capture various information needs over different database variants
 in a single query. It also describes how  the VDBs were systematically 
 generated and how the variational queries
 were adapted and adjusted from papers describing the variation scenario. 
 %
 The last section of this chapter, \secref{usecase-disc}, discusses the question 
-``should variation be encoded explicitly in databases?'' through the lessons learned 
-while generating these use cases. This chapter heavily borrows from our previous paper~\cite{ALW21vamos} and Qiaoran Li's Masters project report~\cite{Li19}. 
+``should variation be encoded explicitly in databases?''.
+
+\chref{vdbusecase} heavily borrows from our previous paper~\cite{ALW21vamos} and Qiaoran Li's Masters project report~\cite{Li19}. 
 Although the databases and queries were originally taken from Qiaoran's work they 
 have been significantly modified  so that the VDBs pass the properties of a well-defined VDB and 
 the queries justify the information need of their scenario better. 
 
 
-\chref{vdbms} discusses how we implement 
+\chref{vdbms} (\emph{Variational Database Management System}) discusses how we implemented 
 the variational database framework and the variational relational
 algebra into a Variational Database Management System (VDBMS) on top of
 a traditional RDBMS. This chapter 
@@ -84,9 +85,9 @@ queries to run variational queries on a backend RDBMS. It also compares the
 performance of VDBMS using different SQL generator approaches. 
 
 
-\wrrite{write this after you finish the chapter and do your research.}
-\chref{rw} (\emph{Related Work}) collects research related to different kinds of variation 
-in databases and other related variational research. 
+
+\chref{rw} (\emph{Related Work}) collects some previous research of different kinds of variation 
+in databases.
 
 Finally, \chref{conclusion} (\emph{Conclusion}) briefly presents the main contributions 
 of this thesis and immediate future works. 

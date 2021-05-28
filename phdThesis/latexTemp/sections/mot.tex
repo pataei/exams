@@ -17,8 +17,8 @@ database.
 Existing work on database variation focuses on specific kinds of variation such
 as schema evolution~\cite{SchEvolRA90McKenzie, schVersioning97Castro,
 tempSchEvol91Ariav, tsql95Snodgrass, prima08Moon}, data
-integration~\cite{dataIntegBook}, and database
-versioning~\cite{datasetVersioning,dbVersioning}. These works provide solutions
+integration~\cite{dataIntegBook}, temporal database~\cite{tempDataMng, tempDBSurv, tempDBbook},
+and database versioning~\cite{datasetVersioning,dbVersioning}. These works provide solutions
 specific to the kinds of variation they address, but do not provide a
 general-purpose solution to managing variation in databases.
 %
@@ -64,7 +64,7 @@ In the schema evolution scenario, a database's schema changes over time as the
 database is extended or refactored to support new information needs, and the
 goal is to automatically migrate data and queries to new versions of the
 database. Thus, schema evolution is a kind of \emph{variation} over the
-dimension of time, and each version of the database can be viewed as a
+dimension of ``time'', and each version of the database can be viewed as a
 \emph{variant} of the same database.
 %
 % Current solutions addressing schema
@@ -81,8 +81,8 @@ However, other kinds of database variation are less well supported. One example
 % However, other scenarios require multiple variants of a database to be
 % managed simultaneously (by analogy, we refer to this as variation in the
 % dimension of \emph{space}).
-arises in the context of \emph{software product lines} (SPLs)~\cite{fospl}. An
-SPL arises when the same code base is used to produce multiple different
+arises in the context of \emph{software product lines} (SPLs)~\cite{fospl}. 
+SPL approaches are used when the same code base is used to produce multiple different
 variants of a software system, customized with different sets of features or
 tailored for different clients. Naturally, the data requirements of each
 variant of an SPL may differ~\cite{skrhas09DBIS}.
@@ -93,7 +93,7 @@ with features from the SPL~\cite{skrhas09DBIS,slrs12CAiSE,ad11varDataModel}.
 These solutions can generate a database schema variant for each software
 variant of the SPL. 
 %
-However, these solutions address only variation in the data model but do not
+Unfortunately, these solutions address only variation in the data model but do not
 extend to the level of data or queries. The lack of variation support in
 queries leads to unsafe techniques such as encoding different variants of query
 through string munging, while the lack of variation support in data precludes
@@ -238,18 +238,19 @@ testing with multiple variants of a database at once.
 %interact and even the well-supported systems for schema evolution cannot
 %address it. 
 
-Worse still is when multiple kinds of variation interact. Although structural
+Worse, still, is when multiple kinds of variation interact. Although structural
 variation over time is well-supported via schema evolution, and structural
 variation in ``space'' is partially supported by recent SPL research, there is
 no support for the inevitable evolution of an SPL's variational data
 model~\cite{dbSPLevolve}. Nor do existing approaches support variation across
 all levels of a relational database: schema, queries, and content.
 %
-In our previous work, we have argued that schema evolution, SPL-like variation,
+%In our previous work, 
+In this thesis, we argue that schema evolution, SPL-like variation,
 and other forms of database variation, such as data integration and database
 versioning, are all facets of a similar problem that can be addressed by
 \emph{treating variation as a general and orthogonal concern} in relational
-databases~\cite{ATW17dbpl,ATW18poly,ALW21vamos}.
+databases~\cite{ATW17dbpl,ATW18poly,ALW21vamos, vldbArXiv}.
 %
 A significant advantage of treating different kinds of variation uniformly is
 that it is easy to support the interaction of multiple kinds of variation, and
