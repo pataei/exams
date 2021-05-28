@@ -1,10 +1,17 @@
 \section{Variational Research}
 \label{sec:varresearch}
 
+In this section, we discuss some of the related variational research and other applications of it. 
+%
 The representation of variational schemas and variational tables is based on previous
 work on variational sets~\cite{EWC13fosd}, which is part of a larger effort
 toward developing safe and efficient variational data
-structures~\cite{Walk14onward,MMWWK17vamos}. The central motivation of work on
+structures~\cite{Walk14onward,MMWWK17vamos}. 
+%
+The representation of variation in variational queries is based on 
+formula choice calculus~\cite{Walk13thesis, HW16fosd}.
+%
+The central motivation of work on
 variational data structures is that many applications can benefit from
 maintaining and computing with variation at
 runtime~\cite{EW11gttse,CEW16ecoop}. Implementing SPL analyses
@@ -13,4 +20,27 @@ more~\cite{Walk14onward}.The ability to maintain and query several
 variants of a database at once extends the idea of computing with variation to
 relational databases.
 
+VDBMS is not the only system that extends an existing system with variation. 
+\citet{Grasley18} expands on interpreters for variational imperative
+languages by providing a formal operational semantics for the variational imperative
+language VIMP.
+\citet{Alkubaish20} investigates the use of 
+algebraic effects to resolve the conflict between variation and side effects.
+\citet{young20} add variation to SAT solvers and argue that the variational SAT solver
+automates the interaction with the incremental solver.
+
+
+
+%We introduce
+%variational SAT solving, which differs from incremental SAT solving by accepting all related problems as a single variational input
+%and returning all results as a single variational output. Our central
+%idea is to make explicit the operations of incremental SAT solving, thereby encoding differences between related SAT problems as
+%local points of variation. Our approach automates the interaction
+%with the incremental solver and enables methods to automatically
+%optimize sharing of the input. To evaluate our methods we construct a prototype variational SAT solver and perform an empirical
+%analysis on two real-world datasets that applied incremental solvers
+%to software evolution scenarios. We show, assuming a variational
+%input, that the prototype solver scales better for these problems
+%than naive incremental solving while also removing the need to
+%track individual results
 

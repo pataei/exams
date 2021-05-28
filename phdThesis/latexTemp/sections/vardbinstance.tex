@@ -152,8 +152,27 @@ the desired time frame for extracting data.
 
 
 Temporal databases support a linear timeline for a database, however, the rise of collaborative data 
-science has led to non-linear time-based changes in a database~\cite{datahub15cidr}. 
-This resulted in work on database versioning that aims at 
+science has led to non-linear time-based changes in a database. 
+This resulted in work on database versioning that aims to support curating and analyzing data 
+collaboratively~\cite{datahub15cidr}. Inspired by software version control systems such as Git, 
+\citet{dbVersioning} introduce \emph{\textsc{OrpheusDB}} which stores metadata information
+about the version graph such as 
+the version number, its parent(s), checkout time, commit time, comments, etc. 
+Using this metadata the shared parts of the database can be breakdown at different scales so
+that the database for each version can be recreated.
+For example, each version could have a table of its own or 
+tuples could have a version attribute and so on. 
+\textsc{OrpheusDB} supports both git-style version control 
+commands and SQL-like queries. Its query language \emph{VQL} can query the data 
+as well as the data and their versions. VQL supports a subset of the query language for 
+versioning and provenance proposed by~\citet{vqlAndProv}. 
+\citet{datasetVersioning} studies the trade-off of storage and recreation cost for 
+different compression and optimization methods used to recreate a database version.
+%
+Similar to temporal databases, database versioning systems also only contain variation
+at the content level. However, their query languages can express git-style commands
+whereas VRA cannot. 
+
 
 %As mentioned in \secref{vtab}, database versioning approaches only consider
 %content-level variation~\cite{dbVersioning} which is usually used for experimental and
@@ -171,8 +190,9 @@ This resulted in work on database versioning that aims at
 %once.
 %
 
-\subsection{Integrity of Databases}
-\label{sec:integ}
-
+%\subsection{Integrity of Databases}
+%\label{sec:integ}
+%
+%In this section, we highlight the importance of 
 
 
