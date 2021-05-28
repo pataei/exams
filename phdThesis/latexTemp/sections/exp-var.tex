@@ -22,7 +22,7 @@
 \caption[The email VDB]{The email VDB.}
 \label{fig:enron-var-comp}
 \end{subfigure}
-\caption[The performance of SQL generators as the number of unique variants of queries increases]{The performance of SQL generators as the number of unique variants of queries increases. The categorical boxes on top of the plot show the number of
+\caption[The performance of SQL generators as the number of unique variants of queries increases]{The performance of SQL generators as the number of unique variants of queries increases. The categorical boxes on the top of the plot show the number of
 unique variants for each query and the categorical boxes on the right demonstrate the query 
 numbers/names. Note that the striped bars indicate a N/A value due to the limitation of the
 \uav\ approach explained in \secref{exp-gen}.}
@@ -40,9 +40,8 @@ The categorical boxes on top and left side of the plots indicate the number of u
 variants and the number/name of queries, respectively. 
 %
 \figref{emp-var-comp} does 
-not provide much insight as how approaches behave as the number of unique
-variants of queries increases, however, \figref{enron-var-comp} implies the trend
-of the ordered performance behavior of $\nbf \leq \nbfi \leq \ubf \leq \uav \leq \ubfi$
+not provide much insight since the approaches all scale linearly with the number of unique
+However, \figref{enron-var-comp} suggests an ordering of the approaches by their performance behavior, as $\nbf \leq \nbfi \leq \ubf \leq \uav \leq \ubfi$
 for most queries of this data set. Thus, the \uav\ and \ubfi\ approaches seem to have
 a better performance as the number of uniquer variants increases. 
 
@@ -97,24 +96,24 @@ the number of variants minus the number of unique variants and the number of que
 \label{fig:emp-vars-minus}
 \end{figure}
 
-We now explore the effect of number of unique variants of queries as compared to the
+We now explore the effect of the number of unique variants of queries compared to the
 number of variants. This difference would only affect the performance of two groups of 
 approaches: 1) \nbf\ vs. \ubf\ and 2) \nbfi\ vs. \ubfi. 
 %
 Remember that while \nbf\ and \nbfi\ naively process all variants of a variational query
 \ubf\ and \ubfi\ only process unique variants of a variational query. That is, the latter approaches
-do not unnecessarily repeat a query. This would not make a difference for empty queries, however,
-we hypothesize that it hugely affects the performance of \nbf\ and \nbfi\ for non-empty queries. 
+do not unnecessarily repeat a query. This would not make much difference for empty queries, however,
+we hypothesize that it significantly affects the performance of \nbf\ and \nbfi\ for non-empty queries. 
 %
 We explore this hypothesis by the plots shown in \figref{emp-vars-minus} and \figref{enron-vars-minus}.
-In these plots, the categorical boxes on top and the left side of the plots illustrate
+In these plots, the categorical boxes on top and the left side of the plots indicate
 the number of variants minus the number of unique variants and the number/name of queries, respectively.
 %
 Unfortunately, \figref{emp-vars-minus} does not provide us with much insight. We explore why this 
 is the case in \secref{exp-tuples}. However, \figref{enron-vars-minus} confirms our hypothesis that
-as the number of difference between the number of variants and unique variants increases the 
-performance of \nbf\ and \nbfi\ decreases as compared to \ubf\ and \ubfi. This is due to repeatedly
-running a SQL query in addition to the cost of building the variational table for more relational 
+as the number of differences between the number of variants and unique variants increases, the 
+performance of \nbf\ and \nbfi\ decreases compared to \ubf\ and \ubfi. This is due to repeatedly
+running an SQL query in addition to the cost of building the variational table for more relational 
 tables. 
 %
 Notice that \figref{enron-vars-minus} does not contain plots comparing approaches that filter out
@@ -139,7 +138,7 @@ We also explain the lack of these plots in \secref{exp-tuples}.
     \end{subfigure}
     \caption[The effect of the difference of the number of variants and number of unique variants on
 the email VDB]{The effect of the difference of the number of variants and number of unique 
-variants on the email VDB. The categorical boxes on top and the left side of the plots illustrate
+variants on the email VDB. The categorical boxes on top and the left side of the plots indicate
 the number of variants minus the number of unique variants and the number/name of queries, respectively.}
 \label{fig:enron-vars-minus}
 \end{figure*}

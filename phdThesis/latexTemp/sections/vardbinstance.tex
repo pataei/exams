@@ -84,7 +84,7 @@ database is a form of variability.
 \subsection{Database Integration}
 \label{sec:db-intg}
 
-The need for \emph{data integration} system was raised by the invention of the Internet and 
+The need for \emph{data integration} systems was raised by the invention of the Internet and 
 the World Wide Web which require quick access to lots of data stored online as well
 as the ability to query all of them. These systems need to query disparate data sources
 which often have different formats (e.g., some are completely structured data while others are 
@@ -109,7 +109,7 @@ accessed as needed at query time. The VDB framework falls in the middle of
 the spectrum since all database variants (data sources) are stored in a physical database 
 without materialization. 
 
-Then, a \emph{mediated schema} is defined for the integrated data and each 
+In database integration systems, a \emph{mediated schema} is defined for the integrated data and each 
 data source has a wrapper/extractor that adjusts the schema and data of the
 source to the mediated schema. This is done by using schema matching and 
 mapping approaches~\cite{Rahm01Survey,Doan05, schMapBook}. 
@@ -118,9 +118,10 @@ step since the variational schema contains within itself the variational encodin
 of the variants which is similar to the role of  wrapper/extractor in database integration
 systems. 
 
-Finally, queries are posed in terms of relations in the mediated schema. Then, they 
-are reformulated and optimized to grab part of the data requested by the query from 
-the corresponding data source since all data sources do not necessarily contain 
+Finally, queries are posed in terms of relations in the mediated schema. Then, the
+database integration system reformulates and optimizes the query to grab parts
+of the data requested by the query from 
+the corresponding data sources since all data sources do not necessarily contain 
 the requested information in the query. Similarly, our SQL generators reformulate a 
 variational query to extract data from corresponding variants. However, variational 
 queries allow one to select the database variants (or parts of it) that they want to query
@@ -137,12 +138,12 @@ There is a rich body of work on temporal databases which consider both the data 
 These databases manage data that are temporal in nature, that is, the state of the data at a specific
 time is important, such as financial and medical data or record-keeping applications. 
 %
-Some of these databases use traditional database and extend them to meet their 
+Some of these databases use traditional relational databases and extend them to meet their 
 needs~\cite{stratum,Teradata, db2}, while others adopt an in-database 
 approach~\cite{KaufmannMVFKFM13sigmod}.
 %
-These databases contain attributes indicating the start and end time of either 
-the transaction time or the valid time. Temporal query languages usually extend 
+These databases contain attributes indicating the start and end time, indicating either 
+the transaction time or the valid time of the data. Temporal query languages usually extend 
 traditional query languages by adding timestamps and conditions over 
 timestamps ~\cite{chomicki95,Jensen2009,evalTempLang}.
 %
@@ -158,7 +159,7 @@ collaboratively~\cite{datahub15cidr}. Inspired by software version control syste
 \citet{dbVersioning} introduce \emph{\textsc{OrpheusDB}} which stores metadata information
 about the version graph such as 
 the version number, its parent(s), checkout time, commit time, comments, etc. 
-Using this metadata the shared parts of the database can be breakdown at different scales so
+Using this metadata the shared parts of the database can be broken down at different scales so
 that the database for each version can be recreated.
 For example, each version could have a table of its own or 
 tuples could have a version attribute and so on. 

@@ -6,14 +6,14 @@
 %future work compare different db engines. 
 
 In this section, we compare the performance of VDBMS with regards
-to the approaches used to generate SQL query(ies) introduced in \secref{apps}.
+to the approaches used to generate SQL queries introduced in \secref{apps}.
 %
 Note that the main contribution of this thesis is the new functionality that VDBMS 
 adds to traditional RDBMSs. This contribution at its core provides vocabulary for developers
 and database administrators to explore and discuss variational needs. 
 %
 Additionally, it guarantees consistent encoding of variation in the database and
-queries as well as automatically checking the correct variational inquiry in either
+queries as well as automatically checking the correct variational property in either
 the database or the queries. This results in removing the burden of manual 
 manipulation of data and queries from developers and database administrators. 
 
@@ -24,25 +24,23 @@ Accounting for filtering such tuples explicitly is indicated by adding \emph{(f)
 the approach name. For example, \nbff\ is the Naive Brute Force approach that 
 filters out tuples with unsatisfiable presence conditions. 
 %
-The variational queries used for our experiments are available online
-%
-\footnote{All queries are available at: \url{https://zenodo.org/record/4321921}.}
+The variational queries used for our experiments are available online\footnote{All queries are available at: \url{https://zenodo.org/record/4321921}.}
 % in \appref{queries}
 and they are described in \chref{vdbusecase}.
 %
 The runtime of queries contains all elements of an approach including the query
 passing the type system, being explicitly annotated by the variational schema, 
 being optimized by the variation minimization rules, passed to the SQL generator, 
-run on the VDB, and finally, the final variational table is generated. 
+run on the VDB, and finally, generating the final variational table. 
 %
 We run the experiments on a MacBook Pro with a 2.4 GHz Core i7 processor and 
-8 GB 1600 MHz DDR3. All experiments are also run with the PostgreSQL 13.3 as 
+8 GB of 1600 MHz DDR3 RAM. All experiments are run with PostgreSQL 13.3 as 
 the database engine. 
 
 We conduct three main 
 comparison of the approaches over our two use cases. The first one 
 compares the five approaches with each other (\secref{exp-gen}). The second one
-investigates the effect of number of (unique) variants on the approaches (\secref{exp-vars}). 
+investigates the effect of the number of (unique) variants on the approaches (\secref{exp-vars}). 
 The last one investigates the effect filtering out
 tuples with unsatisfiable presence conditions (\secref{exp-tuples}). 
 

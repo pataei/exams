@@ -6,15 +6,14 @@ an unsatisfiable presence condition. \figref{enron-nbfs-filter} and \figref{emp-
 illustrate that filtering out invalid tuples increases the runtime of queries significantly. 
 %
 This increase is very significant for the \ubf, \ubfi, and \uav\ approaches compared to
-\nbf\ and \nbfi\ 
-\footnote{In our experiments these approaches took longer than 30 minutes for 
+\nbf\ and \nbfi\footnote{In our experiments these approaches took longer than 30 minutes for 
 all queries from both data sets except for the ones showed in \figref{emp-ubff-ubff}.
 %Thus, we did not include
 }
 since the former approaches check the satisfiability of tuples' 
-presence conditions while the latter apply the configurations to a tuple's 
-presence condition and if it returns false the tuples is dropped. Thus,
-the calls to the SAT solver are more expensive that applying the configuration.
+presence conditions while the latter applies the configuration to a tuple's 
+presence condition and if it returns false the tuple is dropped. Thus,
+the calls to the SAT solver are more expensive than applying the configuration.
 %
 Furthermore, \figref{enron-nbfi-tuple}, \figref{enron-nbf-tuple}, 
 \figref{emp-nbfi-tuple}, and \figref{emp-nbf-tuple} illustrate that increasing the number of 
@@ -25,7 +24,7 @@ SAT problems have lots of common parts or to cluster the tuples based on their p
 conditions and send unique presence conditions to the SAT solver. 
 
 Finally, we explore the performance of approaches that filter out invalid tuples. 
-As shown in \figref{filter-comp}, there is not a clear rating of
+As shown in \figref{filter-comp}, there is not a clear ranking of
 the performance of the approaches that filter out invalid tuples and there is also
 not a clear connection as the number of tuples increases. This is due to the fact that 
 the complexity of presence conditions also plays a role in the runtime of these approaches. 
