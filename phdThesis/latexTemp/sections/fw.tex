@@ -4,19 +4,19 @@
 Since the long-term vision of this thesis is to support all kinds of variation
 in databases, we can imagine many applications of VDB and VDBMS. A
 measure of the success of this work will be if other researchers either use 
-and configure VDBMS or pursue ideas in VDB to develop a new variation 
-in databases framework  for different kinds of variation
-in databases and especially for new kinds of variation in databases. 
+and configure VDBMS or pursue ideas in VDB to develop a new variation-aware
+database framework  for different kinds of variation
+in databases, especially for new kinds of variation appearing in databases. 
 %
 However, in this section, we discuss a few immediate extensions and
-improvements to the VDB that we plan on pursuing.
+improvements to our VDB framework and its prototype that we plan on pursuing.
 
 %\point{current limitations and future work.}
 %\revised{
 %Now we discuss limitations of our work in terms of possible improvements 
 %as future work.
 %}
-As described in \secref{encode-var}, the VDB assumes a 
+As described in \secref{encode-var}, the VDB framework assumes a 
 closed-world variation and configuration space, that is, the sets of features 
 and configurations are closed. An immediate improvement is having an
 open-world configuration space and then, an open-world feature space.
@@ -35,21 +35,22 @@ more accessible framework.
 As described in \chref{vdbms}, we implement presence conditions as strings, which is
 inefficient because we need to manipulate every tuple's 
 presence condition while running a 
-query and then parsing it to a feature expression encoding to build the final
+query and then, parsing it to a feature expression encoding to build the final
 returning variational table. We plan to implement presence conditions as a 
 user-defined data type inside the underlying DBMS engine, which
-limits the engines that VDBMS can sit on top of them, as well as
-defining user-defined functions over them that allow VDBMS to
-manipulate them. 
+limits the underlying engines that VDBMS can rely on. Doing so would also 
+require us to
+define user-defined functions over feature expressions inside the database engine
+to allow manipulation of them by VDBMS. 
 %
-Additionally, the performance of VDBMS can be improved different optimizations
+Additionally, the performance of VDBMS can be improved by different optimizations,
 such as clustering returned tuples based on their presence condition to reduce the
 time it takes to filter out the tuples with unsatisfiable presence conditions. 
 
 %
 Furthermore, to make VDBMS more accessible and configurable to each 
 kind of variation in databases we can generalize parts of it. For instance, 
-we plan to generalize the feature expression such that its encoding and functions
+we plan to generalize the representation of feature expression  such that its encoding and functions
 can be defined by an expert of the specific kind of variation. This would allow
 for context-specific optimizations with regards to the application domain 
 of the kind of variation in databases.
@@ -64,15 +65,17 @@ of the kind of variation in databases.
 Additionally, we plan to make VDBMS more useable by having a visual 
 interface that shows a snapshot of the database as the user writes their
 query. This would help the user understand the variation context of their 
-query better and as they are writing their query, instead of waiting until 
-they are done writing their query and then see if it passes the type system.
+query better since as the user writes their query they can see what parts
+of the database is accessible at the current variation context, instead of waiting until 
+the query is completely written to see if it passes the type system.
 %
 This improvement requires a type system that allows for holes in queries.
 This can become richer by 
 designing an error-tolerant type system that pinpoints
 where the user made a mistake in their query and allows the part of
-query that is well-typed to be run is beneficial when a query has lots of 
+query that is well-typed to run. This is especially beneficial when a query has lots of 
 encoded variation within it. 
+
 %\revised{
 %Having such a type system also helps implementing a visual 
 %assistance for writing queries gradually and with holes. Thus, a user
@@ -87,18 +90,19 @@ encoded variation within it.
 %this to generate the two use case VDBs. 
 Finally, although we have not implemented a system to generate a VDB for 
 a variational scenario it is trivial to do so if we have the variant databases.
-The problem is that in most cases the variant databases do not exists
+The problem is that, in most cases, the variant databases do not exist
 since current variational scenarios only simulate the effect of variation
 and do not incorporate it directly into the database or queries.
-Thus, an expert needs to manually generate the variant databases.
+Thus, an expert needs to manually generate the database variants.
 %
 We plan to explore the possibilities of generating a VDB without 
 having all database variants. This intertwines with moving from closed-world
 variation and configuration space to open-world. 
 %
-Another way to go about this would be to extend the query language VRA 
-to not only extract data from a VDB but also to define and manipulate data
-in addition to extend database constraints to variational ones. 
+Another way to go about this would be to extend the query language such that 
+not only it extracts data from a VDB but it also defines and manipulates data.
+The language can be further extended by allowing variation to be incorporated 
+in the database constraints.
 
 
 

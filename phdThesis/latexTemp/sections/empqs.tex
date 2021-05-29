@@ -34,7 +34,7 @@ number $10004$'' at a time corresponding to \vThree, which we encode:
 \centerline{
 \ensuremath{
 \eq_1 = \vPrj[\oatt{\salary}{\vThree}]{%
-  \joinRelR{\selectRel{\empno=10004}{\empacct}}{\job}
+  \joinRelR{\selectRel{\empno=10004}{(\empacct)}}{\job}
            {\empacct.\titleatt = \job.\titleatt}}
 %\]
 }.}
@@ -57,10 +57,10 @@ We encode the same intent, but for all times at or after \vThree\ as follows:
 \eq_2 &=  \vThree\vee\vFour\vee\vFive \langle \\
 &\hspace{20pt}\pi_\salary 
  (\vThree\vee\vFour\langle
- \joinRelR{(\vSel[\empno=10004]{\empacct})}{\job}
+ \joinRelR{(\vSel[\empno=10004]{(\empacct)})}{\job}
              {}, 
 %&\quad\qquad 
-{\vSel[\empno=10004]{\empacct}}\rangle)\\
+{\vSel[\empno=10004]{(\empacct)}}\rangle)\\
 &\hspace{20pt}, \empRel\rangle
 \end{align*}
 %
@@ -95,12 +95,12 @@ different intermediate result for \vFive\ than for \vThree\ and \vFour.
  \pi_{\oatt \salary {\vThree \vee \vFour \vee \vFive}}\\
  &\qquad
  (\vThree \vee \vFour\langle
- (\sigma_{\empno=10004} \empacct)
+ (\sigma_{\empno=10004} {(\empacct)})
  %&\hspace{0pt}
  \bowtie_{\empacct . \titleatt = \job . \titleatt}
  \job\\
  &\hspace{66pt},
- \vFive\langle{\selectRel {\empno=10004} \empacct},
+ \vFive\langle{\selectRel {\empno=10004} {(\empacct)}},
  \empRel
  \rangle
  \rangle)
@@ -122,7 +122,7 @@ name of the manager of department d001'' during the time frame of
 %\qquad
 ({\chc[\vThree]{\empacct,\empbio}}
           \bowtie_{\empno=\managerno}\\
-&\qquad \qquad \qquad \qquad \qquad \qquad \qquad {(\vSel[\deptno=\deptOne]{\dept})}
+&\qquad \qquad \qquad \qquad \qquad \qquad \qquad {(\vSel[\deptno=\deptOne]{(\dept)})}
 )\\
 &\qquad           ,
   \empRel \rangle
@@ -140,16 +140,17 @@ explicitly in the projection:
 %
 \begin{align*}
 %\ensuremath{
-\VVal {\eq_3} = \vThree\vee\vFour\vee\vFive \langle
-  \pi_{\oatt{\name}{\vThree\vee\vFour},\oatt{\fname}{\vFive},\oatt{\lname}{\vFive}} 
+\VVal {\eq_3} &= \vThree\vee\vFour\vee\vFive \langle\\
+&\qquad  \pi_{\oatt{\name}{\vThree\vee\vFour},\oatt{\fname}{\vFive},\oatt{\lname}{\vFive}} 
 %  }
-  \\
+%  \\
 %&
 %\centerline{
 %\ensuremath{
-  (\joinRel{\chc[\vThree]{\empacct,\empbio}}{(\vSel[\deptno=\deptOne]{\dept})}
-           {\empno=\managerno}),
-  \empRel \rangle
+  ({\chc[\vThree]{\empacct,\empbio}} \\
+  &\hspace{180pt} \bowtie_{\empno=\managerno} {(\vSel[\deptno=\deptOne]{(\dept)})}
+           )\\
+&\qquad  ,\empRel \rangle
 %  }.
 %  }
 \end{align*}
@@ -160,7 +161,7 @@ Allowing developers to encode variation in variational queries based on their
 preference makes VRA more flexible and easy to use. 
 Also, variational queries are statically type-checked to ensure that
 the variation encoded in them does not conflict the variation encoded
-in the v-schema. 
+in the variational schema. 
 
  %
  Finally, we want to briefly illustrate what queries look like in the

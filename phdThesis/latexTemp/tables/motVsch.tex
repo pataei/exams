@@ -36,13 +36,13 @@ This variational schema encompasses 30 relational schemas: five schemas when \ed
 }\\
 \ensuremath{
 \empacct (\empno, \optAtt [{\textcolor{blue}{\vTwo \vee \vThree}}] [\name], \hiredate, \titleatt, \optAtt [{\textcolor{blue}{\vTwo}}] [\deptname], \optAtt [{\textcolor{blue}{\vThree \vee \vFour \vee \vFive}}] [\deptno], \optAtt [{\textcolor{blue}{\vFive}}] [\salary],} \\
-\hspace{40pt} \ensuremath{\optAtt [{\textcolor{blue}{\vFour \vee \vFive}}] [\isstudent], \optAtt [{\textcolor{blue}{\vFour \vee \vFive}}] [\isteacher] )^{\textcolor{blue}{\vTwo \vee \vThree \vee \vFour \vFive}}
+\hspace{40pt} \ensuremath{\optAtt [{\textcolor{blue}{\edu \wedge (\vFour \vee \vFive)}}] [\isstudent], \optAtt [{\textcolor{blue}{\edu \wedge (\vFour \vee \vFive)}}] [\isteacher] )^{\textcolor{blue}{\vTwo \vee \vThree \vee \vFour \vee \vFive}}
 }\\
 \ensuremath{
 \job \left(\titleatt, \salary  \right)^{\textcolor{blue}{\vOne \vee \vTwo \vee \vThree \vee \vFour}}
 }\\
 \ensuremath{
-\dept \left(\deptname, \deptno, \managerno, \optAtt [{\textcolor{blue}{\vFive}}] [\studentnum], \optAtt [{\textcolor{blue}{\vFive}}] [\teachernum] \right)^{\textcolor{blue}{\vThree \vee \vFour \vee \vFive}}
+\dept \left(\deptname, \deptno, \managerno, \optAtt [{\textcolor{blue}{\edu \wedge \vFive}}] [\studentnum], \optAtt [{\textcolor{blue}{\edu \wedge \vFive}}] [\teachernum] \right)^{\textcolor{blue}{\vThree \vee \vFour \vee \vFive}}
 }\\
 \ensuremath{
 \empbio \left(\empno, \sex, \birthdate, \optAtt [{\textcolor{blue}{\vFour}}] [\name], \optAtt [{\textcolor{blue}{\vFive}}] [\fname], \optAtt [{\textcolor{blue}{\vFive}}] [\lname] \right)^{\textcolor{blue}{\vThree \vee \vFour \vee \vFive}}

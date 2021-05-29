@@ -67,8 +67,8 @@ header we want to construct.
 %\pi_{\sender,\rvalue,\subject,\body} 
 %((\selectRel\midCond\messages)\\
 %&\hspace{20pt} \bowtie_{\messages.\midatt = \recipientinfo.\midatt} \recipientinfo)
-\projectRel{\sender,\rvalue,\subject,\body} \mrtable \\
-\mrtable &\leftarrow (\selectRel\midCond\messages) \bowtie \recipientinfo
+\projectRel{\sender,\rvalue,\subject,\body} {(\mrtable)} \\
+\mrtable &\leftarrow (\selectRel\midCond {(\messages)}) \bowtie \recipientinfo
 %\mrtable &\leftarrow (\selectRel\midCond\messages) \\
 %&\qquad \bowtie_{\messages.\midatt = \recipientinfo.\midatt} \recipientinfo
 \end{align*}
@@ -105,7 +105,7 @@ message if its address contains any of the suffixes set by the receiver.
 % \mrtable) \bowtie\filtermsg )
 %%_{\employees.\eid = \filtermsg.\eid}\filtermsg )\\
 %% \bowtie_{\rvalue=\emailid}{\employees}\\
-\projectRel{\sender,\rvalue,\suffix,\subject,\body} \temp \\
+\projectRel{\sender,\rvalue,\suffix,\subject,\body} {(\temp)} \\
 \temp & \leftarrow \mretable
  \bowtie \filtermsg \\
 %&\qquad \bowtie_{\employees.\eid = \filtermsg.\eid}\filtermsg \\
@@ -141,7 +141,7 @@ set.
 %
 \begin{align*}
 \Qforward &=
-\projectRel{\rvalue,\forwardaddr,\subject,\body}{\temp} \\
+\projectRel{\rvalue,\forwardaddr,\subject,\body}{(\temp)} \\
 \temp &\leftarrow \mretable 
  \bowtie_{\employees.\eid = \forwardmsg.\eid} \automsg
 \end{align*}
@@ -190,11 +190,11 @@ single-feature queries shown above.
 \begin{align*}
 \Qsf &=  \signature\wedge\forwardmessages \\
 &\qquad\langle
-  \vPrj[\rvalue,\forwardaddr,\mathit{emp1}.\issigned,\mathit{emp1}.\verificationkey]{\temp} \\
+  \vPrj[\rvalue,\forwardaddr,\mathit{emp1}.\issigned,\mathit{emp1}.\verificationkey]{(\temp)} \\
 &\qquad, \signature\langle\Qsig, 
 \chc[\forwardmessages]{\Qforward,\Qbasic} \rangle\rangle \\
 \temp &\leftarrow
-  ((((\sigma_{\midCond} \messages) 
+  ((((\sigma_{\midCond} {(\messages)}) 
  \bowtie
 %_{\messages.\midatt = \recipientinfo.\midatt}
  \recipientinfo) \\
@@ -238,7 +238,7 @@ when a message is encrypted or unencrypted, respectively.
 %\small
 \Qef &= \encryption\wedge\forwardmessages \\
   &\qquad\langle
-    \projectRel{\rvalue}{(\selectRel{\midCond\wedge\isencrypted}{\messages})}\\
+    \projectRel{\rvalue}{(\selectRel{\midCond\wedge\isencrypted}{(\messages)})}\\
 &    \qquad,
     \encryption\langle\Qencrypt, 
  \chc[\forwardmessages]{\Qforward,\Qbasic} \rangle \\
@@ -269,7 +269,7 @@ query for \filtermessages\ to $\Qfilter'$.
 \begin{align*}
 \small
 \OB{\Qfilter'} &= 
-\projectRel {\sender, \rvalue, \suffix, \issystemnotification, \subject, \body} \temp\\
+\projectRel {\sender, \rvalue, \suffix, \issystemnotification, \subject, \body} {(\temp)}\\
 \temp &\leftarrow 
 {\joinRel \mretable
 \filtermsg

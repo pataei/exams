@@ -10,12 +10,7 @@
 %\end{wrapfigure}
 %\blindtext
 
-\begin{figure}[!t]
-\centering
-\includegraphics[scale=0.12] {figs/plots/emp1-5.png}
-\caption[Comparison of SQL generators \nbf, \nbfi, \uav, \ubf, and \ubfi\ over the employee VDB]{Comparison of SQL generators \nbf, \nbfi, \uav, \ubf, and \ubfi\ over the employee VDB}
-\label{fig:emp1-5}
-\end{figure}
+
 
 
 
@@ -25,7 +20,7 @@ The queries are labeled at the top of the plots while the
 approaches are indicated by different color bars.
 %
 \figref{emp1-5} implies that  \nbfi\ mostly has a better
-runtime than \nbf, however, the \ubf\ and \ubfi\ approaches do not follow such a trend for this data set. 
+runtime than \nbf, however, the \ubf\ and \ubfi\ approaches do not follow such a trend for this dataset. 
 Furthermore, 
 \nbfi, \uav, and \ubf\ have close performance to each other but none consistently performs 
 better than the others. 
@@ -35,10 +30,17 @@ better than the others.
 %runtime than \nbfi\ and similarly \ubf\ mostly has a better runtime than \ubfi. This insight is confirmed 
 %by \figref{enron1-5} which shows the runtime of the email VDB's queries. 
 
+\begin{figure}[!t]
+\centering
+\includegraphics[scale=0.12] {figs/plots/emp1-5.png}
+\caption[Comparison of SQL generators \nbf, \nbfi, \uav, \ubf, and \ubfi\ over the employee VDB]{Comparison of SQL generators \nbf, \nbfi, \uav, \ubf, and \ubfi\ over the employee VDB}
+\label{fig:emp1-5}
+\end{figure}
+
 %
 \figref{enron1-5} also implies that \nbfi\ consistently has a better
-runtime than \nbf, and \ubfi\ mostly has a better runtime than \ubf\ for this data set. While
-\uav\ mostly performs better than \nbfi, it is mainly comparable to \ubfi\ for this data set. Yet, \uav\
+runtime than \nbf, and \ubfi\ mostly has a better runtime than \ubf\ for this dataset. While
+\uav\ mostly performs better than \nbfi, it is mainly comparable to \ubfi\ for this dataset. Yet, \uav\
 sometimes generates a non-runnable SQL query, showed by the striped bars in \figref{enron1-5}.
 \exref{uav-fail} explains this shortcoming in detail. 
 

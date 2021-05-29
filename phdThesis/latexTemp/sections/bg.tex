@@ -8,8 +8,8 @@ Thus, the goals of this chapter are twofold:
 first, to introduce how variation is encoded and represented in our variational database framework;
 %
 second, to provide the reader with the concepts and notations
-used to build up the main contributions of this thesis, mainly relational databases and
-relational algebra
+used to build up the main contributions of this thesis--mainly relational databases,
+relational algebra,
 %
 and approaches used to add variation to them.
 % of converting non-variational components into
@@ -23,23 +23,24 @@ A type is a set of possible values. For example, the type $\mathbf{Int}$
 denotes all possible integers. In our formalization, we use the notation of $i \in \mathbf{Int}$ to
 state that the variable $i$ is of type $\mathbf{Int}$. 
 %
-Types can be more general. Consider the type \settype \typevar\ that indicates the set all sets
- of values of type \typevar. Here, \typevar\ is type variable and stands for any possible type. 
+Types can be more general. Consider the type \settype \typevar\ that indicates the set of all sets
+ of values of type \typevar. Here, \typevar\ is a type variable and stands for any possible type. 
 Note that concrete types start with a capital letters but type variables do not.
 For example, the type $\settype {\mathbf{Int}}$ is the type of
 sets of integers and it has values such as $\setDef {1,3,4}$ and $\setDef {\ }$.
-We also use type synonyms for simplicity. For example, instead of referring to
-$\settype {\mathbf{Int}}$ we can give it a new name ($\mathbf{SetInt}= \settype {\mathbf{Int}}$) 
-and refer to it with the new name $\mathbf{SetInt}$.
+We also use type synonyms to make formalizations easier to understand. 
+For example, instead of referring to
+$\settype {\mathbf{Int}}$ we give it a new name ($\mathbf{SetInt}= \settype {\mathbf{Int}}$).
+Thus,  $\mathbf{SetInt}$ also indicates all possible sets of integers.
 %However, for brevity, we usually use 
 %bold capital letters for types, for example, instead of $\mathit{Int}$ we write $\mathcal{I}$ to denote the type $\mathit{Int}$.
 %
-Sometimes we must extend a type with an additional ``bottom'' element $\bot$ and to account for this
+Sometimes we must extend a type with an additional ``bottom'' element (i.e., $\bot$). To account for this
 extension at the type level we subscript the type with $\bot$. For example, $\maybe {\mathcal{I}}$
-denotes the extension of the type $\mathcal{I}$ with $\bot$.
+denotes the extension of  type $\mathcal{I}$ with $\bot$.
 %
 %\eric{pair and function types}
-Furthermore, sometimes we pair two types together. For example, a variable of type $\typepair{\mathbf{Int}} {\mathbf{String}}$ can take the value $(3, "three")$. 
+Furthermore, sometimes we pair two types together. For example, a variable of type $\typepair{\mathbf{Int}} {\mathbf{String}}$ can take the value $(3,``three")$. 
 %
 Finally, we use function types to provide the type signature of functions. For example,
 the function $id : \typevar \totype \typevar$ states that the function $id$ takes a value of
@@ -48,7 +49,7 @@ type \typevar\ and returns a value of type \typevar.
 %
 Throughout the thesis, we discuss relational concepts and their
 variational counterparts. 
-For clarity or when it is unclear from context, we use
+When it is unclear from context, we use
 an $\underline{underline}$ to distinguish a non-variational entity
 from its variational counterpart, 
 both at the value level and the type level,
@@ -67,12 +68,12 @@ the specification of
 the structure used to store the data~\cite{AliceBook}. 
 \secref{ra} describes the relational algebra, a query language used to query relational databases~\cite{AliceBook}.
 %
-\secref{encode-var} defines our encoding of the variation space used in 
-variational database and how we describe parts of that space using propositional formulas of boolean variables~\cite{ATW18poly,ATW17dbpl}.
+\secref{encode-var} defines our encoding of the variation space used in the 
+variational database framework and how we describe parts of that space using propositional formulas of boolean variables~\cite{ATW18poly,ATW17dbpl}.
 %
 Finally, we introduce the main techniques used to incorporate variation into our variational 
 database framework.
-\secref{vset} introduces variation into sets which forms the basis of the variational database
+\secref{vset} introduces variation into sets, which forms the basis of the variational database
 framework~\cite{EWC13fosd,Walk14onward,ATW17dbpl} 
 and \secref{fcc} describes the formula choice calculus used to incorporate 
 variation into relational algebra~\cite{HW16fosd}.

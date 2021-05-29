@@ -3,15 +3,15 @@
 
 The main contribution of this thesis is the variational database framework, 
 a generic database framework that explicitly accounts for variation, 
-and the variational database management system. 
+and the variational database management system, a prototype of the VDB framework. 
 %
 We argued that variation is an orthogonal concern to databases
-and while there are approaches that address it in specific contexts
+and while there are approaches that address it in specific contexts,
 there is no fundamental technique to address it in every contexts, especially in 
 intersection of contexts. Hence, we incorporated variation as 
 propositional formulas (\secref{encode-var}) 
-into database and its schema while keeping
-track of it while querying by employing approaches such as annotation,
+into the database while keeping
+track of variation while querying the database by employing approaches such as annotation,
 variational sets, and formula choice calculus, introduced in \secref{vset} and
 \secref{fcc}, respectively.
 %
@@ -24,19 +24,19 @@ variational sets, and formula choice calculus, introduced in \secref{vset} and
 %vdb
 In essence, VDB systematically places multiple relational database variants 
 in a single database while tracking their corresponding configurations at both
-the content and structure levels of databases (\chref{vdb}). 
+the content and structure levels of a database (\chref{vdb}). 
 %
 This is a source of complexity that may impact understandability, as can be
 observed in our use cases introduced in \chref{vdbusecase}. 
 However, it also has several advantages: it
-is general in the sense that any set of variant databases and queries can be
-encoded as a VDB and variational queries, and it enables directly associating variation
-in databases to variation in other parts interacting with the database such as software.
+is generic, in the sense that any set of database variants and queries can be
+encoded as a VDB and variational queries. Additionally, it enables direct association of variation
+in a database to variation in other parts interacting with the database such as software.
 %
  We discussed that explicitly encoding variation in databases
  allows  tracing variation between the program and data. It also empowers
- developer to check properties over their database to ensure that
- constraints over a database holds (\secref{vdbfprop}).
+ developers to check properties over a database to ensure that
+their desired constraints over a database hold (\secref{vdbfprop}).
 %Furthermore, such an encoding allows for 
 %systematical checking the properties of database variants and ensuring
 %the consistency of them .
@@ -53,14 +53,14 @@ in queries introduces more complexity in the language it provides a systematic
 mechanism to ensure that the query follows the variation encoded in the database
 as well as possibly imposing new variation (\secref{type-sys}). Still, this complexity
 is alleviated in two ways: 1) the queries are not enforced to repeat the variation encoded in the 
-database since queries can be explicitly annotated by schemas (\secref{constrain})
+database since queries can automatically be explicitly annotated by schemas (\secref{constrain})
 and 2) the variation in queries are confluent, that is, the variation can move from one 
 part of the query to another without changing its semantics due to syntactic equivalence
 rules (\secref{var-min}). 
 %
 Importantly, VRA is variation-preserving both at the type and semantics level
 (\secref{var-pres} and \secref{var-pres-sem}). 
-That is, the corresponding variants of data is tracked throughout the executing 
+That is, the corresponding variants of data is tracked throughout the execution of
 the query.
 
 %usecase
@@ -72,7 +72,7 @@ software systems.
 %
 We argued that effectively managing such variation is an open problem, and we
 believe that these use cases will form a useful basis for evaluating
-research that addresses it, such as our own VDBMS framework.
+research that addresses it, such as our own VDBMS prototype.
 %
 The case studies were developed by systematically combining existing data
 sources with software variation scenarios described in the literature. They
@@ -82,7 +82,7 @@ content, and a set of variational queries that satisfy realistic information
 needs over multiple variants of each database.
 % 
 These case studies can be used to 1) evaluate approaches and systems
- attempting to manage any kind of variation in database, 2) learn how a
+ attempting to manage any kind of variation in databases, 2) learn how a
  variational database can be generated from a scenario that describes such
  variation, and 3) design a system that automatically generates a variational
  database from non-variational databases and their corresponding variant. In

@@ -1,11 +1,10 @@
 \section{Relational Databases}
 \label{sec:rdb}
 
-We introduce relational databases concepts, which variational databases are based on. 
+In this section, we introduce relational database's concepts, which are the basis of variational databases. 
 %To ease in the reader into relational databases we first provide an example in 
 \tabref{rdb} represents an example relational
-database instance corresponding to \vTwo\ introduced in our motivating
-example in \tabref{mot-basic}. 
+database instance corresponding to \vTwo, the highlighted cell in \tabref{mot-basic}. 
 %
 Intuitively, the data is represented in tables with rows of uniform structure
 where each row contains  data about a specific
@@ -14,12 +13,12 @@ associated with a relation and has a name, for example,
 the relation \job\ contains rows specifying the salary of a position in a company. 
 The columns form the structure of the table and are called attributes,
 for example, the relation \job\ has two attributes: \titleatt\ and \salary. 
-The values of attributes are taken from a set of constants called the domain. 
+The values of attributes are taken from a set of constants called the \emph{domain}. 
 For simplicity, 
-we do not distinguish between different types of values such as strings, numbers,
+we do not distinguish between different types of values such as strings, numbers, and
 dates.%
-\footnote{This design decision was made to make proofs easier, however, our
-database system implementation distinguishes between different kinds of values
+\footnote{This design decision was made to make proofs easier, however, the implementation of our
+database system  distinguishes between different kinds of values
 and considers a unique domain for each.}
 %
 Finally, we differentiate between the database schema, which is the structure 
@@ -51,7 +50,7 @@ attributes. %eric comment: attributes -->  attribute names
 %
 We assume a total order $\leq_{\pAttSet}$ on \pAttSet, and assume for
 simplicity that sets of attributes are sorted according
-to $\leq_{\pAttSet}$.
+to $\leq_{\pAttSet}$ in all relations.
 %unless otherwise specified. 
 %
 % For theoretical development, it suffices to use the same domain of values
@@ -65,7 +64,7 @@ to $\leq_{\pAttSet}$.
 %\type [\pAtt]\ returns the \emph{type} of values associated with attribute \pAtt.
 
 %\point{database content.}
-\figref{rdb-def} defines the relational database objects and type synonyms compactly.
+\figref{rdb-def} defines the relational database objects and type synonyms.
 The content of database \pDB\ is stored in the form of \emph{tuples}. A tuple
 \pTuple\ is a list of \emph{values}. We do not distinguish between
 different types of values within a relational database.
@@ -83,7 +82,7 @@ a tuple, implicitly looking up the attribute in the corresponding relation
 schema.
 %
 A \emph{table} \ensuremath{\pTab = \left(\pRelSch, \pRelCont\right)} is a pair
-of a relation schema and relation content.
+of relation schema and relation content.
 %
 A \emph{database instance}, \pInst, of the database \pDB\ with schema \pSch, is
 a set of tables $\setDef {\pTab_1, \ldots, \pTab_n}$ for each relation in
