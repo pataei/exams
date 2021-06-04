@@ -26,7 +26,7 @@ $\sat {\getPC \vSch}$}
 variational schema \vSch:\\
 %
 \centerline{
-$\forall\vRel\in\vSch, \sat{\getPCfrom \vRel \vSch}$}
+$\forall\vRel\in\vSch. \sat{\getPCfrom \vRel \vSch}$}
 %
 \item Every attribute \vAtt\ in every relation \vRel\ is present in at least one
 configuration of the variational schema \vSch:\\
@@ -62,9 +62,9 @@ $\forall\vTuple\in\vRel, \forall\vRel\in\vSch.
 not present in any variants of the tuple, then the value of that attribute in
 the tuple, written $\mathit{value}_\vTuple(\vAtt)$, should be NULL:\\
 %\centerline{
-$\forall\vTuple\in\vRel, \vAtt\in\vRel, \vRel\in\vSch.
+$\forall\vTuple\in\vRel, \forall\vAtt\in\vRel,\forall \vRel\in\vSch.
 \neg\sat{\getPCfrom \vRel \vSch \wedge\getPCfrom \vAtt \vRel\wedge\getPCfrom \vTuple \vRel}
-\Rightarrow \mathit{value}_\vTuple(\vAtt) = \text{NULL}$
+\Rightarrow \mathit{value}_\vTuple(\vAtt) = \nul$
 %
 \end{enumerate}
 
