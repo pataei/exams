@@ -1,6 +1,0 @@
-PhD Thesis TODOs:
-
-* get a template
-* write structure
-* ...
-
