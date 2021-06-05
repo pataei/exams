@@ -3,9 +3,10 @@
 \constrain . &: \qSet \totype \vSchSet \totype \qSet\\
 %
 \constrain \vRel &= 
-\chc [\getPCfrom {\vRel} \vSch] {\vPrj \vRel, \empRel}
+%\chc [\getPCfrom {\vRel} \vSch] {\vPrj \vRel, \empRel}
+\chc [\dimMeta] {\vPrj \vRel, \empRel}
 \hspace{5pt} \textit{ where } \hspace{5pt}
-\envWithoutVctx   {\vRel} {\vAttList}
+\envWithoutVctx   {\vRel} {\annot \vAttList}
 %\env [\getPC {\vSch}]  {\vRel} {\vAttList}
 %\chc [\getPC {\vRel}] {\vRel, \empRel}  
 \\
@@ -15,7 +16,7 @@
 \constrain {\vPrj [\vAttList] \vQ} &= 
 \vPrj [\vAttList \cap \VVal \vAttList] {\constrain \vQ}
 \hspace{5pt} \textit{ where } \hspace{5pt}
-\envWithoutVctx {{\constrain \vQ}} {\VVal \vAttList}
+\envWithoutVctx {{\constrain \vQ}} {\annot [\VVal \dimMeta] {\VVal \vAttList}}
 %\env [\getPC {\vSch}]  {\vPrj [\vAttList] {\constrain \vQ}} {\VVal \vAttList}
 \\
 %

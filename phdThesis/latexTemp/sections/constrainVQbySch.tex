@@ -104,14 +104,19 @@ If the query \vQ\ has the type \vType\ then its explicitly annotated counterpart
 \envWithoutVctx {\vQ} {\vType} \Rightarrow \envWithoutVctx {\constrain \vQ} {\VVal \vType} \textit{ and } \vType \equiv {\VVal \vType}
 }}
 %
-This shows that the type system applies the schema to the type of a query although it does not apply it to the query. 
+\end{theorem}
+
+\begin{proof}
+By structural induction. We encoded and proved this theorem in the Coq proof assistant~\cite{Khan21}.
+\end{proof}
+
+This theorem shows that the type system applies the schema to the type of a query although it does not apply it to the query. 
 The \emph{type equivalence} is variational set equivalence, defined 
 in \figref{vset}, for normalized variational sets of attributes.
 %\footnote{We proved this theorem in the Coq proof assistant. The encoding of the theorem and the proof can be found in second author's MS thesis~\cite{FaribaThesis}.}.
-\end{theorem}
 
-We encode and prove \thmref{expl-same-type} in the Coq proof assistant~\cite{Khan21}.
-We also illustrate the application of \thmref{expl-same-type} to queries
+%We encode and prove \thmref{expl-same-type} in the Coq proof assistant~\cite{Khan21}.
+We illustrate the application of \thmref{expl-same-type} to queries
 \ensuremath{\vQ_1} and \ensuremath{\vQ_6}.
 %
 \exref{type} explained how \ensuremath{\vQ_1}'s type is generated step-by-step.
