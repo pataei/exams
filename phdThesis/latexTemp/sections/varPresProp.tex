@@ -85,13 +85,13 @@ in the variation-preserving diagram.
 
 \begin{theorem}
 \label{thm:var-pres}
-For all configurations \config, if a query \vQ\ has type \vType\ 
+For all configurations \config, if a query \vQ\ has type \annot \vType\ 
 then its configured query \ensuremath{\eeSem {\constrain \vQ}}
-has type \ensuremath{\olSem {\vType}}, i.e., \\
+has type \ensuremath{\olSem {\annot \vType}}, i.e., \\
 \centerline{
 \ensuremath{
-\forall \config \in \confSet. \envWithoutVctx { \vQ} {\vType} \Rightarrow 
-\pEnv [\osSem {\vSch}] {\eeSem {\constrain \vQ}} {\olSem {\vType}}
+\forall \config \in \confSet. \envWithoutVctx { \vQ} {\annot \vType} \Rightarrow 
+\pEnv [\osSem {\vSch}] {\eeSem {\constrain \vQ}} {\olSem {\annot \vType}}
 }}.
 \end{theorem}
 

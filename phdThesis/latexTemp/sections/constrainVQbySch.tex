@@ -97,11 +97,11 @@ they are simpilified using rules defined in \figref{var-min}}.
 
 \begin{theorem}
 \label{thm:expl-same-type}
-If the query \vQ\ has the type \vType\ then its explicitly annotated counterpart has the same type \vType, i.e.: \\
+If the query \vQ\ has the type \annot \vType\ then its explicitly annotated counterpart has an equivalent type, that is: \\
 %
 \centerline{
 \ensuremath{%\raggedleft
-\envWithoutVctx {\vQ} {\vType} \Rightarrow \envWithoutVctx {\constrain \vQ} {\VVal \vType} \textit{ and } \vType \equiv {\VVal \vType}
+\envWithoutVctx {\vQ} {\annot \vType} \Rightarrow \envWithoutVctx {\constrain \vQ} {\annot [\VVal \dimMeta] {\VVal \vType}} \textit{ and } \annot \vType \equiv \annot [\VVal \dimMeta] {\VVal \vType}
 }}
 %
 \end{theorem}
