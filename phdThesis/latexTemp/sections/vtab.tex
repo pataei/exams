@@ -6,7 +6,7 @@ Thus far,
 we illustrated how variation can be incorporated into the schema of a database.
 However, it does not suffice to only have variation at the schema level. Consider the 
 variants of the relation \empbio\ shown in \tabref{empbio-v3}--\tabref{empbio-v5}.
-\tabref{empbio-vsch-comp} illustrates the variational relation \empbio\ but it does not include
+\tabref{empbio-vsch-comp} illustrates the variational relation \empbio, but it does not include
 variation at the content level.
 % the corresponding variational 
 %table  shown in \tabref{empbio-sch}. 
@@ -139,7 +139,7 @@ it is unclear which variant each of the tuples
 \ensuremath{(38, PL, 678)}
 and 
 \ensuremath{(23, DB, \nul)} belongs to. We can only guess that
-they belong to variants where \tFour\ or \tFive\ are enabled, but, 
+they belong to variants where \tFour\ or \tFive\ are enabled, but
 we do not know for sure which one. 
 %Thus, it violates the \nTwo\ 
 %requirement of a variational database framework.
@@ -197,8 +197,8 @@ a cell that is not present.
 This distinction can be made by checking
 the satisfiability of 
 the presence condition of the value $v_i$ in tuple \vTuple\ with of relation \vRel\ in schema \vSch:
-If $\sat{\getPCfrom {\getAtt i} \vSch \wedge \getPCfrom \vTuple \vRel \wedge \getPCfrom \vRel \vSch}$ 
-then the \nul\ indicates a missing value
+If $\sat{\getPCfrom {\getAtt i} \vSch \wedge \getPCfrom \vTuple \vRel \wedge \getPCfrom \vRel \vSch}$, 
+then the \nul\ indicates a missing value,
 and otherwise it indicates a non-present cell.
 %, where 
 %\ensuremath{\getPCfrom {v_i} \vTuple = \dimMeta_\vTuple \wedge \getPCfrom \vRel \vSch

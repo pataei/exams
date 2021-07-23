@@ -8,7 +8,7 @@ Thus, the goals of this chapter are twofold:
 first, to introduce how variation is encoded and represented in our variational database framework;
 %
 second, to provide the reader with the concepts and notations
-used to build up the main contributions of this thesis--mainly relational databases,
+used to build up the main contributions of this thesis---mainly relational databases,
 relational algebra,
 %
 and approaches used to add variation to them.
@@ -30,20 +30,20 @@ For example, the type $\settype {\mathbf{Int}}$ is the type of
 sets of integers and it has values such as $\setDef {1,3,4}$ and $\setDef {\ }$.
 We also use type synonyms to make formalizations easier to understand. 
 For example, instead of referring to
-$\settype {\mathbf{Int}}$ we give it a new name ($\mathbf{SetInt}= \settype {\mathbf{Int}}$).
-Thus,  $\mathbf{SetInt}$ also indicates all possible sets of integers.
+$\settype {\mathbf{Int}}$ we can give it a new name ($\mathbf{Ints}= \settype {\mathbf{Int}}$).
+Thus,  $\mathbf{Ints}$ also indicates all possible sets of integers.
 %However, for brevity, we usually use 
 %bold capital letters for types, for example, instead of $\mathit{Int}$ we write $\mathcal{I}$ to denote the type $\mathit{Int}$.
 %
 Sometimes we must extend a type with an additional ``bottom'' element (i.e., $\bot$). To account for this
-extension at the type level we subscript the type with $\bot$. For example, $\maybe {\mathcal{I}}$
-denotes the extension of  type $\mathcal{I}$ with $\bot$.
+extension at the type level we subscript the type with $\bot$. For example, $\maybe {\mathbf{Int}}$
+denotes the extension of  type $\mathbf{Int}$ with $\bot$.
 %
 %\eric{pair and function types}
 Furthermore, sometimes we pair two types together. For example, a variable of type $\typepair{\mathbf{Int}} {\mathbf{String}}$ can take the value $(3,``three")$. 
 %
 Finally, we use function types to provide the type signature of functions. For example,
-the function $id : \typevar \totype \typevar$ states that the function $id$ takes a value of
+the type signature $id : \typevar \totype \typevar$ for function $id$ states that the function $id$ takes a value of
 type \typevar\ and returns a value of type \typevar. 
 
 %

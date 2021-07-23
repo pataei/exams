@@ -50,7 +50,7 @@ This is done by the \emph{variational set configuration} function
 \ensuremath{\osetSem \vset: \vsetSet \totype \confSet \totype \psetSet}, defined in \figref{vset}.
 The configuration function evaluates the presence condition $\dimMeta_i$ of each 
 element $\elem_i$ of the variational set with the configuration \config. 
-If the evaluation results in \t\ it includes $\elem_i$ in the plain set and otherwise it
+If the evaluation results in \t, it includes $\elem_i$ in the plain set, and otherwise it
 does not. \exref{vset-conf} illustrates the configuration of a variational set for all
 possible configurations. 
 
@@ -75,7 +75,7 @@ bot \A\ and \B\ (that is, \ensuremath{\A = \t, \B = \t}) results in the plain se
 
 %
 %\noindent
-Following database notational conventions
+Following database notational conventions,
 we drop the brackets of a variational set when used in database
 schema definitions and queries.
 
@@ -144,7 +144,7 @@ return the presence condition of a unique variational element within a bigger
 variational structure. 
 Note that,
 without loss of generality, we assume that elements in a variational set
-are unique since we can simply disjoin the presence conditions of a repeated 
+are unique since we can simply disjunct the presence conditions of a repeated 
 element, that is, 
 \ensuremath{\setDef {\annot [\dimMeta] \elem, \annot [\dimMeta] \elem, \annot [\dimMeta_1] \elem_1, \ldots, \annot [\dimMeta_n] \elem_n} = \setDef {\annot [\dimMeta \vee \VVal \dimMeta] \elem, \annot [\dimMeta_1] \elem_1, \ldots, \annot [\dimMeta_n] \elem_n}}.
 % by just referring to the element itself without its

@@ -116,7 +116,7 @@ configurations, as described in \secref{encode-var}, and can be extracted by \ge
 %as explained in \secref{encode-var} and introduced as the VDB feature model. 
 Hence, the variational schema defines all valid schema variants of a VDB. 
 %\figref{vsch} concisely defines the formalization of variational schemas.
-\exref{vsch} defines a variational schema for only a part of our motivating example introduced in \secref{mot} and
+\exref{vsch} defines a variational schema for only a part of our motivating example introduced in \secref{mot}, and
  \exref{vsch-mot} provides the variational schema of our motivating example in its entirety. 
 
 
@@ -212,12 +212,12 @@ which its presence condition satisfiable, e.g., in \exref{vsch}
 %satisfiable.
 %So \isstudent\ 
 is present in the variant 
-\ensuremath{\setDef {\edu, \vFour, \tFive}} since 
+\ensuremath{\setDef {\edu, \vFour, \tFive}}, since 
 \ensuremath{\fSem [\setDef {\edu, \vFour, \tFive}] {\getPCfrom \isstudent {\vSch_1}}
 = \fSem [\setDef {\edu, \vFour, \tFive}] {\edu \wedge (\vFour \vee \vFive) \wedge \dimMeta_1}
-= \t \wedge (\t \vee \f) \wedge ((\neg \t \wedge \oneof{\t, \f} \wedge \neg (\f \vee \t)) \vee (\t \wedge \oneof{\t, \f} \wedge \oneof{\f, \t})) = \t}
+= \t \wedge (\t \vee \f) \wedge ((\neg \t \wedge \oneof{\t, \f} \wedge \neg (\f \vee \t)) \vee (\t \wedge \oneof{\t, \f} \wedge \oneof{\f, \t})) = \t},
 but it is not present in the variant
-\ensuremath{\setDef{\vFour, \tFive}} since in this variant \edu = \f, thus,
+\ensuremath{\setDef{\vFour, \tFive}}, since in this variant \edu = \f, thus,
 \ensuremath{\fSem [\setDef {\edu, \vFour, \tFive}] {\getPCfrom \isstudent {\vSch_1}} = \f}.
 
 
@@ -283,7 +283,7 @@ The feature model $\dimMeta_\mot$ only allows one temporal feature to be true fr
 \end{align*}
 %where \ensuremath{\fName_1 \oplus \fName_2 = (\fName_1 \wedge \neg \fName_2) \vee (\fName_2 \wedge \neg \fName_1)}.
 \noindent
-However, the feature model can be encoded differently. For example, $\VVal {\dimMeta_\mot}$ restrict 
+However, the feature model can be encoded differently. For example, $\VVal {\dimMeta_\mot}$ restricts 
 it such that it only allows 
 the two sets of temporal features to change together.
 \begin{align*}
@@ -306,8 +306,8 @@ the two sets of temporal features to change together.
 \noindent
 Hence, the feature model of a VDB can vary based on the relationship between 
 features and the restrictions that they must follow.
-Additionally, the encoding of presence condition can change since different feature 
-expressions can be indicate the same set of variants.
+Additionally, the encoding of presence conditions can change, since different feature 
+expressions can indicate the same set of variants.
 For example, the presence condition of the \job\ relation can be changed to \ensuremath{\neg \vFive}. 
 
 %

@@ -11,14 +11,14 @@ top of any plain relational DBMS, which will store the data
 %\resp{it is exactly implemented as formalized in variational table section.}
 %\responded
 in the form of variational tables, explained in \secref{vtab}. The presence condition
-of tuples is stored as an attribute called presence condition.
+of tuples is stored as an attribute called ``presence condition''.
 %However, 
 %we encode variation at the content level by storing tuples presence condition 
 %as a presence condition attribute to all tables
 %since relational databases cannot represent annotations. 
-Note that the rest of the presence conditions are stored in the Haskell side of the system.
+Note that the rest of the presence conditions are stored on the Haskell side of the system.
 The presence conditions stored in the database are encoded as strings, unlike 
-the presence conditions in the Haskell side of VDBMS which are represented using
+the presence conditions on the Haskell side of VDBMS, which are represented using
 an algebraic data type.
 %To acquire an extensible system we implement 
 To support running VDBMS with multiple different plain relational DBMS backends,

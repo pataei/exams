@@ -3,7 +3,7 @@
 
 %\maybeAdd{add type system}
 %\maybeAdd{maybe add semantics later on}
-Having introduced relational databases we now shift gears into querying
+Having introduced relational databases, we now shift gears into querying
 these databases, that is, extracting information from tables.
 For almost all relational query languages, the result of a query 
 is a table called $\mathit{result}$. 
@@ -43,7 +43,7 @@ and \empacct.\\
 %
 \noindent
 A sample of the results returned by the query ${\pQ_2}$ is given in \tabref{ra2}.
-However, looking closely at these results there is no connection between an employee
+However, looking closely at these results, there is no connection between an employee
 in the \empacct\ relation and their salary in the \job\ relation. Thus, we have to perform 
 another selection to connect each employee with their title. \\
 %
@@ -75,14 +75,14 @@ The relational algebra that we use also includes standard set operations, a join
 operation, and an empty relation. The syntax is defined in \figref{rel-alg}.
 %
 The set operations, union and intersection, require two subqueries to have the same relation schema
-and simply applies the corresponding operation, either union or intersection, to the tuples returned by
+and simply applies the corresponding operation, either union or intersection, to the sets of tuples returned by
 the subqueries.
 %For example, if we have $\pRel_1(\pAtt_1, \pAtt_2)$ with 
 %tuples $\{(1,2)(3,4)\}$
 %and $\pRel_2(\pAtt_1, \pAtt_2)$ with tuples $\{(1,2),(5,6) \}$
 %then $\pRel_1 \cup \pRel_2 $ returns the tuples $\{(1,2), (3,4), (5,6)\}$.
 %
-The \emph{join} operation is equivalent to selection applied to cross-product, that is,
+The \emph{join} operation is equivalent to selection applied to a cross-product, that is,
 $\pQ_1 \bowtie_{\pCond} \pQ_2 = \vSel [\pCond] {(\pQ_1 \times \pQ_2)}$.
 For example, ${\pQ_3}$ in \exref{ra} can be rewritten as\\
 \centerline{
@@ -113,7 +113,7 @@ context when an operation is variational or not.
 
 
 Although we do not consider renaming of queries in the formal definition of 
-relational algebra we do support this in our implementation. Furthermore, we use it
+relational algebra, we do support this in our implementation. Furthermore, we use it
 to rename subqueries of our examples to make them easier to understand. 
 For example, query $\VVVal {{\pQ_3}}$ can be written as:
 \begin{align*}

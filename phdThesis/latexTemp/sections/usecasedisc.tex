@@ -10,7 +10,7 @@ variation be encoded explicitly in databases?}
 
 \paragraph{Expressiveness of explicit variation.}
 %
-The use cases in \chref{vdbusecase} show that by treating
+The use cases in this chapter show that by treating
 variation as an orthogonal concern and embedding it directly in databases and
 queries (via presence conditions and choices), one can encode data variation
 scenarios in both time and space.
@@ -40,35 +40,37 @@ during SPL evolution).
 
 
 We expect that ill-supported forms of variation are common in industry and
-justify the expressiveness of explicit variation. For example, the following is
-a scenario we recently discussed with an industry contact:
-%
-A software company develops software for different networking companies and
-analyzes data from its clients to advise them accordingly. 
-%
-The company records information from each of its clients' networks in databases
-customized to the particular hardware, operating systems, etc.\ that each
-client uses.
-%
-The company analysts need to query information from all clients who agreed to
-share their information, but the same information need will be represented
-differently for each client.
-%
-This problem is essentially a combination of the SPL variation problem (the
-company develops and maintains many databases that vary in structure and
-content) and the data integration problem (querying over many databases that
-vary in structure and content). However, neither the existing solutions from
-the SPL community nor database integration address both sides of the problem.
-%
-Currently the company manually maintains variant schemas and queries, but this
-does not take advantage of sharing and is a major maintenance challenge.
-% , for the reasons SPL researchers are familiar with.
-%
-With a database encoding that supports explicit variation in schemas, content,
-and queries, the company could maintain a single variational database that can
-be configured for each client, import shared data into a VDB, and write
-variational queries over the VDB to analyze the data, significantly reducing redundancy
-across clients.
+justify the expressiveness of explicit variation. We illustrated an example of this
+in \secref{industryex}.
+%For example, the following is
+%a scenario we recently discussed with an industry contact:
+%%
+%A software company develops software for different networking companies and
+%analyzes data from its clients to advise them accordingly. 
+%%
+%The company records information from each of its clients' networks in databases
+%customized to the particular hardware, operating systems, etc.\ that each
+%client uses.
+%%
+%The company analysts need to query information from all clients who agreed to
+%share their information, but the same information need will be represented
+%differently for each client.
+%%
+%This problem is essentially a combination of the SPL variation problem (the
+%company develops and maintains many databases that vary in structure and
+%content) and the data integration problem (querying over many databases that
+%vary in structure and content). However, neither the existing solutions from
+%the SPL community nor database integration address both sides of the problem.
+%%
+%Currently the company manually maintains variant schemas and queries, but this
+%does not take advantage of sharing and is a major maintenance challenge.
+%% , for the reasons SPL researchers are familiar with.
+%%
+%With a database encoding that supports explicit variation in schemas, content,
+%and queries, the company could maintain a single variational database that can
+%be configured for each client, import shared data into a VDB, and write
+%variational queries over the VDB to analyze the data, significantly reducing redundancy
+%across clients.
 %
 % While this scenario uses all of the features of VDBMS, we expect one can
 % still benefit by using only a subset of its features.
@@ -119,8 +121,8 @@ redundancy and (potentially) reduced expressiveness.
 This tradeoff is one we already made when considering how to encode variation
 in the \emph{content} of a VDB. Specifically, we do not support cell-level
 variation in a VDB (e.g.\ choices within individual cells). This does not
-reduce the expressiveness of content variation in VDBs since cell-level
-variation can be simulated by row variation, but it does increase redundancy
+reduce the expressiveness of content variation in VDBs, since cell-level
+variation can be simulated by row variation, but it does increase redundancy,
 since all non-varied cells in the row must be duplicated.
 %
 Similarly, variation in queries could be restricted to expression-level

@@ -1,7 +1,7 @@
 \section{Contributions and Outline of this Thesis}
 \label{sec:contribution}
 
-The high level goal of this thesis is to emphasize the need for a variation-aware database
+The high-level goal of this thesis is to emphasize the need for a variation-aware database
 framework and to present one such framework. Therefore, in addition to the formal 
 definition of the framework and query language, it also provides variational datasets 
 (including both the variational database and a set of queries) to illustrate the feasibility
@@ -43,7 +43,7 @@ compatible with the corresponding variants of the VDB (\secref{type-sys}).
 Furthermore, it defines the denotational semantics of VRA through the semantics of
 relational algebra (\secref{vrasem}).
 %
-It also defines a set of syntactic-based rules to \emph{minimize variation} in 
+It also defines a set of syntax-based rules to \emph{minimize variation} in 
 variational queries (\secref{var-min}).
 %
 Finally, it discusses the properties of the VRA in \secref{vqlprop} including its expressiveness and 
@@ -54,12 +54,12 @@ This chapter heavily borrows from our papers~\cite{ATW17dbpl, ATW18poly, vldbArX
 \chref{vdbusecase} (\emph{Variational Database Use Cases}) 
 aims at guiding an expert through generating a VDB and writing
 variational queries for a variation scenario where unfortunately,  database variants
-do not exist, thus, generating the VDB requires the expert knowledge and cannot
+do not exist. Thus, generating the VDB requires the expert knowledge and cannot
 be automated. 
 %
-It details two such variation scenario and introduces two use cases of VDB, one over space
-(adopts the email SPL described by \citet{Hall05} and explained in \secref{enron-vdb})
- and another over time (adopts the evolution 
+It details two such variation scenarios and introduces two use cases of VDB, one over space
+(adapted from the email SPL described by \citet{Hall05} and explained in \secref{enron-vdb})
+ and another over time (adapted from the evolution 
 of an employee schema described by \citet{prima08Moon} and explained in \secref{emp-vdb}).
 Additionally, it describes how a VDB can store all database variants in a single database and
  how variational queries can capture various information needs over different database variants
@@ -71,7 +71,7 @@ The last section of this chapter, \secref{usecase-disc}, discusses the question
 ``should variation be encoded explicitly in databases?''.
 
 \chref{vdbusecase} heavily borrows from our previous paper~\cite{ALW21vamos} and Qiaoran Li's Masters project report~\cite{Li19}. 
-Although the databases and queries were originally taken from Qiaoran's work they 
+Although the databases and queries were originally taken from Qiaoran's work, they 
 have been significantly modified  so that the VDBs pass the properties of a well-defined VDB and 
 the queries justify the information need of their scenario better. 
 
@@ -86,10 +86,10 @@ performance of VDBMS using different SQL generator approaches.
 
 
 
-\chref{rw} (\emph{Related Work}) collects some previous research of different kinds of variation 
+\chref{rw} (\emph{Related Work}) describes previous research on different kinds of variation 
 in databases.
 
-Finally, \chref{conclusion} (\emph{Conclusion}) briefly presents the main contributions 
+Finally, \chref{conclusion} (\emph{Conclusion}) briefly summarizes the main contributions 
 of this thesis and immediate future works. 
 
 %\begin{itemize}
